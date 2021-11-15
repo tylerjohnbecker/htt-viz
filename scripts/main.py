@@ -2,12 +2,29 @@
 #!/usr/bin/env python
 
 import wx
-import rospy
+import htt_viz_py.tree as t
 
+class MainWindow(wx.Frame):
+    def __init__(self, parent, title):
+        wx.Frame.__init__(self, parent, title=title, size=(200,100))
+        self.control = wx.TextCtrl(self, style=wx.TE_MULTILINE)
+        self.CreateStatusBar() # A Statusbar in the bottom of the window
 
+        # Setting up the menu.
+        filemenu= wx.Menu()
 
-#main python file to run the program and compile it with libs
-app = wx.App(False)  # Create a new app, don't redirect stdout/stderr to a window.
-frame = wx.Frame(None, wx.ID_ANY, "Hello World") # A Frame is a top-level window.
-frame.Show(True)     # Show the frame.
+        # wx.ID_ABOUT and wx.ID_EXIT are standard IDs provided by wxWidgets.
+        filemenu.Append(wx.ID_ABOUT, "&About"," Information about this program")
+        filemenu.AppendSeparator()
+        filemenu.Append(wx.ID_EXIT,"E&xit"," Terminate the program")
+
+        # Creating the menubar.
+        menuBar = wx.MenuBar()
+        menuBar.Append(filemenu,"&File") # Adding the "filemenu" to the MenuBar
+        self.SetMenuBar(menuBar)  # Adding the MenuBar to the Frame content.
+        self.Show(True)
+
+a = t.Tree()
+app = wx.App(False)
+frame = MainWindow(None, "Sample editor")
 app.MainLoop()
