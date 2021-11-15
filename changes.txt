@@ -1,0 +1,7 @@
+This file is just to document the changes to the node file
+For now I think I'm going to get rid of the peer functionality, however, as long as other files can still compile
+they should be able to supplant the tree configuration of the tree to whatever you want.
+
+//  I also really want to remove the hold_status code from the node class because it doesn't really go there but one thing at a time
+
+and the suitability function needs to go
