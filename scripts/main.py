@@ -1,8 +1,9 @@
-
 import wx
+import graphviz
 
-class frameMain ( wx.Frame ):
-	
+
+
+class FrameMain ( wx.Frame ):
 	def __init__( self, parent ):
 		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = u"wxMain", pos = wx.DefaultPosition, size = wx.Size( 969,543 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
 		
@@ -85,7 +86,7 @@ class frameMain ( wx.Frame ):
 	
 class MainApp(wx.App):
     def OnInit(self):
-        mainFrame = frameMain(None)
+        mainFrame = FrameMain(None)
         mainFrame.Show(True)
         return True
 
