@@ -1,7 +1,5 @@
 import wx
-import graphviz
-
-
+from NodeView import NodeView
 
 class FrameMain ( wx.Frame ):
 	def __init__( self, parent ):
@@ -18,7 +16,8 @@ class FrameMain ( wx.Frame ):
 		
 		
 		bSizerFrameMain.Add( bSizerMainFrame, 1, wx.ALL|wx.EXPAND, 0 )
-		
+        
+		NodeView(self.m_panelMain, wx.ID_ANY, wx.DefaultPosition, size=wx.Size(400, 400))
 		
 		self.SetSizer( bSizerFrameMain )
 		self.Layout()
