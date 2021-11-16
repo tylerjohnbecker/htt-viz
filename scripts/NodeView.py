@@ -109,4 +109,4 @@ class NodeView(wx.Panel):
 				self.draggingNode.x = event.GetX() - self.dragOffsetX
 				self.draggingNode.y = event.GetY() - self.dragOffsetY
 				
-				self.Refresh()
+				self.Refresh(False)
