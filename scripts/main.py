@@ -17,7 +17,7 @@ class FrameMain ( wx.Frame ):
 		
 		bSizerFrameMain.Add( bSizerMainFrame, 1, wx.ALL|wx.EXPAND, 0 )
         
-		NodeView(self.m_panelMain, wx.ID_ANY, wx.DefaultPosition, size=wx.Size(400, 400))
+		NodeView(self.m_panelMain, wx.ID_ANY, wx.Point(15, 15), size=wx.Size(400, 400))
 		
 		self.SetSizer( bSizerFrameMain )
 		self.Layout()
