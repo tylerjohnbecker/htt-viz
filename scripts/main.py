@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+
+import rospy
 import wx
 from NodeView import NodeView
 
