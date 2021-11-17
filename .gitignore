@@ -5,4 +5,7 @@
 *.opendb
 *.opensdf
 *.sdf
-*.cachefile 
+*.cachefile
+
+out
+.vs
