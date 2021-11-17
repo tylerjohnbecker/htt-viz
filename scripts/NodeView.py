@@ -92,8 +92,9 @@ class NodeView(wx.Panel):
 		
 		maybeNode = self.node.getHitNode(eventX, eventY)
 		
+		# We assign regardless as if its None, we want to clear the dragging node
+		self.draggingNode = maybeNode
 		if maybeNode is not None:
-			self.draggingNode = maybeNode
 			self.dragOffsetX = eventX - maybeNode.x
 			self.dragOffsetY = eventY - maybeNode.y
 		
