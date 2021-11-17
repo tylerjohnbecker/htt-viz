@@ -8,7 +8,7 @@ class PanelWithText(wx.Panel):
         st1 = wx.StaticText(self, label='Some Text')
         hbox1.Add(st1)
 
-class MainFrame(wx.Frame):
+class Example(wx.Frame):
 
     def __init__(self, parent, title):
         super(Example, self).__init__(parent, title=title,
