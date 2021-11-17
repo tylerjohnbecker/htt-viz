@@ -1,0 +1,38 @@
+import wx
+
+class PanelWithText(wx.Panel):
+    def __init__(self, parent):
+        super(PanelWithText, self).__init__(parent)
+
+        hbox1 = wx.BoxSizer(wx.HORIZONTAL)
+        st1 = wx.StaticText(self, label='Some Text')
+        hbox1.Add(st1)
+
+class MainFrame(wx.Frame):
+
+    def __init__(self, parent, title):
+        super(Example, self).__init__(parent, title=title,
+            size=(390, 350))
+
+        panel = wx.Panel(self)
+
+        vbox = wx.BoxSizer(wx.VERTICAL)
+
+        #hbox1 = wx.BoxSizer(wx.HORIZONTAL)                  
+        #panel1 = wx.Panel(panel)                            
+        #st1 = wx.StaticText(panel1, label='Some Text')      
+        #hbox1.Add(st1)                                      
+        panel1 = PanelWithText(panel)
+        vbox.Add(panel1)
+
+        panel.SetSizer(vbox)
+
+        self.Centre()
+        self.Show()
+
+if __name__ == '__main__':
+    import wx.lib.mixins.inspection
+    app = wx.App()
+    Example(None, title='Example')
+    wx.lib.inspection.InspectionTool().Show()
+    app.MainLoop()
