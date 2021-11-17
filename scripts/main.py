@@ -14,36 +14,79 @@ class frameMain ( wx.Frame ):
 		splitter.SplitVertically(left, right)
 		splitter.SetMinimumPaneSize(200)
 		
+		# Menu Buttons
 		self.Layout()
 		self.menubarMain = wx.MenuBar( 0 )
 		self.menuFile = wx.Menu()
+
+		# New
 		self.menuItemFileNew = wx.MenuItem( self.menuFile, wx.ID_ANY, u"New"+ u"\t" + u"Ctrl+N", wx.EmptyString, wx.ITEM_NORMAL )
 		self.menuFile.AppendItem( self.menuItemFileNew )
 		
+		# Open
 		self.menuItemFileOpen = wx.MenuItem( self.menuFile, wx.ID_ANY, u"Open"+ u"\t" + u"Ctrl+O", wx.EmptyString, wx.ITEM_NORMAL )
 		self.menuFile.AppendItem( self.menuItemFileOpen )
 		
+		# Save
 		self.menuItemFileSave = wx.MenuItem( self.menuFile, wx.ID_ANY, u"Save"+ u"\t" + u"Ctrl+S", wx.EmptyString, wx.ITEM_NORMAL )
 		self.menuFile.AppendItem( self.menuItemFileSave )
 		
+		# Save As
 		self.menuItemFileSaveAs = wx.MenuItem( self.menuFile, wx.ID_ANY, u"Save As"+ u"\t" + u"Ctrl-Shift+S", wx.EmptyString, wx.ITEM_NORMAL )
 		self.menuFile.AppendItem( self.menuItemFileSaveAs )
 		
 		self.menuFile.AppendSeparator()
 		
+		# Exit
 		self.menuItemFileExit = wx.MenuItem( self.menuFile, wx.ID_ANY, u"Exit"+ u"\t" + u"Alt-F4", wx.EmptyString, wx.ITEM_NORMAL )
 		self.menuFile.AppendItem( self.menuItemFileExit )
 		
 		self.menubarMain.Append( self.menuFile, u"File" ) 
-		
+		# End File Tab
+
 		self.menuEdit = wx.Menu()
-		self.menubarMain.Append( self.menuEdit, u"Edit" ) 
 		
+		# Undo
+		self.menuItemEditUndo = wx.MenuItem( self.menuEdit, wx.ID_ANY, u"Undo"+ u"\t" + u"Ctrl+Z", wx.EmptyString, wx.ITEM_NORMAL )
+		self.menuEdit.AppendItem( self.menuItemEditUndo )
+
+		# Redo
+		self.menuItemEditRedo = wx.MenuItem( self.menuEdit, wx.ID_ANY, u"Redo"+ u"\t" + u"Ctrl+Y", wx.EmptyString, wx.ITEM_NORMAL )
+		self.menuEdit.AppendItem( self.menuItemEditRedo )
+
+		self.menuEdit.AppendSeparator()
+
+		# Cut
+		self.menuItemEditCut = wx.MenuItem( self.menuEdit, wx.ID_ANY, u"Cut"+ u"\t" + u"Ctrl+X", wx.EmptyString, wx.ITEM_NORMAL )
+		self.menuEdit.AppendItem( self.menuItemEditCut )
+
+		# Copy
+		self.menuItemEditCopy = wx.MenuItem( self.menuEdit, wx.ID_ANY, u"Copy"+ u"\t" + u"Ctrl+C", wx.EmptyString, wx.ITEM_NORMAL )
+		self.menuEdit.AppendItem( self.menuItemEditCopy )
+
+		# Paste
+		self.menuItemEditPaste = wx.MenuItem( self.menuEdit, wx.ID_ANY, u"Paste"+ u"\t" + u"Ctrl+V", wx.EmptyString, wx.ITEM_NORMAL )
+		self.menuEdit.AppendItem( self.menuItemEditPaste )
+
+		self.menubarMain.Append( self.menuEdit, u"Edit" ) 
+		# End Edit Tab
+
+
 		self.menuView = wx.Menu()
+
+		self.menuItemViewDebug = wx.MenuItem( self.menuView, wx.ID_ANY, u"Debug Console"+ u"\t" + u"Ctrl+Shift+Y", wx.EmptyString, wx.ITEM_NORMAL )
+		self.menuView.AppendItem( self.menuItemViewDebug )
+
 		self.menubarMain.Append( self.menuView, u"View" ) 
 		
-		self.m_menuHelp = wx.Menu()
-		self.menubarMain.Append( self.m_menuHelp, u"Help" ) 
+		self.menuHelp = wx.Menu()
+
+		# Help
+		self.menuItemHelpAbout = wx.MenuItem( self.menuHelp, wx.ID_ANY, u"About..."+ u"\t" + u"", wx.EmptyString, wx.ITEM_NORMAL )
+		self.menuHelp.AppendItem( self.menuItemHelpAbout )
+
+		self.menubarMain.Append( self.menuHelp, u"Help" ) 
+		# End Help Tab
 		
 		self.SetMenuBar( self.menubarMain )
 		
@@ -65,17 +108,42 @@ class frameMain ( wx.Frame ):
 	def menuItemFileNewOnMenuSelection( self, event ):
 		event.Skip()
 	
+	# Open File Event
 	def menuItemFileOpenOnMenuSelection( self, event ):
-		event.Skip()
+		#if self.contentNotSaved:
+		#	if wx.MessageBox("Current content has not been saved! Proceed?", "Please confirm", wx.ICON_QUESTION | wx.YES_NO, self) == wx.NO:
+		#		return
+		with wx.FileDialog(self, "Open file", wildcard="File Types (*.xyz)|*.xyz", style=wx.FD_OPEN | wx.FD_FILE_MUST_EXIST) as fileDialog:
+			if fileDialog.ShowModal() == wx.ID_CANCEL:
+				return
+			pathname = fileDialog.GetPath()
+			try:
+				with open(pathname, 'r') as file:
+					self.doLoadDataOrWhatever(file)
+			except IOError:
+				wx.LogError("Cannot open file.")
+
 	
 	def menuItemFileSaveOnMenuSelection( self, event ):
 		event.Skip()
 	
+	# Save As Event
 	def menuItemFileSaveAsOnMenuSelection( self, event ):
-		event.Skip()
+		with wx.FileDialog(self, "Save file", wildcard="File Types (*.xyz)|*.xyz", style=wx.FD_SAVE | wx.FD_OVERWRITE_PROMPT) as fileDialog:
+
+			if fileDialog.ShowModal() == wx.ID_CANCEL:
+				return     
+
+			pathname = fileDialog.GetPath()
+			try:
+				with open(pathname, 'w') as file:
+					self.doSaveData(file)
+			except IOError:
+				wx.LogError("Cannot save current data in file '%s'." % pathname)
 	
+	# Exit Event
 	def menuItemFileExitOnMenuSelection( self, event ):
-		event.Skip()
+		wx.Exit()
 
 class NodePanel(wx.Panel):
 	def __init__(self, parent):
