@@ -6,6 +6,5 @@
 *.opensdf
 *.sdf
 *.cachefile
-
 out
 .vs
