@@ -14,6 +14,7 @@ class frameMain ( wx.Frame ):
 		splitter.SplitVertically(left, right)
 		splitter.SetMinimumPaneSize(200)
 		
+		
 		# Menu Buttons
 		self.Layout()
 		self.menubarMain = wx.MenuBar( 0 )
@@ -156,6 +157,8 @@ class TreePanel(wx.Panel):
 		wx.Panel.__init__(self, parent = parent)
 		wx.Button(self, -1, "Run Tree")
 		self.SetBackgroundColour("dark grey")
+		NodeList = ['Node A', 'Node B', 'Node C', 'Node D', 'Node E', 'Node F', 'Node G']
+		List=wx.ListBox(parent, -1, pos = (206,30), size = (83, 80), choices = NodeList, style = wx.LB_SINGLE)
 	
 class MainApp(wx.App):
     def OnInit(self):
