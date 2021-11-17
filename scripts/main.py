@@ -157,8 +157,8 @@ class TreePanel(wx.Panel):
 		wx.Panel.__init__(self, parent = parent)
 		wx.Button(self, -1, "Run Tree")
 		self.SetBackgroundColour("dark grey")
-		NodeList = ['Node A', 'Node B', 'Node C', 'Node D', 'Node E', 'Node F', 'Node G']
-		List=wx.ListBox(parent, -1, pos = (206,30), size = (83, 80), choices = NodeList, style = wx.LB_SINGLE)
+		List = ['Node A', 'Node B', 'Node C', 'Node D', 'Node E', 'Node F', 'Node G']
+		NodeList=wx.ListBox(parent, -1, pos = (3,30), size = (194, 110), choices = List, style = wx.LB_SINGLE)
 	
 class MainApp(wx.App):
     def OnInit(self):
