@@ -100,6 +100,8 @@ class frameMain ( wx.Frame ):
 		self.Bind( wx.EVT_MENU, self.menuItemFileSaveOnMenuSelection, id = self.menuItemFileSave.GetId() )
 		self.Bind( wx.EVT_MENU, self.menuItemFileSaveAsOnMenuSelection, id = self.menuItemFileSaveAs.GetId() )
 		self.Bind( wx.EVT_MENU, self.menuItemFileExitOnMenuSelection, id = self.menuItemFileExit.GetId() )
+
+		self.Bind( wx.EVT_MENU, self.menuItemHelpAboutOnMenuSelection, id = self.menuItemHelpAbout.GetId() )
 	
 	def __del__( self ):
 		pass
@@ -146,6 +148,10 @@ class frameMain ( wx.Frame ):
 	def menuItemFileExitOnMenuSelection( self, event ):
 		wx.Exit()
 
+	def menuItemHelpAboutOnMenuSelection( self, event ):
+		about = aboutWindow()
+		about.Show()
+
 class NodePanel(wx.Panel):
 	def __init__(self, parent):
 		wx.Panel.__init__(self, parent = parent)
@@ -159,7 +165,19 @@ class TreePanel(wx.Panel):
 		self.SetBackgroundColour("dark grey")
 		List = ['Node A', 'Node B', 'Node C', 'Node D', 'Node E', 'Node F', 'Node G']
 		NodeList=wx.ListBox(parent, -1, pos = (3,30), size = (194, 110), choices = List, style = wx.LB_SINGLE)
-	
+
+class aboutWindow(wx.Frame):
+	def __init__(self, parent=None):
+		wx.Frame.__init__ (self, parent=parent, title = u"About...")
+
+		st = wx.StaticText(self, label = "Welcome to HTT-VIZ")
+		font = st.GetFont()
+		font.PointSize += 5
+		font = font.Bold()
+		st.SetFont(font)
+
+		self.Show()
+
 class MainApp(wx.App):
     def OnInit(self):
         mainFrame = frameMain(None)
