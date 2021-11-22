@@ -1,4 +1,5 @@
 import wx
+from htt_viz_py.NodeView import NodeView
 
 class frameMain ( wx.Frame ):
 	
@@ -154,17 +155,35 @@ class frameMain ( wx.Frame ):
 
 class NodePanel(wx.Panel):
 	def __init__(self, parent):
+		#wx.Panel.__init__(self, parent = parent)
+		#wx.Button(self, -1, "New Node")
+		#self.SetBackgroundColour("grey")
 		wx.Panel.__init__(self, parent = parent)
 		wx.Button(self, -1, "New Node")
 		self.SetBackgroundColour("grey")
+		List = ['Node A', 'Node B', 'Node C', 'Node D', 'Node E', 'Node F', 'Node G']
+		NodeList=wx.ListBox(parent, -1, pos = (3,30), size = (194, 110), choices = List, style = wx.LB_SINGLE)
 
 class TreePanel(wx.Panel):
 	def __init__(self, parent):
 		wx.Panel.__init__(self, parent = parent)
-		wx.Button(self, -1, "Run Tree")
+		
+		#sizer to put them one above the other with no horizontal constraints
+		sizer = wx.BoxSizer(wx.VERTICAL)
+
+		#no functionality just a pretty button for now
+		runButton = wx.Button(self, -1, "Run Tree")
+		
+		treeEditor = NodeView(self, wx.ID_ANY, wx.Point(15, 15), size=wx.Size(400, 400))
+		
+		#add them to the sizer in the correct order
+		sizer.Add(runButton)
+		sizer.Add(treeEditor)
+		
 		self.SetBackgroundColour("dark grey")
-		List = ['Node A', 'Node B', 'Node C', 'Node D', 'Node E', 'Node F', 'Node G']
-		NodeList=wx.ListBox(parent, -1, pos = (3,30), size = (194, 110), choices = List, style = wx.LB_SINGLE)
+		self.SetSizer(sizer)
+		#List = ['Node A', 'Node B', 'Node C', 'Node D', 'Node E', 'Node F', 'Node G']
+		#NodeList=wx.ListBox(parent, -1, pos = (3,30), size = (194, 110), choices = List, style = wx.LB_SINGLE)
 
 class aboutWindow(wx.Frame):
 	def __init__(self, parent=None):

@@ -1,7 +1,7 @@
 import wx
 
-NODE_WIDTH = 100
-NODE_HEIGHT = 50
+NODE_WIDTH = 50
+NODE_HEIGHT = 25
 NODE_RADIUS = 10
 
 class Node:
@@ -50,6 +50,8 @@ class NodeView(wx.Panel):
 		self.node = Node("test", 0, 0)
 		self.node.addChild("child 1", 100, 100)
 		self.node.addChild("child 2", 100, 200)
+
+		self.SetBackgroundColour("dark grey")
 		
 		# The offset for when a user begins a drag.
 		self.dragOffsetX = 0
