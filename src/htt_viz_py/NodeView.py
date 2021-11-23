@@ -94,8 +94,9 @@ class NodeView(wx.Panel):
 		
 		maybeNode = self.node.getHitNode(eventX, eventY)
 		
+		self.draggingNode = maybeNode
+
 		if maybeNode is not None:
-			self.draggingNode = maybeNode
 			self.dragOffsetX = eventX - maybeNode.x
 			self.dragOffsetY = eventY - maybeNode.y
 		
