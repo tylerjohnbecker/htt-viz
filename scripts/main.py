@@ -1,5 +1,6 @@
 import wx
 import rospy
+import threading
 from htt_viz_py.NodeView import NodeView
 
 class frameMain ( wx.Frame ):
@@ -204,8 +205,22 @@ class MainApp(wx.App):
         mainFrame.Show(True)
         return True
 
+class AsyncSpinner(threading.Thread):
+    def __init__(self):
+        threading.Thread.__init__(self)
+        print("service initialized")
+	#overriden behavior of the thread
+    def run(self):
+		#we are only using this thread to collect the messages 
+		##that are sent to this program asynchronously
+        rp.spin()
+
 rospy.init_node('htt_viz')
 if __name__ == '__main__':
+    spinner = AsyncSpinner()
+    spinner.start()
     app = MainApp()
     app.MainLoop()
+    spinner.join()
+	
 
