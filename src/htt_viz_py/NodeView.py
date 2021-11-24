@@ -1,8 +1,21 @@
 import wx
+import rospy as rp
+import threading
+from htt_viz.srv import Update
 
 NODE_WIDTH = 50
 NODE_HEIGHT = 25
 NODE_RADIUS = 10
+
+class SpinThread(threading.Thread):
+	def __init__(self):
+		threading.Thread.__init__(self)
+		print("service initialized")
+	#overriden behavior of the thread
+	def run(self):
+		#we are only using this thread to collect the messages 
+		##that are sent to this program asynchronously
+		rp.spin()
 
 class Node:
 	def __init__(self, name, x=0, y=0):
@@ -45,7 +58,10 @@ class Node:
 class NodeView(wx.Panel):
 	def __init__(self, parent, id=wx.ID_ANY, pos=wx.DefaultPosition, size=wx.DefaultSize):
 		wx.Panel.__init__(self, parent, id, pos, size)
-		
+
+		#initializing a rosservice to update the nodes when the colors need to change
+		self.server = rp.Service('update_htt', Update, self.UpdateCallback)
+
 		# The base node. Temporarily use filler data.
 		self.node = Node("test", 0, 0)
 		self.node.addChild("child 1", 100, 100)
@@ -67,6 +83,9 @@ class NodeView(wx.Panel):
 		self.Bind(wx.EVT_LEFT_DOWN, self.OnMouseLeftDown)
 		self.Bind(wx.EVT_LEFT_UP, self.OnMouseLeftUp)
 		self.Bind(wx.EVT_MOTION, self.OnMouseMotion)
+
+		self.spinner = SpinThread()
+		self.spinner.start()
 		
 	def OnPaint(self, event):
 		dc = wx.BufferedPaintDC(self)
@@ -105,6 +124,11 @@ class NodeView(wx.Panel):
 		
 	def OnMouseLeftUp(self, event):
 		pass
+
+	def UpdateCallback(self, req):
+		#message received to update, can handle color changes of nodes here
+		#for now it will just print hello
+		print("hello world!")
 		
 	def OnMouseMotion(self, event):
 		if event.Dragging():

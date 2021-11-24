@@ -1,0 +1,6 @@
+string owner
+bool active
+float32 activation_potential
+#I don't need the whole status msg but we definitely need the name, active, and activation potential
+---
+bool success

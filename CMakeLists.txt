@@ -16,6 +16,14 @@ find_package(Boost REQUIRED COMPONENTS
   thread
 )
 
+catkin_python_setup()
+
+add_service_files(FILES
+	Update.srv
+)
+
+generate_messages()
+
 
 catkin_package(
   INCLUDE_DIRS include
@@ -31,19 +39,17 @@ include_directories(
 )
 
 ##CPP executables
-set(TaskNodes "src/task_tree/behavior.cc" "src/task_tree/node.cc")
+#set(TaskNodes "src/task_tree/behavior.cc" "src/task_tree/node.cc")
 #set(ActionNodes "src/behavior/action_behavior.cc" "src/behavior/move_behavior.cc")
 
-add_executable(load src/htt_viz/loadTree.cpp ${TaskNodes})# ${ActionNodes})
-target_link_libraries(load ${catkin_LIBRARIES} ${Boost_LIBRARIES} yaml-cpp)
+#add_executable(load src/htt_viz/loadTree.cpp ${TaskNodes})# ${ActionNodes})
+#target_link_libraries(load ${catkin_LIBRARIES} ${Boost_LIBRARIES} yaml-cpp)
 
 
 #python executables
 file (GLOB python_scripts_DIR
 	"scripts/main.py"
 )
-
-catkin_python_setup()
 
 catkin_install_python(PROGRAMS ${python_scripts_DIR}
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}

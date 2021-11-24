@@ -1,4 +1,5 @@
 import wx
+import rospy
 from htt_viz_py.NodeView import NodeView
 
 class frameMain ( wx.Frame ):
@@ -203,6 +204,7 @@ class MainApp(wx.App):
         mainFrame.Show(True)
         return True
 
+rospy.init_node('htt_viz')
 if __name__ == '__main__':
     app = MainApp()
     app.MainLoop()
