@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 */out/*
 */.vs/*
 *.aps
@@ -8,3 +9,12 @@
 *.cachefile
 out
 .vs
+=======
+
+*.opendb
+*.db
+*.db-shm
+*.db-wal
+.vs/ProjectSettings.json
+.vs/slnx.sqlite
+>>>>>>> Stashed changes
