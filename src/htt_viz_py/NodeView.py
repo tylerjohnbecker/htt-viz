@@ -96,7 +96,7 @@ class NodeView(wx.Panel):
 	def OnMouseLeftDown(self, event):
 		eventX = event.GetX()
 		eventY = event.GetY()
-		
+
 		maybeNode = self.node.getHitNode(eventX, eventY)
 		
 		self.draggingNode = maybeNode

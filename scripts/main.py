@@ -4,11 +4,10 @@ import threading
 from htt_viz_py.NodeView import NodeView
 
 class frameMain ( wx.Frame ):
-	
 	def __init__( self, parent ):
 		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = u"HTT-VIZ", pos = wx.DefaultPosition, size = wx.Size( 1000,550 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
 		
-		self.SetSizeHintsSz( wx.DefaultSize, wx.DefaultSize )
+		self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
 		
 		## Split window into panels
 		splitter = wx.SplitterWindow(self)
@@ -25,25 +24,25 @@ class frameMain ( wx.Frame ):
 
 		# New
 		self.menuItemFileNew = wx.MenuItem( self.menuFile, wx.ID_ANY, u"New"+ u"\t" + u"Ctrl+N", wx.EmptyString, wx.ITEM_NORMAL )
-		self.menuFile.AppendItem( self.menuItemFileNew )
+		self.menuFile.Append( self.menuItemFileNew )
 		
 		# Open
 		self.menuItemFileOpen = wx.MenuItem( self.menuFile, wx.ID_ANY, u"Open"+ u"\t" + u"Ctrl+O", wx.EmptyString, wx.ITEM_NORMAL )
-		self.menuFile.AppendItem( self.menuItemFileOpen )
+		self.menuFile.Append( self.menuItemFileOpen )
 		
 		# Save
 		self.menuItemFileSave = wx.MenuItem( self.menuFile, wx.ID_ANY, u"Save"+ u"\t" + u"Ctrl+S", wx.EmptyString, wx.ITEM_NORMAL )
-		self.menuFile.AppendItem( self.menuItemFileSave )
+		self.menuFile.Append( self.menuItemFileSave )
 		
 		# Save As
 		self.menuItemFileSaveAs = wx.MenuItem( self.menuFile, wx.ID_ANY, u"Save As"+ u"\t" + u"Ctrl-Shift+S", wx.EmptyString, wx.ITEM_NORMAL )
-		self.menuFile.AppendItem( self.menuItemFileSaveAs )
+		self.menuFile.Append( self.menuItemFileSaveAs )
 		
 		self.menuFile.AppendSeparator()
 		
 		# Exit
 		self.menuItemFileExit = wx.MenuItem( self.menuFile, wx.ID_ANY, u"Exit"+ u"\t" + u"Alt-F4", wx.EmptyString, wx.ITEM_NORMAL )
-		self.menuFile.AppendItem( self.menuItemFileExit )
+		self.menuFile.Append( self.menuItemFileExit )
 		
 		self.menubarMain.Append( self.menuFile, u"File" ) 
 		# End File Tab
@@ -52,25 +51,25 @@ class frameMain ( wx.Frame ):
 		
 		# Undo
 		self.menuItemEditUndo = wx.MenuItem( self.menuEdit, wx.ID_ANY, u"Undo"+ u"\t" + u"Ctrl+Z", wx.EmptyString, wx.ITEM_NORMAL )
-		self.menuEdit.AppendItem( self.menuItemEditUndo )
+		self.menuEdit.Append( self.menuItemEditUndo )
 
 		# Redo
 		self.menuItemEditRedo = wx.MenuItem( self.menuEdit, wx.ID_ANY, u"Redo"+ u"\t" + u"Ctrl+Y", wx.EmptyString, wx.ITEM_NORMAL )
-		self.menuEdit.AppendItem( self.menuItemEditRedo )
+		self.menuEdit.Append( self.menuItemEditRedo )
 
 		self.menuEdit.AppendSeparator()
 
 		# Cut
 		self.menuItemEditCut = wx.MenuItem( self.menuEdit, wx.ID_ANY, u"Cut"+ u"\t" + u"Ctrl+X", wx.EmptyString, wx.ITEM_NORMAL )
-		self.menuEdit.AppendItem( self.menuItemEditCut )
+		self.menuEdit.Append( self.menuItemEditCut )
 
 		# Copy
 		self.menuItemEditCopy = wx.MenuItem( self.menuEdit, wx.ID_ANY, u"Copy"+ u"\t" + u"Ctrl+C", wx.EmptyString, wx.ITEM_NORMAL )
-		self.menuEdit.AppendItem( self.menuItemEditCopy )
+		self.menuEdit.Append( self.menuItemEditCopy )
 
 		# Paste
 		self.menuItemEditPaste = wx.MenuItem( self.menuEdit, wx.ID_ANY, u"Paste"+ u"\t" + u"Ctrl+V", wx.EmptyString, wx.ITEM_NORMAL )
-		self.menuEdit.AppendItem( self.menuItemEditPaste )
+		self.menuEdit.Append( self.menuItemEditPaste )
 
 		self.menubarMain.Append( self.menuEdit, u"Edit" ) 
 		# End Edit Tab
@@ -79,7 +78,7 @@ class frameMain ( wx.Frame ):
 		self.menuView = wx.Menu()
 
 		self.menuItemViewDebug = wx.MenuItem( self.menuView, wx.ID_ANY, u"Debug Console"+ u"\t" + u"Ctrl+Shift+Y", wx.EmptyString, wx.ITEM_NORMAL )
-		self.menuView.AppendItem( self.menuItemViewDebug )
+		self.menuView.Append( self.menuItemViewDebug )
 
 		self.menubarMain.Append( self.menuView, u"View" ) 
 		
@@ -87,7 +86,7 @@ class frameMain ( wx.Frame ):
 
 		# Help
 		self.menuItemHelpAbout = wx.MenuItem( self.menuHelp, wx.ID_ANY, u"About..."+ u"\t" + u"", wx.EmptyString, wx.ITEM_NORMAL )
-		self.menuHelp.AppendItem( self.menuItemHelpAbout )
+		self.menuHelp.Append( self.menuItemHelpAbout )
 
 		self.menubarMain.Append( self.menuHelp, u"Help" ) 
 		# End Help Tab
@@ -208,19 +207,18 @@ class MainApp(wx.App):
 class AsyncSpinner(threading.Thread):
     def __init__(self):
         threading.Thread.__init__(self)
-        print("service initialized")
 	#overriden behavior of the thread
     def run(self):
 		#we are only using this thread to collect the messages 
 		##that are sent to this program asynchronously
-        rp.spin()
+        rospy.spin()
 
-rospy.init_node('htt_viz')
 if __name__ == '__main__':
+    rospy.init_node('htt_viz')
     spinner = AsyncSpinner()
     spinner.start()
     app = MainApp()
     app.MainLoop()
+    rospy.signal_shutdown("")
     spinner.join()
-	
 
