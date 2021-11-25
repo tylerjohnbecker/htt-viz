@@ -7,11 +7,16 @@ NODE_HEIGHT = 25
 NODE_RADIUS = 10
 
 class Node:
-	def __init__(self, name, x=0, y=0):
+	parent
+	children
+	color
+
+	def __init__(self, name, x=0, y=0, nParent = None):
 		self.name = name
 		self.x = x
 		self.y = y
 		
+		self.parent = nParent
 		self.children = []
 		
 	def addChild(self, name, x, y):
@@ -42,7 +47,38 @@ class Node:
 		for child in self.children:
 			child.draw(dc)
 			dc.DrawLine(self.x + (nodeWidth / 2), self.y + nodeHeight, child.x + (nodeWidth / 2), child.y)
-	
+
+class Tree:
+	node_dict = {"root" : Node("root", 0, 0)}
+	root_node = node_dict["root"]
+
+	#I dunno what we want to pass in here yet but we can now construct trees from scratch
+	def __init__():
+		pass 
+
+	def AddNode(parent_name, node):
+		node_dict[node.name] = node
+		node_dict[parent_name].addChild(node)
+
+	def RemoveNode(node_name):
+		#base case of a leaf
+		if node_dict[node_name].children.len() == 0:
+			del node_dict[node_name]
+			return
+
+		#if its not a leaf we need to delete the children first
+		for child in node_dict[node_name].children:
+			RemoveNode(child.name)
+
+		#then we need to find it in its parent's list and delete it there
+		for child in node_dict[node_name].parent.children:
+			if child.name == node_name:
+				del child
+				break
+		#finally we need to make sure its gone from the node_dict
+		del node_dict[node_name]
+		
+
 
 class NodeView(wx.Panel):
 	def __init__(self, parent, id=wx.ID_ANY, pos=wx.DefaultPosition, size=wx.DefaultSize):
