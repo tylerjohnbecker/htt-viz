@@ -1,6 +1,7 @@
 import wx
 import rospy as rp
 from htt_viz.srv import Update
+from htt_viz.srv import UpdateResponse
 
 NODE_WIDTH = 50
 NODE_HEIGHT = 25
@@ -12,7 +13,9 @@ class Node:
 		self.name = name
 		self.x = x
 		self.y = y
-		
+		self.activation_potential = 0.0
+		self.color = "white"
+
 		self.parent = nParent
 		self.children = []
 		
@@ -37,6 +40,7 @@ class Node:
 		nodeWidth = NODE_WIDTH
 		nodeHeight = NODE_HEIGHT
 		
+		dc.SetBrush(wx.Brush(self.color))
 		dc.DrawRoundedRectangle(self.x, self.y, nodeWidth, nodeHeight, NODE_RADIUS)
 		textWidth, textHeight = dc.GetTextExtent(self.name)
 		dc.DrawText(self.name, (nodeWidth / 2) - (textWidth / 2) + self.x, (nodeHeight / 2) - (textHeight / 2) + self.y)
@@ -75,7 +79,6 @@ class Tree:
 
 
 	def RemoveNode(self, node_name):
-
 		#if its not a leaf we need to delete the children first
 		for child in self.node_dict[node_name].children:
 			self.RemoveNode(child.name)
@@ -176,7 +179,14 @@ class NodeView(wx.Panel):
 	def UpdateCallback(self, req):
 		#message received to update, can handle color changes of nodes here
 		#for now it will just print hello
-		print("hello world!")
+		self.tree.node_dict[req.owner].activation_potential = req.activation_potential
+		if req.active == True:
+			self.tree.node_dict[req.owner].color = "green"
+		else:
+			self.tree.node_dict[req.owner].color = "red"
+
+		self.Refresh(False)
+		return UpdateResponse(True)
 		
 	def OnMouseMotion(self, event):
 		if event.Dragging():
