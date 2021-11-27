@@ -2,6 +2,8 @@ import wx
 import rospy
 import threading
 from htt_viz_py.NodeView import NodeView
+from htt_viz_py.NodeView import Tree
+from htt_viz_py.NodeView import Node
 
 class frameMain ( wx.Frame ):
 	def __init__( self, parent ):
@@ -221,4 +223,3 @@ if __name__ == '__main__':
     app.MainLoop()
     rospy.signal_shutdown("")
     spinner.join()
-

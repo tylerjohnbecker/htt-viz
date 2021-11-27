@@ -7,9 +7,6 @@ NODE_HEIGHT = 25
 NODE_RADIUS = 10
 
 class Node:
-	parent
-	children
-	color
 
 	def __init__(self, name, x=0, y=0, nParent = None):
 		self.name = name
@@ -19,8 +16,8 @@ class Node:
 		self.parent = nParent
 		self.children = []
 		
-	def addChild(self, name, x, y):
-		self.children.append(Node(name, x, y))
+	def addChild(self, nNode):
+		self.children.append(nNode)
 		
 	def getHitNode(self, x, y):
 		nodeWidth = NODE_WIDTH
@@ -49,36 +46,58 @@ class Node:
 			dc.DrawLine(self.x + (nodeWidth / 2), self.y + nodeHeight, child.x + (nodeWidth / 2), child.y)
 
 class Tree:
-	node_dict = {"root" : Node("root", 0, 0)}
+	node_dict = {"root" : Node("root", 50, 10)}
 	root_node = node_dict["root"]
 
 	#I dunno what we want to pass in here yet but we can now construct trees from scratch
-	def __init__():
+	def __init__(self):
 		pass 
 
-	def AddNode(parent_name, node):
-		node_dict[node.name] = node
-		node_dict[parent_name].addChild(node)
+	def AddNode(self, parent_name, node):
+		self.node_dict[node.name] = node
+		node.parent = parent_name
+		self.node_dict[parent_name].addChild(node)
 
-	def RemoveNode(node_name):
-		#base case of a leaf
-		if node_dict[node_name].children.len() == 0:
-			del node_dict[node_name]
+	
+	def PrintNodes(self, node_name):
+		if len(self.node_dict[node_name].children) == 0:
+			print(node_name)
 			return
 
+		for child in self.node_dict[node_name].children:
+			self.PrintNodes(child.name)
+
+		print(node_name)
+
+	def PrintTree(self):
+		print("\nPrinting current tree inorder...\n")
+		self.PrintNodes("root")
+
+
+	def RemoveNode(self, node_name):
+
 		#if its not a leaf we need to delete the children first
-		for child in node_dict[node_name].children:
-			RemoveNode(child.name)
+		for child in self.node_dict[node_name].children:
+			self.RemoveNode(child.name)
 
 		#then we need to find it in its parent's list and delete it there
-		for child in node_dict[node_name].parent.children:
+		for child in self.node_dict[self.node_dict[node_name].parent].children:
 			if child.name == node_name:
-				del child
+				self.node_dict[self.node_dict[node_name].parent].children.remove(child)
 				break
-		#finally we need to make sure its gone from the node_dict
-		del node_dict[node_name]
-		
 
+		#finally we need to make sure its gone from the node_dict
+		del self.node_dict[node_name]
+
+	#function to draw the whole tree (wraps the recursive function)
+	def draw(self, dc):
+		self.drawTreeRec(dc, "root")
+
+	#recursive function to draw the tree
+	def drawTreeRec(self, dc, node_name):
+		self.node_dict[node_name].draw(dc)
+		for child in self.node_dict[node_name].children:
+			self.drawTreeRec(dc, child.name)
 
 class NodeView(wx.Panel):
 	def __init__(self, parent, id=wx.ID_ANY, pos=wx.DefaultPosition, size=wx.DefaultSize):
@@ -88,9 +107,15 @@ class NodeView(wx.Panel):
 		self.server = rp.Service('update_htt', Update, self.UpdateCallback)
 
 		# The base node. Temporarily use filler data.
-		self.node = Node("test", 0, 0)
-		self.node.addChild("child 1", 100, 100)
-		self.node.addChild("child 2", 100, 200)
+		self.tree = Tree()
+
+		n1 = Node("Then", 150, 50)
+		n2 = Node("child 2", 100, 100)
+		n3 = Node("child 3", 200, 100)
+
+		self.tree.AddNode("root", n1)
+		self.tree.AddNode("Then", n2)
+		self.tree.AddNode("Then", n3)
 
 		self.SetBackgroundColour("dark grey")
 		
@@ -127,7 +152,8 @@ class NodeView(wx.Panel):
 		dc.Clear()
 		
 		# Testing node rendering
-		self.node.draw(dc)
+		for node in self.tree.node_dict:
+			self.tree.draw(dc)
 		
 	def OnMouseLeftDown(self, event):
 		eventX = event.GetX()
