@@ -1,0 +1,5 @@
+string simstate_obj_name
+geometry_msgs/Pose simstate_obj_pose
+uint8 simstate_robot_id
+geometry_msgs/Pose simstate_robot_pose
+geometry_msgs/Pose simstate_robot_goal

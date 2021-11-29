@@ -26,24 +26,28 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <map>
 #include <fstream>
-#include "robotics_task_tree_msgs/node_types.h"
-#include "robotics_task_tree_msgs/ControlMessage.h"
-#include "robotics_task_tree_msgs/hold_status.h"
-#include "robotics_task_tree_msgs/Issue.h"
-#include "robotics_task_tree_msgs/Resolution.h"
-#include "robotics_task_tree_msgs/Human_Resolution.h"
-#include "robotics_task_tree_msgs/SimState.h"
-#include "robotics_task_tree_msgs/PeerSimState.h"
+#include <boost/thread/thread.hpp>
+#include <boost/date_time.hpp>
+#include <boost/algorithm/string/split.hpp>
+#include <boost/algorithm/string/classification.hpp>
+#include "task_tree/node_types.h"
+#include "htt_viz/ControlMessage.h"
+#include "htt_viz/hold_status.h"
+#include "htt_viz/Issue.h"
+#include "htt_viz/Resolution.h"
+#include "htt_viz/Human_Resolution.h"
+#include "htt_viz/SimState.h"
+#include "htt_viz/PeerSimState.h"
 
 
 
 //#include <pause_pkg/Stop.h>
-//typedef robotics_task_tree_msgs::hold_status holdPtr;
+//typedef htt_viz::hold_status holdPtr;
 namespace task_net {
 
-typedef boost::shared_ptr<robotics_task_tree_msgs::ControlMessage const>
+typedef boost::shared_ptr<htt_viz::ControlMessage const>
   ConstControlMessagePtr;
-typedef boost::shared_ptr<robotics_task_tree_msgs::ControlMessage>
+typedef boost::shared_ptr<htt_viz::ControlMessage>
   ControlMessagePtr;
 typedef boost::shared_ptr<ControlMessage_t const>
   ConstControlMessagePtr_t;
@@ -91,26 +95,26 @@ class Node {
   virtual void DeactivatePeer();
   //virtual void DialogueCallback(const dialogue::Resolution::ConstPtr &msg);
   //virtual void DialogueCallback(const dialogue::Human_Resolution::ConstPtr &msg);
-  virtual void DialogueHumanCallback(const robotics_task_tree_msgs::Resolution::ConstPtr &msg);
+  virtual void DialogueHumanCallback(const htt_viz::Resolution::ConstPtr &msg);
   //virtual void DialogueRobotCallback(const dialogue::Resolution::ConstPtr &msg);
   // virtual void Dialogue();
   //virtual void DialogueRobot();
   virtual void DialogueHuman();
-  //virtual void StateCallback(const robotics_task_tree_msgs::SimState::ConstPtr& msg);
-  virtual void SimStateCallback(robotics_task_tree_msgs::SimState msg);
+  //virtual void StateCallback(const htt_viz::SimState::ConstPtr& msg);
+  virtual void SimStateCallback(htt_viz::SimState msg);
 
   virtual void Finish();
   virtual State GetState();
 
   // Messaging
   virtual void SendToParent(
-    const robotics_task_tree_msgs::ControlMessage msg);
+    const htt_viz::ControlMessage msg);
   virtual void SendToParent(const ControlMessagePtr_t msg);
   virtual void SendToChild(NodeBitmask node,
-    const robotics_task_tree_msgs::ControlMessage msg);
+    const htt_viz::ControlMessage msg);
   virtual void SendToChild(NodeBitmask node, const ControlMessagePtr_t msg);
   virtual void SendToPeer(NodeBitmask node,
-    const robotics_task_tree_msgs::ControlMessage msg);
+    const htt_viz::ControlMessage msg);
   virtual void SendToPeer(NodeBitmask node, const ControlMessagePtr_t msg);
 
   // Receiving Threads
@@ -170,7 +174,7 @@ class Node {
   std::ofstream record_file;
   NodeId_t *name_;
   State state_;
-  robotics_task_tree_msgs::hold_status hold_status_;//sd
+  htt_viz::hold_status hold_status_;//sd
   bool parent_done_;
   std::map<NodeBitmask, NodeId_t*, BitmaskLessThan> node_dict_;
   std::string name_id_;
@@ -181,7 +185,7 @@ class Node {
 
   std::string object_;
   //SimState table_state_;
-  robotics_task_tree_msgs::SimState table_state_;
+  htt_viz::SimState table_state_;
   Issue peer_issue_;
 
 

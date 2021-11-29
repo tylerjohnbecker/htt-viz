@@ -19,10 +19,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define INCLUDE_BEHAVIOR_H_
 
 #include <queue>
-#include "robotics_task_tree_eval/node.h"
+#include "task_tree/node.h"
 //#include "remote_mutex/remote_mutex.h"
 //#include "remote_mutex.h"
-#include "robotics_task_tree_msgs/hold_status.h"
+#include "htt_viz/hold_status.h"
 enum ROBOT {
   PR2=0, 
   BAXTER=1

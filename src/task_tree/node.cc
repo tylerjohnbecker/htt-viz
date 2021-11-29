@@ -26,12 +26,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <stdlib.h>
 #include <string>
 #include <vector>
-#include "robotics_task_tree_msgs/State.h"
-#include "robotics_task_tree_msgs/log.h"
+#include "htt_viz/State.h"
+//#include "htt_viz/log.h"
 //#include "vision_manip_pipeline/VisionManip.h"
 //#include "table_setting_demo/pick_and_place.h"
-#include "robotics_task_tree_msgs/SimState.h"
-#include "robotics_task_tree_msgs/PeerSimState.h"
+#include "htt_viz/SimState.h"
+#include "htt_viz/PeerSimState.h"
 
 // #include <regex>
 
@@ -136,7 +136,7 @@ Node::Node(NodeId_t name, NodeList peers, NodeList children, NodeId_t parent,
 
   // get suitability of node based on robot
   // NOTE: this param is only used in dummy/place behavior, so it does not affect THEN AND OR nodes!
-  state_.suitability = getSuitability(state_.owner.node, state_.owner.robot, object_, visManipClient_pntr);
+  state_.suitability = 0;// = getSuitability(state_.owner.node, state_.owner.robot, object_, visManipClient_pntr);
 
   // Get bitmask
   // printf("name: %s\n", name_->topic.c_str());
@@ -155,16 +155,16 @@ Node::Node(NodeId_t name, NodeList peers, NodeList children, NodeId_t parent,
   // InitializePublisher(name_, &undo_pub_, "_undo");
   // name_->topic = tempName_ + "_state";
 
-  init_dialogue_ = pub_nh_.advertise<robotics_task_tree_msgs::Issue>("issues", 1000);
+  init_dialogue_ = pub_nh_.advertise<htt_viz::Issue>("issues", 1000);
 
-  peer_simstate_ = pub_nh_.advertise<robotics_task_tree_msgs::PeerSimState>("peer_simstate",1000);
+  peer_simstate_ = pub_nh_.advertise<htt_viz::PeerSimState>("peer_simstate",1000);
 
   
   //human_res_pub_= pub_nh_.advertise<dialogue::Resolution>("resolution",1000);
   
-  //state_sub_ = pub_nh_.subscribe<robotics_task_tree_msgs::SimState>("/state", 1000, &Node::SimStateCallback, this );
+  //state_sub_ = pub_nh_.subscribe<htt_viz::SimState>("/state", 1000, &Node::SimStateCallback, this );
 
-  // peer_issue_sub_ = pub_nh_.subscribe<robotics_task_tree_msgs::Issue>("/issues", 1000, &Node::PeerIssueStateCallback, this );
+  // peer_issue_sub_ = pub_nh_.subscribe<htt_viz::Issue>("/issues", 1000, &Node::PeerIssueStateCallback, this );
   NodeInit(mtime);
 
   ROS_WARN("END OF NODE CONSTRUCTOR");
@@ -175,7 +175,7 @@ Node::~Node() {}
 void Node::init()
 {}
 
-void Node::SimStateCallback(robotics_task_tree_msgs::SimState msg)
+void Node::SimStateCallback(htt_viz::SimState msg)
 {}
 
 void Node::undoCallback(ConstControlMessagePtr_t msg) {
@@ -408,7 +408,7 @@ void Node::ReleaseMutexLocs() {
 }
 
 
-void Node::DialogueHumanCallback(const robotics_task_tree_msgs::Resolution::ConstPtr &msg) {
+void Node::DialogueHumanCallback(const htt_viz::Resolution::ConstPtr &msg) {
   RESP_RECEIVED = true;
   //FAILED_PICK = true; //uncommenting to
   ros::param::set("/Collision", true);
@@ -595,7 +595,7 @@ void Node::DialogueHuman() {
   std::cout << "Dialogue: Collision is set to: " << coll_test << "\n\n\n\n\n\n\n";
 
   // publish to initialize dalogue
-  robotics_task_tree_msgs::Issue msg;
+  htt_viz::Issue msg;
   msg.issue = hold_status_.issue;
   msg.object = object_;
   msg.robot_id = state_.owner.robot;
@@ -605,7 +605,7 @@ void Node::DialogueHuman() {
   init_dialogue_.publish(msg);
   ros::spinOnce();
 
-  ros::Subscriber dialogue_resp_sub = pub_nh_.subscribe<robotics_task_tree_msgs::Resolution>("resolution", 1000, &Node::DialogueHumanCallback, this);
+  ros::Subscriber dialogue_resp_sub = pub_nh_.subscribe<htt_viz::Resolution>("resolution", 1000, &Node::DialogueHumanCallback, this);
   //ros::Subscriber dialogue_resp_sub = pub_nh_.subscribe<dialogue::Resolution>("resolution", 1000, &Node::DialogueCallback, this);
   ROS_INFO("IN dialogue while loop!\n");
   // wait for response
@@ -639,9 +639,9 @@ State Node::GetState() {
   return state_;
 }
 
-void Node::SendToParent(const robotics_task_tree_msgs::ControlMessage msg) {
+void Node::SendToParent(const htt_viz::ControlMessage msg) {
   ROS_INFO("[%s]: Node::SendToParent was called", name_->topic.c_str() );
-  ControlMessagePtr msg_temp(new robotics_task_tree_msgs::ControlMessage);
+  ControlMessagePtr msg_temp(new htt_viz::ControlMessage);
   *msg_temp = msg;
   parent_pub_.publish(msg_temp);
 }
@@ -650,12 +650,12 @@ void Node::SendToParent(const ControlMessagePtr_t msg) {
   parent_pub_.publish(msg);
 }
 void Node::SendToChild(NodeBitmask node,
-  const robotics_task_tree_msgs::ControlMessage msg) {
+  const htt_viz::ControlMessage msg) {
   //ROS_INFO("[%s]: Node::SendToChild was called", name_->topic.c_str() );
   // get publisher for specific node
   ros::Publisher* pub = node_dict_[node]->pub;
   // publish message to the specific child
-  ControlMessagePtr msg_temp(new robotics_task_tree_msgs::ControlMessage);
+  ControlMessagePtr msg_temp(new htt_viz::ControlMessage);
   *msg_temp = msg;
   pub->publish(msg_temp);
 }
@@ -666,14 +666,14 @@ void Node::SendToChild(NodeBitmask node, const ControlMessagePtr_t msg) {
   node_dict_[node]->pub->publish(msg);
 }
 void Node::SendToPeer(NodeBitmask node,
-  const robotics_task_tree_msgs::ControlMessage msg) {
+  const htt_viz::ControlMessage msg) {
   ROS_INFO("[%s]: Node::SendToPeer was called", name_->topic.c_str() );
 
     // ROS_INFO("Node::SendToPeer was called!!!!\n");
   // get publisher for specific node
   ros::Publisher* pub = node_dict_[node]->pub;
   // publish message to the specific child
-  ControlMessagePtr msg_temp(new robotics_task_tree_msgs::ControlMessage);
+  ControlMessagePtr msg_temp(new htt_viz::ControlMessage);
   *msg_temp = msg;
   pub->publish(msg_temp);
 
@@ -729,7 +729,7 @@ void Node::ReceiveFromPeers(ConstControlMessagePtr_t msg) {
 
   //simsate soltuion
 
-  robotics_task_tree_msgs::PeerSimState peer_state_msg;
+  htt_viz::PeerSimState peer_state_msg;
   peer_state_msg.simstate_obj_name = msg -> simstate_obj_name;
   peer_state_msg.simstate_obj_pose = msg -> simstate_obj_pose;
   peer_state_msg.simstate_robot_id = msg ->simstate_robot_id;
@@ -926,7 +926,7 @@ void Node::releasingRobotNode(){
 // Main Loop of Update Thread. spins once every mtime milliseconds
 void UpdateThread(Node *node, boost::posix_time::millisec mtime) {
     ROS_DEBUG("Node::UpdateThread was called!!!!");
-    sleep(5);
+    ros::Duration(5).sleep();
   while (true) {
     node->Update();
     boost::this_thread::sleep(mtime);
@@ -1309,7 +1309,7 @@ std::string StateToString(State state) {
 
 void Node::PublishStatus() {
   ROS_DEBUG("[%s]: Node::PublishStatus was called", name_->topic.c_str());
-  robotics_task_tree_msgs::State msg;
+  htt_viz::State msg;
   msg.owner.type = state_.owner.type;
   msg.owner.robot = state_.owner.robot;
   msg.owner.node = state_.owner.node;
@@ -1367,7 +1367,7 @@ void Node::PublishStatus() {
 //   }
 // }
 
-// void Node::StateCallback(const robotics_task_tree_msgs::SimState &msg){
+// void Node::StateCallback(const htt_viz::SimState &msg){
 
 
 // }
@@ -1376,8 +1376,8 @@ void Node::PublishStatus() {
 //DOES EXACTLY WHAT IT SAYS ON THE TIN. PUTS THE STATE_ MEMBER IN A MESSAGE AND SENDS IT TO PEERS.
 void Node::PublishStateToPeers() {
   ROS_DEBUG("[%s]: Node::PublishStateToPeers was called", name_->topic.c_str());
-  //ros::Subscriber state_sub_ = pub_nh_.subscribe<robotics_task_tree_msgs::SimState>("/state", 1000, &Node::StateCallback, this); //subscribing the sim state
-  //state_sub_ = pub_nh_.subscribe<robotics_task_tree_msgs::SimState>("/state", 1000, &Node::StateCallback, this );
+  //ros::Subscriber state_sub_ = pub_nh_.subscribe<htt_viz::SimState>("/state", 1000, &Node::StateCallback, this); //subscribing the sim state
+  //state_sub_ = pub_nh_.subscribe<htt_viz::SimState>("/state", 1000, &Node::StateCallback, this );
  //printf("%s hello from the PublishStateToPeers to check statecall %s\n\n\n\n\n\n",table_state_.objects[0].name.c_str(),name_.c_str());
   //printf("calling from the PublishStateToPeers %d\n\n\n\n",state_.owner.robot);
   boost::shared_ptr<ControlMessage_t> msg(new ControlMessage_t);
@@ -1552,7 +1552,7 @@ bool Node::Precondition() {
 
 uint32_t Node::SpreadActivation() {
       // ROS_INFO("Node::SpreadActivation was called!!!!\n");
-
+    return 0;
 }
 
 void Node::InitializeSubscriber(NodeId_t *node) {
@@ -1597,7 +1597,7 @@ void Node::InitializePublishers(NodeListPtr nodes, PubList *pub,
   for (NodeListPtrIterator it = nodes.begin(); it != nodes.end(); ++it) {
     ros::Publisher * topic = new ros::Publisher;
     *topic =
-      pub_nh_.advertise<robotics_task_tree_msgs::ControlMessage>(
+      pub_nh_.advertise<htt_viz::ControlMessage>(
         (*it)->topic + topic_addition,
         PUB_SUB_QUEUE_SIZE);
 
@@ -1615,7 +1615,7 @@ void Node::InitializePublisher(NodeId_t *node, ros::Publisher *pub,
   node->topic += topic_addition;
   ROS_INFO("[PUBLISHER] - Creating Topic: %s", node->topic.c_str());
   (*pub) =
-    pub_nh_.advertise<robotics_task_tree_msgs::ControlMessage>(node->topic,
+    pub_nh_.advertise<htt_viz::ControlMessage>(node->topic,
       PUB_SUB_QUEUE_SIZE);
   node_dict_[node->mask]->pub = pub;
   // node_dict_[node.mask]->topic += topic_addition;
@@ -1627,7 +1627,7 @@ void Node::InitializeStatePublisher(NodeId_t *node, ros::Publisher *pub,
 
   node->topic += topic_addition;
   ROS_INFO("[PUBLISHER] - Creating Topic: %s", node->topic.c_str());
-  (*pub) = pub_nh_.advertise<robotics_task_tree_msgs::State>(node->topic,
+  (*pub) = pub_nh_.advertise<htt_viz::State>(node->topic,
     PUB_SUB_QUEUE_SIZE);
   node_dict_[node->mask]->pub = pub;
   // node_dict_[node.mask]->topic += topic_addition;

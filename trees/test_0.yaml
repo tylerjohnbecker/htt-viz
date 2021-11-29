@@ -1,0 +1,51 @@
+# This is the first test for simulation
+# We don't have a dummy behavior yet but I'll make one next.
+
+NodeList: ['ROOT_4_0_000',
+          'ROOTBEHAVIOR_8_0_001',
+          'THEN_0_0_002']
+          #,
+          #'BEHAVIOR_3_0_003',#Move
+          #'BEHAVIOR_3_0_004',#Move
+          #'BEHAVIOR_3_0_005',#Move
+          #'BEHAVIOR_3_0_006']#Move
+
+Nodes:
+  ROOT_4_0_000:
+    mask:
+      type: 4
+      robot: 0
+      node: 0
+    parent: 'NONE'
+    children: ['ROOTBEHAVIOR_8_0_001']
+    peers: ['NONE']
+  ROOTBEHAVIOR_8_0_001:
+    mask:
+      type: 8
+      robot: 0
+      node: 1
+    parent: 'ROOT_4_0_000'
+    children: ['THEN_0_0_002']
+    peers: ['NONE']
+  THEN_0_0_002:
+    mask:
+      type: 0
+      robot: 0
+      node: 2
+    parent: 'ROOTBEHAVIOR_8_0_001'
+    children: []
+    peers: ['NONE']
+    
+#['BEHAVIOR_3_0_003', 'BEHAVIOR_3_0_004', 'BEHAVIOR_3_0_005', 'BEHAVIOR_3_0_006']
+    
+  #BEHAVIOR_3_0_003:
+  #  mask:
+  #    type: 3
+  #    robot: 0
+  #    ndoe: 3
+  #  parent: 'THEN_0_0_002'
+  #  children: ['NONE']
+  #  peers: ['NONE']
+  #  b_type: 0
+  #  obj_dest: 'poseA'
+  #  s_intent: 0

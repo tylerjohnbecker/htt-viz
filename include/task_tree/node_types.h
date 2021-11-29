@@ -25,13 +25,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 //#include <visualization_msgs/Marker.h>
-#include <robotics_task_tree_msgs/State.h>
-#include "robotics_task_tree_msgs/ControlMessage.h"
-#include "robotics_task_tree_msgs/hold_status.h"
-#include "robotics_task_tree_msgs/SimState.h"
-#include "robotics_task_tree_msgs/PeerSimState.h"
-#include "robotics_task_tree_msgs/ActuatorRequest.h"
-#include "robotics_task_tree_msgs/ActuatorState.h"
+#include "htt_viz/State.h"
+#include "htt_viz/ControlMessage.h"
+#include "htt_viz/hold_status.h"
+#include "htt_viz/SimState.h"
+#include "htt_viz/PeerSimState.h"
+#include "htt_viz/ActuatorRequest.h"
+#include "htt_viz/ActuatorState.h"
 
 
 
@@ -91,10 +91,10 @@ struct Robot{
 // };
 
 struct BitmaskLessThan {
-  bool operator()(const NodeBitmask &l, const NodeBitmask &r) {
-    return *reinterpret_cast<const uint32_t*>(&l) <
-      *reinterpret_cast<const uint32_t*>(&r);
-  }
+    bool operator()(const NodeBitmask& l, const NodeBitmask& r) const {
+        return *reinterpret_cast<const uint32_t*>(&l) <
+            *reinterpret_cast<const uint32_t*>(&r);
+    } ;
 };
 
 struct State {
@@ -151,9 +151,9 @@ struct ControlMessage {
   uint8_t simstate_robot_id;
   geometry_msgs::Pose simstate_robot_pose;
   geometry_msgs::Pose simstate_robot_goal;
-  std::vector<robotics_task_tree_msgs::Actuator> actuators_to_retain;
-  std::vector<robotics_task_tree_msgs::ActuatorRequest> requests;
-  robotics_task_tree_msgs::ActuatorState state;
+  std::vector<htt_viz::Actuator> actuators_to_retain;
+  std::vector<htt_viz::ActuatorRequest> requests;
+  htt_viz::ActuatorState state;
   //std::string peer_issue;
 
   
@@ -193,33 +193,33 @@ template<> struct IsSimple<task_net::NodeBitmask> : public TrueType {};
 template<>
 struct MD5Sum<task_net::NodeBitmask> {
   static const char* value() {
-    return MD5Sum<robotics_task_tree_msgs::NodeBitmask>::value();
+    return MD5Sum<htt_viz::NodeBitmask>::value();
   }
 
   static const char* value(const task_net::NodeBitmask& m) {
-    return MD5Sum<robotics_task_tree_msgs::NodeBitmask>::value();
+    return MD5Sum<htt_viz::NodeBitmask>::value();
   }
 };
 
 template<>
 struct DataType<task_net::NodeBitmask> {
   static const char* value() {
-    return DataType<robotics_task_tree_msgs::NodeBitmask>::value();
+    return DataType<htt_viz::NodeBitmask>::value();
   }
 
   static const char* value(const task_net::NodeBitmask& m) {
-    return DataType<robotics_task_tree_msgs::NodeBitmask>::value();
+    return DataType<htt_viz::NodeBitmask>::value();
   }
 };
 
 template<>
 struct Definition<task_net::NodeBitmask> {
   static const char* value() {
-    return Definition<robotics_task_tree_msgs::NodeBitmask>::value();
+    return Definition<htt_viz::NodeBitmask>::value();
   }
 
   static const char* value(const task_net::NodeBitmask& m) {
-    return Definition<robotics_task_tree_msgs::NodeBitmask>::value();
+    return Definition<htt_viz::NodeBitmask>::value();
   }
 };
 
@@ -231,33 +231,33 @@ struct Definition<task_net::NodeBitmask> {
 // template<>
 // struct MD5Sum<task_net::Issue> {
 //   static const char* value() {
-//     return MD5Sum<robotics_task_tree_msgs::Issue>::value();
+//     return MD5Sum<htt_viz::Issue>::value();
 //   }
 
 //   static const char* value(const task_net::Issue& m) {
-//     return MD5Sum<robotics_task_tree_msgs::Issue>::value();
+//     return MD5Sum<htt_viz::Issue>::value();
 //   }
 // };
 
 // template<>
 // struct DataType<task_net::Issue> {
 //   static const char* value() {
-//     return DataType<robotics_task_tree_msgs::Issue>::value();
+//     return DataType<htt_viz::Issue>::value();
 //   }
 
 //   static const char* value(const task_net::Issue& m) {
-//     return DataType<robotics_task_tree_msgs::Issue>::value();
+//     return DataType<htt_viz::Issue>::value();
 //   }
 // };
 
 // template<>
 // struct Definition<task_net::Issue> {
 //   static const char* value() {
-//     return Definition<robotics_task_tree_msgs::Issue>::value();
+//     return Definition<htt_viz::Issue>::value();
 //   }
 
 //   static const char* value(const task_net::Issue& m) {
-//     return Definition<robotics_task_tree_msgs::Issue>::value();
+//     return Definition<htt_viz::Issue>::value();
 //   }
 // };
 
@@ -268,33 +268,33 @@ struct Definition<task_net::NodeBitmask> {
 // template<>
 // struct MD5Sum<task_net::Object> {
 //   static const char* value() {
-//     return MD5Sum<robotics_task_tree_msgs::Object>::value();
+//     return MD5Sum<htt_viz::Object>::value();
 //   }
 
 //   static const char* value(const task_net::Object& m) {
-//     return MD5Sum<robotics_task_tree_msgs::Object>::value();
+//     return MD5Sum<htt_viz::Object>::value();
 //   }
 // };
 
 // template<>
 // struct DataType<task_net::Object> {
 //   static const char* value() {
-//     return DataType<robotics_task_tree_msgs::Object>::value();
+//     return DataType<htt_viz::Object>::value();
 //   }
 
 //   static const char* value(const task_net::Object& m) {
-//     return DataType<robotics_task_tree_msgs::Object>::value();
+//     return DataType<htt_viz::Object>::value();
 //   }
 // };
 
 // template<>
 // struct Definition<task_net::Object> {
 //   static const char* value() {
-//     return Definition<robotics_task_tree_msgs::Object>::value();
+//     return Definition<htt_viz::Object>::value();
 //   }
 
 //   static const char* value(const task_net::Object& m) {
-//     return Definition<robotics_task_tree_msgs::Object>::value();
+//     return Definition<htt_viz::Object>::value();
 //   }
 // };
 
@@ -306,33 +306,33 @@ struct Definition<task_net::NodeBitmask> {
 // template<>
 // struct MD5Sum<task_net::Robot> {
 //   static const char* value() {
-//     return MD5Sum<robotics_task_tree_msgs::Robot>::value();
+//     return MD5Sum<htt_viz::Robot>::value();
 //   }
 
 //   static const char* value(const task_net::Robot& m) {
-//     return MD5Sum<robotics_task_tree_msgs::Robot>::value();
+//     return MD5Sum<htt_viz::Robot>::value();
 //   }
 // };
 
 // template<>
 // struct DataType<task_net::Robot> {
 //   static const char* value() {
-//     return DataType<robotics_task_tree_msgs::Robot>::value();
+//     return DataType<htt_viz::Robot>::value();
 //   }
 
 //   static const char* value(const task_net::Robot& m) {
-//     return DataType<robotics_task_tree_msgs::Robot>::value();
+//     return DataType<htt_viz::Robot>::value();
 //   }
 // };
 
 // template<>
 // struct Definition<task_net::Robot> {
 //   static const char* value() {
-//     return Definition<robotics_task_tree_msgs::Robot>::value();
+//     return Definition<htt_viz::Robot>::value();
 //   }
 
 //   static const char* value(const task_net::Robot& m) {
-//     return Definition<robotics_task_tree_msgs::Robot>::value();
+//     return Definition<htt_viz::Robot>::value();
 //   }
 // };
 
@@ -345,33 +345,33 @@ struct Definition<task_net::NodeBitmask> {
 // template<>
 // struct MD5Sum<task_net::SimState> {
 //   static const char* value() {
-//     return MD5Sum<robotics_task_tree_msgs::SimState>::value();
+//     return MD5Sum<htt_viz::SimState>::value();
 //   }
 
 //   static const char* value(const task_net::SimState& m) {
-//     return MD5Sum<robotics_task_tree_msgs::SimState>::value();
+//     return MD5Sum<htt_viz::SimState>::value();
 //   }
 // };
 
 // template<>
 // struct DataType<task_net::SimState> {
 //   static const char* value() {
-//     return DataType<robotics_task_tree_msgs::SimState>::value();
+//     return DataType<htt_viz::SimState>::value();
 //   }
 
 //   static const char* value(const task_net::SimState& m) {
-//     return DataType<robotics_task_tree_msgs::SimState>::value();
+//     return DataType<htt_viz::SimState>::value();
 //   }
 // };
 
 // template<>
 // struct Definition<task_net::SimState> {
 //   static const char* value() {
-//     return Definition<robotics_task_tree_msgs::SimState>::value();
+//     return Definition<htt_viz::SimState>::value();
 //   }
 
 //   static const char* value(const task_net::SimState& m) {
-//     return Definition<robotics_task_tree_msgs::SimState>::value();
+//     return Definition<htt_viz::SimState>::value();
 //   }
 // };
 
@@ -384,33 +384,33 @@ template<> struct IsSimple<task_net::State_t> : public TrueType {};
 template<>
 struct MD5Sum<task_net::State_t> {
   static const char* value() {
-    return MD5Sum<robotics_task_tree_msgs::State>::value();
+    return MD5Sum<htt_viz::State>::value();
   }
 
   static const char* value(const task_net::State_t& m) {
-    return MD5Sum<robotics_task_tree_msgs::State>::value();
+    return MD5Sum<htt_viz::State>::value();
   }
 };
 
 template<>
 struct DataType<task_net::State_t> {
   static const char* value() {
-    return DataType<robotics_task_tree_msgs::State>::value();
+    return DataType<htt_viz::State>::value();
   }
 
   static const char* value(const task_net::State_t& m) {
-    return DataType<robotics_task_tree_msgs::State>::value();
+    return DataType<htt_viz::State>::value();
   }
 };
 
 template<>
 struct Definition<task_net::State_t> {
   static const char* value() {
-    return Definition<robotics_task_tree_msgs::State>::value();
+    return Definition<htt_viz::State>::value();
   }
 
   static const char* value(const task_net::State_t& m) {
-    return Definition<robotics_task_tree_msgs::State>::value();
+    return Definition<htt_viz::State>::value();
   }
 };
 
@@ -424,33 +424,33 @@ template<> struct IsSimple<task_net::ControlMessage_t> : public TrueType {};
 template<>
 struct MD5Sum<task_net::ControlMessage_t> {
   static const char* value() {
-    return MD5Sum<robotics_task_tree_msgs::ControlMessage>::value();
+    return MD5Sum<htt_viz::ControlMessage>::value();
   }
 
   static const char* value(const task_net::ControlMessage_t& m) {
-    return MD5Sum<robotics_task_tree_msgs::ControlMessage>::value();
+    return MD5Sum<htt_viz::ControlMessage>::value();
   }
 };
 
 template<>
 struct DataType<task_net::ControlMessage_t> {
   static const char* value() {
-    return DataType<robotics_task_tree_msgs::ControlMessage>::value();
+    return DataType<htt_viz::ControlMessage>::value();
   }
 
   static const char* value(const task_net::ControlMessage_t& m) {
-    return DataType<robotics_task_tree_msgs::ControlMessage>::value();
+    return DataType<htt_viz::ControlMessage>::value();
   }
 };
 
 template<>
 struct Definition<task_net::ControlMessage_t> {
   static const char* value() {
-    return Definition<robotics_task_tree_msgs::ControlMessage>::value();
+    return Definition<htt_viz::ControlMessage>::value();
   }
 
   static const char* value(const task_net::ControlMessage_t& m) {
-    return Definition<robotics_task_tree_msgs::ControlMessage>::value();
+    return Definition<htt_viz::ControlMessage>::value();
   }
 };
 
