@@ -1,4 +1,4 @@
-#include "behavior/DummyBehavior.h"
+#include "behavior/dummy_behavior.h"
 
 namespace task_net {
 	void DummyBehavior::Work()
@@ -6,6 +6,7 @@ namespace task_net {
 		ROS_WARN("Work started for: [%s]", this->name_->topic.c_str());
 
 		ros::Duration(5).sleep();
-		return 0;
+
+		ROS_WARN("Work Finished for: [%s]", this->name_->topic.c_str());
 	}
 }

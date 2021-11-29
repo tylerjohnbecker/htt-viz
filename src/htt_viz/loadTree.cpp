@@ -14,6 +14,7 @@
 
 #include "task_tree/node.h"
 #include "task_tree/behavior.h"
+#include "behavior/dummy_behavior.h"
 #include <boost/thread/thread.hpp>
 #include <boost/date_time.hpp>
 #include <boost/algorithm/string/split.hpp>
@@ -50,7 +51,7 @@ int main(int argc, char** argv)
 
 
 	if (nh_.getParam("NodeList", nodes)) {
-		printf("Tree Size: %lu\n", nodes.size());
+		printf("Tree Size: %zu\n", nodes.size());
 	}
 
 	network = new task_net::Node * [nodes.size()];
@@ -152,7 +153,7 @@ int main(int argc, char** argv)
 						false);
 					// printf("\ttask_net::AND %d\n",task_net::AND);
 					break;
-				/*case task_net::BEHAVIOR:
+				case task_net::BEHAVIOR:
 				{
 					// ROS_INFO("Children Size: %lu", children_param.size());
 					// object = name_param.topic.c_str();
@@ -181,30 +182,7 @@ int main(int argc, char** argv)
 						int s_int = 0;
 
 						//temp filler to check for compilation errors
-						geometry_msgs::PoseStamped p;
-						std::string dest_name;
-
-						nh_.getParam((param_prefix + nodes[i] + "/obj_dest"), dest_name);
-
-						float temp = 0;
-						std::string sanity = "/task_tree_node/" + dest_name + "/position" + "/x";
-
-						nh_.getParam(("/task_tree_node/" + dest_name + "/position" + "/x"), p.pose.position.x);
-						nh_.getParam(("/task_tree_node/" + dest_name + "/position" + "/y"), p.pose.position.y);
-						nh_.getParam(("/task_tree_node/" + dest_name + "/position" + "/z"), p.pose.position.z);
-						nh_.getParam(("/task_tree_node/" + dest_name + "/orientation" + "/x"), p.pose.orientation.x);
-						nh_.getParam(("/task_tree_node/" + dest_name + "/orientation" + "/y"), p.pose.orientation.y);
-						nh_.getParam(("/task_tree_node/" + dest_name + "/orientation" + "/z"), p.pose.orientation.z);
-						nh_.getParam(("/task_tree_node/" + dest_name + "/orientation" + "/w"), p.pose.orientation.w);
-
-						p.header.frame_id = "node_tree";
-
-						nh_.getParam((param_prefix + nodes[i] + "/s_intent"), s_int);
-
-						network[i] = new task_net::MoveBehavior(p,
-							s_int,
-							nh,
-							"base_odometry/odom",
+						network[i] = new task_net::DummyBehavior(
 							name_param,
 							peers_param,
 							children_param,
@@ -212,7 +190,7 @@ int main(int argc, char** argv)
 							state,
 							"blank");
 					}
-					else if (behavior_type == 1)//pick
+					/*else if (behavior_type == 1)//pick
 					{
 						std::string obj_name;
 						nh_.getParam((param_prefix + nodes[i] + "/obj_name"), obj_name);
@@ -243,20 +221,9 @@ int main(int argc, char** argv)
 							parent_param,
 							state,
 							"blank");
-					}
+					}*/
 				}
 				break;
-				case task_net::ROOTBEHAVIOR:
-					network[i] = new task_net::RootBehavior(name_param,
-						peers_param,
-						children_param,
-						parent_param,
-						state,
-						"N/A",
-						false,
-						boost::posix_time::millisec(1000),
-						"pr2.yaml");
-					break;*/
 				case task_net::ROOT:
 					break;
 				default:

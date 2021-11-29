@@ -3,7 +3,7 @@ import rospy as rp
 from htt_viz.srv import Update
 from htt_viz.srv import UpdateResponse
 
-NODE_WIDTH = 50
+NODE_WIDTH = 120
 NODE_HEIGHT = 25
 NODE_RADIUS = 10
 
@@ -14,7 +14,7 @@ class Node:
 		self.x = x
 		self.y = y
 		self.activation_potential = 0.0
-		self.color = "white"
+		self.color = "red"
 
 		self.parent = nParent
 		self.children = []
@@ -50,8 +50,8 @@ class Node:
 			dc.DrawLine(self.x + (nodeWidth / 2), self.y + nodeHeight, child.x + (nodeWidth / 2), child.y)
 
 class Tree:
-	node_dict = {"root" : Node("root", 50, 10)}
-	root_node = node_dict["root"]
+	node_dict = {"ROOT_4_0_000" : Node("ROOT_4_0_000", 50, 10)}
+	root_node = node_dict["ROOT_4_0_000"]
 
 	#I dunno what we want to pass in here yet but we can now construct trees from scratch
 	def __init__(self):
@@ -75,7 +75,7 @@ class Tree:
 
 	def PrintTree(self):
 		print("\nPrinting current tree inorder...\n")
-		self.PrintNodes("root")
+		self.PrintNodes(self.root_node.name)
 
 
 	def RemoveNode(self, node_name):
@@ -94,7 +94,7 @@ class Tree:
 
 	#function to draw the whole tree (wraps the recursive function)
 	def draw(self, dc):
-		self.drawTreeRec(dc, "root")
+		self.drawTreeRec(dc, self.root_node.name)
 
 	#recursive function to draw the tree
 	def drawTreeRec(self, dc, node_name):
@@ -112,13 +112,11 @@ class NodeView(wx.Panel):
 		# The base node. Temporarily use filler data.
 		self.tree = Tree()
 
-		n1 = Node("Then", 150, 50)
-		n2 = Node("child 2", 100, 100)
-		n3 = Node("child 3", 200, 100)
+		n1 = Node("THEN_0_0_001", 150, 50)
+		n2 = Node("BEHAVIOR_3_0_002", 100, 100)
 
-		self.tree.AddNode("root", n1)
-		self.tree.AddNode("Then", n2)
-		self.tree.AddNode("Then", n3)
+		self.tree.AddNode("ROOT_4_0_000", n1)
+		self.tree.AddNode("THEN_0_0_001", n2)
 
 		self.SetBackgroundColour("dark grey")
 		

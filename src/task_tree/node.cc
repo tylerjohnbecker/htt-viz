@@ -145,6 +145,18 @@ Node::Node(NodeId_t name, NodeList peers, NodeList children, NodeId_t parent,
   // Setup Publisher/subscribers
   InitializeSubscriber(name_);
   InitializePublishers(children_, &children_pub_list_, "_parent");
+
+  this->update_pub_ = this->pub_nh_.serviceClient<htt_viz::Update>("/update_htt");
+
+  this->state_copy_.activation_level = -1;
+  this->state_copy_.activation_potential = -1.0;//Epsilon = .001
+  this->state_copy_.active = false;
+  this->notify_tree = true;
+
+
+  this->CheckUpdated();
+  this->CopyStatus();
+
   InitializePublishers(peers_, &peer_pub_list_, "_peer");
   InitializePublisher(parent_, &parent_pub_);
 
@@ -1222,7 +1234,7 @@ void Node::Update() {
       //   boost::thread *pause_thread = new boost::thread(&Node::DialogueRobot, this);
       //   pause_thread->join();
       // }
-      ROS_WARN("Node was ACTIVE [%s] ", name_->topic.c_str());
+      //ROS_WARN("Node was ACTIVE [%s] ", name_->topic.c_str());
       if(state_.collision)
       {
         hold_status_.dropped = true;
@@ -1269,9 +1281,11 @@ void Node::Update() {
         state_.activation_level); 
         SpreadActivation();
     }
+    //hopefully this is not too slow with 7 or 8 things
   }
   // Publish Status
   PublishStatus();
+  this->CheckUpdated();
 }
 
 void Node::Work() {
@@ -1667,5 +1681,53 @@ ros::CallbackQueue* Node::GetPubCallbackQueue() {
 ros::CallbackQueue* Node::GetSubCallbackQueue() {
     // ROS_INFO("Node::GetSubCallbackQueue was called!!!!\n");
   return sub_callback_queue_;
+}
+
+/*ADDED FOR USE IN HTT_VIZ: Tyler Becker*/
+
+void Node::CheckUpdated()
+{
+    if (!this->notify_tree)
+        return;
+    //
+    if (state_.activation_level != state_copy_.activation_level ||
+        abs(state_.activation_potential - state_copy_.activation_potential) < .001 ||
+        state_.active != state_copy_.active)
+    {
+        htt_viz::Update u;
+        u.request.owner = this->name_->topic;
+
+        if (u.request.owner.find("state") != std::string::npos)
+            u.request.owner.resize(this->name_->topic.size() - 6);
+
+        //ROS_FATAL("[[%s]]", u.request.owner.c_str());
+
+        u.request.active = this->state_.active;
+        u.request.activation_potential = this->state_.activation_potential;
+
+        this->CopyStatus();
+        this->update_pub_.call(u);
+        
+        if (this->state_.done)
+        {
+            u.request.active = false;
+            this->update_pub_.call(u);
+
+            this->notify_tree = false;
+        }
+
+        if (!u.response.success)
+        {
+            this->notify_tree = false;
+            ROS_WARN_ONCE("htt_viz client not up!");
+        }
+    }
+    return;
+}
+void Node::CopyStatus()
+{
+    this->state_copy_.activation_level = this->state_.activation_level;
+    this->state_copy_.activation_potential = this->state_.activation_potential;//Epsilon = .001
+    this->state_copy_.active = this->state_.active;
 }
 }  // namespace task_net

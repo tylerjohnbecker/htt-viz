@@ -38,6 +38,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "htt_viz/Human_Resolution.h"
 #include "htt_viz/SimState.h"
 #include "htt_viz/PeerSimState.h"
+#include "htt_viz/Update.h"
 
 
 
@@ -131,6 +132,10 @@ class Node {
   virtual ros::CallbackQueue* GetPubCallbackQueue();
   virtual ros::CallbackQueue* GetSubCallbackQueue();
 
+  /*ADDED FOR HTT_VIZ by: Tyler Becker*/
+  virtual void CheckUpdated();
+  virtual void CopyStatus();
+
   ros::CallbackQueue* pub_callback_queue_;
   ros::CallbackQueue* sub_callback_queue_;
 
@@ -183,11 +188,14 @@ class Node {
   NodeListPtr children_;
   NodeId_t *parent_;
 
+  State state_copy_;
+
   std::string object_;
   //SimState table_state_;
   htt_viz::SimState table_state_;
   Issue peer_issue_;
 
+  bool notify_tree;
 
   // Publishers
   PubList children_pub_list_;
@@ -210,6 +218,7 @@ class Node {
   // service clients
   ros::ServiceClient stopClient_;
   ros::ServiceClient resetClient_;
+  ros::ServiceClient update_pub_;
 
   // Node handler
   ros::NodeHandle pub_nh_;
