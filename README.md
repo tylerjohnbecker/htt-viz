@@ -36,7 +36,6 @@ for the HTT itself it can be run with the following command for the tree.launch 
 roslaunch htt_viz tree.launch test_num:=k
 where k is the last digit of the file with the naming convention "test_" + k + ".yaml"
 
-Note: for now we can't save the files so we can enforce this convention, however, I'll change this to an actual file_name once we have the save functionality.
+Note: for now we can't save the files so we can enforce this convention, however, I'll change this to an actual file_name once we have the save functionality 
 
-Do this instead of the normal python instructions so that we can test with rosnodes running when we add
-that functionality later.
+Do this instead of the normal python instructions so that we can test with rosnodes running when we add that functionality later.
