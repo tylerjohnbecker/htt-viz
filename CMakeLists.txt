@@ -15,6 +15,7 @@ find_package(catkin REQUIRED COMPONENTS
   actionlib_msgs
   std_msgs
   geometry_msgs
+  rosgraph_msgs
   roslib
   robotics_task_tree_msgs
 )

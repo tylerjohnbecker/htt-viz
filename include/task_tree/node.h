@@ -206,7 +206,7 @@ class Node {
   ros::Publisher init_dialogue_;
   ros::Publisher peer_simstate_;
   ros::Publisher human_res_pub_;
-
+  
   // Subscribers
   ros::Subscriber children_sub_;
   ros::Subscriber peer_sub_;
