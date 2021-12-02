@@ -160,7 +160,7 @@ class NodeView(wx.Panel):
 		eventX = event.GetX()
 		eventY = event.GetY()
 
-		maybeNode = self.node.getHitNode(eventX, eventY)
+		maybeNode = self.tree.root_node.getHitNode(eventX, eventY)
 		
 		self.draggingNode = maybeNode
 

@@ -1,5 +1,6 @@
 import wx
 import wx.stc
+import wx.richtext
 import rospy
 import threading
 from htt_viz_py.NodeView import NodeView
@@ -212,12 +213,14 @@ class consoleWindow(wx.Frame):
 		wx.Frame.__init__(self, parent=parent, title = "ROS Console output")
 
 		self.tn = tree_name
-		self.st = wx.stc.StyledTextCtrl(self, style=wx.TE_MULTILINE|wx.TE_READONLY)
-		font = self.st.GetFont()
-		font.PointSize += 2
-		self.st.SetFont(font)
-		self.st.StyleSetForeground(wx.stc.STC_STYLE_DEFAULT, wx.GREEN)
-		self.st.StyleSetBackground(wx.stc.STC_STYLE_DEFAULT, wx.BLACK)
+		self.rt = wx.richtext.RichTextCtrl(self, style=wx.VSCROLL|wx.TE_READONLY|wx.NO_BORDER)
+		#font = self.st.GetFont()
+		#font.PointSize += 2
+		#self.st.SetFont(font)
+		#self.st.StyleSetSpec(wx.stc.STC_STYLE_DEFAULT, "fore:BLACK, back:BLACK")
+		#self.st.StyleSetBackground(wx.stc.STC_STYLE_DEFAULT, wx.BLACK)
+		#self.st.StyleSetForeground(wx.stc.STC_STYLE_DEFAULT, wx.GREEN)
+		
 
 		self.consoleSubscriber = rospy.Subscriber("rosout", Log, self.consoleCallback)
 		
@@ -225,7 +228,9 @@ class consoleWindow(wx.Frame):
 
 	def consoleCallback(self, msg):
 		if msg.name == self.tn:
-			self.st.AppendText(msg.msg + '\n')
+			self.rt.BeginTextColour((0, 122, 0))
+			self.rt.WriteText(msg.msg + "\n")
+			self.rt.EndTextColour()
 
 
 class MainApp(wx.App):
