@@ -105,6 +105,7 @@ class Tree:
 class NodeView(wx.Panel):
 	def __init__(self, parent, id=wx.ID_ANY, pos=wx.DefaultPosition, size=wx.DefaultSize):
 		wx.Panel.__init__(self, parent, id, pos, size)
+		self.parent = parent
 
 		#initializing a rosservice to update the nodes when the colors need to change
 		self.server = rp.Service('update_htt', Update, self.UpdateCallback)

@@ -15,12 +15,14 @@ class frameMain ( wx.Frame ):
 		
 		self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
 		
+		self.pressed = {}
+
 		## Split window into panels
-		splitter = wx.SplitterWindow(self)
-		left = NodePanel(splitter)
-		right = TreePanel(splitter)
-		splitter.SplitVertically(left, right)
-		splitter.SetMinimumPaneSize(200)
+		self.splitter = wx.SplitterWindow(self)
+		self.left = NodePanel(self.splitter)
+		self.right = TreePanel(self.splitter)
+		self.splitter.SplitVertically(self.left, self.right)
+		self.splitter.SetMinimumPaneSize(200)
 		
 		
 		# Menu Buttons
@@ -83,7 +85,7 @@ class frameMain ( wx.Frame ):
 
 		self.menuView = wx.Menu()
 
-		self.menuItemViewDebug = wx.MenuItem( self.menuView, wx.ID_ANY, u"Debug Console"+ u"\t" + u"Ctrl+Shift+Y", wx.EmptyString, wx.ITEM_NORMAL )
+		self.menuItemViewDebug = wx.MenuItem( self.menuView, wx.ID_ANY, u"Debug Console"+ u"\t" + u"Ctrl+Shift+H", wx.EmptyString, wx.ITEM_NORMAL )
 		self.menuView.Append( self.menuItemViewDebug )
 
 		self.menubarMain.Append( self.menuView, u"View" ) 
@@ -91,7 +93,7 @@ class frameMain ( wx.Frame ):
 		self.menuHelp = wx.Menu()
 
 		# Help
-		self.menuItemHelpAbout = wx.MenuItem( self.menuHelp, wx.ID_ANY, u"About..."+ u"\t" + u"", wx.EmptyString, wx.ITEM_NORMAL )
+		self.menuItemHelpAbout = wx.MenuItem( self.menuHelp, wx.ID_ANY, u"About..."+ u"\t" + u"Ctrl+H", wx.EmptyString, wx.ITEM_NORMAL )
 		self.menuHelp.Append( self.menuItemHelpAbout )
 
 		self.menubarMain.Append( self.menuHelp, u"Help" ) 
@@ -99,9 +101,12 @@ class frameMain ( wx.Frame ):
 		
 		self.SetMenuBar( self.menubarMain )
 		
-		
 		self.Centre( wx.BOTH )
-		
+
+		# Connect Key Event
+		self.splitter.Bind(wx.EVT_KEY_DOWN, self.OnKeyDown)
+		self.splitter.Bind(wx.EVT_KEY_UP, self.OnKeyUp)
+
 		# Connect Events
 		self.Bind( wx.EVT_MENU, self.menuItemFileNewOnMenuSelection, id = self.menuItemFileNew.GetId() )
 		self.Bind( wx.EVT_MENU, self.menuItemFileOpenOnMenuSelection, id = self.menuItemFileOpen.GetId() )
@@ -164,21 +169,61 @@ class frameMain ( wx.Frame ):
 		about = aboutWindow()
 		about.Show()
 
+	def OnKeyDown( self, event ):
+		keycode = event.GetKeyCode()
+		
+		if not (keycode in self.pressed):
+			#print(keycode)
+			self.pressed[keycode] = keycode
+
+		command = event.CmdDown()
+		shift = event.ShiftDown()
+		if command and shift:
+			if keycode == wx.WXK_Y:
+				print("CTRL + SHIFT + Y")
+		elif command and not shift:
+			pass
+		event.Skip()
+
+	def OnKeyUp( self, event ):
+		keycode = event.GetKeyCode()
+		#print(keycode)
+		del self.pressed[keycode]
+		event.Skip()
+
+	def shortcutUp ( self, event ):
+		pass
+
 class NodePanel(wx.Panel):
 	def __init__(self, parent):
-		#wx.Panel.__init__(self, parent = parent)
-		#wx.Button(self, -1, "New Node")
-		#self.SetBackgroundColour("grey")
+		self.parent = parent
 		wx.Panel.__init__(self, parent = parent)
-		wx.Button(self, -1, "New Node")
+		button = wx.Button(self, -1, "New Node")
 		self.SetBackgroundColour("grey")
 		List = ['Node A', 'Node B', 'Node C', 'Node D', 'Node E', 'Node F', 'Node G']
 		NodeList=wx.ListBox(parent, -1, pos = (3,30), size = (194, 110), choices = List, style = wx.LB_SINGLE)
+		
+		NodeList.Bind(wx.EVT_KEY_DOWN, self.OnKeyDown)
+		button.Bind(wx.EVT_KEY_DOWN, self.OnKeyDown)
+		self.Bind(wx.EVT_KEY_DOWN, self.OnKeyDown)
+		NodeList.Bind(wx.EVT_KEY_UP, self.OnKeyUp)
+		button.Bind(wx.EVT_KEY_UP, self.OnKeyUp)
+		self.Bind(wx.EVT_KEY_UP, self.OnKeyUp)
+
+	def OnKeyDown ( self, event ):
+		#print("Hello2.1!")
+		wx.PostEvent(self.parent, event)
+		event.Skip()
+
+	def OnKeyUp ( self, event ):
+		#print("Goodbye2.1!")
+		wx.PostEvent(self.parent, event)
+		event.Skip()
 
 class TreePanel(wx.Panel):
 	def __init__(self, parent):
 		wx.Panel.__init__(self, parent = parent)
-		
+		self.parent = parent
 		#sizer to put them one above the other with no horizontal constraints
 		sizer = wx.BoxSizer(wx.VERTICAL)
 
@@ -193,8 +238,24 @@ class TreePanel(wx.Panel):
 		
 		self.SetBackgroundColour("dark grey")
 		self.SetSizer(sizer)
-		#List = ['Node A', 'Node B', 'Node C', 'Node D', 'Node E', 'Node F', 'Node G']
-		#NodeList=wx.ListBox(parent, -1, pos = (3,30), size = (194, 110), choices = List, style = wx.LB_SINGLE)
+		List = ['Node A', 'Node B', 'Node C', 'Node D', 'Node E', 'Node F', 'Node G']
+		NodeList=wx.ListBox(parent, -1, pos = (3,30), size = (194, 110), choices = List, style = wx.LB_SINGLE)
+		self.Bind(wx.EVT_KEY_DOWN, self.OnKeyDown)
+		runButton.Bind(wx.EVT_KEY_DOWN, self.OnKeyDown)
+		treeEditor.Bind(wx.EVT_KEY_DOWN, self.OnKeyDown)
+		self.Bind(wx.EVT_KEY_UP, self.OnKeyUp)
+		runButton.Bind(wx.EVT_KEY_UP, self.OnKeyUp)
+		treeEditor.Bind(wx.EVT_KEY_UP, self.OnKeyUp)
+
+	def OnKeyDown (self, event):
+		#print("Hello2!")
+		wx.PostEvent(self.parent, event)
+		event.Skip()
+
+	def OnKeyUp (self, event):
+		#print("Goodbye2!")
+		wx.PostEvent(self.parent, event)
+		event.Skip()
 
 class aboutWindow(wx.Frame):
 	def __init__(self, parent=None):
@@ -234,10 +295,13 @@ class consoleWindow(wx.Frame):
 
 
 class MainApp(wx.App):
-    def OnInit(self):
-        mainFrame = frameMain(None)
-        mainFrame.Show(True)
-        return True
+	def OnInit(self):
+		mainFrame = frameMain(None)
+		mainFrame.Show(True)
+		mainFrame.Bind(wx.EVT_KEY_DOWN, self.OnKeyDown)
+		return True
+	def OnKeyDown(self, event):
+		event.Skip()
 
 class AsyncSpinner(threading.Thread):
     def __init__(self):
