@@ -153,34 +153,34 @@ class frameMain ( wx.Frame ):
 				wx.LogError("Cannot save current data in file '%s'." % pathname)
 
 	def saveProject(window):
-
-   if os.path.exists(window.getGlobalSettings().getCurrentFileName()): #File exists from before
-	dlg = wx.MessageDialog(window,
-   "Overwrite existing project file " + window.getGlobalSettings().getCurrentFileName() + "?",
-   "Overwrite existing project file",
-   wx.SAVE | wx.CANCEL | wx.ICON_QUESTION)
+		
+		if os.path.exists(window.getGlobalSettings().getCurrentFileName()): #File exists from before
+			dlg = wx.MessageDialog(window,
+				"Overwrite existing project file " + window.getGlobalSettings().getCurrentFileName() + "?",
+				"Overwrite existing project file",
+				wx.SAVE | wx.CANCEL | wx.ICON_QUESTION)
 
 		result = dlg.ShowModal()
 		dlg.Destroy()
 
-	if result == wx.ID_YES:
-   save(window, currentFileName)
-	return True
-	elif result == wx.ID_SAVEAS:
-   #TODO: do shit here
-   return False
-	elif result == wx.ID_NO:
-   return False
-	elif result == wx.ID_CANCEL:
-   return False
+		if result == wx.ID_YES:
+			save(window, currentFileName)
+			return True
+		elif result == wx.ID_SAVEAS:
+			#TODO: do shit here
+			return False
+		elif result == wx.ID_NO:
+			return False
+		elif result == wx.ID_CANCEL:
+			return False
 
-	elif window.getGlobalSettings().getCurrentFileName == "":
-   #TODO: do shit here
-   return False
+		elif window.getGlobalSettings().getCurrentFileName == "":
+			#TODO: do shit here
+			return False
 
-else :
-   save(window, window.getGlobalSettings().getCurrentFileName())
-return True
+		else:
+			save(window, window.getGlobalSettings().getCurrentFileName())
+			return True
 	
 	# Exit Event
 	def menuItemFileExitOnMenuSelection( self, event ):
