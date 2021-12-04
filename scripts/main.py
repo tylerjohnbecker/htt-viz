@@ -154,34 +154,18 @@ class frameMain ( wx.Frame ):
 
 	def saveProject(window):
 		
-		if os.path.exists(window.getGlobalSettings().getCurrentFileName()): #File exists from before
-			dlg = wx.MessageDialog(window,
-				"Overwrite existing project file " + window.getGlobalSettings().getCurrentFileName() + "?",
-				"Overwrite existing project file",
-				wx.SAVE | wx.CANCEL | wx.ICON_QUESTION)
-
+		dlg  wx.FileDialog(window, "Save project as ...", os.getcwd(), "", "* xyzproject", 
+				   \ wx.SAVE|wx.OVERWRITE_PROMPT)
 		result = dlg.ShowModal()
+		inFile = dlg.GetPath
 		dlg.Destroy()
-
-		if result == wx.ID_YES:
-			save(window, currentFileName)
+		
+		if results == wx.ID_OK:		#If save button was pressed
+			save(window,inFile)
 			return True
-		elif result == wx.ID_SAVEAS:
-			#TODO: do shit here
-			return False
-		elif result == wx.ID_NO:
-			return False
-		elif result == wx.ID_CANCEL:
-			return False
-
-		elif window.getGlobalSettings().getCurrentFileName == "":
-			#TODO: do shit here
-			return False
-
-		else:
-			save(window, window.getGlobalSettings().getCurrentFileName())
-			return True
-	
+		elif result == wx.ID_CANCEL:	#Either cancel button was selected or window was closed 
+			return False 
+		
 	# Exit Event
 	def menuItemFileExitOnMenuSelection( self, event ):
 		wx.Exit()
