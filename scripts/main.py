@@ -154,8 +154,8 @@ class frameMain ( wx.Frame ):
 
 	def saveProject(window):
 		
-		dlg  wx.FileDialog(window, "Save project as ...", os.getcwd(), "", "* xyzproject", 
-				   \ wx.SAVE|wx.OVERWRITE_PROMPT)
+		dlg = wx.FileDialog(window, "Save project as ...", os.getcwd(), "", "* xyzproject", 
+				   wx.SAVE|wx.OVERWRITE_PROMPT)
 		result = dlg.ShowModal()
 		inFile = dlg.GetPath
 		dlg.Destroy()
