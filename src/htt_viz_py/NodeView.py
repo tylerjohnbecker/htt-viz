@@ -1,5 +1,7 @@
 import wx
 import rospy as rp
+import yaml
+from yaml import Loader, Dumper
 from htt_viz.srv import Update
 from htt_viz.srv import UpdateResponse
 
@@ -25,10 +27,10 @@ class Node:
 	def getHitNode(self, x, y):
 		nodeWidth = NODE_WIDTH
 		nodeHeight = NODE_HEIGHT
-		
+
 		if x > self.x and x < self.x + nodeWidth and y > self.y and y < self.y + nodeHeight:
 			return self
-		
+
 		for child in self.children:
 			maybeNode = child.getHitNode(x, y)
 			if maybeNode is not None:
@@ -60,23 +62,29 @@ class Tree:
 	def AddNode(self, parent_name, node):
 		self.node_dict[node.name] = node
 		node.parent = parent_name
-		self.node_dict[parent_name].addChild(node)
+		if not parent_name == "NONE":
+			self.node_dict[parent_name].addChild(node)
+
+		if self.root_node == None:
+			self.root_node = self.node_dict[node.name]
 
 	
 	def PrintNodes(self, node_name):
+		
+		print(node_name)
 		if len(self.node_dict[node_name].children) == 0:
-			print(node_name)
 			return
 
 		for child in self.node_dict[node_name].children:
 			self.PrintNodes(child.name)
 
-		print(node_name)
 
 	def PrintTree(self):
-		print("\nPrinting current tree inorder...\n")
 		self.PrintNodes(self.root_node.name)
 
+	def DestroyTree(self):
+		self.RemoveNode(self.root_node.name)
+		self.root_node = None
 
 	def RemoveNode(self, node_name):
 		#if its not a leaf we need to delete the children first
@@ -84,10 +92,11 @@ class Tree:
 			self.RemoveNode(child.name)
 
 		#then we need to find it in its parent's list and delete it there
-		for child in self.node_dict[self.node_dict[node_name].parent].children:
-			if child.name == node_name:
-				self.node_dict[self.node_dict[node_name].parent].children.remove(child)
-				break
+		if not self.node_dict[node_name].parent == None and not self.node_dict[node_name].parent == "NONE":
+			for child in self.node_dict[self.node_dict[node_name].parent].children:
+				if child.name == node_name:
+					self.node_dict[self.node_dict[node_name].parent].children.remove(child)
+					break
 
 		#finally we need to make sure its gone from the node_dict
 		del self.node_dict[node_name]
@@ -112,11 +121,11 @@ class NodeView(wx.Panel):
 		# The base node. Temporarily use filler data.
 		self.tree = Tree()
 
-		n1 = Node("THEN_0_0_001", 150, 50)
-		n2 = Node("BEHAVIOR_3_0_002", 100, 100)
+		#n1 = Node("THEN_0_0_001", 150, 50)
+		#n2 = Node("BEHAVIOR_3_0_002", 100, 100)
 
-		self.tree.AddNode("ROOT_4_0_000", n1)
-		self.tree.AddNode("THEN_0_0_001", n2)
+		#self.tree.AddNode("ROOT_4_0_000", n1)
+		#self.tree.AddNode("THEN_0_0_001", n2)
 
 		self.SetBackgroundColour("dark grey")
 		
@@ -153,8 +162,7 @@ class NodeView(wx.Panel):
 		dc.Clear()
 		
 		# Testing node rendering
-		for node in self.tree.node_dict:
-			self.tree.draw(dc)
+		self.tree.draw(dc)
 		
 	def OnMouseLeftDown(self, event):
 		eventX = event.GetX()
@@ -193,3 +201,27 @@ class NodeView(wx.Panel):
 				self.draggingNode.y = event.GetY() - self.dragOffsetY
 				
 				self.Refresh(False)
+
+	def saveTree(self):
+		yaml_dict = 0
+		return yaml_dict
+
+	def loadTree(self, file):
+		data = yaml.load(file, Loader=Loader)
+
+		#prompt to save changes if there are any? Here or before the open dialogue
+
+		#so a note for myself the yaml loads as a dictionary of dictionaries all the way down
+		#destroy the tree
+		self.tree.DestroyTree()
+		
+		#iterate through all the nodes we need to make
+		for node in data["NodeList"]:
+			#name, x=0, y=0, nParent = None
+			x = data["Nodes"][node]["x"]
+			y = data["Nodes"][node]["y"]
+			parent = data["Nodes"][node]["parent"]
+			new_node = Node(node, x, y)
+			self.tree.AddNode(parent, new_node)
+
+		self.Refresh(False)

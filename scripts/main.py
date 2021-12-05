@@ -18,8 +18,8 @@ class frameMain ( wx.Frame ):
 		## Split window into panels
 		splitter = wx.SplitterWindow(self)
 		left = NodePanel(splitter)
-		right = TreePanel(splitter)
-		splitter.SplitVertically(left, right)
+		self.right = TreePanel(splitter)
+		splitter.SplitVertically(left, self.right)
 		splitter.SetMinimumPaneSize(200)
 		
 		
@@ -130,7 +130,7 @@ class frameMain ( wx.Frame ):
 			pathname = fileDialog.GetPath()
 			try:
 				with open(pathname, 'r') as file:
-					self.doLoadDataOrWhatever(file)
+					self.right.treeEditor.loadTree(file)
 			except IOError:
 				wx.LogError("Cannot open file.")
 
@@ -209,11 +209,11 @@ class TreePanel(wx.Panel):
 		#no functionality just a pretty button for now
 		runButton = wx.Button(self, -1, "Run Tree")
 		
-		treeEditor = NodeView(self, wx.ID_ANY, wx.Point(15, 15), size=wx.Size(400, 400))
+		self.treeEditor = NodeView(self, wx.ID_ANY, wx.Point(15, 15), size=wx.Size(400, 400))
 		
 		#add them to the sizer in the correct order
 		sizer.Add(runButton)
-		sizer.Add(treeEditor)
+		sizer.Add(self.treeEditor)
 		
 		self.SetBackgroundColour("dark grey")
 		self.SetSizer(sizer)
