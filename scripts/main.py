@@ -154,25 +154,27 @@ class frameMain ( wx.Frame ):
 
 	def Save_Template_As(self, e):
 		openFileDialog = wx.FileDialog(self, 'Save Template As', self.save_into_directory, '',
-                                           'Content files (*.yaml; *.json)|*.yaml;*.json|All files (*.*)|*.*',
-                                           wx.FD_SAVE | wx.wx.FD_OVERWRITE_PROMPT)
+		                                   'Content files (*.yaml; *.json)|*.yaml;*.json|All files (*.*)|*.*',
+		                                   wx.FD_SAVE | wx.wx.FD_OVERWRITE_PROMPT)
 										   
-        		if openFileDialog.ShowModal() == wx.ID_CANCEL:
-                		return
-        			json_ext = '.json'
-        		filename = openFileDialog.GetPath()
-        			self.status('Saving Template content...')
-        		h = open(filename, 'w')
-        		if filename[-len(json_ext):] == json_ext:
-                		h.write(self.report.template_dump_json().encode('utf-8'))
-        		else:
-                		h.write(self.report.template_dump_yaml().encode('utf-8'))
-           				 h.close()
-            			self.status('Template content saved') 
+		if openFileDialog.ShowModal() == wx.ID_CANCEL:
+			return
+        
+		json_ext = '.json'
 
-			else:
-				save(window, window.getGlobalSettings().getCurrentFileName())
-			return True
+		filename = openFileDialog.GetPath()
+		self.status('Saving Template content...')
+		h = open(filename, 'w')
+        
+		if filename[-len(json_ext):] == json_ext:
+			h.write(self.report.template_dump_json().encode('utf-8'))
+		else:
+			h.write(self.report.template_dump_yaml().encode('utf-8'))
+			h.close()
+			self.status('Template content saved') 
+
+		save(window, window.getGlobalSettings().getCurrentFileName())
+		return True
 	
 	# Exit Event
 	def menuItemFileExitOnMenuSelection( self, event ):
