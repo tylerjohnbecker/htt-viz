@@ -22,6 +22,9 @@ class frameMain ( wx.Frame ):
 		splitter.SplitVertically(left, right)
 		splitter.SetMinimumPaneSize(200)
 		
+		# Binds RightMouseDown to the two panels: left & right
+		left.Bind(wx.EVT_RIGHT_DOWN, self.OnRightDown)
+		right.Bind(wx.EVT_RIGHT_DOWN, self.OnRightDown)
 		
 		# Menu Buttons
 		self.Layout()
@@ -177,6 +180,52 @@ class frameMain ( wx.Frame ):
 	def menuItemHelpAboutOnMenuSelection( self, event ):
 		about = aboutWindow()
 		about.Show()
+
+	# Function to display Right Click Menu
+	def OnRightDown(self, e):
+		self.PopupMenu(RCMenu(self), e.GetPosition()) 
+
+# Right-Click Menu Class
+class RCMenu(wx.Menu):
+	def __init__(self, parent):
+		super(RCMenu, self).__init__()
+
+		self.parent = parent
+		
+		# Menu Options and links to behaviors
+		addmenu = wx.MenuItem(self, wx.NewId(), 'Add Child Node')
+		self.AppendItem(addmenu)
+		self.Bind(wx.EVT_MENU, self.OnAddChildNode, addmenu)
+
+		editmenu = wx.MenuItem(self, wx.NewId(), 'Edit Node')
+		self.AppendItem(editmenu)
+		self.Bind(wx.EVT_MENU, self.OnEditNode, editmenu)
+
+		removemenu = wx.MenuItem(self, wx.NewId(), 'Remove Node')
+		self.AppendItem(removemenu)
+		self.Bind(wx.EVT_MENU, self.RemoveNode, removemenu)
+
+		closemenu = wx.MenuItem(self, wx.NewId(), 'Close')
+		self.Append(closemenu)
+		self.Bind(wx.EVT_MENU, self.OnClose, closemenu)
+	
+	# Behaviors for menu options
+	def OnAddChildNode(self, e):
+		# Call 'AddNode' with selected node as parameter
+		# self.AddNode(self, parent_name, node)
+		self.parent.Iconize() # Temp behavior
+
+	def OnEditNode(self, e):
+		# Edit Node
+		self.parent.Iconize() # Temp behavior
+
+	def RemoveNode(self, e):
+		# Call 'RemoveNode' with selected node as parameter
+		# self.RemoveNode(self, node_name)
+		self.parent.Iconize() # Temp behavior
+
+	def OnClose(self, e):
+		self.parent.Close()
 
 class NodePanel(wx.Panel):
 	def __init__(self, parent):
