@@ -152,34 +152,26 @@ class frameMain ( wx.Frame ):
 			except IOError:
 				wx.LogError("Cannot save current data in file '%s'." % pathname)
 
-	def saveProject(window):
-		
-		if os.path.exists(window.getGlobalSettings().getCurrentFileName()): #File exists from before
-			dlg = wx.MessageDialog(window,
-				"Overwrite existing project file " + window.getGlobalSettings().getCurrentFileName() + "?",
-				"Overwrite existing project file",
-				wx.SAVE | wx.CANCEL | wx.ICON_QUESTION)
+	def Save_Template_As(self, e):
+		openFileDialog = wx.FileDialog(self, 'Save Template As', self.save_into_directory, '',
+                                           'Content files (*.yaml; *.json)|*.yaml;*.json|All files (*.*)|*.*',
+                                           wx.FD_SAVE | wx.wx.FD_OVERWRITE_PROMPT)
+										   
+        		if openFileDialog.ShowModal() == wx.ID_CANCEL:
+                		return
+        			json_ext = '.json'
+        		filename = openFileDialog.GetPath()
+        			self.status('Saving Template content...')
+        		h = open(filename, 'w')
+        		if filename[-len(json_ext):] == json_ext:
+                		h.write(self.report.template_dump_json().encode('utf-8'))
+        		else:
+                		h.write(self.report.template_dump_yaml().encode('utf-8'))
+           				 h.close()
+            			self.status('Template content saved') 
 
-		result = dlg.ShowModal()
-		dlg.Destroy()
-
-		if result == wx.ID_YES:
-			save(window, currentFileName)
-			return True
-		elif result == wx.ID_SAVEAS:
-			#TODO: do shit here
-			return False
-		elif result == wx.ID_NO:
-			return False
-		elif result == wx.ID_CANCEL:
-			return False
-
-		elif window.getGlobalSettings().getCurrentFileName == "":
-			#TODO: do shit here
-			return False
-
-		else:
-			save(window, window.getGlobalSettings().getCurrentFileName())
+			else:
+				save(window, window.getGlobalSettings().getCurrentFileName())
 			return True
 	
 	# Exit Event
