@@ -141,7 +141,7 @@ class frameMain ( wx.Frame ):
 	
 	# Save As Event
 	def File_Save( self, event ):
-		self._Save()
+		pass#self._Save()
 		
 	def menuItemFileSaveAsOnMenuSelection( self, event ):
 		with wx.FileDialog(self, "Save file", wildcard="File Types (*.yaml)|*.yaml", style=wx.FD_SAVE | wx.FD_OVERWRITE_PROMPT) as fileDialog:
@@ -155,7 +155,7 @@ class frameMain ( wx.Frame ):
 					self.right.treeEditor.saveTree(file)
 			except IOError:
 				wx.LogError("Cannot save current data in file '%s'." % pathname) 
-		self._Save()
+		#self._Save()
 
 	# Exit Event
 	def menuItemFileExitOnMenuSelection( self, event ):
