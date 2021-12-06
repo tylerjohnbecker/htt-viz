@@ -3,6 +3,7 @@ import wx.stc
 import wx.richtext
 import rospy
 import threading
+import os
 from htt_viz_py.NodeView import NodeView
 from htt_viz_py.NodeView import Tree
 from htt_viz_py.NodeView import Node
@@ -139,50 +140,21 @@ class frameMain ( wx.Frame ):
 		event.Skip()
 	
 	# Save As Event
+	def File_Save( self, event ):
+		self._Save()
+		
 	def menuItemFileSaveAsOnMenuSelection( self, event ):
-		with wx.FileDialog(self, 'Save Template As',
+		openFileDialog = wx.FileDialog(self, 'Save Yaml As',
 		                                   wildcard = 'Content files (*.yaml)|*.yaml|All files (*.*)|*.*',
-		                                   style = wx.FD_SAVE | wx.FD_OVERWRITE_PROMPT) as openFileDialog:
+		                                   style = wx.FD_SAVE | wx.FD_OVERWRITE_PROMPT)
 
 			if openFileDialog.ShowModal() == wx.ID_CANCEL:
 				return
         
-			filename = openFileDialog.GetPath()
-			self.status('Saving Template content...')
-			h = open(filename, 'w')
-        
-			h.write(self.report.template_dump_yaml().encode('utf-8'))
-			h.close()
-			self.status('Template content saved') 
+			pathname = openFileDialog.GetPath()
+			self.filename = os.pathabspath(pathname)
+			self._Save()
 
-			save(window, window.getGlobalSettings().getCurrentFileName())
-
-			return True
-
-	def Save_Template_As(self, e):
-		openFileDialog = wx.FileDialog(self, 'Save Template As', self.save_into_directory, '',
-		                                   'Content files (*.yaml; *.json)|*.yaml;*.json|All files (*.*)|*.*',
-		                                   wx.FD_SAVE | wx.wx.FD_OVERWRITE_PROMPT)
-										   
-		if openFileDialog.ShowModal() == wx.ID_CANCEL:
-			return
-        
-		json_ext = '.json'
-
-		filename = openFileDialog.GetPath()
-		self.status('Saving Template content...')
-		h = open(filename, 'w')
-        
-		if filename[-len(json_ext):] == json_ext:
-			h.write(self.report.template_dump_json().encode('utf-8'))
-		else:
-			h.write(self.report.template_dump_yaml().encode('utf-8'))
-			h.close()
-			self.status('Template content saved') 
-
-		save(window, window.getGlobalSettings().getCurrentFileName())
-		return True
-	
 	# Exit Event
 	def menuItemFileExitOnMenuSelection( self, event ):
 		wx.Exit()
