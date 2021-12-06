@@ -3,7 +3,6 @@ import wx.stc
 import wx.richtext
 import rospy
 import threading
-import os
 from htt_viz_py.NodeView import NodeView
 from htt_viz_py.NodeView import Tree
 from htt_viz_py.NodeView import Node
@@ -144,16 +143,18 @@ class frameMain ( wx.Frame ):
 		self._Save()
 		
 	def menuItemFileSaveAsOnMenuSelection( self, event ):
-		openFileDialog = wx.FileDialog(self, 'Save Yaml As',
-		                                   wildcard = 'Content files (*.yaml)|*.yaml|All files (*.*)|*.*',
-		                                   style = wx.FD_SAVE | wx.FD_OVERWRITE_PROMPT)
+		with wx.FileDialog(self, "Save file", wildcard="File Types (*.yaml)|*.yaml", style=wx.FD_SAVE | wx.FD_OVERWRITE_PROMPT) as fileDialog:
 
-			if openFileDialog.ShowModal() == wx.ID_CANCEL:
-				return
-        
-			pathname = openFileDialog.GetPath()
-			self.filename = os.pathabspath(pathname)
-			self._Save()
+			if fileDialog.ShowModal() == wx.ID_CANCEL:
+				return     
+
+			pathname = fileDialog.GetPath()
+			try:
+				with open(pathname, 'w') as file:
+					self.right.treeEditor.saveTree(file)
+			except IOError:
+				wx.LogError("Cannot save current data in file '%s'." % pathname) 
+		self._Save()
 
 	# Exit Event
 	def menuItemFileExitOnMenuSelection( self, event ):
