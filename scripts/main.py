@@ -17,9 +17,9 @@ class frameMain ( wx.Frame ):
 		
 		## Split window into panels
 		splitter = wx.SplitterWindow(self)
-		left = NodePanel(splitter)
-		right = TreePanel(splitter)
-		splitter.SplitVertically(left, right)
+		self.left = NodePanel(splitter)
+		self.right = TreePanel(splitter)
+		splitter.SplitVertically(self.left, self.right)
 		splitter.SetMinimumPaneSize(200)
 		
 		
@@ -124,13 +124,13 @@ class frameMain ( wx.Frame ):
 		#if self.contentNotSaved:
 		#	if wx.MessageBox("Current content has not been saved! Proceed?", "Please confirm", wx.ICON_QUESTION | wx.YES_NO, self) == wx.NO:
 		#		return
-		with wx.FileDialog(self, "Open file", wildcard="File Types (*.xyz)|*.xyz", style=wx.FD_OPEN | wx.FD_FILE_MUST_EXIST) as fileDialog:
+		with wx.FileDialog(self, "Open file", wildcard="File Types (*.yaml)|*.yaml", style=wx.FD_OPEN | wx.FD_FILE_MUST_EXIST) as fileDialog:
 			if fileDialog.ShowModal() == wx.ID_CANCEL:
 				return
 			pathname = fileDialog.GetPath()
 			try:
 				with open(pathname, 'r') as file:
-					self.doLoadDataOrWhatever(file)
+					self.right.treeEditor.loadTree(file)
 			except IOError:
 				wx.LogError("Cannot open file.")
 
@@ -189,11 +189,11 @@ class TreePanel(wx.Panel):
 		#no functionality just a pretty button for now
 		runButton = wx.Button(self, -1, "Run Tree")
 		
-		treeEditor = NodeView(self, wx.ID_ANY, wx.Point(15, 15), size=wx.Size(400, 400))
+		self.treeEditor = NodeView(self, wx.ID_ANY, wx.Point(15, 15), size=wx.Size(400, 400))
 		
 		#add them to the sizer in the correct order
 		sizer.Add(runButton)
-		sizer.Add(treeEditor)
+		sizer.Add(self.treeEditor)
 		
 		self.SetBackgroundColour("dark grey")
 		self.SetSizer(sizer)
