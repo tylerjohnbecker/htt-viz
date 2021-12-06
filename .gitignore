@@ -18,3 +18,4 @@ out
 .vs/ProjectSettings.json
 .vs/slnx.sqlite
 >>>>>>> Stashed changes
+src/htt_viz_py/__pycache__/NodeView.cpython-38.pyc
