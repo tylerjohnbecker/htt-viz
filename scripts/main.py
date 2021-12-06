@@ -140,17 +140,24 @@ class frameMain ( wx.Frame ):
 	
 	# Save As Event
 	def menuItemFileSaveAsOnMenuSelection( self, event ):
-		with wx.FileDialog(self, "Save file", wildcard="File Types (*.xyz)|*.xyz", style=wx.FD_SAVE | wx.FD_OVERWRITE_PROMPT) as fileDialog:
+		with wx.FileDialog(self, 'Save Template As',
+		                                   wildcard = 'Content files (*.yaml)|*.yaml|All files (*.*)|*.*',
+		                                   style = wx.FD_SAVE | wx.FD_OVERWRITE_PROMPT) as openFileDialog:
 
-			if fileDialog.ShowModal() == wx.ID_CANCEL:
-				return     
+			if openFileDialog.ShowModal() == wx.ID_CANCEL:
+				return
+        
+			filename = openFileDialog.GetPath()
+			self.status('Saving Template content...')
+			h = open(filename, 'w')
+        
+			h.write(self.report.template_dump_yaml().encode('utf-8'))
+			h.close()
+			self.status('Template content saved') 
 
-			pathname = fileDialog.GetPath()
-			try:
-				with open(pathname, 'w') as file:
-					self.doSaveData(file)
-			except IOError:
-				wx.LogError("Cannot save current data in file '%s'." % pathname)
+			save(window, window.getGlobalSettings().getCurrentFileName())
+
+			return True
 
 	def Save_Template_As(self, e):
 		openFileDialog = wx.FileDialog(self, 'Save Template As', self.save_into_directory, '',

@@ -192,4 +192,35 @@ class NodeView(wx.Panel):
 				self.draggingNode.x = event.GetX() - self.dragOffsetX
 				self.draggingNode.y = event.GetY() - self.dragOffsetY
 				
+<<<<<<< Updated upstream
 				self.Refresh(False)
+=======
+				self.Refresh(False)
+
+	def saveTree(self):
+		yaml_dict = 0
+		return yaml_dict
+
+	def loadTree(self, file):
+		data = yaml.load(file, Loader=Loader)
+
+		#prompt to save changes if there are any? Here or before the open dialogue
+
+		#so a note for myself the yaml loads as a dictionary of dictionaries all the way down
+		#destroy the tree
+		self.tree.DestroyTree()
+		
+		#iterate through all the nodes we need to make
+		for node in data["NodeList"]:
+			#name, x=0, y=0, nParent = None
+			x = data["Nodes"][node]["x"]
+			y = data["Nodes"][node]["y"]
+			parent = data["Nodes"][node]["parent"]
+			new_node = Node(node, x, y)
+			self.tree.AddNode(parent, new_node)
+
+		self.Refresh(False)
+
+	def saveTree(self, file):
+		print("Hello")
+>>>>>>> Stashed changes
