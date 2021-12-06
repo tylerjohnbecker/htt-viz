@@ -184,7 +184,7 @@ class frameMain ( wx.Frame ):
 
 	# Function to display Right Click Menu
 	def OnRightDown(self, e):
-		self.PopupMenu(RCMenu(self), e.GetPosition()) 
+		self.PopupMenu(RCMenu(self)) 
 
 # Right-Click Menu Class
 class RCMenu(wx.Menu):
