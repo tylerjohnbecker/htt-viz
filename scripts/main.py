@@ -18,14 +18,10 @@ class frameMain ( wx.Frame ):
 		## Split window into panels
 		splitter = wx.SplitterWindow(self)
 		left = NodePanel(splitter)
-		right = TreePanel(splitter)
-		splitter.SplitVertically(left, right)
+		self.right = TreePanel(splitter)
+		splitter.SplitVertically(left, self.right)
 		splitter.SetMinimumPaneSize(200)
 		
-		# Binds RightMouseDown to the two panels: left & right
-		#left.Bind(wx.EVT_RIGHT_DOWN, self.OnRightDown)
-		#right.Bind(wx.EVT_RIGHT_DOWN, self.OnRightDown)
-		splitter.Bind(wx.EVT_RIGHT_DOWN, self.OnRightDown)
 		
 		# Menu Buttons
 		self.Layout()
@@ -134,7 +130,7 @@ class frameMain ( wx.Frame ):
 			pathname = fileDialog.GetPath()
 			try:
 				with open(pathname, 'r') as file:
-					self.doLoadDataOrWhatever(file)
+					self.right.treeEditor.loadTree(file)
 			except IOError:
 				wx.LogError("Cannot open file.")
 
@@ -152,24 +148,34 @@ class frameMain ( wx.Frame ):
 			pathname = fileDialog.GetPath()
 			try:
 				with open(pathname, 'w') as file:
-					self.doSaveData(file)
+					self.right.treeEditor.saveTree(file)
 			except IOError:
 				wx.LogError("Cannot save current data in file '%s'." % pathname)
 
-	def saveProject(window):
-		
-		dlg = wx.FileDialog(window, "Save project as ...", os.getcwd(), "", "* xyzproject", 
-				   wx.SAVE|wx.OVERWRITE_PROMPT)
-		result = dlg.ShowModal()
-		inFile = dlg.GetPath
-		dlg.Destroy()
-		
-		if results == wx.ID_OK:		#If save button was pressed
-			save(window,inFile)
-			return True
-		elif result == wx.ID_CANCEL:	#Either cancel button was selected or window was closed 
-			return False 
-		
+	def Save_Template_As(self, e):
+		openFileDialog = wx.FileDialog(self, 'Save Template As', self.save_into_directory, '',
+		                                   'Content files (*.yaml; *.json)|*.yaml;*.json|All files (*.*)|*.*',
+		                                   wx.FD_SAVE | wx.wx.FD_OVERWRITE_PROMPT)
+										   
+		if openFileDialog.ShowModal() == wx.ID_CANCEL:
+			return
+        
+		json_ext = '.json'
+
+		filename = openFileDialog.GetPath()
+		self.status('Saving Template content...')
+		h = open(filename, 'w')
+        
+		if filename[-len(json_ext):] == json_ext:
+			h.write(self.report.template_dump_json().encode('utf-8'))
+		else:
+			h.write(self.report.template_dump_yaml().encode('utf-8'))
+			h.close()
+			self.status('Template content saved') 
+
+		save(window, window.getGlobalSettings().getCurrentFileName())
+		return True
+	
 	# Exit Event
 	def menuItemFileExitOnMenuSelection( self, event ):
 		wx.Exit()
@@ -182,77 +188,20 @@ class frameMain ( wx.Frame ):
 		about = aboutWindow()
 		about.Show()
 
-	# Function to display Right Click Menu
-	def OnRightDown(self, e):
-		self.PopupMenu(RCMenu(self)) 
-
-# Right-Click Menu Class
-class RCMenu(wx.Menu):
-	def __init__(self, parent):
-		super(RCMenu, self).__init__()
-
-		self.parent = parent
-		
-		# Menu Options and links to behaviors
-		addmenu = wx.MenuItem(self, wx.ID_ANY, 'Add Child Node')
-		self.Append(addmenu)
-		self.Bind(wx.EVT_MENU, self.OnAddChildNode, addmenu)
-
-		editmenu = wx.MenuItem(self, wx.ID_ANY, 'Edit Node')
-		self.Append(editmenu)
-		self.Bind(wx.EVT_MENU, self.OnEditNode, editmenu)
-
-		removemenu = wx.MenuItem(self, wx.ID_ANY, 'Remove Node')
-		self.Append(removemenu)
-		self.Bind(wx.EVT_MENU, self.RemoveNode, removemenu)
-
-		closemenu = wx.MenuItem(self, wx.ID_ANY, 'Close')
-		self.Append(closemenu)
-		self.Bind(wx.EVT_MENU, self.OnClose, closemenu)
-	
-	# Behaviors for menu options
-	def OnAddChildNode(self, e):
-		# Call 'AddNode' with selected node as parameter
-		# self.AddNode(self, parent_name, node)
-		self.parent.Iconize() # Temp behavior
-
-	def OnEditNode(self, e):
-		# Edit Node
-		self.parent.Iconize() # Temp behavior
-
-	def RemoveNode(self, e):
-		# Call 'RemoveNode' with selected node as parameter
-		# self.RemoveNode(self, node_name)
-		self.parent.Iconize() # Temp behavior
-
-	def OnClose(self, e):
-		self.parent.Close()
-
 class NodePanel(wx.Panel):
 	def __init__(self, parent):
 		#wx.Panel.__init__(self, parent = parent)
 		#wx.Button(self, -1, "New Node")
 		#self.SetBackgroundColour("grey")
 		wx.Panel.__init__(self, parent = parent)
-		self.parent = parent
-		button = wx.Button(self, -1, "New Node")
+		wx.Button(self, -1, "New Node")
 		self.SetBackgroundColour("grey")
 		List = ['Node A', 'Node B', 'Node C', 'Node D', 'Node E', 'Node F', 'Node G']
 		NodeList=wx.ListBox(parent, -1, pos = (3,30), size = (194, 110), choices = List, style = wx.LB_SINGLE)
-		
-		NodeList.Bind(wx.EVT_RIGHT_DOWN, self.OnRightDown)
-		button.Bind(wx.EVT_RIGHT_DOWN, self.OnRightDown)
-		self.Bind(wx.EVT_RIGHT_DOWN, self.OnRightDown)
-
-	def OnRightDown(self, event):
-		wx.PostEvent(self.parent, event)
-		event.Skip()
-
 
 class TreePanel(wx.Panel):
 	def __init__(self, parent):
 		wx.Panel.__init__(self, parent = parent)
-		self.parent = parent
 		
 		#sizer to put them one above the other with no horizontal constraints
 		sizer = wx.BoxSizer(wx.VERTICAL)
@@ -260,23 +209,16 @@ class TreePanel(wx.Panel):
 		#no functionality just a pretty button for now
 		runButton = wx.Button(self, -1, "Run Tree")
 		
-		treeEditor = NodeView(self, wx.ID_ANY, wx.Point(15, 15), size=wx.Size(400, 400))
+		self.treeEditor = NodeView(self, wx.ID_ANY, wx.Point(15, 15), size=wx.Size(400, 400))
 		
 		#add them to the sizer in the correct order
 		sizer.Add(runButton)
-		sizer.Add(treeEditor)
+		sizer.Add(self.treeEditor)
 		
 		self.SetBackgroundColour("dark grey")
 		self.SetSizer(sizer)
 		#List = ['Node A', 'Node B', 'Node C', 'Node D', 'Node E', 'Node F', 'Node G']
 		#NodeList=wx.ListBox(parent, -1, pos = (3,30), size = (194, 110), choices = List, style = wx.LB_SINGLE)
-		runButton.Bind(wx.EVT_RIGHT_DOWN, self.OnRightDown)
-		treeEditor.Bind(wx.EVT_RIGHT_DOWN, self.OnRightDown)
-		self.Bind(wx.EVT_RIGHT_DOWN, self.OnRightDown)
-
-	def OnRightDown(self, event):
-		wx.PostEvent(self.parent, event)
-		event.Skip()
 
 class aboutWindow(wx.Frame):
 	def __init__(self, parent=None):

@@ -18,6 +18,8 @@ Nodes:
     parent: 'NONE'
     children: ['THEN_0_0_001']
     peers: ['NONE']
+    x: 10
+    y: 0
   THEN_0_0_001:
     mask:
       type: 0
@@ -26,6 +28,8 @@ Nodes:
     parent: 'ROOT_4_0_000'
     children: ['BEHAVIOR_3_0_002']
     peers: ['NONE']
+    x: 10
+    y: 40
   BEHAVIOR_3_0_002:
     mask:
       type: 3
@@ -35,3 +39,5 @@ Nodes:
     children: ['NONE']
     peers: ['NONE']
     b_type: 0
+    x: 10
+    y: 80
