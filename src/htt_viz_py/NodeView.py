@@ -264,5 +264,6 @@ class NodeView(wx.Panel):
 			self.tree.AddNode(parent, new_node)
 
 		self.Refresh(False)
+    
 	def saveTree(self, file):
 		yaml.dump(self.tree.toYamlDict(), file)

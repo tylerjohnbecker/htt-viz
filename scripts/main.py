@@ -17,9 +17,9 @@ class frameMain ( wx.Frame ):
 		
 		## Split window into panels
 		splitter = wx.SplitterWindow(self)
-		left = NodePanel(splitter)
+		self.left = NodePanel(splitter)
 		self.right = TreePanel(splitter)
-		splitter.SplitVertically(left, self.right)
+		splitter.SplitVertically(self.left, self.right)
 		splitter.SetMinimumPaneSize(200)
 		
 		splitter.Bind(wx.EVT_RIGHT_DOWN, self.OnRightDown)
@@ -125,7 +125,7 @@ class frameMain ( wx.Frame ):
 		#if self.contentNotSaved:
 		#	if wx.MessageBox("Current content has not been saved! Proceed?", "Please confirm", wx.ICON_QUESTION | wx.YES_NO, self) == wx.NO:
 		#		return
-		with wx.FileDialog(self, "Open file", wildcard="File Types (*.xyz)|*.xyz", style=wx.FD_OPEN | wx.FD_FILE_MUST_EXIST) as fileDialog:
+		with wx.FileDialog(self, "Open file", wildcard="File Types (*.yaml)|*.yaml", style=wx.FD_OPEN | wx.FD_FILE_MUST_EXIST) as fileDialog:
 			if fileDialog.ShowModal() == wx.ID_CANCEL:
 				return
 			pathname = fileDialog.GetPath()
@@ -140,8 +140,11 @@ class frameMain ( wx.Frame ):
 		event.Skip()
 	
 	# Save As Event
+	def File_Save( self, event ):
+		self._Save()
+		
 	def menuItemFileSaveAsOnMenuSelection( self, event ):
-		with wx.FileDialog(self, "Save file", wildcard="File Types (*.xyz)|*.xyz", style=wx.FD_SAVE | wx.FD_OVERWRITE_PROMPT) as fileDialog:
+		with wx.FileDialog(self, "Save file", wildcard="File Types (*.yaml)|*.yaml", style=wx.FD_SAVE | wx.FD_OVERWRITE_PROMPT) as fileDialog:
 
 			if fileDialog.ShowModal() == wx.ID_CANCEL:
 				return     
@@ -151,32 +154,9 @@ class frameMain ( wx.Frame ):
 				with open(pathname, 'w') as file:
 					self.right.treeEditor.saveTree(file)
 			except IOError:
-				wx.LogError("Cannot save current data in file '%s'." % pathname)
+				wx.LogError("Cannot save current data in file '%s'." % pathname) 
+		self._Save()
 
-	def Save_Template_As(self, e):
-		openFileDialog = wx.FileDialog(self, 'Save Template As', self.save_into_directory, '',
-		                                   'Content files (*.yaml; *.json)|*.yaml;*.json|All files (*.*)|*.*',
-		                                   wx.FD_SAVE | wx.wx.FD_OVERWRITE_PROMPT)
-										   
-		if openFileDialog.ShowModal() == wx.ID_CANCEL:
-			return
-        
-		json_ext = '.json'
-
-		filename = openFileDialog.GetPath()
-		self.status('Saving Template content...')
-		h = open(filename, 'w')
-        
-		if filename[-len(json_ext):] == json_ext:
-			h.write(self.report.template_dump_json().encode('utf-8'))
-		else:
-			h.write(self.report.template_dump_yaml().encode('utf-8'))
-			h.close()
-			self.status('Template content saved') 
-
-		save(window, window.getGlobalSettings().getCurrentFileName())
-		return True
-	
 	# Exit Event
 	def menuItemFileExitOnMenuSelection( self, event ):
 		wx.Exit()
