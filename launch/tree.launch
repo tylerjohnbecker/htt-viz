@@ -1,7 +1,7 @@
 <launch>
-  <arg name="test_num" default="0"/>
+  <arg name="tree_name" default="test_0.yaml"/>
 
   <node name="task_tree_node" pkg="htt_viz" type="load" output="screen">
-    <rosparam file="$(find htt_viz)/trees/test_$(arg test_num).yaml"/>
+    <rosparam file="$(find htt_viz)/trees/$(arg tree_name)"/>
   </node>
 </launch>
