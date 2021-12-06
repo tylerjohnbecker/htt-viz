@@ -148,7 +148,7 @@ class frameMain ( wx.Frame ):
 			pathname = fileDialog.GetPath()
 			try:
 				with open(pathname, 'w') as file:
-					self.doSaveData(file)
+					self.right.treeEditor.saveTree(file)
 			except IOError:
 				wx.LogError("Cannot save current data in file '%s'." % pathname)
 
