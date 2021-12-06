@@ -23,8 +23,9 @@ class frameMain ( wx.Frame ):
 		splitter.SetMinimumPaneSize(200)
 		
 		# Binds RightMouseDown to the two panels: left & right
-		left.Bind(wx.EVT_RIGHT_DOWN, self.OnRightDown)
-		right.Bind(wx.EVT_RIGHT_DOWN, self.OnRightDown)
+		#left.Bind(wx.EVT_RIGHT_DOWN, self.OnRightDown)
+		#right.Bind(wx.EVT_RIGHT_DOWN, self.OnRightDown)
+		splitter.Bind(wx.EVT_RIGHT_DOWN, self.OnRightDown)
 		
 		# Menu Buttons
 		self.Layout()
@@ -193,19 +194,19 @@ class RCMenu(wx.Menu):
 		self.parent = parent
 		
 		# Menu Options and links to behaviors
-		addmenu = wx.MenuItem(self, wx.NewId(), 'Add Child Node')
-		self.AppendItem(addmenu)
+		addmenu = wx.MenuItem(self, wx.ID_ANY, 'Add Child Node')
+		self.Append(addmenu)
 		self.Bind(wx.EVT_MENU, self.OnAddChildNode, addmenu)
 
-		editmenu = wx.MenuItem(self, wx.NewId(), 'Edit Node')
-		self.AppendItem(editmenu)
+		editmenu = wx.MenuItem(self, wx.ID_ANY, 'Edit Node')
+		self.Append(editmenu)
 		self.Bind(wx.EVT_MENU, self.OnEditNode, editmenu)
 
-		removemenu = wx.MenuItem(self, wx.NewId(), 'Remove Node')
-		self.AppendItem(removemenu)
+		removemenu = wx.MenuItem(self, wx.ID_ANY, 'Remove Node')
+		self.Append(removemenu)
 		self.Bind(wx.EVT_MENU, self.RemoveNode, removemenu)
 
-		closemenu = wx.MenuItem(self, wx.NewId(), 'Close')
+		closemenu = wx.MenuItem(self, wx.ID_ANY, 'Close')
 		self.Append(closemenu)
 		self.Bind(wx.EVT_MENU, self.OnClose, closemenu)
 	
@@ -233,14 +234,25 @@ class NodePanel(wx.Panel):
 		#wx.Button(self, -1, "New Node")
 		#self.SetBackgroundColour("grey")
 		wx.Panel.__init__(self, parent = parent)
-		wx.Button(self, -1, "New Node")
+		self.parent = parent
+		button = wx.Button(self, -1, "New Node")
 		self.SetBackgroundColour("grey")
 		List = ['Node A', 'Node B', 'Node C', 'Node D', 'Node E', 'Node F', 'Node G']
 		NodeList=wx.ListBox(parent, -1, pos = (3,30), size = (194, 110), choices = List, style = wx.LB_SINGLE)
+		
+		NodeList.Bind(wx.EVT_RIGHT_DOWN, self.OnRightDown)
+		button.Bind(wx.EVT_RIGHT_DOWN, self.OnRightDown)
+		self.Bind(wx.EVT_RIGHT_DOWN, self.OnRightDown)
+
+	def OnRightDown(self, event):
+		wx.PostEvent(self.parent, event)
+		event.Skip()
+
 
 class TreePanel(wx.Panel):
 	def __init__(self, parent):
 		wx.Panel.__init__(self, parent = parent)
+		self.parent = parent
 		
 		#sizer to put them one above the other with no horizontal constraints
 		sizer = wx.BoxSizer(wx.VERTICAL)
@@ -258,6 +270,13 @@ class TreePanel(wx.Panel):
 		self.SetSizer(sizer)
 		#List = ['Node A', 'Node B', 'Node C', 'Node D', 'Node E', 'Node F', 'Node G']
 		#NodeList=wx.ListBox(parent, -1, pos = (3,30), size = (194, 110), choices = List, style = wx.LB_SINGLE)
+		runButton.Bind(wx.EVT_RIGHT_DOWN, self.OnRightDown)
+		treeEditor.Bind(wx.EVT_RIGHT_DOWN, self.OnRightDown)
+		self.Bind(wx.EVT_RIGHT_DOWN, self.OnRightDown)
+
+	def OnRightDown(self, event):
+		wx.PostEvent(self.parent, event)
+		event.Skip()
 
 class aboutWindow(wx.Frame):
 	def __init__(self, parent=None):
