@@ -17,6 +17,8 @@ class frameMain ( wx.Frame ):
 
 		self.SetSizeHints( 500, 500 )
 		
+		self.pathname = None
+
 		## Split window into panels
 		splitter = wx.SplitterWindow(self)
 		self.left = NodePanel(splitter)
@@ -133,35 +135,50 @@ class frameMain ( wx.Frame ):
 		with wx.FileDialog(self, "Open file", wildcard="File Types (*.yaml)|*.yaml", style=wx.FD_OPEN | wx.FD_FILE_MUST_EXIST) as fileDialog:
 			if fileDialog.ShowModal() == wx.ID_CANCEL:
 				return
-			pathname = fileDialog.GetPath()
+
+			self.pathname = fileDialog.GetPath()
+	
 			try:
-				with open(pathname, 'r') as file:
+				with open(self.pathname, 'r') as file:
 					self.right.treeEditor.loadTree(file)
 			except IOError:
 				wx.LogError("Cannot open file.")
 
-	
+	# Save Event
 	def menuItemFileSaveOnMenuSelection( self, event ):
+		#with wx.FileDialog(self, "Save file", wildcard="File Types (*.yaml)|*.yaml", style=wx.FD_SAVE | wx.FD_OVERWRITE_PROMPT) as fileDialog:
+			
+		#if fileDialog.ShowModal() == wx.ID_CANCEL:
+		#	return
+			
+		if self.pathname == None:
+			self.menuItemFileSaveAsOnMenuSelection(event)
+			return
+
+		#self.status("Saving content")
+		try:
+			with open(self.pathname, 'w') as file:
+				self.right.treeEditor.saveTree(file)
+		except IOError:
+			wx.LogError("Cannot save current data '%s'." % self.pathname)
 		event.Skip()
 	
 	# Save As Event
-	def File_Save( self, event ):
-		pass#self._Save()
 		
 	def menuItemFileSaveAsOnMenuSelection( self, event ):
-		with wx.FileDialog(self, "Save file", wildcard="File Types (*.yaml)|*.yaml", style=wx.FD_SAVE | wx.FD_OVERWRITE_PROMPT) as fileDialog:
+		with wx.FileDialog(self, "Save file as", wildcard="File Types (*.yaml)|*.yaml", style=wx.FD_SAVE | wx.FD_OVERWRITE_PROMPT) as fileDialog:
 
 			if fileDialog.ShowModal() == wx.ID_CANCEL:
 				return     
 
-			pathname = fileDialog.GetPath()
+			self.pathname = fileDialog.GetPath()
+
 			try:
-				with open(pathname, 'w') as file:
+				with open(self.pathname, 'w') as file:
 					self.right.treeEditor.saveTree(file)
 			except IOError:
 				wx.LogError("Cannot save current data in file '%s'." % pathname) 
-		#self._Save()
-
+		
 	# Exit Event
 	def menuItemFileExitOnMenuSelection( self, event ):
 		wx.Exit()
@@ -320,6 +337,13 @@ class aboutWindow(wx.Frame):
 		wx.Frame.__init__ (self, parent=parent, title = "About...")
 
 		st = wx.StaticText(self, label = "Welcome to HTT-VIZ")
+		st = wx.StaticText(self, label = "A graphical interface which allows the user to edit and save Hierarchical Task Trees before deploying them to the Root")
+		font = st.GetFont()
+		font.PointSize += 5
+		font = font.Bold()
+		st.SetFont(font)
+
+		self.Show()
 		font = st.GetFont()
 		font.PointSize += 5
 		font = font.Bold()
