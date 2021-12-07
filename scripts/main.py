@@ -9,8 +9,6 @@ from htt_viz_py.NodeView import NodeView
 from htt_viz_py.NodeView import Tree
 from htt_viz_py.NodeView import Node
 from rosgraph_msgs.msg import Log
-
-#class used for creating new windows with new files
 	
 class frameMain ( wx.Frame ):
 	def __init__( self, parent , make_service):
@@ -304,6 +302,7 @@ class consoleWindow(wx.Frame):
 			self.rt.WriteText(msg.msg + "\n")
 			self.rt.EndTextColour()
 
+#class used for creating new windows with new files
 class frameNew (frameMain):
 	def __init__(self, title, parent=None, make_service=True) :
 		frameMain.__init__(self, parent = None, make_service=make_service)
