@@ -27,6 +27,7 @@ namespace task_net {
 				mtime) {};
 
 		virtual void Work();
+
 	protected:
 
 	private:

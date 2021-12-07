@@ -75,7 +75,7 @@ include_directories(
 
 ##CPP executables
 set(TaskNodes "src/task_tree/behavior.cc" "src/task_tree/node.cc")
-set(ActionNodes "src/behavior/dummy_behavior.cc")
+set(ActionNodes "src/behavior/dummy_behavior.cc" "src/behavior/move_behavior.cc" "src/behavior/grab_behavior.cc")
 
 add_executable(load src/htt_viz/loadTree.cpp ${TaskNodes} ${ActionNodes})
 target_link_libraries(load ${catkin_LIBRARIES} ${Boost_LIBRARIES})
