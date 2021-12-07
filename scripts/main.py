@@ -250,7 +250,7 @@ class TreePanel(wx.Panel):
 		
 		#add them to the sizer in the correct order
 		sizer.Add(runButton)
-		sizer.Add(self.treeEditor)
+		sizer.Add(self.treeEditor, 1, wx.EXPAND)
 		
 		self.SetBackgroundColour("dark grey")
 		self.SetSizer(sizer)
