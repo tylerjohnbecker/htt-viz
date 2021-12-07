@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 */out/*
 */.vs/*
 *.aps
@@ -9,13 +8,10 @@
 *.cachefile
 out
 .vs
-=======
-
-*.opendb
 *.db
 *.db-shm
 *.db-wal
 .vs/ProjectSettings.json
 .vs/slnx.sqlite
->>>>>>> Stashed changes
-src/htt_viz_py/__pycache__/NodeView.cpython-38.pyc
+*.pyc
+__pycache__
