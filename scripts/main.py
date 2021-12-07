@@ -212,11 +212,6 @@ class aboutWindow(wx.Frame):
 		wx.Frame.__init__ (self, parent=parent, title = "About...")
 
 		st = wx.StaticText(self, label = "Welcome to HTT-VIZ")
-		class aboutWindow(wx.Frame):
-	def __init__(self, parent=None):
-		wx.Frame.__init__ (self, parent=parent, title = "About...")
-
-		st = wx.StaticText(self, label = "Welcome to HTT-VIZ")
 		st = wx.StaticText(self, label = "A graphical interface which allows the user to edit and save Hierarchical Task Trees before deploying them to the Root")
 		font = st.GetFont()
 		font.PointSize += 5
