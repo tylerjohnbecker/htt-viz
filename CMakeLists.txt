@@ -17,7 +17,6 @@ find_package(catkin REQUIRED COMPONENTS
   geometry_msgs
   rosgraph_msgs
   roslib
-  robotics_task_tree_msgs
 )
 
 find_package(Boost REQUIRED COMPONENTS 
