@@ -180,6 +180,7 @@ class NodeView(wx.Panel):
 		
 		# Bind mouse handlers
 		self.Bind(wx.EVT_LEFT_DOWN, self.OnMouseLeftDown)
+		self.Bind(wx.EVT_RIGHT_DOWN, self.OnMouseRightDown)
 		self.Bind(wx.EVT_LEFT_UP, self.OnMouseLeftUp)
 		self.Bind(wx.EVT_MOTION, self.OnMouseMotion)
 		
@@ -217,6 +218,13 @@ class NodeView(wx.Panel):
 		
 		# Skip to allow wx to set up focus correctly
 		event.Skip()
+		
+	def OnMouseRightDown(self, event):
+		# XXX HACK XXX
+		# RCMenu really should be controlled here. 
+		# Instead, we will try to get the click location and store it for when the rcmenu needs it.
+		self.lastRightClickX = event.GetX()
+		self.lastRightClickY = event.GetY()
 		
 	def OnMouseLeftUp(self, event):
 		pass

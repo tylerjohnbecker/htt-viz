@@ -3,6 +3,7 @@ import wx.stc
 import wx.richtext
 import rospy
 import threading
+import random
 from htt_viz_py.NodeView import NodeView
 from htt_viz_py.NodeView import Tree
 from htt_viz_py.NodeView import Node
@@ -199,18 +200,46 @@ class RCMenu(wx.Menu):
 	
 	# Behaviors for menu options
 	def OnAddChildNode(self, e):
+		# XXX HACK XXX
+		# RCMenu should be moved to NodeView instead of doing this chain
+		nodeView = self.parent.right.treeEditor
+		
+		# XXX HACK XXX
+		# Try to get the data from the selection widget in a better way, 
+		# maybe through events or shared state
+		nodeList = self.parent.left.nodeList
+		selectionIndex = nodeList.GetSelection()
+		selection = nodeList.GetString(selectionIndex)
+		
+		maybeNode = nodeView.tree.root_node.getHitNode(nodeView.lastRightClickX, nodeView.lastRightClickY)
+		
+		if maybeNode is not None:
+			# TODO: Make a function to do all these steps on nodeview
+			
+			# XXX HACK XXX
+			# Node names must be unique
+			node = Node(selection + str(random.randint(0, 10000)), maybeNode.x, maybeNode.y + 100)
+			nodeView.tree.AddNode(maybeNode.name, node)
+			nodeView.Refresh(False)
+		
 		# Call 'AddNode' with selected node as parameter
 		# self.AddNode(self, parent_name, node)
-		self.parent.Iconize() # Temp behavior
 
 	def OnEditNode(self, e):
 		# Edit Node
 		self.parent.Iconize() # Temp behavior
 
 	def RemoveNode(self, e):
-		# Call 'RemoveNode' with selected node as parameter
-		# self.RemoveNode(self, node_name)
-		self.parent.Iconize() # Temp behavior
+		# XXX HACK XXX
+		# RCMenu should be moved to NodeView instead of doing this chain
+		nodeView = self.parent.right.treeEditor
+		
+		maybeNode = nodeView.tree.root_node.getHitNode(nodeView.lastRightClickX, nodeView.lastRightClickY)
+		
+		if maybeNode is not None:
+			# TODO: Make a function to do all these steps on nodeview
+			nodeView.tree.RemoveNode(maybeNode.name)
+			nodeView.Refresh(False)
 
 	def OnClose(self, e):
 		self.parent.Close()
@@ -225,9 +254,9 @@ class NodePanel(wx.Panel):
 		button = wx.Button(self, -1, "New Node")
 		self.SetBackgroundColour("grey")
 		List = ['Node A', 'Node B', 'Node C', 'Node D', 'Node E', 'Node F', 'Node G']
-		NodeList=wx.ListBox(parent, -1, pos = (3,30), size = (194, 110), choices = List, style = wx.LB_SINGLE)
+		self.nodeList = wx.ListBox(parent, -1, pos = (3,30), size = (194, 110), choices = List, style = wx.LB_SINGLE)
 		
-		NodeList.Bind(wx.EVT_RIGHT_DOWN, self.OnRightDown)
+		self.nodeList.Bind(wx.EVT_RIGHT_DOWN, self.OnRightDown)
 		button.Bind(wx.EVT_RIGHT_DOWN, self.OnRightDown)
 		self.Bind(wx.EVT_RIGHT_DOWN, self.OnRightDown)
 
