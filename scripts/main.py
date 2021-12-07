@@ -213,6 +213,7 @@ class frameMain ( wx.Frame ):
 
 	def exitEvent(self, event):
 		rospy.signal_shutdown("")
+		self.Destroy()
 
 # Right-Click Menu Class
 class RCMenu(wx.Menu):
