@@ -15,6 +15,8 @@ class frameMain ( wx.Frame ):
 		
 		self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
 		
+		self.pathname = None
+
 		## Split window into panels
 		splitter = wx.SplitterWindow(self)
 		self.left = NodePanel(splitter)
@@ -127,6 +129,8 @@ class frameMain ( wx.Frame ):
 		with wx.FileDialog(self, "Open file", wildcard="File Types (*.yaml)|*.yaml", style=wx.FD_OPEN | wx.FD_FILE_MUST_EXIST) as fileDialog:
 			if fileDialog.ShowModal() == wx.ID_CANCEL:
 				return
+
+			self.pathname = fileDialog.GetPath()
 	
 			try:
 				with open(self.pathname, 'r') as file:
@@ -136,17 +140,21 @@ class frameMain ( wx.Frame ):
 
 	# Save Event
 	def menuItemFileSaveOnMenuSelection( self, event ):
-		with wx.FileDialog(self, "Save file", wildcard="File Types (*.yaml)|*.yaml", style=wx.FD_SAVE | wx.FD_OVERWRITE_PROMPT) as fileDialog:
+		#with wx.FileDialog(self, "Save file", wildcard="File Types (*.yaml)|*.yaml", style=wx.FD_SAVE | wx.FD_OVERWRITE_PROMPT) as fileDialog:
 			
-			if fileDialog.ShowModal() == wx.ID_CANCEL:
-				return
+		#if fileDialog.ShowModal() == wx.ID_CANCEL:
+		#	return
 			
-			self.status("Saving content")
-			try:
-				with open(self.pathname, 'w') as file:
+		if self.pathname == None:
+			self.menuItemFileSaveAsOnMenuSelection(event)
+			return
+
+		#self.status("Saving content")
+		try:
+			with open(self.pathname, 'w') as file:
 				self.right.treeEditor.saveTree(file)
-			except IOError:
-				wx.LogError("Cannot save current data '%s'." % self.pathname)
+		except IOError:
+			wx.LogError("Cannot save current data '%s'." % self.pathname)
 		event.Skip()
 	
 	# Save As Event
@@ -157,9 +165,11 @@ class frameMain ( wx.Frame ):
 			if fileDialog.ShowModal() == wx.ID_CANCEL:
 				return     
 
+			self.pathname = fileDialog.GetPath()
+
 			try:
 				with open(self.pathname, 'w') as file:
-					self.right.treeEditor.saveTreeAs(file)
+					self.right.treeEditor.saveTree(file)
 			except IOError:
 				wx.LogError("File cannot save as." % self.pathname) 
 
