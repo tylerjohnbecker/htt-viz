@@ -17,6 +17,8 @@ class frameMain ( wx.Frame ):
 
 		self.SetSizeHints( 500, 500 )
 		
+		self.title = "HTT-VIZ"
+		self.star = False
 		self.pathname = None
 
 		## Split window into panels
@@ -119,6 +121,15 @@ class frameMain ( wx.Frame ):
 	def __del__( self ):
 		pass
 
+	def AddStar(self):
+		if self.star == False:
+			self.star = True
+			self.SetTitle(self.title + "*")
+
+	def ResetStar(self):
+		self.star = False
+		self.SetTitle(self.title)
+
 	# Handles the creation of new frames
 	def new_frame(self, event):
 		frame = frameNew(None, make_service = False)
@@ -141,6 +152,7 @@ class frameMain ( wx.Frame ):
 			try:
 				with open(self.pathname, 'r') as file:
 					self.right.treeEditor.loadTree(file)
+					self.ResetStar()
 			except IOError:
 				wx.LogError("Cannot open file.")
 
@@ -159,6 +171,7 @@ class frameMain ( wx.Frame ):
 		try:
 			with open(self.pathname, 'w') as file:
 				self.right.treeEditor.saveTree(file)
+				self.ResetStar()
 		except IOError:
 			wx.LogError("Cannot save current data '%s'." % self.pathname)
 		event.Skip()
@@ -176,6 +189,7 @@ class frameMain ( wx.Frame ):
 			try:
 				with open(self.pathname, 'w') as file:
 					self.right.treeEditor.saveTree(file)
+					self.ResetStar()
 			except IOError:
 				wx.LogError("Cannot save current data in file '%s'." % pathname) 
 		
@@ -193,7 +207,7 @@ class frameMain ( wx.Frame ):
 		
 	# Function to display Right Click Menu
 	def OnRightDown(self, e):
-		self.PopupMenu(RCMenu(self)) 
+		self.PopupMenu(RCMenu(self))
 
 # Right-Click Menu Class
 class RCMenu(wx.Menu):
@@ -260,6 +274,7 @@ class RCMenu(wx.Menu):
 			node = Node(selection + '_' + str(num) + '_' + str(robot) + '_' + preceeding_0s + str(node_num), maybeNode.x, maybeNode.y + 100)
 			nodeView.tree.AddNode(maybeNode.name, node)
 			nodeView.Refresh(False)
+			self.parent.AddStar()
 		
 		# Call 'AddNode' with selected node as parameter
 		# self.AddNode(self, parent_name, node)
@@ -279,6 +294,7 @@ class RCMenu(wx.Menu):
 			# TODO: Make a function to do all these steps on nodeview
 			nodeView.tree.RemoveNode(maybeNode.name)
 			nodeView.Refresh(False)
+			self.parent.AddStar()
 
 	def OnClose(self, e):
 		self.parent.Close()

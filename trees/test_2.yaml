@@ -1,23 +1,15 @@
-NodeList: [ROOT_4_0_000, BEHAVIOR_3_0_002, THEN_0_0_001]
+NodeList:
+- ROOT_4_0_000
 Nodes:
-  BEHAVIOR_3_0_002:
-    children: [NONE]
-    mask: {node: 2, robot: 0, type: 3}
-    parent: THEN_0_0_001
-    peers: [NONE]
-    x: 238
-    y: 153
   ROOT_4_0_000:
-    children: [THEN_0_0_001]
-    mask: {node: 0, robot: 0, type: 4}
+    children:
+    - NONE
+    mask:
+      node: 0
+      robot: 0
+      type: 4
     parent: NONE
-    peers: [NONE]
-    x: 281
-    y: 9
-  THEN_0_0_001:
-    children: [BEHAVIOR_3_0_002]
-    mask: {node: 1, robot: 0, type: 0}
-    parent: ROOT_4_0_000
-    peers: [NONE]
-    x: 260
-    y: 81
+    peers:
+    - NONE
+    x: 50
+    y: 10
