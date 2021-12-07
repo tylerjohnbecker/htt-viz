@@ -386,9 +386,9 @@ class consoleWindow(wx.Frame):
 		self.Show()
 
 	def consoleCallback(self, msg):
-		if msg.name == self.tn:
-			self.rt.BeginTextColour((0, 122, 0))
-			self.rt.WriteText(msg.msg + "\n")
+		if msg.name == self.tn and not msg.msg == None:
+			self.rt.BeginTextColour((0, 0, 0))
+			self.rt.AppendText(msg.msg + "\n")
 			self.rt.EndTextColour()
 
 #class used for creating new windows with new files

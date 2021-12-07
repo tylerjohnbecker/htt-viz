@@ -59,13 +59,20 @@ class Tree:
 		self.node_dict = {"ROOT_4_0_000" : Node("ROOT_4_0_000", 50, 10)}
 		self.root_node = self.node_dict["ROOT_4_0_000"] 
 
+	def populateNodeList(self, list, cur_ptr):
+		list.append(str(cur_ptr.name))
+		for child in cur_ptr.children:
+			self.populateNodeList(list, child)
+
 	def toYamlDict(self):
 		tree_dict = {}
 		tree_dict["Nodes"] = {}
 		tree_dict["NodeList"] = []
 
+		self.populateNodeList(tree_dict["NodeList"], self.root_node)
+
 		for child in self.node_dict:
-			tree_dict["NodeList"].append(str(child))
+			#tree_dict["NodeList"].append(str(child))
 			tree_dict["Nodes"][str(child)] = {}
 			tree_dict["Nodes"][str(child)]["mask"] = {}
 
