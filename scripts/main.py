@@ -215,10 +215,28 @@ class RCMenu(wx.Menu):
 		
 		if maybeNode is not None:
 			# TODO: Make a function to do all these steps on nodeview
-			
+			num = 3
+
+			if selection == 'AND':
+				num = 2
+			elif selection == 'OR':
+				num = 1
+			elif selection == 'THEN':
+				num = 0
+
+			robot = 0
+			node_num = len(nodeView.tree.node_dict)
+
+			preceeding_0s = ''
+
+			if ( node_num / 10 ) < 1:
+				preceeding_0s = '00'
+			elif ( node_num / 100) < 1:
+				preceeding_0s = '0'
+
 			# XXX HACK XXX
 			# Node names must be unique
-			node = Node(selection + str(random.randint(0, 10000)), maybeNode.x, maybeNode.y + 100)
+			node = Node(selection + '_' + str(num) + '_' + str(robot) + '_' + preceeding_0s + str(node_num), maybeNode.x, maybeNode.y + 100)
 			nodeView.tree.AddNode(maybeNode.name, node)
 			nodeView.Refresh(False)
 		
@@ -256,7 +274,9 @@ class NodePanel(wx.Panel):
 		List = ['Node A', 'Node B', 'Node C', 'Node D', 'Node E', 'Node F', 'Node G']
 		self.nodeList = wx.ListBox(parent, -1, pos = (3,30), size = (194, 110), choices = List, style = wx.LB_SINGLE)
 		
-		self.nodeList.Bind(wx.EVT_RIGHT_DOWN, self.OnRightDown)
+		self.nodeList.SetSelection(0)
+
+		#self.nodeList.Bind(wx.EVT_RIGHT_DOWN, self.OnRightDown)
 		button.Bind(wx.EVT_RIGHT_DOWN, self.OnRightDown)
 		self.Bind(wx.EVT_RIGHT_DOWN, self.OnRightDown)
 
