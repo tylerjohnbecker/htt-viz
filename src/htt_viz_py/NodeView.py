@@ -65,34 +65,34 @@ class Tree:
 		tree_dict["NodeList"] = []
 
 		for child in self.node_dict:
-			tree_dict["NodeList"].append(child)
-			tree_dict["Nodes"][child] = {}
-			tree_dict["Nodes"][child]["mask"] = {}
+			tree_dict["NodeList"].append(str(child))
+			tree_dict["Nodes"][str(child)] = {}
+			tree_dict["Nodes"][str(child)]["mask"] = {}
 
 			type = int(child[-7:-6])
 			robot = int(child[-5:-4])
 			node  = int(child[-3:])
 
-			tree_dict["Nodes"][child]["mask"]["type"] = type
-			tree_dict["Nodes"][child]["mask"]["robot"] = robot
-			tree_dict["Nodes"][child]["mask"]["node"] = node
+			tree_dict["Nodes"][str(child)]["mask"]["type"] = type
+			tree_dict["Nodes"][str(child)]["mask"]["robot"] = robot
+			tree_dict["Nodes"][str(child)]["mask"]["node"] = node
 
-			if not self.node_dict[child].parent == None:
-				tree_dict["Nodes"][child]["parent"] = self.node_dict[child].parent
+			if not self.node_dict[str(child)].parent == None:
+				tree_dict["Nodes"][str(child)]["parent"] = str(self.node_dict[child].parent)
 			else:
-				tree_dict["Nodes"][child]["parent"] = 'NONE'
+				tree_dict["Nodes"][str(child)]["parent"] = 'NONE'
 
-			tree_dict["Nodes"][child]["children"] = []
-			for c_child in self.node_dict[child].children:
-				tree_dict["Nodes"][child]["children"].append(c_child.name)
+			tree_dict["Nodes"][str(child)]["children"] = []
+			for c_child in self.node_dict[str(child)].children:
+				tree_dict["Nodes"][str(child)]["children"].append(str(c_child.name))
 
-			if len(tree_dict["Nodes"][child]["children"]) == 0:
-				tree_dict["Nodes"][child]["children"].append("NONE")
+			if len(tree_dict["Nodes"][str(child)]["children"]) == 0:
+				tree_dict["Nodes"][str(child)]["children"].append("NONE")
 
 			#Not a base function of HTT's so I'll leave this blank for now until we have a more dynamic way of doing this
-			tree_dict["Nodes"][child]["peers"] = ['NONE']
-			tree_dict["Nodes"][child]["x"] = self.node_dict[child].x
-			tree_dict["Nodes"][child]["y"] = self.node_dict[child].y
+			tree_dict["Nodes"][str(child)]["peers"] = ['NONE']
+			tree_dict["Nodes"][str(child)]["x"] = self.node_dict[child].x
+			tree_dict["Nodes"][str(child)]["y"] = self.node_dict[child].y
 
 
 
