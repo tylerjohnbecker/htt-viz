@@ -127,9 +127,9 @@ class frameMain ( wx.Frame ):
 		with wx.FileDialog(self, "Open file", wildcard="File Types (*.yaml)|*.yaml", style=wx.FD_OPEN | wx.FD_FILE_MUST_EXIST) as fileDialog:
 			if fileDialog.ShowModal() == wx.ID_CANCEL:
 				return
-			pathname = fileDialog.GetPath()
+	
 			try:
-				with open(pathname, 'r') as file:
+				with open(self.pathname, 'r') as file:
 					self.right.treeEditor.loadTree(file)
 			except IOError:
 				wx.LogError("Cannot open file.")
@@ -140,13 +140,13 @@ class frameMain ( wx.Frame ):
 			
 			if fileDialog.ShowModal() == wx.ID_CANCEL:
 				return
-			pathname = fileDialog.GetPath()
+			
 			self.status("Saving content")
 			try:
-				with open(pathname, 'w') as file:
+				with open(self.pathname, 'w') as file:
 				self.right.treeEditor.saveTree(file)
 			except IOError:
-				wx.LogError("Cannot save current data '%s'." % pathname)
+				wx.LogError("Cannot save current data '%s'." % self.pathname)
 		event.Skip()
 	
 	# Save As Event
@@ -157,12 +157,11 @@ class frameMain ( wx.Frame ):
 			if fileDialog.ShowModal() == wx.ID_CANCEL:
 				return     
 
-			pathname = fileDialog.GetPath()
 			try:
-				with open(pathname, 'w') as file:
+				with open(self.pathname, 'w') as file:
 					self.right.treeEditor.saveTreeAs(file)
 			except IOError:
-				wx.LogError("File cannot save as." % pathname) 
+				wx.LogError("File cannot save as." % self.pathname) 
 
 	# Exit Event
 	def menuItemFileExitOnMenuSelection( self, event ):
@@ -213,6 +212,18 @@ class aboutWindow(wx.Frame):
 		wx.Frame.__init__ (self, parent=parent, title = "About...")
 
 		st = wx.StaticText(self, label = "Welcome to HTT-VIZ")
+		class aboutWindow(wx.Frame):
+	def __init__(self, parent=None):
+		wx.Frame.__init__ (self, parent=parent, title = "About...")
+
+		st = wx.StaticText(self, label = "Welcome to HTT-VIZ")
+		st = wx.StaticText(self, label = "A graphical interface which allows the user to edit and save Hierarchical Task Trees before deploying them to the Root")
+		font = st.GetFont()
+		font.PointSize += 5
+		font = font.Bold()
+		st.SetFont(font)
+
+		self.Show()
 		font = st.GetFont()
 		font.PointSize += 5
 		font = font.Bold()
