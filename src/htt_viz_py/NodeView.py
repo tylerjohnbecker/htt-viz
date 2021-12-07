@@ -52,12 +52,12 @@ class Node:
 			dc.DrawLine(self.x + (nodeWidth / 2), self.y + nodeHeight, child.x + (nodeWidth / 2), child.y)
 
 class Tree:
-	node_dict = {"ROOT_4_0_000" : Node("ROOT_4_0_000", 50, 10)}
-	root_node = node_dict["ROOT_4_0_000"]
+	
 
 	#I dunno what we want to pass in here yet but we can now construct trees from scratch
 	def __init__(self):
-		pass 
+		self.node_dict = {"ROOT_4_0_000" : Node("ROOT_4_0_000", 50, 10)}
+		self.root_node = self.node_dict["ROOT_4_0_000"] 
 
 	def toYamlDict(self):
 		tree_dict = {}
@@ -151,11 +151,12 @@ class Tree:
 			self.drawTreeRec(dc, child.name)
 
 class NodeView(wx.Panel):
-	def __init__(self, parent, id=wx.ID_ANY, pos=wx.DefaultPosition, size=wx.DefaultSize):
+	def __init__(self, parent, id=wx.ID_ANY, pos=wx.DefaultPosition, size=wx.DefaultSize, make_service=True):
 		wx.Panel.__init__(self, parent, id, pos, size)
 
-		#initializing a rosservice to update the nodes when the colors need to change
-		self.server = rp.Service('update_htt', Update, self.UpdateCallback)
+		if make_service == True :
+			#initializing a rosservice to update the nodes when the colors need to change
+			self.server = rp.Service('update_htt', Update, self.UpdateCallback)
 
 		# The base node. Temporarily use filler data.
 		self.tree = Tree()

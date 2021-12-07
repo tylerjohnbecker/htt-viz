@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 import wx
 import wx.stc
 import wx.richtext
@@ -9,17 +11,18 @@ from htt_viz_py.NodeView import Tree
 from htt_viz_py.NodeView import Node
 from rosgraph_msgs.msg import Log
 
-
+#class used for creating new windows with new files
+	
 class frameMain ( wx.Frame ):
-	def __init__( self, parent ):
+	def __init__( self, parent , make_service):
 		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = u"HTT-VIZ", pos = wx.DefaultPosition, size = wx.Size( 1000,550 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
-		
-		self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
+
+		self.SetSizeHints( 500, 500 )
 		
 		## Split window into panels
 		splitter = wx.SplitterWindow(self)
 		self.left = NodePanel(splitter)
-		self.right = TreePanel(splitter)
+		self.right = TreePanel(splitter, make_service)
 		splitter.SplitVertically(self.left, self.right)
 		splitter.SetMinimumPaneSize(200)
 		
@@ -36,7 +39,7 @@ class frameMain ( wx.Frame ):
 		
 		# Open
 		self.menuItemFileOpen = wx.MenuItem( self.menuFile, wx.ID_ANY, u"Open"+ u"\t" + u"Ctrl+O", wx.EmptyString, wx.ITEM_NORMAL )
-		self.menuFile.Append( self.menuItemFileOpen )
+		self.menuFile.Append( self.menuItemFileOpen  )
 		
 		# Save
 		self.menuItemFileSave = wx.MenuItem( self.menuFile, wx.ID_ANY, u"Save"+ u"\t" + u"Ctrl+S", wx.EmptyString, wx.ITEM_NORMAL )
@@ -44,13 +47,13 @@ class frameMain ( wx.Frame ):
 		
 		# Save As
 		self.menuItemFileSaveAs = wx.MenuItem( self.menuFile, wx.ID_ANY, u"Save As"+ u"\t" + u"Ctrl-Shift+S", wx.EmptyString, wx.ITEM_NORMAL )
-		self.menuFile.Append( self.menuItemFileSaveAs )
+		self.menuFile.Append( self.menuItemFileSaveAs  )
 		
 		self.menuFile.AppendSeparator()
 		
 		# Exit
 		self.menuItemFileExit = wx.MenuItem( self.menuFile, wx.ID_ANY, u"Exit"+ u"\t" + u"Alt-F4", wx.EmptyString, wx.ITEM_NORMAL )
-		self.menuFile.Append( self.menuItemFileExit )
+		self.menuFile.Append( self.menuItemFileExit  )
 		
 		self.menubarMain.Append( self.menuFile, u"File" ) 
 		# End File Tab
@@ -63,21 +66,21 @@ class frameMain ( wx.Frame ):
 
 		# Redo
 		self.menuItemEditRedo = wx.MenuItem( self.menuEdit, wx.ID_ANY, u"Redo"+ u"\t" + u"Ctrl+Y", wx.EmptyString, wx.ITEM_NORMAL )
-		self.menuEdit.Append( self.menuItemEditRedo )
+		self.menuEdit.Append( self.menuItemEditRedo  )
 
 		self.menuEdit.AppendSeparator()
 
 		# Cut
 		self.menuItemEditCut = wx.MenuItem( self.menuEdit, wx.ID_ANY, u"Cut"+ u"\t" + u"Ctrl+X", wx.EmptyString, wx.ITEM_NORMAL )
-		self.menuEdit.Append( self.menuItemEditCut )
+		self.menuEdit.Append( self.menuItemEditCut  )
 
 		# Copy
 		self.menuItemEditCopy = wx.MenuItem( self.menuEdit, wx.ID_ANY, u"Copy"+ u"\t" + u"Ctrl+C", wx.EmptyString, wx.ITEM_NORMAL )
-		self.menuEdit.Append( self.menuItemEditCopy )
+		self.menuEdit.Append( self.menuItemEditCopy  )
 
 		# Paste
 		self.menuItemEditPaste = wx.MenuItem( self.menuEdit, wx.ID_ANY, u"Paste"+ u"\t" + u"Ctrl+V", wx.EmptyString, wx.ITEM_NORMAL )
-		self.menuEdit.Append( self.menuItemEditPaste )
+		self.menuEdit.Append( self.menuItemEditPaste  )
 
 		self.menubarMain.Append( self.menuEdit, u"Edit" ) 
 		# End Edit Tab
@@ -86,7 +89,7 @@ class frameMain ( wx.Frame ):
 		self.menuView = wx.Menu()
 
 		self.menuItemViewDebug = wx.MenuItem( self.menuView, wx.ID_ANY, u"Debug Console"+ u"\t" + u"Ctrl+Shift+Y", wx.EmptyString, wx.ITEM_NORMAL )
-		self.menuView.Append( self.menuItemViewDebug )
+		self.menuView.Append( self.menuItemViewDebug  )
 
 		self.menubarMain.Append( self.menuView, u"View" ) 
 		
@@ -94,7 +97,7 @@ class frameMain ( wx.Frame ):
 
 		# Help
 		self.menuItemHelpAbout = wx.MenuItem( self.menuHelp, wx.ID_ANY, u"About..."+ u"\t" + u"", wx.EmptyString, wx.ITEM_NORMAL )
-		self.menuHelp.Append( self.menuItemHelpAbout )
+		self.menuHelp.Append( self.menuItemHelpAbout  )
 
 		self.menubarMain.Append( self.menuHelp, u"Help" ) 
 		# End Help Tab
@@ -115,11 +118,14 @@ class frameMain ( wx.Frame ):
 	
 	def __del__( self ):
 		pass
-	
+
+	# Handles the creation of new frames
+	def new_frame(self, event):
+		frame = frameNew(None, make_service = False)
 	
 	# Virtual event handlers, overide them in your derived class
 	def menuItemFileNewOnMenuSelection( self, event ):
-		event.Skip()
+		self.new_frame(event)
 	
 	# Open File Event
 	def menuItemFileOpenOnMenuSelection( self, event ):
@@ -183,19 +189,19 @@ class RCMenu(wx.Menu):
 		
 		# Menu Options and links to behaviors
 		addmenu = wx.MenuItem(self, wx.ID_ANY, 'Add Child Node')
-		self.Append(addmenu)
+		self.Append(addmenu )
 		self.Bind(wx.EVT_MENU, self.OnAddChildNode, addmenu)
 
 		editmenu = wx.MenuItem(self, wx.ID_ANY, 'Edit Node')
-		self.Append(editmenu)
+		self.Append(editmenu )
 		self.Bind(wx.EVT_MENU, self.OnEditNode, editmenu)
 
 		removemenu = wx.MenuItem(self, wx.ID_ANY, 'Remove Node')
-		self.Append(removemenu)
+		self.Append(removemenu )
 		self.Bind(wx.EVT_MENU, self.RemoveNode, removemenu)
 
 		closemenu = wx.MenuItem(self, wx.ID_ANY, 'Close')
-		self.Append(closemenu)
+		self.Append(closemenu )
 		self.Bind(wx.EVT_MENU, self.OnClose, closemenu)
 	
 	# Behaviors for menu options
@@ -271,8 +277,8 @@ class NodePanel(wx.Panel):
 		self.parent = parent
 		button = wx.Button(self, -1, "New Node")
 		self.SetBackgroundColour("grey")
-		List = ['Node A', 'Node B', 'Node C', 'Node D', 'Node E', 'Node F', 'Node G']
-		self.nodeList = wx.ListBox(parent, -1, pos = (3,30), size = (194, 110), choices = List, style = wx.LB_SINGLE)
+		List = ['THEN','AND','OR','MOVE','GRAB']
+		self.nodeList=wx.ListBox(parent, -1, pos = (3,30), size = (194, 460), choices = List, style = wx.LB_SINGLE)
 		
 		self.nodeList.SetSelection(0)
 
@@ -285,7 +291,7 @@ class NodePanel(wx.Panel):
 		event.Skip()
 
 class TreePanel(wx.Panel):
-	def __init__(self, parent):
+	def __init__(self, parent, make_service):
 		wx.Panel.__init__(self, parent = parent)
 		self.parent = parent
 		
@@ -295,7 +301,7 @@ class TreePanel(wx.Panel):
 		#no functionality just a pretty button for now
 		runButton = wx.Button(self, -1, "Run Tree")
 		
-		self.treeEditor = NodeView(self, wx.ID_ANY, wx.Point(15, 15), size=wx.Size(400, 400))
+		self.treeEditor = NodeView(self, wx.ID_ANY, wx.Point(15, 15), size=wx.Size(400, 400), make_service=make_service)
 		
 		#add them to the sizer in the correct order
 		sizer.Add(runButton)
@@ -303,8 +309,6 @@ class TreePanel(wx.Panel):
 		
 		self.SetBackgroundColour("dark grey")
 		self.SetSizer(sizer)
-		#List = ['Node A', 'Node B', 'Node C', 'Node D', 'Node E', 'Node F', 'Node G']
-		#NodeList=wx.ListBox(parent, -1, pos = (3,30), size = (194, 110), choices = List, style = wx.LB_SINGLE)
 		runButton.Bind(wx.EVT_RIGHT_DOWN, self.OnRightDown)
 		self.treeEditor.Bind(wx.EVT_RIGHT_DOWN, self.OnRightDown)
 		self.Bind(wx.EVT_RIGHT_DOWN, self.OnRightDown)
@@ -349,10 +353,14 @@ class consoleWindow(wx.Frame):
 			self.rt.WriteText(msg.msg + "\n")
 			self.rt.EndTextColour()
 
+class frameNew (frameMain):
+	def __init__(self, title, parent=None, make_service=True) :
+		frameMain.__init__(self, parent = None, make_service=make_service)
+		self.Show()
 
 class MainApp(wx.App):
     def OnInit(self):
-        mainFrame = frameMain(None)
+        mainFrame = frameMain(None, True)
         mainFrame.Show(True)
         return True
 
