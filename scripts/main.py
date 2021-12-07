@@ -117,6 +117,8 @@ class frameMain ( wx.Frame ):
 		self.Bind( wx.EVT_MENU, self.menuItemFileExitOnMenuSelection, id = self.menuItemFileExit.GetId() )
 		self.Bind( wx.EVT_MENU, self.menuItemViewConsoleOnMenuSelection, id = self.menuItemViewDebug.GetId() )
 		self.Bind( wx.EVT_MENU, self.menuItemHelpAboutOnMenuSelection, id = self.menuItemHelpAbout.GetId() )
+
+		self.Bind(wx.EVT_CLOSE, self.exitEvent)
 	
 	def __del__( self ):
 		pass
@@ -208,6 +210,9 @@ class frameMain ( wx.Frame ):
 	# Function to display Right Click Menu
 	def OnRightDown(self, e):
 		self.PopupMenu(RCMenu(self))
+
+	def exitEvent(self, event):
+		rospy.signal_shutdown("")
 
 # Right-Click Menu Class
 class RCMenu(wx.Menu):
@@ -387,9 +392,9 @@ class consoleWindow(wx.Frame):
 
 	def consoleCallback(self, msg):
 		if msg.name == self.tn and not msg.msg == None:
-			self.rt.BeginTextColour((0, 0, 0))
-			self.rt.AppendText(msg.msg + "\n")
-			self.rt.EndTextColour()
+			wx.CallAfter(self.rt.BeginTextColour, (0, 0, 0))
+			wx.CallAfter(self.rt.AppendText, msg.msg + "\n")
+			wx.CallAfter(self.rt.EndTextColour)
 
 #class used for creating new windows with new files
 class frameNew (frameMain):
@@ -414,9 +419,10 @@ class AsyncSpinner(threading.Thread):
 
 if __name__ == '__main__':
     rospy.init_node('htt_viz')
-    spinner = AsyncSpinner()
-    spinner.start()
+    #spinner = AsyncSpinner()
+    #spinner.start()
     app = MainApp()
     app.MainLoop()
-    rospy.signal_shutdown("")
-    spinner.join()
+    rospy.spin()
+    #rospy.signal_shutdown("")
+    #spinner.join()
