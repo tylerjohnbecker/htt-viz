@@ -37,7 +37,7 @@ class Node:
 				return maybeNode
 		
 		return None
-		
+	
 	def draw(self, dc):
 		nodeWidth = NODE_WIDTH
 		nodeHeight = NODE_HEIGHT
@@ -157,6 +157,7 @@ class Tree:
 		for child in self.node_dict[node_name].children:
 			self.drawTreeRec(dc, child.name)
 
+# Custom widget design based on https://wiki.wxpython.org/CreatingCustomControls
 class NodeView(wx.Panel):
 	def __init__(self, parent, id=wx.ID_ANY, pos=wx.DefaultPosition, size=wx.DefaultSize, make_service=True):
 		wx.Panel.__init__(self, parent, id, pos, size)
