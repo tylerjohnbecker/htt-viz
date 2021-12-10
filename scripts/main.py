@@ -141,6 +141,7 @@ class frameMain ( wx.Frame ):
 		self.new_frame(event)
 	
 	# Open File Event
+	# Referenced from: https://wxpython.org/Phoenix/docs/html/wx.FileDialog.html
 	def menuItemFileOpenOnMenuSelection( self, event ):
 		#if self.contentNotSaved:
 		#	if wx.MessageBox("Current content has not been saved! Proceed?", "Please confirm", wx.ICON_QUESTION | wx.YES_NO, self) == wx.NO:
@@ -179,7 +180,7 @@ class frameMain ( wx.Frame ):
 		event.Skip()
 	
 	# Save As Event
-		
+	# Referenced from: https://wxpython.org/Phoenix/docs/html/wx.FileDialog.html	
 	def menuItemFileSaveAsOnMenuSelection( self, event ):
 		with wx.FileDialog(self, "Save file as", wildcard="File Types (*.yaml)|*.yaml", style=wx.FD_SAVE | wx.FD_OVERWRITE_PROMPT) as fileDialog:
 
