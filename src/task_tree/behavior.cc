@@ -300,68 +300,32 @@ void OrBehavior::UpdateActivationPotential() {
     return;
   }
 
-  // first check if any children's peers are active or done....
-  bool descendant_active = false;
-  for (NodeListPtrIterator it = children_.begin();
-      it != children_.end(); ++it) {
-
-    if((*it)->state.peer_done || (*it)->state.peer_active )
-    {
-      descendant_active = true;
-      ROS_INFO("XXXXXXXXXXXX    CASE 1: peer active or done %d XXXXXXXXXXXX", (*it)->mask.node);
-    }
-  }
-
-  // if any children's peers were active or done, propagate peer_active to other children,
-  // set activation to 0, and return from function
-  // TODO: this logic for setting peer to active might not belong here since this runs asynch to other logic!!!
-  if ( descendant_active ) {
-   for (NodeListPtrIterator it = children_.begin();
-        it != children_.end(); ++it) {
-
-        (*it)->state.peer_active = true;
-        state_.highest_potential = 0;
-        state_.highest = mask_;
-        ROS_INFO("XXXXXXXXXXXX    CASE 1: peer active or done %d XXXXXXXXXXXX", (*it)->mask.node);
-    }
-    return;
-  }
-
-
   // go thorugh children and get highest activation
   for (NodeListPtrIterator it = children_.begin();
       it != children_.end(); ++it) {
     float value = (*it)->state.activation_potential;
 
-    if((*it)->state.peer_done || (*it)->state.peer_active )
+    if((*it)->state.done || (*it)->state.active )
     {
       state_.highest_potential = 0;
       state_.highest = mask_;
-       ROS_INFO("XXXXXXXXXXXX    CASE 1: peer active or done %d XXXXXXXXXXXX", (*it)->mask.node);
+      ROS_DEBUG("XXXXXXXXXXXX    CASE 2: me active or done %d XXXXXXXXXXXX", (*it)->mask.node);
       return;
     }
-    else if((*it)->state.done || (*it)->state.active )
-    {
-      state_.highest_potential = 0;
-      state_.highest = mask_;
-       ROS_INFO("XXXXXXXXXXXX    CASE 2: me active or done %d XXXXXXXXXXXX", (*it)->mask.node);
-      return;
-    }
-    else if (value > max && !(*it)->state.done && !(*it)->state.peer_done && !(*it)->state.peer_active && !(*it)->state.active) {
+    else if (value > max && !(*it)->state.done && !(*it)->state.active) {
       max = value;
       max_child_index = index;
       nbm = (*it)->state.highest;
-       ROS_INFO("XXXXXXXXXXXX    CASE 3: value>max  %d XXXXXXXXXXXX", (*it)->mask.node);
+      ROS_DEBUG("XXXXXXXXXXXX    CASE 3: value>max  %d XXXXXXXXXXXX", (*it)->mask.node);
     }
     else {
-       ROS_INFO("XXXXXXXXXXXX    CASE 4: value < max  %d XXXXXXXXXXXX", (*it)->mask.node);
+      ROS_DEBUG("XXXXXXXXXXXX    CASE 4: value < max  %d XXXXXXXXXXXX", (*it)->mask.node);
     }
     index++;
   }
   state_.activation_potential = max;
   state_.highest_potential = max;
   state_.highest = nbm;
-  //random_child_selection = max_child_index;
 }
 
 bool OrBehavior::Precondition() {

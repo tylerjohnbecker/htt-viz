@@ -1,37 +1,41 @@
-NodeList: [ROOT_4_0_000, THEN_0_0_001, MOVE_3_0_002, MOVE_3_0_003, MOVE_3_0_004]
+NodeList:
+- ROOT_4_0_000
+- THEN_0_0_001
+- MOVE_3_0_009
 Nodes:
-  MOVE_3_0_002:
-    children: [NONE]
-    mask: {node: 2, robot: 0, type: 3}
+  MOVE_3_0_009:
+    children:
+    - NONE
+    mask:
+      node: 9
+      robot: 0
+      type: 3
     parent: THEN_0_0_001
-    peers: [NONE]
-    x: 44
-    y: 239
-  MOVE_3_0_003:
-    children: [NONE]
-    mask: {node: 3, robot: 0, type: 3}
-    parent: THEN_0_0_001
-    peers: [NONE]
-    x: 158
-    y: 273
-  MOVE_3_0_004:
-    children: [NONE]
-    mask: {node: 4, robot: 0, type: 3}
-    parent: THEN_0_0_001
-    peers: [NONE]
-    x: 318
-    y: 237
+    peers:
+    - NONE
+    x: 425
+    y: 156
   ROOT_4_0_000:
-    children: [THEN_0_0_001]
-    mask: {node: 0, robot: 0, type: 4}
+    children:
+    - THEN_0_0_001
+    mask:
+      node: 0
+      robot: 0
+      type: 4
     parent: NONE
-    peers: [NONE]
-    x: 138
-    y: 52
+    peers:
+    - NONE
+    x: 290
+    y: 50
   THEN_0_0_001:
-    children: [MOVE_3_0_002, MOVE_3_0_003, MOVE_3_0_004]
-    mask: {node: 1, robot: 0, type: 0}
+    children:
+    - MOVE_3_0_009
+    mask:
+      node: 1
+      robot: 0
+      type: 0
     parent: ROOT_4_0_000
-    peers: [NONE]
-    x: 138
-    y: 152
+    peers:
+    - NONE
+    x: 286
+    y: 103

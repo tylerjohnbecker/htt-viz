@@ -317,15 +317,10 @@ class NodePanel(wx.Panel):
 		self.SetBackgroundColour("grey")
 		List = ['THEN','AND','OR','MOVE','GRAB']
 		self.nodeList=wx.ListBox(self, -1, pos = (3,30), size = (194, 460), choices = List, style = wx.LB_SINGLE)
-		
-		self.nodeList.SetSelection(0)
 
 		#self.nodeList.Bind(wx.EVT_RIGHT_DOWN, self.OnRightDown)
 		button.Bind(wx.EVT_RIGHT_DOWN, self.OnRightDown)
 		self.Bind(wx.EVT_RIGHT_DOWN, self.OnRightDown)
-
-	def OnLeftDown(self, event):
-		pass
 
 	def OnRightDown(self, event):
 		wx.PostEvent(self.parent, event)

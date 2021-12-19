@@ -132,20 +132,30 @@ class Tree:
 		self.RemoveNode(self.root_node.name)
 		self.root_node = None
 
-	def RemoveNode(self, node_name):
-		#if its not a leaf we need to delete the children first
-		for child in self.node_dict[node_name].children:
-			self.RemoveNode(child.name)
+	#should be private (won't work unless called like how its called in RemoveNode())
+	def RemoveNodeRec(self, node_name):
+		num_children = len(self.node_dict[node_name].children)
 
-		#then we need to find it in its parent's list and delete it there
+		#if its not a leaf we need to delete the children first
+		for i in range(num_children - 1, -1, -1):
+			self.RemoveNode(self.node_dict[node_name].children[i].name)
+
+		self.node_dict[node_name].children = []
+		
+		print(str(node_name))
+		self.node_dict.pop(node_name)
+
+	def RemoveNode(self, node_name):
+		
+		#first delete ourselves in the parent's list of children
 		if not self.node_dict[node_name].parent == None and not self.node_dict[node_name].parent == "NONE":
 			for child in self.node_dict[self.node_dict[node_name].parent].children:
 				if child.name == node_name:
 					self.node_dict[self.node_dict[node_name].parent].children.remove(child)
 					break
 
-		#finally we need to make sure its gone from the node_dict
-		del self.node_dict[node_name]
+		#then delete ourself and children recursively
+		self.RemoveNodeRec(node_name)
 
 	#function to draw the whole tree (wraps the recursive function)
 	def draw(self, dc):
