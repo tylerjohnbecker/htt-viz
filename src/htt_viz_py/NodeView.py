@@ -142,7 +142,6 @@ class Tree:
 
 		self.node_dict[node_name].children = []
 		
-		print(str(node_name))
 		self.node_dict.pop(node_name)
 
 	def RemoveNode(self, node_name):
