@@ -141,13 +141,14 @@ class Tree:
 		self.RemoveNode(self.root_node.name)
 		self.root_node = None
 
-	#should be private (won't work unless called like how its called in RemoveNode())
+	# should be private (won't work unless called like how its called in RemoveNode())
 	def RemoveNodeRec(self, node_name):
 		num_children = len(self.node_dict[node_name].children)
 
-		#if its not a leaf we need to delete the children first
+		# if its not a leaf we need to delete the children first
 		for i in range(num_children - 1, -1, -1):
-			self.RemoveNode(self.node_dict[node_name].children[i].name)
+			# make sure to put the name to delete in a list
+			self.RemoveNode([ self.node_dict[node_name].children[i].name ])
 
 		self.node_dict[node_name].children = []
 		

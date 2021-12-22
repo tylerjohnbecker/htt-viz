@@ -210,7 +210,9 @@ class frameMain ( wx.Frame ):
 		about.Show()
 	
 	def menuItemEditUndoOnMenuSelection( self, event ):
-		self.right.treeEditor.tree.undo_stack.pop().run()
+		obj = self.right.treeEditor.tree.undo_stack.pop()
+		if not obj is None:
+		   obj.run()
 		self.right.treeEditor.Refresh(False)
 
 	# Function to display Right Click Menu
