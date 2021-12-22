@@ -117,6 +117,7 @@ class frameMain ( wx.Frame ):
 		self.Bind( wx.EVT_MENU, self.menuItemFileExitOnMenuSelection, id = self.menuItemFileExit.GetId() )
 		self.Bind( wx.EVT_MENU, self.menuItemViewConsoleOnMenuSelection, id = self.menuItemViewDebug.GetId() )
 		self.Bind( wx.EVT_MENU, self.menuItemHelpAboutOnMenuSelection, id = self.menuItemHelpAbout.GetId() )
+		self.Bind( wx.EVT_MENU, self.menuItemEditUndoOnMenuSelection, id = self.menuItemEditUndo.GetId() )
 
 		self.Bind(wx.EVT_CLOSE, self.exitEvent)
 	
@@ -207,7 +208,11 @@ class frameMain ( wx.Frame ):
 	def menuItemHelpAboutOnMenuSelection( self, event ):
 		about = aboutWindow()
 		about.Show()
-		
+	
+	def menuItemEditUndoOnMenuSelection( self, event ):
+		self.right.treeEditor.tree.undo_stack.pop().run()
+		self.right.treeEditor.Refresh(False)
+
 	# Function to display Right Click Menu
 	def OnRightDown(self, e):
 		self.PopupMenu(RCMenu(self))

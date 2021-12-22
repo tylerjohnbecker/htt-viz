@@ -4,6 +4,7 @@ import yaml
 from yaml import Loader, Dumper
 from htt_viz.srv import Update
 from htt_viz.srv import UpdateResponse
+from htt_viz_py.Stack import Stack, StackNode
 
 NODE_WIDTH = 120
 NODE_HEIGHT = 25
@@ -58,6 +59,7 @@ class Tree:
 	def __init__(self):
 		self.node_dict = {"ROOT_4_0_000" : Node("ROOT_4_0_000", 50, 10)}
 		self.root_node = self.node_dict["ROOT_4_0_000"] 
+		self.undo_stack = Stack()
 
 	def populateNodeList(self, list, cur_ptr):
 		list.append(str(cur_ptr.name))
@@ -105,6 +107,11 @@ class Tree:
 
 		return tree_dict
 
+	def undo(self):
+
+		if not self.undoStack.isEmpty():
+			self.undoStack.pop().func#hopefully just do this thing on the stack
+
 	def AddNode(self, parent_name, node):
 		self.node_dict[node.name] = node
 		node.parent = parent_name
@@ -113,6 +120,8 @@ class Tree:
 
 		if self.root_node == None:
 			self.root_node = self.node_dict[node.name]
+
+		self.undo_stack.push(StackNode(self.RemoveNode, [self, node.name]))
 
 	
 	def PrintNodes(self, node_name):
@@ -144,17 +153,17 @@ class Tree:
 		
 		self.node_dict.pop(node_name)
 
-	def RemoveNode(self, node_name):
+	def RemoveNode(self, args):
 		
 		#first delete ourselves in the parent's list of children
-		if not self.node_dict[node_name].parent == None and not self.node_dict[node_name].parent == "NONE":
-			for child in self.node_dict[self.node_dict[node_name].parent].children:
-				if child.name == node_name:
-					self.node_dict[self.node_dict[node_name].parent].children.remove(child)
+		if not self.node_dict[args[0]].parent == None and not self.node_dict[args[0]].parent == "NONE":
+			for child in self.node_dict[self.node_dict[args[0]].parent].children:
+				if child.name == args[0]:
+					self.node_dict[self.node_dict[args[0]].parent].children.remove(child)
 					break
 
 		#then delete ourself and children recursively
-		self.RemoveNodeRec(node_name)
+		self.RemoveNodeRec(args[0])
 
 	#function to draw the whole tree (wraps the recursive function)
 	def draw(self, dc):
