@@ -108,7 +108,11 @@ class Tree:
 
 		return tree_dict
 
-	#args[0]= parent_name, args[1] = node to add 
+	#args[0]= parent_name, args[1] = node to add
+	#Params:
+	#	args[0]:	name of the parent node to add to
+	#	args[1]:	object created for the new node to add
+	#	args[2]:	boolean representing whether or not this call needs to be added to the undo_stack
 	def AddNode(self, args):
 		self.node_dict[args[1].name] = args[1]
 		args[1].parent = args[0]
@@ -119,7 +123,7 @@ class Tree:
 			self.root_node = self.node_dict[args[1].name]
 		
 		if args[2]:
-			undo = FunctionCall(self.RemoveNode, [args[1].name, False, []])
+			undo = FunctionCall(self.RemoveNode, [args[1].name, False, [], 0])
 			redo = FunctionCall(self.AddNode, [args[0], args[1], False])
 
 			action = ActionNode(True, [ undo ], [ redo ])
@@ -141,11 +145,15 @@ class Tree:
 		self.PrintNodes(self.root_node.name)
 
 	def DestroyTree(self):
-		self.RemoveNode(self.root_node.name)
+		self.RemoveNode([ self.root_node.name, False, [], 0 ] )
 		self.root_node = None
 
-	# should be private (won't work unless called like how its called in RemoveNode())
-	def RemoveNodeRec(self, node_name, list):
+	# NOTE: do not call from outside the class (Things will break)
+	# Params:
+	#	node_name:	name of the node currently being removed
+	#	list:		list to which we are appending all of the undo functions for each node removed
+	#	index:		argument used to preserve the child's place in its parent's list of children for undo
+	def RemoveNodeRec(self, node_name, list, index):
 		num_children = len(self.node_dict[node_name].children)
 
 		parent = self.node_dict[node_name].parent
@@ -154,13 +162,18 @@ class Tree:
 		# if its not a leaf we need to delete the children first
 		for i in range(num_children - 1, -1, -1):
 			# make sure to put the name to delete in a list
-			self.RemoveNode([ self.node_dict[node_name].children[i].name, False, list ])
+			self.RemoveNode([ self.node_dict[node_name].children[i].name, False, list , i])
 
 		self.node_dict[node_name].children = []
 		
 		self.node_dict.pop(node_name)
-		list.insert(0, FunctionCall(self.AddNode, [parent, node, False]))
+		list.insert(index, FunctionCall(self.AddNode, [parent, node, False]))
 
+	# Params:
+	#	args[0]:	name of the node being removed
+	#	args[1]:	boolean representing whether we need to make a new entry to the undo_stack(starts as true and should always be false after)
+	#	args[2]:	list of all nodes removed as undo functions (redo is only 1 function call)
+	#	args[3]:	index to pass to children so that they remain in the same order
 	def RemoveNode(self, args):
 		
 		#first delete ourselves in the parent's list of children
@@ -170,10 +183,10 @@ class Tree:
 					self.node_dict[self.node_dict[args[0]].parent].children.remove(child)
 					break
 		
-		self.RemoveNodeRec(args[0], args[2])
+		self.RemoveNodeRec(args[0], args[2], args[3])
 
 		if args[1]:
-			redo = FunctionCall(self.RemoveNode, [ args[0], False , [] ])
+			redo = FunctionCall(self.RemoveNode, [ args[0], False , [], 0 ])
 			action = ActionNode(True, args[2], [ redo ])
 
 			self.undo_stack.push(action)
@@ -307,7 +320,7 @@ class NodeView(wx.Panel):
 			y = data["Nodes"][node]["y"]
 			parent = data["Nodes"][node]["parent"]
 			new_node = Node(node, x, y)
-			self.tree.AddNode(parent, new_node)
+			self.tree.AddNode([ parent, new_node, False ])
 
 		self.Refresh(False)
 

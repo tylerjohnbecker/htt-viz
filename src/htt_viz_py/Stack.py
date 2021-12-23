@@ -115,3 +115,7 @@ class Stack:
     def isEmpty(self):
         # the stack is empty is the head is None
         return self.head is None
+
+    def clear(self):
+        while not self.isEmpty():
+            self.pop()

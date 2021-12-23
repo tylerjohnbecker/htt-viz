@@ -158,6 +158,8 @@ class frameMain ( wx.Frame ):
 				with open(self.pathname, 'r') as file:
 					self.right.treeEditor.loadTree(file)
 					self.ResetStar()
+					self.right.treeEditor.tree.undo_stack.clear()
+					self.right.treeEditor.tree.redo_stack.clear()
 			except IOError:
 				wx.LogError("Cannot open file.")
 
@@ -323,7 +325,7 @@ class RCMenu(wx.Menu):
 		
 		if maybeNode is not None:
 			# TODO: Make a function to do all these steps on nodeview
-			nodeView.tree.RemoveNode( [ maybeNode.name, True, [] ] )
+			nodeView.tree.RemoveNode( [ maybeNode.name, True, [], 0 ] )
 			nodeView.Refresh(False)
 			self.parent.AddStar()
 
