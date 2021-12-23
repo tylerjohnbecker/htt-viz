@@ -4,7 +4,7 @@ import yaml
 from yaml import Loader, Dumper
 from htt_viz.srv import Update
 from htt_viz.srv import UpdateResponse
-from htt_viz_py.Stack import Stack, ActionNode
+from htt_viz_py.Stack import Stack, ActionNode, FunctionCall
 
 NODE_WIDTH = 120
 NODE_HEIGHT = 25
@@ -119,7 +119,11 @@ class Tree:
 			self.root_node = self.node_dict[args[1].name]
 		
 		if args[2]:
-			action = ActionNode(True, self.RemoveNode, self.AddNode, [self, args[1].name], [self, args[0], args[1], False])
+			undo = FunctionCall(self.RemoveNode, [args[1].name])
+			redo = FunctionCall(self.AddNode, [args[0], args[1], False])
+
+			action = ActionNode(True, [ undo ], [ redo ])
+
 			self.undo_stack.push(action)
 
 	

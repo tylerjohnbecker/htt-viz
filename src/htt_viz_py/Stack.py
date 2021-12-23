@@ -3,61 +3,44 @@
 # This is a file for basic Stack Stuff so that we don't have to clutter up the other files
 # This stack is meant for the undo/redo functionality
 
+class FunctionCall:
+    def __init__(self, func, args):
+        self.func = func
+        self.args = args
+
+    def run (self):
+        # wrapper function so that the function is not automatically passed (this StackNode) as self
+        self.runFunction(self.func)
+        
+    # should only be used inside of this class by the above run function
+    def runFunction (self, func):
+        # run the function with the args
+
+        # it is implied that (with the correct self) this call is:
+        #  self.func([list of args])
+        # because python
+        func(self.args)
+
 # The StackNode Class: A class containing a tuple of an undo function and a redo function for an action.
 class ActionNode:
     # Params:
     #   switch:     True is undo, False is redo
-    #   undo_func:  function to undo action
-    #   redo_func:  function to redo action
-    #   args_u:     list of parameters for undo action
-    #   args_r:     list of parameters for redo action
-    def __init__(self, switch, undo_func, redo_func, args_u = None, args_r = None):
+    #   undo_list:  List of functions that will totally undo a single action
+    #   redo_list:  List of functions that will totally redo a single action
+    def __init__(self, switch, undo_list, redo_list):
         #obviously save everything
-        self.undo_func = undo_func
-        self.redo_func = redo_func
+        self.undo_list = undo_list
+        self.redo_list = redo_list
         self.next = None
         self.switch = switch
 
-        if not args_u is None:
-            # the first argument is always self because of how python works with objects, so we pop it
-            self.obj_u = args_u[0]
-            self.args_u = args_u
-            self.args_u.pop(0)
-        else:
-            # this message will only ever be seen in error
-            # functions passed to this stack should always have parameters
-            print("No arguments passed for Undo function")
-
-        if not args_r is None:
-            # the first argument is always self because of how python works with objects, so we pop it
-            self.obj_r = args_r[0]
-            self.args_r = args_r
-            self.args_r.pop(0)
-        else:
-            # this message will only ever be seen in error
-            # functions passed to this stack should always have parameters
-            print("No arguments passed for function")
-
-    def run (self):
+    def run(self):
         if self.switch:
-            # wrapper function so that the function is not automatically passed (this StackNode) as self
-            self.runFunc(self.undo_func)
+            for function in self.undo_list:
+                function.run()
         else:
-            self.runFunc(self.redo_func)
-
-    # should only be used inside of this class by the above run function
-    def runFunc (self, func):
-        # this is for the case that we wants args to be nothing
-        # if we have args
-        if self.switch:
-            # run the function with the args
-
-            # it is implied that (with the correct self) this call is:
-            #  self.func([list of args])
-            # because python
-            func(self.args_u)
-        else:#if we need to redo instead
-            func(self.args_r)
+            for function in self.redo_list:
+                function.run()
 
 # basic stack functionality for a stack of anything
 # This is meant for both the undo stack and the redo stack of the NodeView 
@@ -88,7 +71,6 @@ class Stack:
         # if we don't have anything just make it the head and return
         if self.head is None:
             self.head = new_node
-            self.print()
             return None
 
         new_node.next = None 
