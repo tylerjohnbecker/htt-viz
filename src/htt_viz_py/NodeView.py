@@ -129,6 +129,7 @@ class Tree:
 			action = ActionNode(True, [ undo ], [ redo ])
 
 			self.undo_stack.push(action)
+			self.redo_stack.clear()
 
 	
 	def PrintNodes(self, node_name):
@@ -190,6 +191,12 @@ class Tree:
 			action = ActionNode(True, args[2], [ redo ])
 
 			self.undo_stack.push(action)
+			self.redo_stack.clear()
+
+	#node_name x y
+	def MoveNode(self, args):
+		self.node_dict[args[0]].x = args[1]
+		self.node_dict[args[0]].y = args[2]
 
 	#function to draw the whole tree (wraps the recursive function)
 	def draw(self, dc):
@@ -212,6 +219,11 @@ class NodeView(wx.Panel):
 
 		# The base node. Temporarily use filler data.
 		self.tree = Tree()
+
+		# Coords to be used for undoing movement by measuring start and end coords of a node
+		self.start_x = 0.0
+		self.start_y = 0.0
+		self.lifted = True
 
 		#n1 = Node("THEN_0_0_001", 150, 50)
 		#n2 = Node("BEHAVIOR_3_0_002", 100, 100)
@@ -268,6 +280,14 @@ class NodeView(wx.Panel):
 		if maybeNode is not None:
 			self.dragOffsetX = eventX - maybeNode.x
 			self.dragOffsetY = eventY - maybeNode.y
+			
+			if self.lifted:
+					self.start_x = self.draggingNode.x
+					self.start_y = self.draggingNode.y
+
+					self.lifted = False
+
+
 		
 		# Skip to allow wx to set up focus correctly
 		event.Skip()
@@ -280,7 +300,16 @@ class NodeView(wx.Panel):
 		self.lastRightClickY = event.GetY()
 		
 	def OnMouseLeftUp(self, event):
-		pass
+
+		if self.draggingNode is not None:
+			undo = FunctionCall(self.tree.MoveNode, [self.draggingNode.name, self.start_x, self.start_y])
+			redo = FunctionCall(self.tree.MoveNode, [self.draggingNode.name, event.GetX(), event.GetY()])
+			self.tree.undo_stack.push( ActionNode( True, [ undo ], [ redo ] ) )
+			self.tree.redo_stack.clear()
+
+
+			self.draggingnode = None
+			self.lifted = True
 
 	def UpdateCallback(self, req):
 		self.tree.node_dict[req.owner].activation_potential = req.activation_potential

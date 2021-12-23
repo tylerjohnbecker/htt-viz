@@ -227,10 +227,11 @@ class frameMain ( wx.Frame ):
 		obj = self.right.treeEditor.tree.redo_stack.pop()
 
 		if not obj is None:
-		   obj.run()
-		   obj.switch = True
-		   obj.next = None 
-		   self.right.treeEditor.tree.undo_stack.push(obj)
+		    obj.run()
+		    obj.switch = True
+		    obj.next = None 
+		    self.right.treeEditor.tree.undo_stack.push(obj)
+		    self.right.treeEditor.tree.redo_stack.clear()
 
 		self.right.treeEditor.Refresh(False)
 
