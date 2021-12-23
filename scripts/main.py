@@ -118,6 +118,7 @@ class frameMain ( wx.Frame ):
 		self.Bind( wx.EVT_MENU, self.menuItemViewConsoleOnMenuSelection, id = self.menuItemViewDebug.GetId() )
 		self.Bind( wx.EVT_MENU, self.menuItemHelpAboutOnMenuSelection, id = self.menuItemHelpAbout.GetId() )
 		self.Bind( wx.EVT_MENU, self.menuItemEditUndoOnMenuSelection, id = self.menuItemEditUndo.GetId() )
+		self.Bind( wx.EVT_MENU, self.menuItemEditRedoOnMenuSelection, id = self.menuItemEditRedo.GetId() )
 
 		self.Bind(wx.EVT_CLOSE, self.exitEvent)
 	
@@ -211,8 +212,24 @@ class frameMain ( wx.Frame ):
 	
 	def menuItemEditUndoOnMenuSelection( self, event ):
 		obj = self.right.treeEditor.tree.undo_stack.pop()
+
 		if not obj is None:
 		   obj.run()
+		   obj.switch = False
+		   obj.next = None
+		   self.right.treeEditor.tree.redo_stack.push(obj)
+
+		self.right.treeEditor.Refresh(False)
+
+	def menuItemEditRedoOnMenuSelection( self, event ):
+		obj = self.right.treeEditor.tree.redo_stack.pop()
+
+		if not obj is None:
+		   obj.run()
+		   obj.switch = True
+		   obj.next = None 
+		   self.right.treeEditor.tree.undo_stack.push(obj)
+
 		self.right.treeEditor.Refresh(False)
 
 	# Function to display Right Click Menu
@@ -286,7 +303,7 @@ class RCMenu(wx.Menu):
 			# XXX HACK XXX
 			# Node names must be unique
 			node = Node(selection + '_' + str(num) + '_' + str(robot) + '_' + preceeding_0s + str(node_num), maybeNode.x, maybeNode.y + 100)
-			nodeView.tree.AddNode(maybeNode.name, node)
+			nodeView.tree.AddNode([maybeNode.name, node, True])
 			nodeView.Refresh(False)
 			self.parent.AddStar()
 		

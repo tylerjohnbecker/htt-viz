@@ -4,7 +4,7 @@ import yaml
 from yaml import Loader, Dumper
 from htt_viz.srv import Update
 from htt_viz.srv import UpdateResponse
-from htt_viz_py.Stack import Stack, StackNode
+from htt_viz_py.Stack import Stack, ActionNode
 
 NODE_WIDTH = 120
 NODE_HEIGHT = 25
@@ -59,7 +59,8 @@ class Tree:
 	def __init__(self):
 		self.node_dict = {"ROOT_4_0_000" : Node("ROOT_4_0_000", 50, 10)}
 		self.root_node = self.node_dict["ROOT_4_0_000"] 
-		self.undo_stack = Stack()
+		self.undo_stack = Stack("UNDO")
+		self.redo_stack = Stack("REDO")
 
 	def populateNodeList(self, list, cur_ptr):
 		list.append(str(cur_ptr.name))
@@ -107,21 +108,19 @@ class Tree:
 
 		return tree_dict
 
-	def undo(self):
-
-		if not self.undoStack.isEmpty():
-			self.undoStack.pop().func#hopefully just do this thing on the stack
-
-	def AddNode(self, parent_name, node):
-		self.node_dict[node.name] = node
-		node.parent = parent_name
-		if not parent_name == "NONE":
-			self.node_dict[parent_name].addChild(node)
+	#args[0]= parent_name, args[1] = node to add 
+	def AddNode(self, args):
+		self.node_dict[args[1].name] = args[1]
+		args[1].parent = args[0]
+		if not args[0] == "NONE":
+			self.node_dict[args[0]].addChild(args[1])
 
 		if self.root_node == None:
-			self.root_node = self.node_dict[node.name]
-
-		self.undo_stack.push(StackNode(self.RemoveNode, [self, node.name]))
+			self.root_node = self.node_dict[args[1].name]
+		
+		if args[2]:
+			action = ActionNode(True, self.RemoveNode, self.AddNode, [self, args[1].name], [self, args[0], args[1], False])
+			self.undo_stack.push(action)
 
 	
 	def PrintNodes(self, node_name):
@@ -300,6 +299,6 @@ class NodeView(wx.Panel):
 			self.tree.AddNode(parent, new_node)
 
 		self.Refresh(False)
-    
+
 	def saveTree(self, file):
 		yaml.dump(self.tree.toYamlDict(), file)
