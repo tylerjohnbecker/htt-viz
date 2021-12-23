@@ -119,7 +119,7 @@ class Tree:
 			self.root_node = self.node_dict[args[1].name]
 		
 		if args[2]:
-			undo = FunctionCall(self.RemoveNode, [args[1].name])
+			undo = FunctionCall(self.RemoveNode, [args[1].name, False])
 			redo = FunctionCall(self.AddNode, [args[0], args[1], False])
 
 			action = ActionNode(True, [ undo ], [ redo ])
@@ -145,17 +145,21 @@ class Tree:
 		self.root_node = None
 
 	# should be private (won't work unless called like how its called in RemoveNode())
-	def RemoveNodeRec(self, node_name):
+	def RemoveNodeRec(self, node_name, list):
 		num_children = len(self.node_dict[node_name].children)
+
+		parent = self.node_dict[node_name].parent
+		node = self.node_dict[node_name]
 
 		# if its not a leaf we need to delete the children first
 		for i in range(num_children - 1, -1, -1):
 			# make sure to put the name to delete in a list
-			self.RemoveNode([ self.node_dict[node_name].children[i].name ])
+			self.RemoveNode([ self.node_dict[node_name].children[i].name, False, list ])
 
 		self.node_dict[node_name].children = []
 		
 		self.node_dict.pop(node_name)
+		list.insert(0, FunctionCall(self.AddNode, [parent, node, False]))
 
 	def RemoveNode(self, args):
 		
@@ -165,9 +169,14 @@ class Tree:
 				if child.name == args[0]:
 					self.node_dict[self.node_dict[args[0]].parent].children.remove(child)
 					break
+		
+		self.RemoveNodeRec(args[0], args[2])
 
-		#then delete ourself and children recursively
-		self.RemoveNodeRec(args[0])
+		if args[1]:
+			redo = FunctionCall(self.RemoveNode, [ args[0], False , [] ])
+			action = ActionNode(True, args[2], [ redo ])
+
+			self.undo_stack.push(action)
 
 	#function to draw the whole tree (wraps the recursive function)
 	def draw(self, dc):
@@ -261,8 +270,6 @@ class NodeView(wx.Panel):
 		pass
 
 	def UpdateCallback(self, req):
-		#message received to update, can handle color changes of nodes here
-		#for now it will just print hello
 		self.tree.node_dict[req.owner].activation_potential = req.activation_potential
 		if req.active == True:
 			self.tree.node_dict[req.owner].color = "green"

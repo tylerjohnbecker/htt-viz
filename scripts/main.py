@@ -323,7 +323,7 @@ class RCMenu(wx.Menu):
 		
 		if maybeNode is not None:
 			# TODO: Make a function to do all these steps on nodeview
-			nodeView.tree.RemoveNode(maybeNode.name)
+			nodeView.tree.RemoveNode( [ maybeNode.name, True, [] ] )
 			nodeView.Refresh(False)
 			self.parent.AddStar()
 
