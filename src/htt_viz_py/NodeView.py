@@ -119,7 +119,7 @@ class Tree:
 			self.root_node = self.node_dict[args[1].name]
 		
 		if args[2]:
-			undo = FunctionCall(self.RemoveNode, [args[1].name, False])
+			undo = FunctionCall(self.RemoveNode, [args[1].name, False, []])
 			redo = FunctionCall(self.AddNode, [args[0], args[1], False])
 
 			action = ActionNode(True, [ undo ], [ redo ])

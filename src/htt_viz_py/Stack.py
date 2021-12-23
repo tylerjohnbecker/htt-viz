@@ -3,6 +3,8 @@
 # This is a file for basic Stack Stuff so that we don't have to clutter up the other files
 # This stack is meant for the undo/redo functionality
 
+STACK_MAX = 30
+
 class FunctionCall:
     def __init__(self, func, args):
         self.func = func
@@ -53,6 +55,7 @@ class Stack:
         self.id = id
         # simply declare head as None
         self.head = None
+        self.num_items = 0
 
     # Basic print method for debugging
     def print(self):
@@ -68,6 +71,8 @@ class Stack:
     # Basic push method for stacks
     def push(self, new_node):
 
+        self.num_items += 1
+
         # if we don't have anything just make it the head and return
         if self.head is None:
             self.head = new_node
@@ -80,6 +85,17 @@ class Stack:
         self.head = new_node
         new_node.next = tmp
 
+        if self.num_items > STACK_MAX:
+            
+            current = self.head
+            while not current.next.next is None:
+                current = current.next
+
+            del current.next
+            current.next = None
+
+            self.num_items -= 1
+
     # Basic pop method for stacks
     def pop(self):
 
@@ -91,6 +107,8 @@ class Stack:
         tmp = self.head
         self.head = tmp.next
         
+        self.num_items -= 1
+
         return tmp
 
     # Stack isEmpty method
