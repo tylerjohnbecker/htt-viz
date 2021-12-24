@@ -55,30 +55,40 @@ class Node:
 class Tree:
 	
 
-	#I dunno what we want to pass in here yet but we can now construct trees from scratch
+	# No params, simply initialize a Root Node for the initial tree viewing, and as well
 	def __init__(self):
 		self.node_dict = {"ROOT_4_0_000" : Node("ROOT_4_0_000", 50, 10)}
 		self.root_node = self.node_dict["ROOT_4_0_000"] 
 		self.undo_stack = Stack("UNDO")
 		self.redo_stack = Stack("REDO")
 
+	# desc.: a helper function for toYamlDict to make sure the parents come before the children in NodeList
 	def populateNodeList(self, list, cur_ptr):
 		list.append(str(cur_ptr.name))
 		for child in cur_ptr.children:
 			self.populateNodeList(list, child)
 
+	# desc.: create a dictionary which is ready to be saved to a yaml file for use with the trees
 	def toYamlDict(self):
+
+		# initialize overarching vars
 		tree_dict = {}
 		tree_dict["Nodes"] = {}
 		tree_dict["NodeList"] = []
 
+		# make sure that the nodelist is in the correct order (parents before children)
 		self.populateNodeList(tree_dict["NodeList"], self.root_node)
 
+		# iterate through each child now (could be any order, right now in alphabetical)
 		for child in self.node_dict:
-			#tree_dict["NodeList"].append(str(child))
+
+			# initialize the entry for the child
 			tree_dict["Nodes"][str(child)] = {}
+
+			# now the mask
 			tree_dict["Nodes"][str(child)]["mask"] = {}
 
+			# each mask is saved in the Name of the child like so (Name_type_robot_node)
 			type = int(child[-7:-6])
 			robot = int(child[-5:-4])
 			node  = int(child[-3:])
@@ -87,20 +97,25 @@ class Tree:
 			tree_dict["Nodes"][str(child)]["mask"]["robot"] = robot
 			tree_dict["Nodes"][str(child)]["mask"]["node"] = node
 
-			if not self.node_dict[str(child)].parent == None:
+			# Now save the parent (if its none we make sure its all caps in the file)
+			if not self.node_dict[str(child)].parent is None:
 				tree_dict["Nodes"][str(child)]["parent"] = str(self.node_dict[child].parent)
 			else:
 				tree_dict["Nodes"][str(child)]["parent"] = 'NONE'
 
+			# initialize the list of children and save them as is
 			tree_dict["Nodes"][str(child)]["children"] = []
 			for c_child in self.node_dict[str(child)].children:
 				tree_dict["Nodes"][str(child)]["children"].append(str(c_child.name))
 
+			# if we have no children make sure to do all caps NONE again
 			if len(tree_dict["Nodes"][str(child)]["children"]) == 0:
 				tree_dict["Nodes"][str(child)]["children"].append("NONE")
 
-			#Not a base function of HTT's so I'll leave this blank for now until we have a more dynamic way of doing this
+			# Not a base function of HTT's so I'll leave this blank for now until we have a more dynamic way of doing this
 			tree_dict["Nodes"][str(child)]["peers"] = ['NONE']
+
+			# Make sure to save their coords as decided by the user so that when we load the tree it always looks the same
 			tree_dict["Nodes"][str(child)]["x"] = self.node_dict[child].x
 			tree_dict["Nodes"][str(child)]["y"] = self.node_dict[child].y
 
@@ -114,14 +129,22 @@ class Tree:
 	#	args[1]:	object created for the new node to add
 	#	args[2]:	boolean representing whether or not this call needs to be added to the undo_stack
 	def AddNode(self, args):
+
+		# start by adding the new node to the dictionary
 		self.node_dict[args[1].name] = args[1]
+
+		# set the parent of the new node to the passed parent (its a reference so it will change all instances)
 		args[1].parent = args[0]
+
+		# Not sure if this is necessary so I'm leaving it in (Tyler)
 		if not args[0] == "NONE":
 			self.node_dict[args[0]].addChild(args[1])
 
+		# Case for the tree being empty
 		if self.root_node == None:
 			self.root_node = self.node_dict[args[1].name]
 		
+		# For the initial call push to undo_stack otherwise we are using it from undo/redo
 		if args[2]:
 			undo = FunctionCall(self.RemoveNode, [args[1].name, False, [], 0])
 			redo = FunctionCall(self.AddNode, [args[0], args[1], False])
@@ -132,19 +155,19 @@ class Tree:
 			self.redo_stack.clear()
 
 	
+	# desc.: recursively print the nodes in the subtree starting at node_name
 	def PrintNodes(self, node_name):
 		
 		print(node_name)
-		if len(self.node_dict[node_name].children) == 0:
-			return
 
 		for child in self.node_dict[node_name].children:
 			self.PrintNodes(child.name)
 
-
+	# desc.: print the nodes starting from the root
 	def PrintTree(self):
 		self.PrintNodes(self.root_node.name)
 
+	# desc.: essentially just a call to remove node the root thereby completely destroying the tree
 	def DestroyTree(self):
 		self.RemoveNode([ self.root_node.name, False, [], 0 ] )
 		self.root_node = None
@@ -155,19 +178,28 @@ class Tree:
 	#	list:		list to which we are appending all of the undo functions for each node removed
 	#	index:		argument used to preserve the child's place in its parent's list of children for undo
 	def RemoveNodeRec(self, node_name, list, index):
+		
+		# get the num of children early
 		num_children = len(self.node_dict[node_name].children)
 
+		# get the params for the list insert now (to push onto the undo stack)
 		parent = self.node_dict[node_name].parent
 		node = self.node_dict[node_name]
 
 		# if its not a leaf we need to delete the children first
+		# children are deleted back to front so that their ordering does not mess up the loop
+		# delete 0 go to 1 (there is now an element at 0 which we have skipped)
 		for i in range(num_children - 1, -1, -1):
 			# make sure to put the name to delete in a list
 			self.RemoveNode([ self.node_dict[node_name].children[i].name, False, list , i])
 
+		# make extra sure the children are gone
 		self.node_dict[node_name].children = []
 		
+		# now pop the node_name from the dictionary as it should be fully gone
 		self.node_dict.pop(node_name)
+
+		# insert this action into the list for undo
 		list.insert(index, FunctionCall(self.AddNode, [parent, node, False]))
 
 	# Params:
@@ -177,23 +209,33 @@ class Tree:
 	#	args[3]:	index to pass to children so that they remain in the same order
 	def RemoveNode(self, args):
 		
-		#first delete ourselves in the parent's list of children
+		# first delete ourselves in the parent's list of children
 		if not self.node_dict[args[0]].parent == None and not self.node_dict[args[0]].parent == "NONE":
 			for child in self.node_dict[self.node_dict[args[0]].parent].children:
 				if child.name == args[0]:
 					self.node_dict[self.node_dict[args[0]].parent].children.remove(child)
 					break
 		
+		# Recursive function to delete all children
 		self.RemoveNodeRec(args[0], args[2], args[3])
 
+		# if this is the initial call to remove a node
 		if args[1]:
+			# The redo is easy because we just have a single node to remove
 			redo = FunctionCall(self.RemoveNode, [ args[0], False , [], 0 ])
+
+			# The undo is already done for us because we passed a list through the recursive calls
 			action = ActionNode(True, args[2], [ redo ])
 
+			# Push it to the undo_stack now
 			self.undo_stack.push(action)
+			# Clear the redo stack because we did a new action
 			self.redo_stack.clear()
 
-	#node_name x y
+	# Params:
+	#	args[0]: name of the node being moved
+	#	args[1]: x value to move to
+	#	args[2]: y value to move to
 	def MoveNode(self, args):
 		self.node_dict[args[0]].x = args[1]
 		self.node_dict[args[0]].y = args[2]
