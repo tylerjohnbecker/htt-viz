@@ -117,6 +117,8 @@ class frameMain ( wx.Frame ):
 		self.Bind( wx.EVT_MENU, self.menuItemFileExitOnMenuSelection, id = self.menuItemFileExit.GetId() )
 		self.Bind( wx.EVT_MENU, self.menuItemViewConsoleOnMenuSelection, id = self.menuItemViewDebug.GetId() )
 		self.Bind( wx.EVT_MENU, self.menuItemHelpAboutOnMenuSelection, id = self.menuItemHelpAbout.GetId() )
+		self.Bind( wx.EVT_MENU, self.menuItemEditUndoOnMenuSelection, id = self.menuItemEditUndo.GetId() )
+		self.Bind( wx.EVT_MENU, self.menuItemEditRedoOnMenuSelection, id = self.menuItemEditRedo.GetId() )
 
 		self.Bind(wx.EVT_CLOSE, self.exitEvent)
 	
@@ -156,6 +158,8 @@ class frameMain ( wx.Frame ):
 				with open(self.pathname, 'r') as file:
 					self.right.treeEditor.loadTree(file)
 					self.ResetStar()
+					self.right.treeEditor.tree.undo_stack.clear()
+					self.right.treeEditor.tree.redo_stack.clear()
 			except IOError:
 				wx.LogError("Cannot open file.")
 
@@ -207,7 +211,30 @@ class frameMain ( wx.Frame ):
 	def menuItemHelpAboutOnMenuSelection( self, event ):
 		about = aboutWindow()
 		about.Show()
-		
+	
+	def menuItemEditUndoOnMenuSelection( self, event ):
+		obj = self.right.treeEditor.tree.undo_stack.pop()
+
+		if not obj is None:
+		   obj.run()
+		   obj.switch = False
+		   obj.next = None
+		   self.right.treeEditor.tree.redo_stack.push(obj)
+
+		self.right.treeEditor.Refresh(False)
+
+	def menuItemEditRedoOnMenuSelection( self, event ):
+		obj = self.right.treeEditor.tree.redo_stack.pop()
+
+		if not obj is None:
+		    obj.run()
+		    obj.switch = True
+		    obj.next = None 
+		    self.right.treeEditor.tree.undo_stack.push(obj)
+		    self.right.treeEditor.tree.redo_stack.clear()
+
+		self.right.treeEditor.Refresh(False)
+
 	# Function to display Right Click Menu
 	def OnRightDown(self, e):
 		self.PopupMenu(RCMenu(self))
@@ -279,7 +306,7 @@ class RCMenu(wx.Menu):
 			# XXX HACK XXX
 			# Node names must be unique
 			node = Node(selection + '_' + str(num) + '_' + str(robot) + '_' + preceeding_0s + str(node_num), maybeNode.x, maybeNode.y + 100)
-			nodeView.tree.AddNode(maybeNode.name, node)
+			nodeView.tree.AddNode([maybeNode.name, node, True])
 			nodeView.Refresh(False)
 			self.parent.AddStar()
 		
@@ -299,7 +326,7 @@ class RCMenu(wx.Menu):
 		
 		if maybeNode is not None:
 			# TODO: Make a function to do all these steps on nodeview
-			nodeView.tree.RemoveNode(maybeNode.name)
+			nodeView.tree.RemoveNode( [ maybeNode.name, True, [], 0 ] )
 			nodeView.Refresh(False)
 			self.parent.AddStar()
 
