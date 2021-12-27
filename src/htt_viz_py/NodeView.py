@@ -123,7 +123,6 @@ class Tree:
 
 		return tree_dict
 
-	#args[0]= parent_name, args[1] = node to add
 	#Params:
 	#	args[0]:	name of the parent node to add to
 	#	args[1]:	object created for the new node to add
