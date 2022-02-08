@@ -1,10 +1,10 @@
 import wx
-import rospy as rp
+#import rospy as rp
 import yaml
 from yaml import Loader, Dumper
-from htt_viz.srv import Update
-from htt_viz.srv import UpdateResponse
-from htt_viz_py.Stack import Stack, ActionNode, FunctionCall
+#from htt_viz.srv import Update
+#from htt_viz.srv import UpdateResponse
+from Stack import Stack, ActionNode, FunctionCall
 
 NODE_WIDTH = 120
 NODE_HEIGHT = 25
@@ -19,12 +19,18 @@ class Node:
 		self.activation_potential = 0.0
 		self.color = "red"
 
+		self.type = self.name[-7:-6]
+
 		self.parent = nParent
 		self.children = []
+		self.depth = 0
 		
 	def addChild(self, nNode):
 		self.children.append(nNode)
 		
+	def isLeaf(self):
+		return len(self.children) < 1;
+
 	def getHitNode(self, x, y):
 		nodeWidth = NODE_WIDTH
 		nodeHeight = NODE_HEIGHT
@@ -135,6 +141,14 @@ class Tree:
 		# set the parent of the new node to the passed parent (its a reference so it will change all instances)
 		args[1].parent = args[0]
 
+		p = self.node_dict[args[0]]
+		depth = 1
+		if args[0] != 'NONE':
+			while p.parent is not None:
+				p = self.node_dict[p.parent]
+				depth = depth + 1
+
+		args[1].depth = depth
 		# Not sure if this is necessary so I'm leaving it in (Tyler)
 		if not args[0] == "NONE":
 			self.node_dict[args[0]].addChild(args[1])
@@ -157,7 +171,12 @@ class Tree:
 	# desc.: recursively print the nodes in the subtree starting at node_name
 	def PrintNodes(self, node_name):
 		
-		print(node_name)
+		dashes = ''
+
+		for i in range(self.node_dict[node_name].depth):
+			dashes = dashes + '- '
+
+		print(dashes + node_name)
 
 		for child in self.node_dict[node_name].children:
 			self.PrintNodes(child.name)

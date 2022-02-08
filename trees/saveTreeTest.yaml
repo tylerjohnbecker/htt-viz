@@ -1,0 +1,13044 @@
+NodeList:
+- ROOT_4_0_000
+- THEN_0_0_001
+- OR_1_0_002
+- OR_1_0_005
+- THEN_0_0_043
+- MOVE_3_0_328
+- MOVE_3_0_030
+- THEN_0_0_071
+- THEN_0_0_091
+- THEN_0_0_656
+- THEN_0_0_768
+- MOVE_3_0_003
+- MOVE_3_0_004
+- OR_1_0_006
+- MOVE_3_0_019
+- AND_2_0_127
+- THEN_0_0_007
+- AND_2_0_015
+- AND_2_0_093
+- OR_1_0_159
+- MOVE_3_0_572
+- MOVE_3_0_025
+- AND_2_0_008
+- AND_2_0_075
+- OR_1_0_199
+- AND_2_0_009
+- OR_1_0_010
+- THEN_0_0_029
+- AND_2_0_143
+- AND_2_0_483
+- MOVE_3_0_035
+- MOVE_3_0_052
+- MOVE_3_0_011
+- OR_1_0_012
+- AND_2_0_013
+- THEN_0_0_017
+- OR_1_0_114
+- THEN_0_0_041
+- MOVE_3_0_054
+- AND_2_0_014
+- AND_2_0_020
+- THEN_0_0_707
+- OR_1_0_022
+- MOVE_3_0_034
+- OR_1_0_060
+- OR_1_0_077
+- AND_2_0_203
+- AND_2_0_016
+- MOVE_3_0_023
+- AND_2_0_321
+- OR_1_0_795
+- OR_1_0_018
+- THEN_0_0_021
+- THEN_0_0_208
+- THEN_0_0_024
+- THEN_0_0_044
+- MOVE_3_0_063
+- OR_1_0_277
+- AND_2_0_026
+- MOVE_3_0_040
+- THEN_0_0_255
+- THEN_0_0_741
+- THEN_0_0_027
+- THEN_0_0_095
+- AND_2_0_173
+- AND_2_0_028
+- THEN_0_0_175
+- THEN_0_0_241
+- THEN_0_0_282
+- MOVE_3_0_031
+- OR_1_0_032
+- AND_2_0_045
+- AND_2_0_923
+- MOVE_3_0_033
+- MOVE_3_0_036
+- AND_2_0_037
+- OR_1_0_069
+- THEN_0_0_100
+- THEN_0_0_038
+- THEN_0_0_076
+- AND_2_0_087
+- THEN_0_0_149
+- MOVE_3_0_478
+- OR_1_0_630
+- OR_1_0_039
+- AND_2_0_049
+- THEN_0_0_051
+- THEN_0_0_085
+- THEN_0_0_042
+- OR_1_0_064
+- OR_1_0_046
+- MOVE_3_0_195
+- AND_2_0_350
+- MOVE_3_0_411
+- OR_1_0_468
+- THEN_0_0_484
+- MOVE_3_0_047
+- OR_1_0_048
+- MOVE_3_0_229
+- MOVE_3_0_476
+- OR_1_0_718
+- MOVE_3_0_050
+- OR_1_0_053
+- OR_1_0_227
+- THEN_0_0_739
+- OR_1_0_055
+- OR_1_0_092
+- OR_1_0_094
+- AND_2_0_056
+- AND_2_0_158
+- OR_1_0_364
+- THEN_0_0_770
+- OR_1_0_057
+- OR_1_0_161
+- THEN_0_0_710
+- OR_1_0_058
+- MOVE_3_0_104
+- AND_2_0_059
+- THEN_0_0_072
+- OR_1_0_133
+- MOVE_3_0_135
+- OR_1_0_182
+- AND_2_0_146
+- THEN_0_0_391
+- OR_1_0_061
+- OR_1_0_105
+- MOVE_3_0_062
+- OR_1_0_065
+- MOVE_3_0_084
+- OR_1_0_225
+- MOVE_3_0_535
+- THEN_0_0_066
+- AND_2_0_112
+- MOVE_3_0_120
+- MOVE_3_0_067
+- MOVE_3_0_068
+- AND_2_0_070
+- MOVE_3_0_108
+- MOVE_3_0_311
+- MOVE_3_0_915
+- OR_1_0_073
+- THEN_0_0_078
+- THEN_0_0_080
+- THEN_0_0_074
+- OR_1_0_417
+- OR_1_0_481
+- OR_1_0_079
+- OR_1_0_081
+- OR_1_0_096
+- AND_2_0_233
+- THEN_0_0_082
+- MOVE_3_0_117
+- MOVE_3_0_360
+- AND_2_0_083
+- THEN_0_0_099
+- OR_1_0_147
+- OR_1_0_921
+- THEN_0_0_086
+- THEN_0_0_164
+- MOVE_3_0_088
+- AND_2_0_089
+- OR_1_0_129
+- MOVE_3_0_162
+- THEN_0_0_348
+- THEN_0_0_090
+- THEN_0_0_107
+- MOVE_3_0_110
+- THEN_0_0_097
+- AND_2_0_098
+- OR_1_0_113
+- THEN_0_0_394
+- THEN_0_0_187
+- OR_1_0_101
+- AND_2_0_608
+- MOVE_3_0_626
+- THEN_0_0_102
+- THEN_0_0_118
+- MOVE_3_0_904
+- MOVE_3_0_103
+- AND_2_0_106
+- THEN_0_0_268
+- AND_2_0_438
+- OR_1_0_109
+- AND_2_0_427
+- MOVE_3_0_516
+- OR_1_0_111
+- THEN_0_0_189
+- OR_1_0_207
+- OR_1_0_735
+- OR_1_0_115
+- OR_1_0_131
+- THEN_0_0_248
+- THEN_0_0_314
+- MOVE_3_0_649
+- AND_2_0_116
+- AND_2_0_454
+- OR_1_0_759
+- THEN_0_0_119
+- AND_2_0_202
+- OR_1_0_472
+- THEN_0_0_792
+- MOVE_3_0_121
+- AND_2_0_122
+- AND_2_0_145
+- THEN_0_0_326
+- THEN_0_0_755
+- OR_1_0_949
+- THEN_0_0_123
+- OR_1_0_561
+- OR_1_0_749
+- OR_1_0_124
+- MOVE_3_0_126
+- THEN_0_0_130
+- OR_1_0_239
+- AND_2_0_459
+- MOVE_3_0_555
+- THEN_0_0_125
+- THEN_0_0_188
+- OR_1_0_413
+- THEN_0_0_460
+- MOVE_3_0_128
+- AND_2_0_132
+- OR_1_0_304
+- AND_2_0_865
+- THEN_0_0_134
+- AND_2_0_136
+- THEN_0_0_245
+- THEN_0_0_310
+- THEN_0_0_137
+- AND_2_0_288
+- MOVE_3_0_138
+- THEN_0_0_139
+- AND_2_0_312
+- MOVE_3_0_140
+- MOVE_3_0_141
+- THEN_0_0_142
+- MOVE_3_0_144
+- MOVE_3_0_148
+- THEN_0_0_150
+- OR_1_0_623
+- THEN_0_0_151
+- THEN_0_0_152
+- THEN_0_0_154
+- MOVE_3_0_214
+- AND_2_0_291
+- OR_1_0_354
+- AND_2_0_499
+- THEN_0_0_153
+- OR_1_0_155
+- OR_1_0_156
+- AND_2_0_211
+- AND_2_0_489
+- AND_2_0_157
+- MOVE_3_0_160
+- AND_2_0_163
+- MOVE_3_0_286
+- AND_2_0_306
+- MOVE_3_0_700
+- MOVE_3_0_165
+- OR_1_0_166
+- OR_1_0_185
+- AND_2_0_383
+- THEN_0_0_685
+- MOVE_3_0_548
+- OR_1_0_167
+- OR_1_0_692
+- MOVE_3_0_168
+- THEN_0_0_169
+- AND_2_0_264
+- OR_1_0_336
+- MOVE_3_0_536
+- OR_1_0_170
+- THEN_0_0_205
+- THEN_0_0_216
+- MOVE_3_0_781
+- AND_2_0_171
+- MOVE_3_0_365
+- THEN_0_0_390
+- AND_2_0_925
+- OR_1_0_172
+- AND_2_0_283
+- MOVE_3_0_174
+- AND_2_0_176
+- OR_1_0_578
+- OR_1_0_177
+- OR_1_0_178
+- OR_1_0_201
+- AND_2_0_402
+- OR_1_0_743
+- AND_2_0_828
+- OR_1_0_179
+- OR_1_0_262
+- MOVE_3_0_361
+- OR_1_0_822
+- OR_1_0_359
+- AND_2_0_883
+- MOVE_3_0_180
+- THEN_0_0_181
+- MOVE_3_0_193
+- AND_2_0_237
+- THEN_0_0_834
+- AND_2_0_466
+- OR_1_0_183
+- OR_1_0_184
+- AND_2_0_250
+- MOVE_3_0_270
+- AND_2_0_693
+- THEN_0_0_186
+- OR_1_0_679
+- THEN_0_0_190
+- THEN_0_0_279
+- OR_1_0_387
+- THEN_0_0_418
+- OR_1_0_920
+- AND_2_0_191
+- AND_2_0_192
+- MOVE_3_0_242
+- MOVE_3_0_385
+- MOVE_3_0_663
+- AND_2_0_876
+- OR_1_0_194
+- MOVE_3_0_801
+- OR_1_0_196
+- AND_2_0_230
+- MOVE_3_0_197
+- OR_1_0_198
+- AND_2_0_244
+- AND_2_0_293
+- THEN_0_0_322
+- AND_2_0_356
+- MOVE_3_0_503
+- OR_1_0_867
+- MOVE_3_0_200
+- MOVE_3_0_204
+- AND_2_0_206
+- AND_2_0_347
+- AND_2_0_908
+- AND_2_0_654
+- OR_1_0_209
+- THEN_0_0_254
+- AND_2_0_308
+- OR_1_0_331
+- OR_1_0_377
+- AND_2_0_335
+- AND_2_0_753
+- OR_1_0_210
+- THEN_0_0_226
+- THEN_0_0_212
+- THEN_0_0_213
+- AND_2_0_384
+- THEN_0_0_451
+- OR_1_0_798
+- AND_2_0_215
+- AND_2_0_278
+- OR_1_0_720
+- OR_1_0_217
+- MOVE_3_0_401
+- THEN_0_0_518
+- THEN_0_0_218
+- OR_1_0_617
+- OR_1_0_760
+- THEN_0_0_905
+- MOVE_3_0_219
+- MOVE_3_0_220
+- MOVE_3_0_221
+- OR_1_0_222
+- MOVE_3_0_492
+- MOVE_3_0_621
+- MOVE_3_0_223
+- AND_2_0_224
+- THEN_0_0_698
+- THEN_0_0_228
+- MOVE_3_0_446
+- THEN_0_0_231
+- THEN_0_0_232
+- MOVE_3_0_234
+- MOVE_3_0_235
+- AND_2_0_236
+- MOVE_3_0_238
+- THEN_0_0_240
+- OR_1_0_701
+- THEN_0_0_243
+- THEN_0_0_715
+- OR_1_0_880
+- AND_2_0_246
+- THEN_0_0_580
+- OR_1_0_247
+- OR_1_0_316
+- MOVE_3_0_703
+- THEN_0_0_940
+- MOVE_3_0_249
+- MOVE_3_0_251
+- MOVE_3_0_252
+- THEN_0_0_253
+- OR_1_0_256
+- THEN_0_0_456
+- AND_2_0_842
+- AND_2_0_257
+- OR_1_0_545
+- MOVE_3_0_258
+- AND_2_0_259
+- THEN_0_0_591
+- OR_1_0_661
+- OR_1_0_665
+- OR_1_0_708
+- OR_1_0_932
+- OR_1_0_260
+- OR_1_0_528
+- AND_2_0_771
+- AND_2_0_261
+- MOVE_3_0_380
+- OR_1_0_791
+- OR_1_0_263
+- OR_1_0_820
+- OR_1_0_265
+- THEN_0_0_266
+- THEN_0_0_267
+- THEN_0_0_309
+- AND_2_0_592
+- MOVE_3_0_269
+- THEN_0_0_271
+- OR_1_0_289
+- AND_2_0_533
+- AND_2_0_272
+- AND_2_0_388
+- THEN_0_0_273
+- MOVE_3_0_274
+- OR_1_0_275
+- OR_1_0_598
+- OR_1_0_861
+- OR_1_0_276
+- MOVE_3_0_363
+- OR_1_0_412
+- AND_2_0_280
+- THEN_0_0_303
+- AND_2_0_486
+- AND_2_0_766
+- THEN_0_0_281
+- MOVE_3_0_290
+- AND_2_0_477
+- THEN_0_0_284
+- OR_1_0_431
+- MOVE_3_0_461
+- OR_1_0_285
+- AND_2_0_423
+- AND_2_0_287
+- MOVE_3_0_405
+- THEN_0_0_420
+- MOVE_3_0_292
+- OR_1_0_294
+- THEN_0_0_295
+- AND_2_0_296
+- OR_1_0_445
+- MOVE_3_0_297
+- OR_1_0_298
+- MOVE_3_0_371
+- THEN_0_0_442
+- OR_1_0_887
+- THEN_0_0_299
+- THEN_0_0_300
+- MOVE_3_0_301
+- MOVE_3_0_302
+- AND_2_0_305
+- OR_1_0_307
+- OR_1_0_313
+- THEN_0_0_734
+- MOVE_3_0_315
+- THEN_0_0_317
+- OR_1_0_809
+- MOVE_3_0_318
+- MOVE_3_0_319
+- AND_2_0_320
+- THEN_0_0_323
+- THEN_0_0_586
+- OR_1_0_917
+- MOVE_3_0_324
+- OR_1_0_325
+- THEN_0_0_398
+- OR_1_0_327
+- THEN_0_0_329
+- THEN_0_0_891
+- OR_1_0_330
+- MOVE_3_0_521
+- MOVE_3_0_631
+- OR_1_0_332
+- THEN_0_0_333
+- OR_1_0_505
+- MOVE_3_0_642
+- MOVE_3_0_334
+- THEN_0_0_337
+- OR_1_0_406
+- THEN_0_0_680
+- THEN_0_0_338
+- OR_1_0_339
+- AND_2_0_340
+- MOVE_3_0_341
+- THEN_0_0_342
+- AND_2_0_436
+- MOVE_3_0_343
+- MOVE_3_0_344
+- MOVE_3_0_345
+- MOVE_3_0_346
+- MOVE_3_0_349
+- OR_1_0_351
+- AND_2_0_352
+- AND_2_0_353
+- AND_2_0_355
+- AND_2_0_357
+- THEN_0_0_358
+- OR_1_0_464
+- AND_2_0_362
+- MOVE_3_0_652
+- OR_1_0_686
+- OR_1_0_366
+- THEN_0_0_622
+- MOVE_3_0_367
+- THEN_0_0_368
+- MOVE_3_0_624
+- THEN_0_0_796
+- MOVE_3_0_369
+- OR_1_0_370
+- OR_1_0_422
+- AND_2_0_532
+- AND_2_0_884
+- THEN_0_0_901
+- THEN_0_0_372
+- AND_2_0_373
+- MOVE_3_0_374
+- MOVE_3_0_375
+- MOVE_3_0_376
+- AND_2_0_378
+- MOVE_3_0_379
+- AND_2_0_381
+- AND_2_0_554
+- MOVE_3_0_382
+- AND_2_0_386
+- OR_1_0_859
+- OR_1_0_389
+- AND_2_0_392
+- AND_2_0_393
+- OR_1_0_395
+- AND_2_0_396
+- THEN_0_0_530
+- AND_2_0_397
+- THEN_0_0_399
+- THEN_0_0_400
+- AND_2_0_403
+- MOVE_3_0_462
+- THEN_0_0_888
+- THEN_0_0_404
+- THEN_0_0_542
+- THEN_0_0_407
+- MOVE_3_0_449
+- MOVE_3_0_408
+- AND_2_0_409
+- AND_2_0_428
+- MOVE_3_0_855
+- THEN_0_0_410
+- THEN_0_0_414
+- OR_1_0_432
+- OR_1_0_805
+- MOVE_3_0_415
+- AND_2_0_416
+- AND_2_0_510
+- OR_1_0_793
+- AND_2_0_419
+- MOVE_3_0_517
+- OR_1_0_421
+- THEN_0_0_424
+- AND_2_0_601
+- OR_1_0_682
+- THEN_0_0_751
+- OR_1_0_425
+- AND_2_0_426
+- OR_1_0_429
+- AND_2_0_814
+- AND_2_0_430
+- AND_2_0_433
+- THEN_0_0_434
+- MOVE_3_0_435
+- MOVE_3_0_437
+- MOVE_3_0_439
+- AND_2_0_440
+- AND_2_0_557
+- AND_2_0_651
+- MOVE_3_0_441
+- MOVE_3_0_443
+- THEN_0_0_444
+- OR_1_0_846
+- OR_1_0_447
+- MOVE_3_0_727
+- MOVE_3_0_448
+- MOVE_3_0_450
+- AND_2_0_452
+- AND_2_0_453
+- AND_2_0_455
+- AND_2_0_607
+- THEN_0_0_872
+- THEN_0_0_457
+- AND_2_0_825
+- MOVE_3_0_458
+- MOVE_3_0_463
+- MOVE_3_0_465
+- THEN_0_0_467
+- MOVE_3_0_900
+- OR_1_0_913
+- OR_1_0_469
+- MOVE_3_0_470
+- THEN_0_0_471
+- THEN_0_0_848
+- AND_2_0_473
+- THEN_0_0_474
+- AND_2_0_475
+- MOVE_3_0_524
+- THEN_0_0_479
+- OR_1_0_480
+- OR_1_0_482
+- AND_2_0_844
+- THEN_0_0_485
+- MOVE_3_0_629
+- AND_2_0_674
+- AND_2_0_487
+- AND_2_0_667
+- MOVE_3_0_488
+- AND_2_0_490
+- AND_2_0_491
+- MOVE_3_0_672
+- THEN_0_0_493
+- THEN_0_0_643
+- AND_2_0_494
+- AND_2_0_495
+- MOVE_3_0_496
+- OR_1_0_497
+- AND_2_0_498
+- MOVE_3_0_600
+- AND_2_0_736
+- OR_1_0_500
+- OR_1_0_501
+- OR_1_0_540
+- OR_1_0_502
+- OR_1_0_504
+- MOVE_3_0_506
+- MOVE_3_0_507
+- MOVE_3_0_508
+- AND_2_0_509
+- AND_2_0_511
+- OR_1_0_512
+- MOVE_3_0_890
+- MOVE_3_0_513
+- OR_1_0_514
+- AND_2_0_526
+- THEN_0_0_515
+- AND_2_0_553
+- OR_1_0_943
+- AND_2_0_519
+- THEN_0_0_520
+- AND_2_0_826
+- OR_1_0_522
+- AND_2_0_625
+- THEN_0_0_523
+- AND_2_0_525
+- AND_2_0_618
+- MOVE_3_0_527
+- THEN_0_0_529
+- OR_1_0_531
+- OR_1_0_684
+- AND_2_0_802
+- AND_2_0_534
+- AND_2_0_584
+- THEN_0_0_756
+- OR_1_0_824
+- AND_2_0_537
+- THEN_0_0_538
+- OR_1_0_694
+- MOVE_3_0_539
+- THEN_0_0_541
+- AND_2_0_543
+- AND_2_0_544
+- AND_2_0_546
+- OR_1_0_547
+- MOVE_3_0_549
+- THEN_0_0_550
+- AND_2_0_551
+- MOVE_3_0_552
+- THEN_0_0_556
+- MOVE_3_0_558
+- OR_1_0_559
+- OR_1_0_732
+- OR_1_0_560
+- THEN_0_0_657
+- THEN_0_0_562
+- AND_2_0_563
+- AND_2_0_564
+- THEN_0_0_565
+- OR_1_0_566
+- THEN_0_0_567
+- MOVE_3_0_568
+- OR_1_0_569
+- MOVE_3_0_615
+- AND_2_0_683
+- OR_1_0_704
+- AND_2_0_875
+- OR_1_0_570
+- THEN_0_0_588
+- OR_1_0_926
+- THEN_0_0_606
+- MOVE_3_0_655
+- OR_1_0_571
+- MOVE_3_0_840
+- THEN_0_0_573
+- THEN_0_0_893
+- AND_2_0_574
+- OR_1_0_575
+- OR_1_0_773
+- AND_2_0_787
+- MOVE_3_0_576
+- AND_2_0_577
+- OR_1_0_579
+- MOVE_3_0_612
+- AND_2_0_581
+- AND_2_0_582
+- OR_1_0_583
+- OR_1_0_927
+- MOVE_3_0_585
+- OR_1_0_587
+- THEN_0_0_589
+- OR_1_0_590
+- THEN_0_0_593
+- MOVE_3_0_777
+- THEN_0_0_594
+- AND_2_0_595
+- AND_2_0_750
+- AND_2_0_596
+- OR_1_0_790
+- AND_2_0_597
+- THEN_0_0_599
+- AND_2_0_602
+- OR_1_0_603
+- AND_2_0_604
+- OR_1_0_744
+- AND_2_0_605
+- AND_2_0_609
+- THEN_0_0_610
+- OR_1_0_611
+- THEN_0_0_613
+- MOVE_3_0_614
+- MOVE_3_0_616
+- AND_2_0_619
+- AND_2_0_620
+- AND_2_0_627
+- MOVE_3_0_752
+- MOVE_3_0_628
+- AND_2_0_632
+- MOVE_3_0_722
+- THEN_0_0_633
+- OR_1_0_634
+- MOVE_3_0_690
+- OR_1_0_635
+- THEN_0_0_636
+- MOVE_3_0_637
+- MOVE_3_0_638
+- MOVE_3_0_639
+- OR_1_0_640
+- AND_2_0_641
+- OR_1_0_644
+- THEN_0_0_645
+- MOVE_3_0_646
+- AND_2_0_647
+- OR_1_0_699
+- OR_1_0_648
+- MOVE_3_0_650
+- MOVE_3_0_653
+- MOVE_3_0_658
+- THEN_0_0_659
+- OR_1_0_660
+- OR_1_0_662
+- OR_1_0_664
+- OR_1_0_666
+- OR_1_0_668
+- THEN_0_0_669
+- OR_1_0_670
+- AND_2_0_671
+- MOVE_3_0_673
+- THEN_0_0_675
+- MOVE_3_0_676
+- THEN_0_0_677
+- OR_1_0_678
+- MOVE_3_0_681
+- THEN_0_0_687
+- MOVE_3_0_688
+- THEN_0_0_689
+- THEN_0_0_931
+- AND_2_0_691
+- AND_2_0_695
+- OR_1_0_696
+- AND_2_0_843
+- MOVE_3_0_697
+- AND_2_0_702
+- MOVE_3_0_705
+- MOVE_3_0_706
+- AND_2_0_709
+- THEN_0_0_711
+- OR_1_0_712
+- OR_1_0_713
+- THEN_0_0_714
+- MOVE_3_0_907
+- THEN_0_0_716
+- MOVE_3_0_909
+- THEN_0_0_717
+- MOVE_3_0_745
+- THEN_0_0_719
+- AND_2_0_721
+- AND_2_0_723
+- THEN_0_0_775
+- THEN_0_0_724
+- THEN_0_0_808
+- THEN_0_0_725
+- THEN_0_0_726
+- AND_2_0_728
+- MOVE_3_0_729
+- AND_2_0_730
+- OR_1_0_731
+- THEN_0_0_733
+- AND_2_0_737
+- OR_1_0_738
+- OR_1_0_837
+- AND_2_0_740
+- THEN_0_0_742
+- OR_1_0_746
+- THEN_0_0_747
+- OR_1_0_748
+- THEN_0_0_754
+- AND_2_0_757
+- MOVE_3_0_758
+- THEN_0_0_761
+- THEN_0_0_910
+- AND_2_0_762
+- MOVE_3_0_763
+- MOVE_3_0_764
+- THEN_0_0_765
+- THEN_0_0_767
+- THEN_0_0_797
+- MOVE_3_0_769
+- AND_2_0_772
+- THEN_0_0_774
+- AND_2_0_776
+- OR_1_0_778
+- OR_1_0_779
+- THEN_0_0_780
+- AND_2_0_782
+- THEN_0_0_783
+- AND_2_0_784
+- OR_1_0_858
+- AND_2_0_785
+- THEN_0_0_786
+- THEN_0_0_788
+- AND_2_0_789
+- OR_1_0_924
+- AND_2_0_794
+- AND_2_0_799
+- OR_1_0_800
+- MOVE_3_0_803
+- AND_2_0_804
+- MOVE_3_0_806
+- OR_1_0_807
+- AND_2_0_810
+- MOVE_3_0_811
+- OR_1_0_812
+- OR_1_0_813
+- MOVE_3_0_815
+- MOVE_3_0_816
+- THEN_0_0_817
+- AND_2_0_818
+- AND_2_0_819
+- THEN_0_0_821
+- OR_1_0_823
+- OR_1_0_827
+- AND_2_0_829
+- AND_2_0_830
+- MOVE_3_0_886
+- MOVE_3_0_831
+- AND_2_0_832
+- THEN_0_0_853
+- MOVE_3_0_833
+- THEN_0_0_835
+- AND_2_0_836
+- OR_1_0_838
+- OR_1_0_839
+- THEN_0_0_841
+- MOVE_3_0_845
+- MOVE_3_0_847
+- OR_1_0_849
+- OR_1_0_850
+- AND_2_0_851
+- AND_2_0_852
+- AND_2_0_885
+- AND_2_0_889
+- MOVE_3_0_854
+- AND_2_0_856
+- OR_1_0_857
+- THEN_0_0_860
+- MOVE_3_0_862
+- AND_2_0_863
+- AND_2_0_864
+- AND_2_0_941
+- OR_1_0_866
+- THEN_0_0_868
+- THEN_0_0_869
+- MOVE_3_0_870
+- AND_2_0_871
+- OR_1_0_950
+- MOVE_3_0_873
+- MOVE_3_0_874
+- THEN_0_0_877
+- MOVE_3_0_878
+- OR_1_0_879
+- THEN_0_0_881
+- OR_1_0_892
+- THEN_0_0_882
+- THEN_0_0_894
+- OR_1_0_895
+- THEN_0_0_896
+- THEN_0_0_897
+- MOVE_3_0_898
+- OR_1_0_899
+- THEN_0_0_902
+- MOVE_3_0_903
+- MOVE_3_0_906
+- OR_1_0_911
+- OR_1_0_912
+- THEN_0_0_914
+- OR_1_0_916
+- MOVE_3_0_918
+- THEN_0_0_919
+- THEN_0_0_922
+- THEN_0_0_928
+- MOVE_3_0_929
+- AND_2_0_930
+- MOVE_3_0_933
+- AND_2_0_934
+- OR_1_0_935
+- THEN_0_0_936
+- AND_2_0_937
+- OR_1_0_938
+- OR_1_0_939
+- MOVE_3_0_942
+- MOVE_3_0_944
+- OR_1_0_945
+- THEN_0_0_946
+- OR_1_0_947
+- OR_1_0_948
+Nodes:
+  AND_2_0_008:
+    children:
+    - AND_2_0_075
+    - OR_1_0_199
+    mask:
+      node: 8
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_009:
+    children:
+    - OR_1_0_010
+    - MOVE_3_0_035
+    - MOVE_3_0_052
+    mask:
+      node: 9
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_013:
+    children:
+    - THEN_0_0_017
+    mask:
+      node: 13
+      robot: 0
+      type: 2
+    parent: OR_1_0_012
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_014:
+    children:
+    - AND_2_0_020
+    - OR_1_0_022
+    - OR_1_0_060
+    - OR_1_0_077
+    mask:
+      node: 14
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_015:
+    children:
+    - AND_2_0_093
+    mask:
+      node: 15
+      robot: 0
+      type: 2
+    parent: THEN_0_0_007
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_016:
+    children:
+    - MOVE_3_0_023
+    - AND_2_0_321
+    - OR_1_0_795
+    mask:
+      node: 16
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_020:
+    children:
+    - THEN_0_0_707
+    mask:
+      node: 20
+      robot: 0
+      type: 2
+    parent: AND_2_0_014
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_026:
+    children:
+    - MOVE_3_0_040
+    - THEN_0_0_255
+    - THEN_0_0_741
+    mask:
+      node: 26
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_028:
+    children:
+    - THEN_0_0_175
+    - THEN_0_0_241
+    mask:
+      node: 28
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_037:
+    children:
+    - OR_1_0_069
+    mask:
+      node: 37
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_045:
+    children:
+    - NONE
+    mask:
+      node: 45
+      robot: 0
+      type: 2
+    parent: OR_1_0_032
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_049:
+    children:
+    - NONE
+    mask:
+      node: 49
+      robot: 0
+      type: 2
+    parent: OR_1_0_039
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_056:
+    children:
+    - AND_2_0_158
+    - OR_1_0_364
+    - THEN_0_0_770
+    mask:
+      node: 56
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_059:
+    children:
+    - THEN_0_0_072
+    - AND_2_0_146
+    - THEN_0_0_391
+    mask:
+      node: 59
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_070:
+    children:
+    - MOVE_3_0_108
+    - MOVE_3_0_311
+    - MOVE_3_0_915
+    mask:
+      node: 70
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_075:
+    children:
+    - NONE
+    mask:
+      node: 75
+      robot: 0
+      type: 2
+    parent: AND_2_0_008
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_083:
+    children:
+    - THEN_0_0_099
+    - OR_1_0_147
+    mask:
+      node: 83
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_087:
+    children:
+    - NONE
+    mask:
+      node: 87
+      robot: 0
+      type: 2
+    parent: THEN_0_0_076
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_089:
+    children:
+    - OR_1_0_129
+    - THEN_0_0_348
+    mask:
+      node: 89
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_093:
+    children:
+    - OR_1_0_159
+    - MOVE_3_0_572
+    mask:
+      node: 93
+      robot: 0
+      type: 2
+    parent: AND_2_0_015
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_098:
+    children:
+    - NONE
+    mask:
+      node: 98
+      robot: 0
+      type: 2
+    parent: THEN_0_0_097
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_106:
+    children:
+    - THEN_0_0_268
+    - AND_2_0_438
+    mask:
+      node: 106
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_112:
+    children:
+    - MOVE_3_0_120
+    mask:
+      node: 112
+      robot: 0
+      type: 2
+    parent: THEN_0_0_066
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_116:
+    children:
+    - AND_2_0_454
+    mask:
+      node: 116
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_122:
+    children:
+    - AND_2_0_145
+    - THEN_0_0_326
+    - THEN_0_0_755
+    mask:
+      node: 122
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_127:
+    children:
+    - NONE
+    mask:
+      node: 127
+      robot: 0
+      type: 2
+    parent: OR_1_0_006
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_132:
+    children:
+    - OR_1_0_304
+    mask:
+      node: 132
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_136:
+    children:
+    - THEN_0_0_245
+    mask:
+      node: 136
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_143:
+    children:
+    - NONE
+    mask:
+      node: 143
+      robot: 0
+      type: 2
+    parent: THEN_0_0_029
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_145:
+    children:
+    - NONE
+    mask:
+      node: 145
+      robot: 0
+      type: 2
+    parent: AND_2_0_122
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_146:
+    children:
+    - NONE
+    mask:
+      node: 146
+      robot: 0
+      type: 2
+    parent: AND_2_0_059
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_157:
+    children:
+    - NONE
+    mask:
+      node: 157
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_158:
+    children:
+    - NONE
+    mask:
+      node: 158
+      robot: 0
+      type: 2
+    parent: AND_2_0_056
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_163:
+    children:
+    - MOVE_3_0_286
+    - AND_2_0_306
+    mask:
+      node: 163
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_171:
+    children:
+    - MOVE_3_0_365
+    - THEN_0_0_390
+    - AND_2_0_925
+    mask:
+      node: 171
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_173:
+    children:
+    - NONE
+    mask:
+      node: 173
+      robot: 0
+      type: 2
+    parent: THEN_0_0_095
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_176:
+    children:
+    - OR_1_0_578
+    mask:
+      node: 176
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_191:
+    children:
+    - NONE
+    mask:
+      node: 191
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_192:
+    children:
+    - MOVE_3_0_242
+    - MOVE_3_0_385
+    - MOVE_3_0_663
+    - AND_2_0_876
+    mask:
+      node: 192
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_202:
+    children:
+    - NONE
+    mask:
+      node: 202
+      robot: 0
+      type: 2
+    parent: THEN_0_0_119
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_203:
+    children:
+    - NONE
+    mask:
+      node: 203
+      robot: 0
+      type: 2
+    parent: OR_1_0_077
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_206:
+    children:
+    - AND_2_0_347
+    - AND_2_0_654
+    mask:
+      node: 206
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_211:
+    children:
+    - NONE
+    mask:
+      node: 211
+      robot: 0
+      type: 2
+    parent: OR_1_0_156
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_215:
+    children:
+    - AND_2_0_278
+    - OR_1_0_720
+    mask:
+      node: 215
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_224:
+    children:
+    - THEN_0_0_698
+    mask:
+      node: 224
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_230:
+    children:
+    - NONE
+    mask:
+      node: 230
+      robot: 0
+      type: 2
+    parent: OR_1_0_196
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_233:
+    children:
+    - NONE
+    mask:
+      node: 233
+      robot: 0
+      type: 2
+    parent: OR_1_0_096
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_236:
+    children:
+    - NONE
+    mask:
+      node: 236
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_237:
+    children:
+    - THEN_0_0_834
+    mask:
+      node: 237
+      robot: 0
+      type: 2
+    parent: THEN_0_0_181
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_244:
+    children:
+    - AND_2_0_293
+    - MOVE_3_0_503
+    mask:
+      node: 244
+      robot: 0
+      type: 2
+    parent: OR_1_0_198
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_246:
+    children:
+    - THEN_0_0_580
+    mask:
+      node: 246
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_250:
+    children:
+    - MOVE_3_0_270
+    - AND_2_0_693
+    mask:
+      node: 250
+      robot: 0
+      type: 2
+    parent: OR_1_0_184
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_257:
+    children:
+    - OR_1_0_545
+    mask:
+      node: 257
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_259:
+    children:
+    - THEN_0_0_591
+    - OR_1_0_665
+    - OR_1_0_708
+    - OR_1_0_932
+    mask:
+      node: 259
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_261:
+    children:
+    - MOVE_3_0_380
+    - OR_1_0_791
+    mask:
+      node: 261
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_264:
+    children:
+    - NONE
+    mask:
+      node: 264
+      robot: 0
+      type: 2
+    parent: THEN_0_0_169
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_272:
+    children:
+    - AND_2_0_388
+    mask:
+      node: 272
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_278:
+    children:
+    - NONE
+    mask:
+      node: 278
+      robot: 0
+      type: 2
+    parent: AND_2_0_215
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_280:
+    children:
+    - THEN_0_0_303
+    - AND_2_0_486
+    mask:
+      node: 280
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_283:
+    children:
+    - NONE
+    mask:
+      node: 283
+      robot: 0
+      type: 2
+    parent: OR_1_0_172
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_287:
+    children:
+    - MOVE_3_0_405
+    - THEN_0_0_420
+    mask:
+      node: 287
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_288:
+    children:
+    - NONE
+    mask:
+      node: 288
+      robot: 0
+      type: 2
+    parent: THEN_0_0_137
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_291:
+    children:
+    - NONE
+    mask:
+      node: 291
+      robot: 0
+      type: 2
+    parent: THEN_0_0_152
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_293:
+    children:
+    - THEN_0_0_322
+    mask:
+      node: 293
+      robot: 0
+      type: 2
+    parent: AND_2_0_244
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_296:
+    children:
+    - OR_1_0_445
+    mask:
+      node: 296
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_305:
+    children:
+    - NONE
+    mask:
+      node: 305
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_306:
+    children:
+    - MOVE_3_0_700
+    mask:
+      node: 306
+      robot: 0
+      type: 2
+    parent: AND_2_0_163
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_308:
+    children:
+    - NONE
+    mask:
+      node: 308
+      robot: 0
+      type: 2
+    parent: OR_1_0_209
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_312:
+    children:
+    - NONE
+    mask:
+      node: 312
+      robot: 0
+      type: 2
+    parent: THEN_0_0_139
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_320:
+    children:
+    - NONE
+    mask:
+      node: 320
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_321:
+    children:
+    - NONE
+    mask:
+      node: 321
+      robot: 0
+      type: 2
+    parent: AND_2_0_016
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_335:
+    children:
+    - NONE
+    mask:
+      node: 335
+      robot: 0
+      type: 2
+    parent: OR_1_0_209
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_340:
+    children:
+    - NONE
+    mask:
+      node: 340
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_347:
+    children:
+    - AND_2_0_908
+    mask:
+      node: 347
+      robot: 0
+      type: 2
+    parent: AND_2_0_206
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_350:
+    children:
+    - MOVE_3_0_411
+    mask:
+      node: 350
+      robot: 0
+      type: 2
+    parent: OR_1_0_046
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_352:
+    children:
+    - NONE
+    mask:
+      node: 352
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_353:
+    children:
+    - NONE
+    mask:
+      node: 353
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_355:
+    children:
+    - NONE
+    mask:
+      node: 355
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_356:
+    children:
+    - NONE
+    mask:
+      node: 356
+      robot: 0
+      type: 2
+    parent: THEN_0_0_322
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_357:
+    children:
+    - NONE
+    mask:
+      node: 357
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_362:
+    children:
+    - MOVE_3_0_652
+    - OR_1_0_686
+    mask:
+      node: 362
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_373:
+    children:
+    - NONE
+    mask:
+      node: 373
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_378:
+    children:
+    - NONE
+    mask:
+      node: 378
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_381:
+    children:
+    - AND_2_0_554
+    mask:
+      node: 381
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_383:
+    children:
+    - THEN_0_0_685
+    mask:
+      node: 383
+      robot: 0
+      type: 2
+    parent: OR_1_0_185
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_384:
+    children:
+    - NONE
+    mask:
+      node: 384
+      robot: 0
+      type: 2
+    parent: THEN_0_0_213
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_386:
+    children:
+    - OR_1_0_859
+    mask:
+      node: 386
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_388:
+    children:
+    - NONE
+    mask:
+      node: 388
+      robot: 0
+      type: 2
+    parent: AND_2_0_272
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_392:
+    children:
+    - NONE
+    mask:
+      node: 392
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_393:
+    children:
+    - NONE
+    mask:
+      node: 393
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_396:
+    children:
+    - THEN_0_0_530
+    mask:
+      node: 396
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_397:
+    children:
+    - NONE
+    mask:
+      node: 397
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_402:
+    children:
+    - OR_1_0_743
+    mask:
+      node: 402
+      robot: 0
+      type: 2
+    parent: OR_1_0_201
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_403:
+    children:
+    - MOVE_3_0_462
+    - THEN_0_0_888
+    mask:
+      node: 403
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_409:
+    children:
+    - AND_2_0_428
+    mask:
+      node: 409
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_416:
+    children:
+    - AND_2_0_510
+    - OR_1_0_793
+    mask:
+      node: 416
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_419:
+    children:
+    - MOVE_3_0_517
+    mask:
+      node: 419
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_423:
+    children:
+    - NONE
+    mask:
+      node: 423
+      robot: 0
+      type: 2
+    parent: OR_1_0_285
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_426:
+    children:
+    - NONE
+    mask:
+      node: 426
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_427:
+    children:
+    - NONE
+    mask:
+      node: 427
+      robot: 0
+      type: 2
+    parent: OR_1_0_109
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_428:
+    children:
+    - MOVE_3_0_855
+    mask:
+      node: 428
+      robot: 0
+      type: 2
+    parent: AND_2_0_409
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_430:
+    children:
+    - NONE
+    mask:
+      node: 430
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_433:
+    children:
+    - NONE
+    mask:
+      node: 433
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_436:
+    children:
+    - NONE
+    mask:
+      node: 436
+      robot: 0
+      type: 2
+    parent: THEN_0_0_342
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_438:
+    children:
+    - NONE
+    mask:
+      node: 438
+      robot: 0
+      type: 2
+    parent: AND_2_0_106
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_440:
+    children:
+    - AND_2_0_557
+    - AND_2_0_651
+    mask:
+      node: 440
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_452:
+    children:
+    - NONE
+    mask:
+      node: 452
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_453:
+    children:
+    - NONE
+    mask:
+      node: 453
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_454:
+    children:
+    - OR_1_0_759
+    mask:
+      node: 454
+      robot: 0
+      type: 2
+    parent: AND_2_0_116
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_455:
+    children:
+    - AND_2_0_607
+    - THEN_0_0_872
+    mask:
+      node: 455
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_459:
+    children:
+    - NONE
+    mask:
+      node: 459
+      robot: 0
+      type: 2
+    parent: OR_1_0_239
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_466:
+    children:
+    - NONE
+    mask:
+      node: 466
+      robot: 0
+      type: 2
+    parent: THEN_0_0_181
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_473:
+    children:
+    - NONE
+    mask:
+      node: 473
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_475:
+    children:
+    - MOVE_3_0_524
+    mask:
+      node: 475
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_477:
+    children:
+    - NONE
+    mask:
+      node: 477
+      robot: 0
+      type: 2
+    parent: THEN_0_0_281
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_483:
+    children:
+    - NONE
+    mask:
+      node: 483
+      robot: 0
+      type: 2
+    parent: OR_1_0_010
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_486:
+    children:
+    - AND_2_0_766
+    mask:
+      node: 486
+      robot: 0
+      type: 2
+    parent: AND_2_0_280
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_487:
+    children:
+    - AND_2_0_667
+    mask:
+      node: 487
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_489:
+    children:
+    - NONE
+    mask:
+      node: 489
+      robot: 0
+      type: 2
+    parent: OR_1_0_156
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_490:
+    children:
+    - NONE
+    mask:
+      node: 490
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_491:
+    children:
+    - MOVE_3_0_672
+    mask:
+      node: 491
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_494:
+    children:
+    - NONE
+    mask:
+      node: 494
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_495:
+    children:
+    - NONE
+    mask:
+      node: 495
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_498:
+    children:
+    - MOVE_3_0_600
+    - AND_2_0_736
+    mask:
+      node: 498
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_499:
+    children:
+    - NONE
+    mask:
+      node: 499
+      robot: 0
+      type: 2
+    parent: THEN_0_0_152
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_509:
+    children:
+    - NONE
+    mask:
+      node: 509
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_510:
+    children:
+    - NONE
+    mask:
+      node: 510
+      robot: 0
+      type: 2
+    parent: AND_2_0_416
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_511:
+    children:
+    - NONE
+    mask:
+      node: 511
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_519:
+    children:
+    - NONE
+    mask:
+      node: 519
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_525:
+    children:
+    - AND_2_0_618
+    mask:
+      node: 525
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_526:
+    children:
+    - NONE
+    mask:
+      node: 526
+      robot: 0
+      type: 2
+    parent: OR_1_0_514
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_532:
+    children:
+    - AND_2_0_884
+    mask:
+      node: 532
+      robot: 0
+      type: 2
+    parent: OR_1_0_370
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_533:
+    children:
+    - NONE
+    mask:
+      node: 533
+      robot: 0
+      type: 2
+    parent: OR_1_0_289
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_534:
+    children:
+    - AND_2_0_584
+    - THEN_0_0_756
+    - OR_1_0_824
+    mask:
+      node: 534
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_537:
+    children:
+    - NONE
+    mask:
+      node: 537
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_543:
+    children:
+    - NONE
+    mask:
+      node: 543
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_544:
+    children:
+    - NONE
+    mask:
+      node: 544
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_546:
+    children:
+    - NONE
+    mask:
+      node: 546
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_551:
+    children:
+    - NONE
+    mask:
+      node: 551
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_553:
+    children:
+    - OR_1_0_943
+    mask:
+      node: 553
+      robot: 0
+      type: 2
+    parent: THEN_0_0_515
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_554:
+    children:
+    - NONE
+    mask:
+      node: 554
+      robot: 0
+      type: 2
+    parent: AND_2_0_381
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_557:
+    children:
+    - NONE
+    mask:
+      node: 557
+      robot: 0
+      type: 2
+    parent: AND_2_0_440
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_563:
+    children:
+    - NONE
+    mask:
+      node: 563
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_564:
+    children:
+    - NONE
+    mask:
+      node: 564
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_574:
+    children:
+    - NONE
+    mask:
+      node: 574
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_577:
+    children:
+    - NONE
+    mask:
+      node: 577
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_581:
+    children:
+    - NONE
+    mask:
+      node: 581
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_582:
+    children:
+    - NONE
+    mask:
+      node: 582
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_584:
+    children:
+    - NONE
+    mask:
+      node: 584
+      robot: 0
+      type: 2
+    parent: AND_2_0_534
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_592:
+    children:
+    - NONE
+    mask:
+      node: 592
+      robot: 0
+      type: 2
+    parent: THEN_0_0_309
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_595:
+    children:
+    - AND_2_0_750
+    mask:
+      node: 595
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_596:
+    children:
+    - OR_1_0_790
+    mask:
+      node: 596
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_597:
+    children:
+    - NONE
+    mask:
+      node: 597
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_601:
+    children:
+    - OR_1_0_682
+    mask:
+      node: 601
+      robot: 0
+      type: 2
+    parent: THEN_0_0_424
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_602:
+    children:
+    - NONE
+    mask:
+      node: 602
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_604:
+    children:
+    - OR_1_0_744
+    mask:
+      node: 604
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_605:
+    children:
+    - NONE
+    mask:
+      node: 605
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_607:
+    children:
+    - NONE
+    mask:
+      node: 607
+      robot: 0
+      type: 2
+    parent: AND_2_0_455
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_608:
+    children:
+    - MOVE_3_0_626
+    mask:
+      node: 608
+      robot: 0
+      type: 2
+    parent: OR_1_0_101
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_609:
+    children:
+    - NONE
+    mask:
+      node: 609
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_618:
+    children:
+    - NONE
+    mask:
+      node: 618
+      robot: 0
+      type: 2
+    parent: AND_2_0_525
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_619:
+    children:
+    - NONE
+    mask:
+      node: 619
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_620:
+    children:
+    - NONE
+    mask:
+      node: 620
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_625:
+    children:
+    - NONE
+    mask:
+      node: 625
+      robot: 0
+      type: 2
+    parent: OR_1_0_522
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_627:
+    children:
+    - MOVE_3_0_752
+    mask:
+      node: 627
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_632:
+    children:
+    - MOVE_3_0_722
+    mask:
+      node: 632
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_641:
+    children:
+    - NONE
+    mask:
+      node: 641
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_647:
+    children:
+    - OR_1_0_699
+    mask:
+      node: 647
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_651:
+    children:
+    - NONE
+    mask:
+      node: 651
+      robot: 0
+      type: 2
+    parent: AND_2_0_440
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_654:
+    children:
+    - NONE
+    mask:
+      node: 654
+      robot: 0
+      type: 2
+    parent: AND_2_0_206
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_667:
+    children:
+    - NONE
+    mask:
+      node: 667
+      robot: 0
+      type: 2
+    parent: AND_2_0_487
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_671:
+    children:
+    - NONE
+    mask:
+      node: 671
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_674:
+    children:
+    - NONE
+    mask:
+      node: 674
+      robot: 0
+      type: 2
+    parent: THEN_0_0_485
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_683:
+    children:
+    - NONE
+    mask:
+      node: 683
+      robot: 0
+      type: 2
+    parent: OR_1_0_569
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_691:
+    children:
+    - NONE
+    mask:
+      node: 691
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_693:
+    children:
+    - NONE
+    mask:
+      node: 693
+      robot: 0
+      type: 2
+    parent: AND_2_0_250
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_695:
+    children:
+    - NONE
+    mask:
+      node: 695
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_702:
+    children:
+    - NONE
+    mask:
+      node: 702
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_709:
+    children:
+    - NONE
+    mask:
+      node: 709
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_721:
+    children:
+    - NONE
+    mask:
+      node: 721
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_723:
+    children:
+    - THEN_0_0_775
+    mask:
+      node: 723
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_728:
+    children:
+    - NONE
+    mask:
+      node: 728
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_730:
+    children:
+    - NONE
+    mask:
+      node: 730
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_736:
+    children:
+    - NONE
+    mask:
+      node: 736
+      robot: 0
+      type: 2
+    parent: AND_2_0_498
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_737:
+    children:
+    - NONE
+    mask:
+      node: 737
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_740:
+    children:
+    - NONE
+    mask:
+      node: 740
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_750:
+    children:
+    - NONE
+    mask:
+      node: 750
+      robot: 0
+      type: 2
+    parent: AND_2_0_595
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_753:
+    children:
+    - NONE
+    mask:
+      node: 753
+      robot: 0
+      type: 2
+    parent: OR_1_0_209
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_757:
+    children:
+    - NONE
+    mask:
+      node: 757
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_762:
+    children:
+    - NONE
+    mask:
+      node: 762
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_766:
+    children:
+    - NONE
+    mask:
+      node: 766
+      robot: 0
+      type: 2
+    parent: AND_2_0_486
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_771:
+    children:
+    - NONE
+    mask:
+      node: 771
+      robot: 0
+      type: 2
+    parent: OR_1_0_528
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_772:
+    children:
+    - NONE
+    mask:
+      node: 772
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_776:
+    children:
+    - NONE
+    mask:
+      node: 776
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_782:
+    children:
+    - NONE
+    mask:
+      node: 782
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_784:
+    children:
+    - OR_1_0_858
+    mask:
+      node: 784
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_785:
+    children:
+    - NONE
+    mask:
+      node: 785
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_787:
+    children:
+    - NONE
+    mask:
+      node: 787
+      robot: 0
+      type: 2
+    parent: OR_1_0_575
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_789:
+    children:
+    - OR_1_0_924
+    mask:
+      node: 789
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_794:
+    children:
+    - NONE
+    mask:
+      node: 794
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_799:
+    children:
+    - NONE
+    mask:
+      node: 799
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_802:
+    children:
+    - NONE
+    mask:
+      node: 802
+      robot: 0
+      type: 2
+    parent: OR_1_0_684
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_804:
+    children:
+    - NONE
+    mask:
+      node: 804
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_810:
+    children:
+    - NONE
+    mask:
+      node: 810
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_814:
+    children:
+    - NONE
+    mask:
+      node: 814
+      robot: 0
+      type: 2
+    parent: OR_1_0_429
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_818:
+    children:
+    - NONE
+    mask:
+      node: 818
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_819:
+    children:
+    - NONE
+    mask:
+      node: 819
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_825:
+    children:
+    - NONE
+    mask:
+      node: 825
+      robot: 0
+      type: 2
+    parent: THEN_0_0_457
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_826:
+    children:
+    - NONE
+    mask:
+      node: 826
+      robot: 0
+      type: 2
+    parent: THEN_0_0_520
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_828:
+    children:
+    - NONE
+    mask:
+      node: 828
+      robot: 0
+      type: 2
+    parent: OR_1_0_178
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_829:
+    children:
+    - NONE
+    mask:
+      node: 829
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_830:
+    children:
+    - MOVE_3_0_886
+    mask:
+      node: 830
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_832:
+    children:
+    - THEN_0_0_853
+    mask:
+      node: 832
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_836:
+    children:
+    - NONE
+    mask:
+      node: 836
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_842:
+    children:
+    - NONE
+    mask:
+      node: 842
+      robot: 0
+      type: 2
+    parent: OR_1_0_256
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_843:
+    children:
+    - NONE
+    mask:
+      node: 843
+      robot: 0
+      type: 2
+    parent: OR_1_0_696
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_844:
+    children:
+    - NONE
+    mask:
+      node: 844
+      robot: 0
+      type: 2
+    parent: OR_1_0_482
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_851:
+    children:
+    - NONE
+    mask:
+      node: 851
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_852:
+    children:
+    - AND_2_0_885
+    mask:
+      node: 852
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_856:
+    children:
+    - NONE
+    mask:
+      node: 856
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_863:
+    children:
+    - NONE
+    mask:
+      node: 863
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_864:
+    children:
+    - AND_2_0_941
+    mask:
+      node: 864
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_865:
+    children:
+    - NONE
+    mask:
+      node: 865
+      robot: 0
+      type: 2
+    parent: OR_1_0_304
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_871:
+    children:
+    - OR_1_0_950
+    mask:
+      node: 871
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_875:
+    children:
+    - NONE
+    mask:
+      node: 875
+      robot: 0
+      type: 2
+    parent: OR_1_0_569
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_876:
+    children:
+    - NONE
+    mask:
+      node: 876
+      robot: 0
+      type: 2
+    parent: AND_2_0_192
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_883:
+    children:
+    - NONE
+    mask:
+      node: 883
+      robot: 0
+      type: 2
+    parent: OR_1_0_359
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_884:
+    children:
+    - NONE
+    mask:
+      node: 884
+      robot: 0
+      type: 2
+    parent: AND_2_0_532
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_885:
+    children:
+    - AND_2_0_889
+    mask:
+      node: 885
+      robot: 0
+      type: 2
+    parent: AND_2_0_852
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_889:
+    children:
+    - NONE
+    mask:
+      node: 889
+      robot: 0
+      type: 2
+    parent: AND_2_0_885
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_908:
+    children:
+    - NONE
+    mask:
+      node: 908
+      robot: 0
+      type: 2
+    parent: AND_2_0_347
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_923:
+    children:
+    - NONE
+    mask:
+      node: 923
+      robot: 0
+      type: 2
+    parent: OR_1_0_032
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_925:
+    children:
+    - NONE
+    mask:
+      node: 925
+      robot: 0
+      type: 2
+    parent: AND_2_0_171
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_930:
+    children:
+    - NONE
+    mask:
+      node: 930
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_934:
+    children:
+    - NONE
+    mask:
+      node: 934
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_937:
+    children:
+    - NONE
+    mask:
+      node: 937
+      robot: 0
+      type: 2
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  AND_2_0_941:
+    children:
+    - NONE
+    mask:
+      node: 941
+      robot: 0
+      type: 2
+    parent: AND_2_0_864
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_003:
+    children:
+    - NONE
+    mask:
+      node: 3
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_004:
+    children:
+    - NONE
+    mask:
+      node: 4
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_011:
+    children:
+    - NONE
+    mask:
+      node: 11
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_019:
+    children:
+    - NONE
+    mask:
+      node: 19
+      robot: 0
+      type: 3
+    parent: OR_1_0_006
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_023:
+    children:
+    - NONE
+    mask:
+      node: 23
+      robot: 0
+      type: 3
+    parent: AND_2_0_016
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_025:
+    children:
+    - NONE
+    mask:
+      node: 25
+      robot: 0
+      type: 3
+    parent: THEN_0_0_007
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_030:
+    children:
+    - NONE
+    mask:
+      node: 30
+      robot: 0
+      type: 3
+    parent: OR_1_0_002
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_031:
+    children:
+    - NONE
+    mask:
+      node: 31
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_033:
+    children:
+    - NONE
+    mask:
+      node: 33
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_034:
+    children:
+    - NONE
+    mask:
+      node: 34
+      robot: 0
+      type: 3
+    parent: OR_1_0_022
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_035:
+    children:
+    - NONE
+    mask:
+      node: 35
+      robot: 0
+      type: 3
+    parent: AND_2_0_009
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_036:
+    children:
+    - NONE
+    mask:
+      node: 36
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_040:
+    children:
+    - NONE
+    mask:
+      node: 40
+      robot: 0
+      type: 3
+    parent: AND_2_0_026
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_047:
+    children:
+    - NONE
+    mask:
+      node: 47
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_050:
+    children:
+    - NONE
+    mask:
+      node: 50
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_052:
+    children:
+    - NONE
+    mask:
+      node: 52
+      robot: 0
+      type: 3
+    parent: AND_2_0_009
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_054:
+    children:
+    - NONE
+    mask:
+      node: 54
+      robot: 0
+      type: 3
+    parent: OR_1_0_012
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_062:
+    children:
+    - NONE
+    mask:
+      node: 62
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_063:
+    children:
+    - NONE
+    mask:
+      node: 63
+      robot: 0
+      type: 3
+    parent: THEN_0_0_024
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_067:
+    children:
+    - NONE
+    mask:
+      node: 67
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_068:
+    children:
+    - NONE
+    mask:
+      node: 68
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_084:
+    children:
+    - NONE
+    mask:
+      node: 84
+      robot: 0
+      type: 3
+    parent: OR_1_0_065
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_088:
+    children:
+    - NONE
+    mask:
+      node: 88
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_103:
+    children:
+    - NONE
+    mask:
+      node: 103
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_104:
+    children:
+    - NONE
+    mask:
+      node: 104
+      robot: 0
+      type: 3
+    parent: OR_1_0_058
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_108:
+    children:
+    - NONE
+    mask:
+      node: 108
+      robot: 0
+      type: 3
+    parent: AND_2_0_070
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_110:
+    children:
+    - NONE
+    mask:
+      node: 110
+      robot: 0
+      type: 3
+    parent: THEN_0_0_090
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_117:
+    children:
+    - NONE
+    mask:
+      node: 117
+      robot: 0
+      type: 3
+    parent: THEN_0_0_082
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_120:
+    children:
+    - NONE
+    mask:
+      node: 120
+      robot: 0
+      type: 3
+    parent: AND_2_0_112
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_121:
+    children:
+    - NONE
+    mask:
+      node: 121
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_126:
+    children:
+    - NONE
+    mask:
+      node: 126
+      robot: 0
+      type: 3
+    parent: OR_1_0_124
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_128:
+    children:
+    - NONE
+    mask:
+      node: 128
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_135:
+    children:
+    - NONE
+    mask:
+      node: 135
+      robot: 0
+      type: 3
+    parent: OR_1_0_133
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_138:
+    children:
+    - NONE
+    mask:
+      node: 138
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_140:
+    children:
+    - NONE
+    mask:
+      node: 140
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_141:
+    children:
+    - NONE
+    mask:
+      node: 141
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_144:
+    children:
+    - NONE
+    mask:
+      node: 144
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_148:
+    children:
+    - NONE
+    mask:
+      node: 148
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_160:
+    children:
+    - NONE
+    mask:
+      node: 160
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_162:
+    children:
+    - NONE
+    mask:
+      node: 162
+      robot: 0
+      type: 3
+    parent: OR_1_0_129
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_165:
+    children:
+    - NONE
+    mask:
+      node: 165
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_168:
+    children:
+    - NONE
+    mask:
+      node: 168
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_174:
+    children:
+    - NONE
+    mask:
+      node: 174
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_180:
+    children:
+    - NONE
+    mask:
+      node: 180
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_193:
+    children:
+    - NONE
+    mask:
+      node: 193
+      robot: 0
+      type: 3
+    parent: THEN_0_0_181
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_195:
+    children:
+    - NONE
+    mask:
+      node: 195
+      robot: 0
+      type: 3
+    parent: OR_1_0_046
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_197:
+    children:
+    - NONE
+    mask:
+      node: 197
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_200:
+    children:
+    - NONE
+    mask:
+      node: 200
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_204:
+    children:
+    - NONE
+    mask:
+      node: 204
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_214:
+    children:
+    - NONE
+    mask:
+      node: 214
+      robot: 0
+      type: 3
+    parent: THEN_0_0_154
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_219:
+    children:
+    - NONE
+    mask:
+      node: 219
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_220:
+    children:
+    - NONE
+    mask:
+      node: 220
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_221:
+    children:
+    - NONE
+    mask:
+      node: 221
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_223:
+    children:
+    - NONE
+    mask:
+      node: 223
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_229:
+    children:
+    - NONE
+    mask:
+      node: 229
+      robot: 0
+      type: 3
+    parent: OR_1_0_048
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_234:
+    children:
+    - NONE
+    mask:
+      node: 234
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_235:
+    children:
+    - NONE
+    mask:
+      node: 235
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_238:
+    children:
+    - NONE
+    mask:
+      node: 238
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_242:
+    children:
+    - NONE
+    mask:
+      node: 242
+      robot: 0
+      type: 3
+    parent: AND_2_0_192
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_249:
+    children:
+    - NONE
+    mask:
+      node: 249
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_251:
+    children:
+    - NONE
+    mask:
+      node: 251
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_252:
+    children:
+    - NONE
+    mask:
+      node: 252
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_258:
+    children:
+    - NONE
+    mask:
+      node: 258
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_269:
+    children:
+    - NONE
+    mask:
+      node: 269
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_270:
+    children:
+    - NONE
+    mask:
+      node: 270
+      robot: 0
+      type: 3
+    parent: AND_2_0_250
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_274:
+    children:
+    - NONE
+    mask:
+      node: 274
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_286:
+    children:
+    - NONE
+    mask:
+      node: 286
+      robot: 0
+      type: 3
+    parent: AND_2_0_163
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_290:
+    children:
+    - NONE
+    mask:
+      node: 290
+      robot: 0
+      type: 3
+    parent: THEN_0_0_281
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_292:
+    children:
+    - NONE
+    mask:
+      node: 292
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_297:
+    children:
+    - NONE
+    mask:
+      node: 297
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_301:
+    children:
+    - NONE
+    mask:
+      node: 301
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_302:
+    children:
+    - NONE
+    mask:
+      node: 302
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_311:
+    children:
+    - NONE
+    mask:
+      node: 311
+      robot: 0
+      type: 3
+    parent: AND_2_0_070
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_315:
+    children:
+    - NONE
+    mask:
+      node: 315
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_318:
+    children:
+    - NONE
+    mask:
+      node: 318
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_319:
+    children:
+    - NONE
+    mask:
+      node: 319
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_324:
+    children:
+    - NONE
+    mask:
+      node: 324
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_328:
+    children:
+    - NONE
+    mask:
+      node: 328
+      robot: 0
+      type: 3
+    parent: THEN_0_0_043
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_334:
+    children:
+    - NONE
+    mask:
+      node: 334
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_341:
+    children:
+    - NONE
+    mask:
+      node: 341
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_343:
+    children:
+    - NONE
+    mask:
+      node: 343
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_344:
+    children:
+    - NONE
+    mask:
+      node: 344
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_345:
+    children:
+    - NONE
+    mask:
+      node: 345
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_346:
+    children:
+    - NONE
+    mask:
+      node: 346
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_349:
+    children:
+    - NONE
+    mask:
+      node: 349
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_360:
+    children:
+    - NONE
+    mask:
+      node: 360
+      robot: 0
+      type: 3
+    parent: THEN_0_0_082
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_361:
+    children:
+    - NONE
+    mask:
+      node: 361
+      robot: 0
+      type: 3
+    parent: OR_1_0_262
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_363:
+    children:
+    - NONE
+    mask:
+      node: 363
+      robot: 0
+      type: 3
+    parent: OR_1_0_276
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_365:
+    children:
+    - NONE
+    mask:
+      node: 365
+      robot: 0
+      type: 3
+    parent: AND_2_0_171
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_367:
+    children:
+    - NONE
+    mask:
+      node: 367
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_369:
+    children:
+    - NONE
+    mask:
+      node: 369
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_371:
+    children:
+    - NONE
+    mask:
+      node: 371
+      robot: 0
+      type: 3
+    parent: OR_1_0_298
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_374:
+    children:
+    - NONE
+    mask:
+      node: 374
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_375:
+    children:
+    - NONE
+    mask:
+      node: 375
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_376:
+    children:
+    - NONE
+    mask:
+      node: 376
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_379:
+    children:
+    - NONE
+    mask:
+      node: 379
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_380:
+    children:
+    - NONE
+    mask:
+      node: 380
+      robot: 0
+      type: 3
+    parent: AND_2_0_261
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_382:
+    children:
+    - NONE
+    mask:
+      node: 382
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_385:
+    children:
+    - NONE
+    mask:
+      node: 385
+      robot: 0
+      type: 3
+    parent: AND_2_0_192
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_401:
+    children:
+    - NONE
+    mask:
+      node: 401
+      robot: 0
+      type: 3
+    parent: OR_1_0_217
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_405:
+    children:
+    - NONE
+    mask:
+      node: 405
+      robot: 0
+      type: 3
+    parent: AND_2_0_287
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_408:
+    children:
+    - NONE
+    mask:
+      node: 408
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_411:
+    children:
+    - NONE
+    mask:
+      node: 411
+      robot: 0
+      type: 3
+    parent: AND_2_0_350
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_415:
+    children:
+    - NONE
+    mask:
+      node: 415
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_435:
+    children:
+    - NONE
+    mask:
+      node: 435
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_437:
+    children:
+    - NONE
+    mask:
+      node: 437
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_439:
+    children:
+    - NONE
+    mask:
+      node: 439
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_441:
+    children:
+    - NONE
+    mask:
+      node: 441
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_443:
+    children:
+    - NONE
+    mask:
+      node: 443
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_446:
+    children:
+    - NONE
+    mask:
+      node: 446
+      robot: 0
+      type: 3
+    parent: THEN_0_0_228
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_448:
+    children:
+    - NONE
+    mask:
+      node: 448
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_449:
+    children:
+    - NONE
+    mask:
+      node: 449
+      robot: 0
+      type: 3
+    parent: THEN_0_0_407
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_450:
+    children:
+    - NONE
+    mask:
+      node: 450
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_458:
+    children:
+    - NONE
+    mask:
+      node: 458
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_461:
+    children:
+    - NONE
+    mask:
+      node: 461
+      robot: 0
+      type: 3
+    parent: OR_1_0_431
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_462:
+    children:
+    - NONE
+    mask:
+      node: 462
+      robot: 0
+      type: 3
+    parent: AND_2_0_403
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_463:
+    children:
+    - NONE
+    mask:
+      node: 463
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_465:
+    children:
+    - NONE
+    mask:
+      node: 465
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_470:
+    children:
+    - NONE
+    mask:
+      node: 470
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_476:
+    children:
+    - NONE
+    mask:
+      node: 476
+      robot: 0
+      type: 3
+    parent: OR_1_0_048
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_478:
+    children:
+    - NONE
+    mask:
+      node: 478
+      robot: 0
+      type: 3
+    parent: THEN_0_0_038
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_488:
+    children:
+    - NONE
+    mask:
+      node: 488
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_492:
+    children:
+    - NONE
+    mask:
+      node: 492
+      robot: 0
+      type: 3
+    parent: OR_1_0_222
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_496:
+    children:
+    - NONE
+    mask:
+      node: 496
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_503:
+    children:
+    - NONE
+    mask:
+      node: 503
+      robot: 0
+      type: 3
+    parent: AND_2_0_244
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_506:
+    children:
+    - NONE
+    mask:
+      node: 506
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_507:
+    children:
+    - NONE
+    mask:
+      node: 507
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_508:
+    children:
+    - NONE
+    mask:
+      node: 508
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_513:
+    children:
+    - NONE
+    mask:
+      node: 513
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_516:
+    children:
+    - NONE
+    mask:
+      node: 516
+      robot: 0
+      type: 3
+    parent: OR_1_0_109
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_517:
+    children:
+    - NONE
+    mask:
+      node: 517
+      robot: 0
+      type: 3
+    parent: AND_2_0_419
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_521:
+    children:
+    - NONE
+    mask:
+      node: 521
+      robot: 0
+      type: 3
+    parent: OR_1_0_330
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_524:
+    children:
+    - NONE
+    mask:
+      node: 524
+      robot: 0
+      type: 3
+    parent: AND_2_0_475
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_527:
+    children:
+    - NONE
+    mask:
+      node: 527
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_535:
+    children:
+    - NONE
+    mask:
+      node: 535
+      robot: 0
+      type: 3
+    parent: OR_1_0_065
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_536:
+    children:
+    - NONE
+    mask:
+      node: 536
+      robot: 0
+      type: 3
+    parent: THEN_0_0_169
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_539:
+    children:
+    - NONE
+    mask:
+      node: 539
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_548:
+    children:
+    - NONE
+    mask:
+      node: 548
+      robot: 0
+      type: 3
+    parent: OR_1_0_185
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_549:
+    children:
+    - NONE
+    mask:
+      node: 549
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_552:
+    children:
+    - NONE
+    mask:
+      node: 552
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_555:
+    children:
+    - NONE
+    mask:
+      node: 555
+      robot: 0
+      type: 3
+    parent: OR_1_0_124
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_558:
+    children:
+    - NONE
+    mask:
+      node: 558
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_568:
+    children:
+    - NONE
+    mask:
+      node: 568
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_572:
+    children:
+    - NONE
+    mask:
+      node: 572
+      robot: 0
+      type: 3
+    parent: AND_2_0_093
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_576:
+    children:
+    - NONE
+    mask:
+      node: 576
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_585:
+    children:
+    - NONE
+    mask:
+      node: 585
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_600:
+    children:
+    - NONE
+    mask:
+      node: 600
+      robot: 0
+      type: 3
+    parent: AND_2_0_498
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_612:
+    children:
+    - NONE
+    mask:
+      node: 612
+      robot: 0
+      type: 3
+    parent: OR_1_0_579
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_614:
+    children:
+    - NONE
+    mask:
+      node: 614
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_615:
+    children:
+    - NONE
+    mask:
+      node: 615
+      robot: 0
+      type: 3
+    parent: OR_1_0_569
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_616:
+    children:
+    - NONE
+    mask:
+      node: 616
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_621:
+    children:
+    - NONE
+    mask:
+      node: 621
+      robot: 0
+      type: 3
+    parent: OR_1_0_222
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_624:
+    children:
+    - NONE
+    mask:
+      node: 624
+      robot: 0
+      type: 3
+    parent: THEN_0_0_368
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_626:
+    children:
+    - NONE
+    mask:
+      node: 626
+      robot: 0
+      type: 3
+    parent: AND_2_0_608
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_628:
+    children:
+    - NONE
+    mask:
+      node: 628
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_629:
+    children:
+    - NONE
+    mask:
+      node: 629
+      robot: 0
+      type: 3
+    parent: THEN_0_0_485
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_631:
+    children:
+    - NONE
+    mask:
+      node: 631
+      robot: 0
+      type: 3
+    parent: OR_1_0_330
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_637:
+    children:
+    - NONE
+    mask:
+      node: 637
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_638:
+    children:
+    - NONE
+    mask:
+      node: 638
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_639:
+    children:
+    - NONE
+    mask:
+      node: 639
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_642:
+    children:
+    - NONE
+    mask:
+      node: 642
+      robot: 0
+      type: 3
+    parent: OR_1_0_505
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_646:
+    children:
+    - NONE
+    mask:
+      node: 646
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_649:
+    children:
+    - NONE
+    mask:
+      node: 649
+      robot: 0
+      type: 3
+    parent: THEN_0_0_314
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_650:
+    children:
+    - NONE
+    mask:
+      node: 650
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_652:
+    children:
+    - NONE
+    mask:
+      node: 652
+      robot: 0
+      type: 3
+    parent: AND_2_0_362
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_653:
+    children:
+    - NONE
+    mask:
+      node: 653
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_655:
+    children:
+    - NONE
+    mask:
+      node: 655
+      robot: 0
+      type: 3
+    parent: THEN_0_0_606
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_658:
+    children:
+    - NONE
+    mask:
+      node: 658
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_663:
+    children:
+    - NONE
+    mask:
+      node: 663
+      robot: 0
+      type: 3
+    parent: AND_2_0_192
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_672:
+    children:
+    - NONE
+    mask:
+      node: 672
+      robot: 0
+      type: 3
+    parent: AND_2_0_491
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_673:
+    children:
+    - NONE
+    mask:
+      node: 673
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_676:
+    children:
+    - NONE
+    mask:
+      node: 676
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_681:
+    children:
+    - NONE
+    mask:
+      node: 681
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_688:
+    children:
+    - NONE
+    mask:
+      node: 688
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_690:
+    children:
+    - NONE
+    mask:
+      node: 690
+      robot: 0
+      type: 3
+    parent: OR_1_0_634
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_697:
+    children:
+    - NONE
+    mask:
+      node: 697
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_700:
+    children:
+    - NONE
+    mask:
+      node: 700
+      robot: 0
+      type: 3
+    parent: AND_2_0_306
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_703:
+    children:
+    - NONE
+    mask:
+      node: 703
+      robot: 0
+      type: 3
+    parent: OR_1_0_316
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_705:
+    children:
+    - NONE
+    mask:
+      node: 705
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_706:
+    children:
+    - NONE
+    mask:
+      node: 706
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_722:
+    children:
+    - NONE
+    mask:
+      node: 722
+      robot: 0
+      type: 3
+    parent: AND_2_0_632
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_727:
+    children:
+    - NONE
+    mask:
+      node: 727
+      robot: 0
+      type: 3
+    parent: OR_1_0_447
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_729:
+    children:
+    - NONE
+    mask:
+      node: 729
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_745:
+    children:
+    - NONE
+    mask:
+      node: 745
+      robot: 0
+      type: 3
+    parent: THEN_0_0_717
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_752:
+    children:
+    - NONE
+    mask:
+      node: 752
+      robot: 0
+      type: 3
+    parent: AND_2_0_627
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_758:
+    children:
+    - NONE
+    mask:
+      node: 758
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_763:
+    children:
+    - NONE
+    mask:
+      node: 763
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_764:
+    children:
+    - NONE
+    mask:
+      node: 764
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_769:
+    children:
+    - NONE
+    mask:
+      node: 769
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_777:
+    children:
+    - NONE
+    mask:
+      node: 777
+      robot: 0
+      type: 3
+    parent: THEN_0_0_593
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_781:
+    children:
+    - NONE
+    mask:
+      node: 781
+      robot: 0
+      type: 3
+    parent: THEN_0_0_205
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_801:
+    children:
+    - NONE
+    mask:
+      node: 801
+      robot: 0
+      type: 3
+    parent: OR_1_0_194
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_803:
+    children:
+    - NONE
+    mask:
+      node: 803
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_806:
+    children:
+    - NONE
+    mask:
+      node: 806
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_811:
+    children:
+    - NONE
+    mask:
+      node: 811
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_815:
+    children:
+    - NONE
+    mask:
+      node: 815
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_816:
+    children:
+    - NONE
+    mask:
+      node: 816
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_831:
+    children:
+    - NONE
+    mask:
+      node: 831
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_833:
+    children:
+    - NONE
+    mask:
+      node: 833
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_840:
+    children:
+    - NONE
+    mask:
+      node: 840
+      robot: 0
+      type: 3
+    parent: OR_1_0_571
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_845:
+    children:
+    - NONE
+    mask:
+      node: 845
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_847:
+    children:
+    - NONE
+    mask:
+      node: 847
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_854:
+    children:
+    - NONE
+    mask:
+      node: 854
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_855:
+    children:
+    - NONE
+    mask:
+      node: 855
+      robot: 0
+      type: 3
+    parent: AND_2_0_428
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_862:
+    children:
+    - NONE
+    mask:
+      node: 862
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_870:
+    children:
+    - NONE
+    mask:
+      node: 870
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_873:
+    children:
+    - NONE
+    mask:
+      node: 873
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_874:
+    children:
+    - NONE
+    mask:
+      node: 874
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_878:
+    children:
+    - NONE
+    mask:
+      node: 878
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_886:
+    children:
+    - NONE
+    mask:
+      node: 886
+      robot: 0
+      type: 3
+    parent: AND_2_0_830
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_890:
+    children:
+    - NONE
+    mask:
+      node: 890
+      robot: 0
+      type: 3
+    parent: OR_1_0_512
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_898:
+    children:
+    - NONE
+    mask:
+      node: 898
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_900:
+    children:
+    - NONE
+    mask:
+      node: 900
+      robot: 0
+      type: 3
+    parent: THEN_0_0_467
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_903:
+    children:
+    - NONE
+    mask:
+      node: 903
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_904:
+    children:
+    - NONE
+    mask:
+      node: 904
+      robot: 0
+      type: 3
+    parent: THEN_0_0_102
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_906:
+    children:
+    - NONE
+    mask:
+      node: 906
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_907:
+    children:
+    - NONE
+    mask:
+      node: 907
+      robot: 0
+      type: 3
+    parent: THEN_0_0_714
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_909:
+    children:
+    - NONE
+    mask:
+      node: 909
+      robot: 0
+      type: 3
+    parent: THEN_0_0_716
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_915:
+    children:
+    - NONE
+    mask:
+      node: 915
+      robot: 0
+      type: 3
+    parent: AND_2_0_070
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_918:
+    children:
+    - NONE
+    mask:
+      node: 918
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_929:
+    children:
+    - NONE
+    mask:
+      node: 929
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_933:
+    children:
+    - NONE
+    mask:
+      node: 933
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_942:
+    children:
+    - NONE
+    mask:
+      node: 942
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  MOVE_3_0_944:
+    children:
+    - NONE
+    mask:
+      node: 944
+      robot: 0
+      type: 3
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_002:
+    children:
+    - OR_1_0_005
+    - MOVE_3_0_030
+    - THEN_0_0_071
+    - THEN_0_0_091
+    - THEN_0_0_656
+    - THEN_0_0_768
+    mask:
+      node: 2
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_005:
+    children:
+    - THEN_0_0_043
+    mask:
+      node: 5
+      robot: 0
+      type: 1
+    parent: OR_1_0_002
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_006:
+    children:
+    - MOVE_3_0_019
+    - AND_2_0_127
+    mask:
+      node: 6
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_010:
+    children:
+    - THEN_0_0_029
+    - AND_2_0_483
+    mask:
+      node: 10
+      robot: 0
+      type: 1
+    parent: AND_2_0_009
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_012:
+    children:
+    - AND_2_0_013
+    - THEN_0_0_041
+    - MOVE_3_0_054
+    mask:
+      node: 12
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_018:
+    children:
+    - THEN_0_0_021
+    - THEN_0_0_208
+    mask:
+      node: 18
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_022:
+    children:
+    - MOVE_3_0_034
+    mask:
+      node: 22
+      robot: 0
+      type: 1
+    parent: AND_2_0_014
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_032:
+    children:
+    - AND_2_0_045
+    - AND_2_0_923
+    mask:
+      node: 32
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_039:
+    children:
+    - AND_2_0_049
+    - THEN_0_0_051
+    mask:
+      node: 39
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_046:
+    children:
+    - MOVE_3_0_195
+    - AND_2_0_350
+    - OR_1_0_468
+    - THEN_0_0_484
+    mask:
+      node: 46
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_048:
+    children:
+    - MOVE_3_0_229
+    - MOVE_3_0_476
+    - OR_1_0_718
+    mask:
+      node: 48
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_053:
+    children:
+    - OR_1_0_227
+    mask:
+      node: 53
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_055:
+    children:
+    - OR_1_0_092
+    - OR_1_0_094
+    mask:
+      node: 55
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_057:
+    children:
+    - OR_1_0_161
+    - THEN_0_0_710
+    mask:
+      node: 57
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_058:
+    children:
+    - MOVE_3_0_104
+    mask:
+      node: 58
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_060:
+    children:
+    - NONE
+    mask:
+      node: 60
+      robot: 0
+      type: 1
+    parent: AND_2_0_014
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_061:
+    children:
+    - OR_1_0_105
+    mask:
+      node: 61
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_064:
+    children:
+    - NONE
+    mask:
+      node: 64
+      robot: 0
+      type: 1
+    parent: THEN_0_0_042
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_065:
+    children:
+    - MOVE_3_0_084
+    - OR_1_0_225
+    - MOVE_3_0_535
+    mask:
+      node: 65
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_069:
+    children:
+    - THEN_0_0_100
+    mask:
+      node: 69
+      robot: 0
+      type: 1
+    parent: AND_2_0_037
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_073:
+    children:
+    - THEN_0_0_078
+    mask:
+      node: 73
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_077:
+    children:
+    - AND_2_0_203
+    mask:
+      node: 77
+      robot: 0
+      type: 1
+    parent: AND_2_0_014
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_079:
+    children:
+    - NONE
+    mask:
+      node: 79
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_081:
+    children:
+    - OR_1_0_096
+    mask:
+      node: 81
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_092:
+    children:
+    - NONE
+    mask:
+      node: 92
+      robot: 0
+      type: 1
+    parent: OR_1_0_055
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_094:
+    children:
+    - NONE
+    mask:
+      node: 94
+      robot: 0
+      type: 1
+    parent: OR_1_0_055
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_096:
+    children:
+    - AND_2_0_233
+    mask:
+      node: 96
+      robot: 0
+      type: 1
+    parent: OR_1_0_081
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_101:
+    children:
+    - AND_2_0_608
+    mask:
+      node: 101
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_105:
+    children:
+    - NONE
+    mask:
+      node: 105
+      robot: 0
+      type: 1
+    parent: OR_1_0_061
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_109:
+    children:
+    - AND_2_0_427
+    - MOVE_3_0_516
+    mask:
+      node: 109
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_111:
+    children:
+    - THEN_0_0_189
+    - OR_1_0_207
+    mask:
+      node: 111
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_113:
+    children:
+    - THEN_0_0_394
+    mask:
+      node: 113
+      robot: 0
+      type: 1
+    parent: THEN_0_0_097
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_114:
+    children:
+    - NONE
+    mask:
+      node: 114
+      robot: 0
+      type: 1
+    parent: THEN_0_0_017
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_115:
+    children:
+    - OR_1_0_131
+    mask:
+      node: 115
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_124:
+    children:
+    - MOVE_3_0_126
+    - THEN_0_0_130
+    - MOVE_3_0_555
+    mask:
+      node: 124
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_129:
+    children:
+    - MOVE_3_0_162
+    mask:
+      node: 129
+      robot: 0
+      type: 1
+    parent: AND_2_0_089
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_131:
+    children:
+    - THEN_0_0_248
+    - THEN_0_0_314
+    mask:
+      node: 131
+      robot: 0
+      type: 1
+    parent: OR_1_0_115
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_133:
+    children:
+    - MOVE_3_0_135
+    mask:
+      node: 133
+      robot: 0
+      type: 1
+    parent: THEN_0_0_072
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_147:
+    children:
+    - OR_1_0_921
+    mask:
+      node: 147
+      robot: 0
+      type: 1
+    parent: AND_2_0_083
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_155:
+    children:
+    - NONE
+    mask:
+      node: 155
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_156:
+    children:
+    - AND_2_0_211
+    - AND_2_0_489
+    mask:
+      node: 156
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_159:
+    children:
+    - NONE
+    mask:
+      node: 159
+      robot: 0
+      type: 1
+    parent: AND_2_0_093
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_161:
+    children:
+    - NONE
+    mask:
+      node: 161
+      robot: 0
+      type: 1
+    parent: OR_1_0_057
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_166:
+    children:
+    - OR_1_0_185
+    mask:
+      node: 166
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_167:
+    children:
+    - OR_1_0_692
+    mask:
+      node: 167
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_170:
+    children:
+    - THEN_0_0_205
+    mask:
+      node: 170
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_172:
+    children:
+    - AND_2_0_283
+    mask:
+      node: 172
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_177:
+    children:
+    - NONE
+    mask:
+      node: 177
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_178:
+    children:
+    - OR_1_0_201
+    - AND_2_0_828
+    mask:
+      node: 178
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_179:
+    children:
+    - OR_1_0_262
+    - OR_1_0_359
+    mask:
+      node: 179
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_182:
+    children:
+    - NONE
+    mask:
+      node: 182
+      robot: 0
+      type: 1
+    parent: THEN_0_0_072
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_183:
+    children:
+    - NONE
+    mask:
+      node: 183
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_184:
+    children:
+    - AND_2_0_250
+    mask:
+      node: 184
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_185:
+    children:
+    - AND_2_0_383
+    - MOVE_3_0_548
+    mask:
+      node: 185
+      robot: 0
+      type: 1
+    parent: OR_1_0_166
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_194:
+    children:
+    - MOVE_3_0_801
+    mask:
+      node: 194
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_196:
+    children:
+    - AND_2_0_230
+    mask:
+      node: 196
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_198:
+    children:
+    - AND_2_0_244
+    - OR_1_0_867
+    mask:
+      node: 198
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_199:
+    children:
+    - NONE
+    mask:
+      node: 199
+      robot: 0
+      type: 1
+    parent: AND_2_0_008
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_201:
+    children:
+    - AND_2_0_402
+    mask:
+      node: 201
+      robot: 0
+      type: 1
+    parent: OR_1_0_178
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_207:
+    children:
+    - OR_1_0_735
+    mask:
+      node: 207
+      robot: 0
+      type: 1
+    parent: OR_1_0_111
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_209:
+    children:
+    - THEN_0_0_254
+    - AND_2_0_308
+    - OR_1_0_331
+    - AND_2_0_335
+    - AND_2_0_753
+    mask:
+      node: 209
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_210:
+    children:
+    - THEN_0_0_226
+    mask:
+      node: 210
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_217:
+    children:
+    - MOVE_3_0_401
+    - THEN_0_0_518
+    mask:
+      node: 217
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_222:
+    children:
+    - MOVE_3_0_492
+    - MOVE_3_0_621
+    mask:
+      node: 222
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_225:
+    children:
+    - NONE
+    mask:
+      node: 225
+      robot: 0
+      type: 1
+    parent: OR_1_0_065
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_227:
+    children:
+    - THEN_0_0_739
+    mask:
+      node: 227
+      robot: 0
+      type: 1
+    parent: OR_1_0_053
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_239:
+    children:
+    - AND_2_0_459
+    mask:
+      node: 239
+      robot: 0
+      type: 1
+    parent: THEN_0_0_130
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_247:
+    children:
+    - OR_1_0_316
+    mask:
+      node: 247
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_256:
+    children:
+    - THEN_0_0_456
+    - AND_2_0_842
+    mask:
+      node: 256
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_260:
+    children:
+    - OR_1_0_528
+    mask:
+      node: 260
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_262:
+    children:
+    - MOVE_3_0_361
+    - OR_1_0_822
+    mask:
+      node: 262
+      robot: 0
+      type: 1
+    parent: OR_1_0_179
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_263:
+    children:
+    - OR_1_0_820
+    mask:
+      node: 263
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_265:
+    children:
+    - NONE
+    mask:
+      node: 265
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_275:
+    children:
+    - OR_1_0_598
+    mask:
+      node: 275
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_276:
+    children:
+    - MOVE_3_0_363
+    - OR_1_0_412
+    mask:
+      node: 276
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_277:
+    children:
+    - NONE
+    mask:
+      node: 277
+      robot: 0
+      type: 1
+    parent: THEN_0_0_024
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_285:
+    children:
+    - AND_2_0_423
+    mask:
+      node: 285
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_289:
+    children:
+    - AND_2_0_533
+    mask:
+      node: 289
+      robot: 0
+      type: 1
+    parent: THEN_0_0_271
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_294:
+    children:
+    - NONE
+    mask:
+      node: 294
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_298:
+    children:
+    - MOVE_3_0_371
+    - THEN_0_0_442
+    - OR_1_0_887
+    mask:
+      node: 298
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_304:
+    children:
+    - AND_2_0_865
+    mask:
+      node: 304
+      robot: 0
+      type: 1
+    parent: AND_2_0_132
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_307:
+    children:
+    - NONE
+    mask:
+      node: 307
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_313:
+    children:
+    - THEN_0_0_734
+    mask:
+      node: 313
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_316:
+    children:
+    - MOVE_3_0_703
+    - THEN_0_0_940
+    mask:
+      node: 316
+      robot: 0
+      type: 1
+    parent: OR_1_0_247
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_325:
+    children:
+    - THEN_0_0_398
+    mask:
+      node: 325
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_327:
+    children:
+    - NONE
+    mask:
+      node: 327
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_330:
+    children:
+    - MOVE_3_0_521
+    - MOVE_3_0_631
+    mask:
+      node: 330
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_331:
+    children:
+    - OR_1_0_377
+    mask:
+      node: 331
+      robot: 0
+      type: 1
+    parent: OR_1_0_209
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_332:
+    children:
+    - NONE
+    mask:
+      node: 332
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_336:
+    children:
+    - NONE
+    mask:
+      node: 336
+      robot: 0
+      type: 1
+    parent: THEN_0_0_169
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_339:
+    children:
+    - NONE
+    mask:
+      node: 339
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_351:
+    children:
+    - NONE
+    mask:
+      node: 351
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_354:
+    children:
+    - NONE
+    mask:
+      node: 354
+      robot: 0
+      type: 1
+    parent: THEN_0_0_152
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_359:
+    children:
+    - AND_2_0_883
+    mask:
+      node: 359
+      robot: 0
+      type: 1
+    parent: OR_1_0_179
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_364:
+    children:
+    - NONE
+    mask:
+      node: 364
+      robot: 0
+      type: 1
+    parent: AND_2_0_056
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_366:
+    children:
+    - THEN_0_0_622
+    mask:
+      node: 366
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_370:
+    children:
+    - OR_1_0_422
+    - AND_2_0_532
+    - THEN_0_0_901
+    mask:
+      node: 370
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_377:
+    children:
+    - NONE
+    mask:
+      node: 377
+      robot: 0
+      type: 1
+    parent: OR_1_0_331
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_387:
+    children:
+    - THEN_0_0_418
+    mask:
+      node: 387
+      robot: 0
+      type: 1
+    parent: THEN_0_0_190
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_389:
+    children:
+    - NONE
+    mask:
+      node: 389
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_395:
+    children:
+    - NONE
+    mask:
+      node: 395
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_406:
+    children:
+    - THEN_0_0_680
+    mask:
+      node: 406
+      robot: 0
+      type: 1
+    parent: THEN_0_0_337
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_412:
+    children:
+    - NONE
+    mask:
+      node: 412
+      robot: 0
+      type: 1
+    parent: OR_1_0_276
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_413:
+    children:
+    - NONE
+    mask:
+      node: 413
+      robot: 0
+      type: 1
+    parent: THEN_0_0_125
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_417:
+    children:
+    - OR_1_0_481
+    mask:
+      node: 417
+      robot: 0
+      type: 1
+    parent: THEN_0_0_074
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_421:
+    children:
+    - NONE
+    mask:
+      node: 421
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_422:
+    children:
+    - NONE
+    mask:
+      node: 422
+      robot: 0
+      type: 1
+    parent: OR_1_0_370
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_425:
+    children:
+    - NONE
+    mask:
+      node: 425
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_429:
+    children:
+    - AND_2_0_814
+    mask:
+      node: 429
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_431:
+    children:
+    - MOVE_3_0_461
+    mask:
+      node: 431
+      robot: 0
+      type: 1
+    parent: THEN_0_0_284
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_432:
+    children:
+    - NONE
+    mask:
+      node: 432
+      robot: 0
+      type: 1
+    parent: THEN_0_0_414
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_445:
+    children:
+    - NONE
+    mask:
+      node: 445
+      robot: 0
+      type: 1
+    parent: AND_2_0_296
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_447:
+    children:
+    - MOVE_3_0_727
+    mask:
+      node: 447
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_464:
+    children:
+    - NONE
+    mask:
+      node: 464
+      robot: 0
+      type: 1
+    parent: THEN_0_0_358
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_468:
+    children:
+    - NONE
+    mask:
+      node: 468
+      robot: 0
+      type: 1
+    parent: OR_1_0_046
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_469:
+    children:
+    - NONE
+    mask:
+      node: 469
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_472:
+    children:
+    - NONE
+    mask:
+      node: 472
+      robot: 0
+      type: 1
+    parent: THEN_0_0_119
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_480:
+    children:
+    - NONE
+    mask:
+      node: 480
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_481:
+    children:
+    - NONE
+    mask:
+      node: 481
+      robot: 0
+      type: 1
+    parent: OR_1_0_417
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_482:
+    children:
+    - AND_2_0_844
+    mask:
+      node: 482
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_497:
+    children:
+    - NONE
+    mask:
+      node: 497
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_500:
+    children:
+    - NONE
+    mask:
+      node: 500
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_501:
+    children:
+    - OR_1_0_540
+    mask:
+      node: 501
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_502:
+    children:
+    - NONE
+    mask:
+      node: 502
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_504:
+    children:
+    - NONE
+    mask:
+      node: 504
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_505:
+    children:
+    - MOVE_3_0_642
+    mask:
+      node: 505
+      robot: 0
+      type: 1
+    parent: THEN_0_0_333
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_512:
+    children:
+    - MOVE_3_0_890
+    mask:
+      node: 512
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_514:
+    children:
+    - AND_2_0_526
+    mask:
+      node: 514
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_522:
+    children:
+    - AND_2_0_625
+    mask:
+      node: 522
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_528:
+    children:
+    - AND_2_0_771
+    mask:
+      node: 528
+      robot: 0
+      type: 1
+    parent: OR_1_0_260
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_531:
+    children:
+    - OR_1_0_684
+    mask:
+      node: 531
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_540:
+    children:
+    - NONE
+    mask:
+      node: 540
+      robot: 0
+      type: 1
+    parent: OR_1_0_501
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_545:
+    children:
+    - NONE
+    mask:
+      node: 545
+      robot: 0
+      type: 1
+    parent: AND_2_0_257
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_547:
+    children:
+    - NONE
+    mask:
+      node: 547
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_559:
+    children:
+    - OR_1_0_732
+    mask:
+      node: 559
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_560:
+    children:
+    - THEN_0_0_657
+    mask:
+      node: 560
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_561:
+    children:
+    - OR_1_0_749
+    mask:
+      node: 561
+      robot: 0
+      type: 1
+    parent: THEN_0_0_123
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_566:
+    children:
+    - NONE
+    mask:
+      node: 566
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_569:
+    children:
+    - MOVE_3_0_615
+    - AND_2_0_683
+    - OR_1_0_704
+    - AND_2_0_875
+    mask:
+      node: 569
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_570:
+    children:
+    - THEN_0_0_588
+    - THEN_0_0_606
+    mask:
+      node: 570
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_571:
+    children:
+    - MOVE_3_0_840
+    mask:
+      node: 571
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_575:
+    children:
+    - OR_1_0_773
+    - AND_2_0_787
+    mask:
+      node: 575
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_578:
+    children:
+    - NONE
+    mask:
+      node: 578
+      robot: 0
+      type: 1
+    parent: AND_2_0_176
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_579:
+    children:
+    - MOVE_3_0_612
+    mask:
+      node: 579
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_583:
+    children:
+    - OR_1_0_927
+    mask:
+      node: 583
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_587:
+    children:
+    - NONE
+    mask:
+      node: 587
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_590:
+    children:
+    - NONE
+    mask:
+      node: 590
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_598:
+    children:
+    - OR_1_0_861
+    mask:
+      node: 598
+      robot: 0
+      type: 1
+    parent: OR_1_0_275
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_603:
+    children:
+    - NONE
+    mask:
+      node: 603
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_611:
+    children:
+    - NONE
+    mask:
+      node: 611
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_617:
+    children:
+    - OR_1_0_760
+    - THEN_0_0_905
+    mask:
+      node: 617
+      robot: 0
+      type: 1
+    parent: THEN_0_0_218
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_623:
+    children:
+    - NONE
+    mask:
+      node: 623
+      robot: 0
+      type: 1
+    parent: THEN_0_0_150
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_630:
+    children:
+    - NONE
+    mask:
+      node: 630
+      robot: 0
+      type: 1
+    parent: THEN_0_0_038
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_634:
+    children:
+    - MOVE_3_0_690
+    mask:
+      node: 634
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_635:
+    children:
+    - NONE
+    mask:
+      node: 635
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_640:
+    children:
+    - NONE
+    mask:
+      node: 640
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_644:
+    children:
+    - NONE
+    mask:
+      node: 644
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_648:
+    children:
+    - NONE
+    mask:
+      node: 648
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_660:
+    children:
+    - NONE
+    mask:
+      node: 660
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_661:
+    children:
+    - NONE
+    mask:
+      node: 661
+      robot: 0
+      type: 1
+    parent: THEN_0_0_591
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_662:
+    children:
+    - NONE
+    mask:
+      node: 662
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_664:
+    children:
+    - NONE
+    mask:
+      node: 664
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_665:
+    children:
+    - NONE
+    mask:
+      node: 665
+      robot: 0
+      type: 1
+    parent: AND_2_0_259
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_666:
+    children:
+    - NONE
+    mask:
+      node: 666
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_668:
+    children:
+    - NONE
+    mask:
+      node: 668
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_670:
+    children:
+    - NONE
+    mask:
+      node: 670
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_678:
+    children:
+    - NONE
+    mask:
+      node: 678
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_679:
+    children:
+    - NONE
+    mask:
+      node: 679
+      robot: 0
+      type: 1
+    parent: THEN_0_0_186
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_682:
+    children:
+    - NONE
+    mask:
+      node: 682
+      robot: 0
+      type: 1
+    parent: AND_2_0_601
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_684:
+    children:
+    - AND_2_0_802
+    mask:
+      node: 684
+      robot: 0
+      type: 1
+    parent: OR_1_0_531
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_686:
+    children:
+    - NONE
+    mask:
+      node: 686
+      robot: 0
+      type: 1
+    parent: AND_2_0_362
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_692:
+    children:
+    - NONE
+    mask:
+      node: 692
+      robot: 0
+      type: 1
+    parent: OR_1_0_167
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_694:
+    children:
+    - NONE
+    mask:
+      node: 694
+      robot: 0
+      type: 1
+    parent: THEN_0_0_538
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_696:
+    children:
+    - AND_2_0_843
+    mask:
+      node: 696
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_699:
+    children:
+    - NONE
+    mask:
+      node: 699
+      robot: 0
+      type: 1
+    parent: AND_2_0_647
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_701:
+    children:
+    - NONE
+    mask:
+      node: 701
+      robot: 0
+      type: 1
+    parent: THEN_0_0_240
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_704:
+    children:
+    - NONE
+    mask:
+      node: 704
+      robot: 0
+      type: 1
+    parent: OR_1_0_569
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_708:
+    children:
+    - NONE
+    mask:
+      node: 708
+      robot: 0
+      type: 1
+    parent: AND_2_0_259
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_712:
+    children:
+    - NONE
+    mask:
+      node: 712
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_713:
+    children:
+    - NONE
+    mask:
+      node: 713
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_718:
+    children:
+    - NONE
+    mask:
+      node: 718
+      robot: 0
+      type: 1
+    parent: OR_1_0_048
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_720:
+    children:
+    - NONE
+    mask:
+      node: 720
+      robot: 0
+      type: 1
+    parent: AND_2_0_215
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_731:
+    children:
+    - NONE
+    mask:
+      node: 731
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_732:
+    children:
+    - NONE
+    mask:
+      node: 732
+      robot: 0
+      type: 1
+    parent: OR_1_0_559
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_735:
+    children:
+    - NONE
+    mask:
+      node: 735
+      robot: 0
+      type: 1
+    parent: OR_1_0_207
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_738:
+    children:
+    - OR_1_0_837
+    mask:
+      node: 738
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_743:
+    children:
+    - NONE
+    mask:
+      node: 743
+      robot: 0
+      type: 1
+    parent: AND_2_0_402
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_744:
+    children:
+    - NONE
+    mask:
+      node: 744
+      robot: 0
+      type: 1
+    parent: AND_2_0_604
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_746:
+    children:
+    - NONE
+    mask:
+      node: 746
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_748:
+    children:
+    - NONE
+    mask:
+      node: 748
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_749:
+    children:
+    - NONE
+    mask:
+      node: 749
+      robot: 0
+      type: 1
+    parent: OR_1_0_561
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_759:
+    children:
+    - NONE
+    mask:
+      node: 759
+      robot: 0
+      type: 1
+    parent: AND_2_0_454
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_760:
+    children:
+    - NONE
+    mask:
+      node: 760
+      robot: 0
+      type: 1
+    parent: OR_1_0_617
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_773:
+    children:
+    - NONE
+    mask:
+      node: 773
+      robot: 0
+      type: 1
+    parent: OR_1_0_575
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_778:
+    children:
+    - NONE
+    mask:
+      node: 778
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_779:
+    children:
+    - NONE
+    mask:
+      node: 779
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_790:
+    children:
+    - NONE
+    mask:
+      node: 790
+      robot: 0
+      type: 1
+    parent: AND_2_0_596
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_791:
+    children:
+    - NONE
+    mask:
+      node: 791
+      robot: 0
+      type: 1
+    parent: AND_2_0_261
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_793:
+    children:
+    - NONE
+    mask:
+      node: 793
+      robot: 0
+      type: 1
+    parent: AND_2_0_416
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_795:
+    children:
+    - NONE
+    mask:
+      node: 795
+      robot: 0
+      type: 1
+    parent: AND_2_0_016
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_798:
+    children:
+    - NONE
+    mask:
+      node: 798
+      robot: 0
+      type: 1
+    parent: THEN_0_0_213
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_800:
+    children:
+    - NONE
+    mask:
+      node: 800
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_805:
+    children:
+    - NONE
+    mask:
+      node: 805
+      robot: 0
+      type: 1
+    parent: THEN_0_0_414
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_807:
+    children:
+    - NONE
+    mask:
+      node: 807
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_809:
+    children:
+    - NONE
+    mask:
+      node: 809
+      robot: 0
+      type: 1
+    parent: THEN_0_0_317
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_812:
+    children:
+    - NONE
+    mask:
+      node: 812
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_813:
+    children:
+    - NONE
+    mask:
+      node: 813
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_820:
+    children:
+    - NONE
+    mask:
+      node: 820
+      robot: 0
+      type: 1
+    parent: OR_1_0_263
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_822:
+    children:
+    - NONE
+    mask:
+      node: 822
+      robot: 0
+      type: 1
+    parent: OR_1_0_262
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_823:
+    children:
+    - NONE
+    mask:
+      node: 823
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_824:
+    children:
+    - NONE
+    mask:
+      node: 824
+      robot: 0
+      type: 1
+    parent: AND_2_0_534
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_827:
+    children:
+    - NONE
+    mask:
+      node: 827
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_837:
+    children:
+    - NONE
+    mask:
+      node: 837
+      robot: 0
+      type: 1
+    parent: OR_1_0_738
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_838:
+    children:
+    - NONE
+    mask:
+      node: 838
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_839:
+    children:
+    - NONE
+    mask:
+      node: 839
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_846:
+    children:
+    - NONE
+    mask:
+      node: 846
+      robot: 0
+      type: 1
+    parent: THEN_0_0_444
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_849:
+    children:
+    - NONE
+    mask:
+      node: 849
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_850:
+    children:
+    - NONE
+    mask:
+      node: 850
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_857:
+    children:
+    - NONE
+    mask:
+      node: 857
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_858:
+    children:
+    - NONE
+    mask:
+      node: 858
+      robot: 0
+      type: 1
+    parent: AND_2_0_784
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_859:
+    children:
+    - NONE
+    mask:
+      node: 859
+      robot: 0
+      type: 1
+    parent: AND_2_0_386
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_861:
+    children:
+    - NONE
+    mask:
+      node: 861
+      robot: 0
+      type: 1
+    parent: OR_1_0_598
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_866:
+    children:
+    - NONE
+    mask:
+      node: 866
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_867:
+    children:
+    - NONE
+    mask:
+      node: 867
+      robot: 0
+      type: 1
+    parent: OR_1_0_198
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_879:
+    children:
+    - NONE
+    mask:
+      node: 879
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_880:
+    children:
+    - NONE
+    mask:
+      node: 880
+      robot: 0
+      type: 1
+    parent: THEN_0_0_715
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_887:
+    children:
+    - NONE
+    mask:
+      node: 887
+      robot: 0
+      type: 1
+    parent: OR_1_0_298
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_892:
+    children:
+    - NONE
+    mask:
+      node: 892
+      robot: 0
+      type: 1
+    parent: THEN_0_0_881
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_895:
+    children:
+    - NONE
+    mask:
+      node: 895
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_899:
+    children:
+    - NONE
+    mask:
+      node: 899
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_911:
+    children:
+    - NONE
+    mask:
+      node: 911
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_912:
+    children:
+    - NONE
+    mask:
+      node: 912
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_913:
+    children:
+    - NONE
+    mask:
+      node: 913
+      robot: 0
+      type: 1
+    parent: THEN_0_0_467
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_916:
+    children:
+    - NONE
+    mask:
+      node: 916
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_917:
+    children:
+    - NONE
+    mask:
+      node: 917
+      robot: 0
+      type: 1
+    parent: THEN_0_0_586
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_920:
+    children:
+    - NONE
+    mask:
+      node: 920
+      robot: 0
+      type: 1
+    parent: THEN_0_0_190
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_921:
+    children:
+    - NONE
+    mask:
+      node: 921
+      robot: 0
+      type: 1
+    parent: OR_1_0_147
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_924:
+    children:
+    - NONE
+    mask:
+      node: 924
+      robot: 0
+      type: 1
+    parent: AND_2_0_789
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_926:
+    children:
+    - NONE
+    mask:
+      node: 926
+      robot: 0
+      type: 1
+    parent: THEN_0_0_588
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_927:
+    children:
+    - NONE
+    mask:
+      node: 927
+      robot: 0
+      type: 1
+    parent: OR_1_0_583
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_932:
+    children:
+    - NONE
+    mask:
+      node: 932
+      robot: 0
+      type: 1
+    parent: AND_2_0_259
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_935:
+    children:
+    - NONE
+    mask:
+      node: 935
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_938:
+    children:
+    - NONE
+    mask:
+      node: 938
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_939:
+    children:
+    - NONE
+    mask:
+      node: 939
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_943:
+    children:
+    - NONE
+    mask:
+      node: 943
+      robot: 0
+      type: 1
+    parent: AND_2_0_553
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_945:
+    children:
+    - NONE
+    mask:
+      node: 945
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_947:
+    children:
+    - NONE
+    mask:
+      node: 947
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_948:
+    children:
+    - NONE
+    mask:
+      node: 948
+      robot: 0
+      type: 1
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_949:
+    children:
+    - NONE
+    mask:
+      node: 949
+      robot: 0
+      type: 1
+    parent: THEN_0_0_755
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  OR_1_0_950:
+    children:
+    - NONE
+    mask:
+      node: 950
+      robot: 0
+      type: 1
+    parent: AND_2_0_871
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  ROOT_4_0_000:
+    children:
+    - THEN_0_0_001
+    mask:
+      node: 0
+      robot: 0
+      type: 4
+    parent: NONE
+    peers:
+    - NONE
+    x: 50
+    y: 10
+  THEN_0_0_001:
+    children:
+    - OR_1_0_002
+    - MOVE_3_0_003
+    - MOVE_3_0_004
+    - OR_1_0_006
+    - THEN_0_0_007
+    - AND_2_0_008
+    - AND_2_0_009
+    - MOVE_3_0_011
+    - OR_1_0_012
+    - AND_2_0_014
+    - AND_2_0_016
+    - OR_1_0_018
+    - THEN_0_0_024
+    - AND_2_0_026
+    - THEN_0_0_027
+    - AND_2_0_028
+    - MOVE_3_0_031
+    - OR_1_0_032
+    - MOVE_3_0_033
+    - MOVE_3_0_036
+    - AND_2_0_037
+    - THEN_0_0_038
+    - OR_1_0_039
+    - THEN_0_0_042
+    - OR_1_0_046
+    - MOVE_3_0_047
+    - OR_1_0_048
+    - MOVE_3_0_050
+    - OR_1_0_053
+    - OR_1_0_055
+    - AND_2_0_056
+    - OR_1_0_057
+    - OR_1_0_058
+    - AND_2_0_059
+    - OR_1_0_061
+    - MOVE_3_0_062
+    - OR_1_0_065
+    - THEN_0_0_066
+    - MOVE_3_0_067
+    - MOVE_3_0_068
+    - AND_2_0_070
+    - OR_1_0_073
+    - THEN_0_0_074
+    - OR_1_0_079
+    - OR_1_0_081
+    - THEN_0_0_082
+    - AND_2_0_083
+    - THEN_0_0_086
+    - MOVE_3_0_088
+    - AND_2_0_089
+    - THEN_0_0_090
+    - THEN_0_0_097
+    - OR_1_0_101
+    - THEN_0_0_102
+    - MOVE_3_0_103
+    - AND_2_0_106
+    - OR_1_0_109
+    - OR_1_0_111
+    - OR_1_0_115
+    - AND_2_0_116
+    - THEN_0_0_119
+    - MOVE_3_0_121
+    - AND_2_0_122
+    - THEN_0_0_123
+    - OR_1_0_124
+    - THEN_0_0_125
+    - MOVE_3_0_128
+    - AND_2_0_132
+    - THEN_0_0_134
+    - AND_2_0_136
+    - THEN_0_0_137
+    - MOVE_3_0_138
+    - THEN_0_0_139
+    - MOVE_3_0_140
+    - MOVE_3_0_141
+    - THEN_0_0_142
+    - MOVE_3_0_144
+    - MOVE_3_0_148
+    - THEN_0_0_150
+    - THEN_0_0_151
+    - THEN_0_0_152
+    - THEN_0_0_153
+    - OR_1_0_155
+    - OR_1_0_156
+    - AND_2_0_157
+    - MOVE_3_0_160
+    - AND_2_0_163
+    - MOVE_3_0_165
+    - OR_1_0_166
+    - OR_1_0_167
+    - MOVE_3_0_168
+    - THEN_0_0_169
+    - OR_1_0_170
+    - AND_2_0_171
+    - OR_1_0_172
+    - MOVE_3_0_174
+    - AND_2_0_176
+    - OR_1_0_177
+    - OR_1_0_178
+    - OR_1_0_179
+    - MOVE_3_0_180
+    - THEN_0_0_181
+    - OR_1_0_183
+    - OR_1_0_184
+    - THEN_0_0_186
+    - THEN_0_0_190
+    - AND_2_0_191
+    - AND_2_0_192
+    - OR_1_0_194
+    - OR_1_0_196
+    - MOVE_3_0_197
+    - OR_1_0_198
+    - MOVE_3_0_200
+    - MOVE_3_0_204
+    - AND_2_0_206
+    - OR_1_0_209
+    - OR_1_0_210
+    - THEN_0_0_212
+    - THEN_0_0_213
+    - AND_2_0_215
+    - OR_1_0_217
+    - THEN_0_0_218
+    - MOVE_3_0_219
+    - MOVE_3_0_220
+    - MOVE_3_0_221
+    - OR_1_0_222
+    - MOVE_3_0_223
+    - AND_2_0_224
+    - THEN_0_0_228
+    - THEN_0_0_231
+    - THEN_0_0_232
+    - MOVE_3_0_234
+    - MOVE_3_0_235
+    - AND_2_0_236
+    - MOVE_3_0_238
+    - THEN_0_0_240
+    - THEN_0_0_243
+    - AND_2_0_246
+    - OR_1_0_247
+    - MOVE_3_0_249
+    - MOVE_3_0_251
+    - MOVE_3_0_252
+    - THEN_0_0_253
+    - OR_1_0_256
+    - AND_2_0_257
+    - MOVE_3_0_258
+    - AND_2_0_259
+    - OR_1_0_260
+    - AND_2_0_261
+    - OR_1_0_263
+    - OR_1_0_265
+    - THEN_0_0_266
+    - THEN_0_0_267
+    - MOVE_3_0_269
+    - THEN_0_0_271
+    - AND_2_0_272
+    - THEN_0_0_273
+    - MOVE_3_0_274
+    - OR_1_0_275
+    - OR_1_0_276
+    - AND_2_0_280
+    - THEN_0_0_281
+    - THEN_0_0_284
+    - OR_1_0_285
+    - AND_2_0_287
+    - MOVE_3_0_292
+    - OR_1_0_294
+    - THEN_0_0_295
+    - AND_2_0_296
+    - MOVE_3_0_297
+    - OR_1_0_298
+    - THEN_0_0_299
+    - THEN_0_0_300
+    - MOVE_3_0_301
+    - MOVE_3_0_302
+    - AND_2_0_305
+    - OR_1_0_307
+    - OR_1_0_313
+    - MOVE_3_0_315
+    - THEN_0_0_317
+    - MOVE_3_0_318
+    - MOVE_3_0_319
+    - AND_2_0_320
+    - THEN_0_0_323
+    - MOVE_3_0_324
+    - OR_1_0_325
+    - OR_1_0_327
+    - THEN_0_0_329
+    - OR_1_0_330
+    - OR_1_0_332
+    - THEN_0_0_333
+    - MOVE_3_0_334
+    - THEN_0_0_337
+    - THEN_0_0_338
+    - OR_1_0_339
+    - AND_2_0_340
+    - MOVE_3_0_341
+    - THEN_0_0_342
+    - MOVE_3_0_343
+    - MOVE_3_0_344
+    - MOVE_3_0_345
+    - MOVE_3_0_346
+    - MOVE_3_0_349
+    - OR_1_0_351
+    - AND_2_0_352
+    - AND_2_0_353
+    - AND_2_0_355
+    - AND_2_0_357
+    - THEN_0_0_358
+    - AND_2_0_362
+    - OR_1_0_366
+    - MOVE_3_0_367
+    - THEN_0_0_368
+    - MOVE_3_0_369
+    - OR_1_0_370
+    - THEN_0_0_372
+    - AND_2_0_373
+    - MOVE_3_0_374
+    - MOVE_3_0_375
+    - MOVE_3_0_376
+    - AND_2_0_378
+    - MOVE_3_0_379
+    - AND_2_0_381
+    - MOVE_3_0_382
+    - AND_2_0_386
+    - OR_1_0_389
+    - AND_2_0_392
+    - AND_2_0_393
+    - OR_1_0_395
+    - AND_2_0_396
+    - AND_2_0_397
+    - THEN_0_0_399
+    - THEN_0_0_400
+    - AND_2_0_403
+    - THEN_0_0_404
+    - THEN_0_0_407
+    - MOVE_3_0_408
+    - AND_2_0_409
+    - THEN_0_0_410
+    - THEN_0_0_414
+    - MOVE_3_0_415
+    - AND_2_0_416
+    - AND_2_0_419
+    - OR_1_0_421
+    - THEN_0_0_424
+    - OR_1_0_425
+    - AND_2_0_426
+    - OR_1_0_429
+    - AND_2_0_430
+    - AND_2_0_433
+    - THEN_0_0_434
+    - MOVE_3_0_435
+    - MOVE_3_0_437
+    - MOVE_3_0_439
+    - AND_2_0_440
+    - MOVE_3_0_441
+    - MOVE_3_0_443
+    - THEN_0_0_444
+    - OR_1_0_447
+    - MOVE_3_0_448
+    - MOVE_3_0_450
+    - AND_2_0_452
+    - AND_2_0_453
+    - AND_2_0_455
+    - THEN_0_0_457
+    - MOVE_3_0_458
+    - MOVE_3_0_463
+    - MOVE_3_0_465
+    - THEN_0_0_467
+    - OR_1_0_469
+    - MOVE_3_0_470
+    - THEN_0_0_471
+    - AND_2_0_473
+    - THEN_0_0_474
+    - AND_2_0_475
+    - THEN_0_0_479
+    - OR_1_0_480
+    - OR_1_0_482
+    - THEN_0_0_485
+    - AND_2_0_487
+    - MOVE_3_0_488
+    - AND_2_0_490
+    - AND_2_0_491
+    - THEN_0_0_493
+    - AND_2_0_494
+    - AND_2_0_495
+    - MOVE_3_0_496
+    - OR_1_0_497
+    - AND_2_0_498
+    - OR_1_0_500
+    - OR_1_0_501
+    - OR_1_0_502
+    - OR_1_0_504
+    - MOVE_3_0_506
+    - MOVE_3_0_507
+    - MOVE_3_0_508
+    - AND_2_0_509
+    - AND_2_0_511
+    - OR_1_0_512
+    - MOVE_3_0_513
+    - OR_1_0_514
+    - THEN_0_0_515
+    - AND_2_0_519
+    - THEN_0_0_520
+    - OR_1_0_522
+    - THEN_0_0_523
+    - AND_2_0_525
+    - MOVE_3_0_527
+    - THEN_0_0_529
+    - OR_1_0_531
+    - AND_2_0_534
+    - AND_2_0_537
+    - THEN_0_0_538
+    - MOVE_3_0_539
+    - THEN_0_0_541
+    - AND_2_0_543
+    - AND_2_0_544
+    - AND_2_0_546
+    - OR_1_0_547
+    - MOVE_3_0_549
+    - THEN_0_0_550
+    - AND_2_0_551
+    - MOVE_3_0_552
+    - THEN_0_0_556
+    - MOVE_3_0_558
+    - OR_1_0_559
+    - OR_1_0_560
+    - THEN_0_0_562
+    - AND_2_0_563
+    - AND_2_0_564
+    - THEN_0_0_565
+    - OR_1_0_566
+    - THEN_0_0_567
+    - MOVE_3_0_568
+    - OR_1_0_569
+    - OR_1_0_570
+    - OR_1_0_571
+    - THEN_0_0_573
+    - AND_2_0_574
+    - OR_1_0_575
+    - MOVE_3_0_576
+    - AND_2_0_577
+    - OR_1_0_579
+    - AND_2_0_581
+    - AND_2_0_582
+    - OR_1_0_583
+    - MOVE_3_0_585
+    - OR_1_0_587
+    - THEN_0_0_589
+    - OR_1_0_590
+    - THEN_0_0_593
+    - THEN_0_0_594
+    - AND_2_0_595
+    - AND_2_0_596
+    - AND_2_0_597
+    - THEN_0_0_599
+    - AND_2_0_602
+    - OR_1_0_603
+    - AND_2_0_604
+    - AND_2_0_605
+    - AND_2_0_609
+    - THEN_0_0_610
+    - OR_1_0_611
+    - THEN_0_0_613
+    - MOVE_3_0_614
+    - MOVE_3_0_616
+    - AND_2_0_619
+    - AND_2_0_620
+    - AND_2_0_627
+    - MOVE_3_0_628
+    - AND_2_0_632
+    - THEN_0_0_633
+    - OR_1_0_634
+    - OR_1_0_635
+    - THEN_0_0_636
+    - MOVE_3_0_637
+    - MOVE_3_0_638
+    - MOVE_3_0_639
+    - OR_1_0_640
+    - AND_2_0_641
+    - OR_1_0_644
+    - THEN_0_0_645
+    - MOVE_3_0_646
+    - AND_2_0_647
+    - OR_1_0_648
+    - MOVE_3_0_650
+    - MOVE_3_0_653
+    - MOVE_3_0_658
+    - THEN_0_0_659
+    - OR_1_0_660
+    - OR_1_0_662
+    - OR_1_0_664
+    - OR_1_0_666
+    - OR_1_0_668
+    - THEN_0_0_669
+    - OR_1_0_670
+    - AND_2_0_671
+    - MOVE_3_0_673
+    - THEN_0_0_675
+    - MOVE_3_0_676
+    - THEN_0_0_677
+    - OR_1_0_678
+    - MOVE_3_0_681
+    - THEN_0_0_687
+    - MOVE_3_0_688
+    - THEN_0_0_689
+    - AND_2_0_691
+    - AND_2_0_695
+    - OR_1_0_696
+    - MOVE_3_0_697
+    - AND_2_0_702
+    - MOVE_3_0_705
+    - MOVE_3_0_706
+    - AND_2_0_709
+    - THEN_0_0_711
+    - OR_1_0_712
+    - OR_1_0_713
+    - THEN_0_0_714
+    - THEN_0_0_716
+    - THEN_0_0_717
+    - THEN_0_0_719
+    - AND_2_0_721
+    - AND_2_0_723
+    - THEN_0_0_724
+    - THEN_0_0_725
+    - THEN_0_0_726
+    - AND_2_0_728
+    - MOVE_3_0_729
+    - AND_2_0_730
+    - OR_1_0_731
+    - THEN_0_0_733
+    - AND_2_0_737
+    - OR_1_0_738
+    - AND_2_0_740
+    - THEN_0_0_742
+    - OR_1_0_746
+    - THEN_0_0_747
+    - OR_1_0_748
+    - THEN_0_0_754
+    - AND_2_0_757
+    - MOVE_3_0_758
+    - THEN_0_0_761
+    - AND_2_0_762
+    - MOVE_3_0_763
+    - MOVE_3_0_764
+    - THEN_0_0_765
+    - THEN_0_0_767
+    - MOVE_3_0_769
+    - AND_2_0_772
+    - THEN_0_0_774
+    - AND_2_0_776
+    - OR_1_0_778
+    - OR_1_0_779
+    - THEN_0_0_780
+    - AND_2_0_782
+    - THEN_0_0_783
+    - AND_2_0_784
+    - AND_2_0_785
+    - THEN_0_0_786
+    - THEN_0_0_788
+    - AND_2_0_789
+    - AND_2_0_794
+    - AND_2_0_799
+    - OR_1_0_800
+    - MOVE_3_0_803
+    - AND_2_0_804
+    - MOVE_3_0_806
+    - OR_1_0_807
+    - AND_2_0_810
+    - MOVE_3_0_811
+    - OR_1_0_812
+    - OR_1_0_813
+    - MOVE_3_0_815
+    - MOVE_3_0_816
+    - THEN_0_0_817
+    - AND_2_0_818
+    - AND_2_0_819
+    - THEN_0_0_821
+    - OR_1_0_823
+    - OR_1_0_827
+    - AND_2_0_829
+    - AND_2_0_830
+    - MOVE_3_0_831
+    - AND_2_0_832
+    - MOVE_3_0_833
+    - THEN_0_0_835
+    - AND_2_0_836
+    - OR_1_0_838
+    - OR_1_0_839
+    - THEN_0_0_841
+    - MOVE_3_0_845
+    - MOVE_3_0_847
+    - OR_1_0_849
+    - OR_1_0_850
+    - AND_2_0_851
+    - AND_2_0_852
+    - MOVE_3_0_854
+    - AND_2_0_856
+    - OR_1_0_857
+    - THEN_0_0_860
+    - MOVE_3_0_862
+    - AND_2_0_863
+    - AND_2_0_864
+    - OR_1_0_866
+    - THEN_0_0_868
+    - THEN_0_0_869
+    - MOVE_3_0_870
+    - AND_2_0_871
+    - MOVE_3_0_873
+    - MOVE_3_0_874
+    - THEN_0_0_877
+    - MOVE_3_0_878
+    - OR_1_0_879
+    - THEN_0_0_881
+    - THEN_0_0_882
+    - THEN_0_0_894
+    - OR_1_0_895
+    - THEN_0_0_896
+    - THEN_0_0_897
+    - MOVE_3_0_898
+    - OR_1_0_899
+    - THEN_0_0_902
+    - MOVE_3_0_903
+    - MOVE_3_0_906
+    - OR_1_0_911
+    - OR_1_0_912
+    - THEN_0_0_914
+    - OR_1_0_916
+    - MOVE_3_0_918
+    - THEN_0_0_919
+    - THEN_0_0_922
+    - THEN_0_0_928
+    - MOVE_3_0_929
+    - AND_2_0_930
+    - MOVE_3_0_933
+    - AND_2_0_934
+    - OR_1_0_935
+    - THEN_0_0_936
+    - AND_2_0_937
+    - OR_1_0_938
+    - OR_1_0_939
+    - MOVE_3_0_942
+    - MOVE_3_0_944
+    - OR_1_0_945
+    - THEN_0_0_946
+    - OR_1_0_947
+    - OR_1_0_948
+    mask:
+      node: 1
+      robot: 0
+      type: 0
+    parent: ROOT_4_0_000
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_007:
+    children:
+    - AND_2_0_015
+    - MOVE_3_0_025
+    mask:
+      node: 7
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_017:
+    children:
+    - OR_1_0_114
+    mask:
+      node: 17
+      robot: 0
+      type: 0
+    parent: AND_2_0_013
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_021:
+    children:
+    - NONE
+    mask:
+      node: 21
+      robot: 0
+      type: 0
+    parent: OR_1_0_018
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_024:
+    children:
+    - THEN_0_0_044
+    - MOVE_3_0_063
+    - OR_1_0_277
+    mask:
+      node: 24
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_027:
+    children:
+    - THEN_0_0_095
+    mask:
+      node: 27
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_029:
+    children:
+    - AND_2_0_143
+    mask:
+      node: 29
+      robot: 0
+      type: 0
+    parent: OR_1_0_010
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_038:
+    children:
+    - THEN_0_0_076
+    - THEN_0_0_149
+    - MOVE_3_0_478
+    - OR_1_0_630
+    mask:
+      node: 38
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_041:
+    children:
+    - NONE
+    mask:
+      node: 41
+      robot: 0
+      type: 0
+    parent: OR_1_0_012
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_042:
+    children:
+    - OR_1_0_064
+    mask:
+      node: 42
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_043:
+    children:
+    - MOVE_3_0_328
+    mask:
+      node: 43
+      robot: 0
+      type: 0
+    parent: OR_1_0_005
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_044:
+    children:
+    - NONE
+    mask:
+      node: 44
+      robot: 0
+      type: 0
+    parent: THEN_0_0_024
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_051:
+    children:
+    - THEN_0_0_085
+    mask:
+      node: 51
+      robot: 0
+      type: 0
+    parent: OR_1_0_039
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_066:
+    children:
+    - AND_2_0_112
+    mask:
+      node: 66
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_071:
+    children:
+    - NONE
+    mask:
+      node: 71
+      robot: 0
+      type: 0
+    parent: OR_1_0_002
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_072:
+    children:
+    - OR_1_0_133
+    - OR_1_0_182
+    mask:
+      node: 72
+      robot: 0
+      type: 0
+    parent: AND_2_0_059
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_074:
+    children:
+    - OR_1_0_417
+    mask:
+      node: 74
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_076:
+    children:
+    - AND_2_0_087
+    mask:
+      node: 76
+      robot: 0
+      type: 0
+    parent: THEN_0_0_038
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_078:
+    children:
+    - THEN_0_0_080
+    mask:
+      node: 78
+      robot: 0
+      type: 0
+    parent: OR_1_0_073
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_080:
+    children:
+    - NONE
+    mask:
+      node: 80
+      robot: 0
+      type: 0
+    parent: THEN_0_0_078
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_082:
+    children:
+    - MOVE_3_0_117
+    - MOVE_3_0_360
+    mask:
+      node: 82
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_085:
+    children:
+    - NONE
+    mask:
+      node: 85
+      robot: 0
+      type: 0
+    parent: THEN_0_0_051
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_086:
+    children:
+    - THEN_0_0_164
+    mask:
+      node: 86
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_090:
+    children:
+    - THEN_0_0_107
+    - MOVE_3_0_110
+    mask:
+      node: 90
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_091:
+    children:
+    - NONE
+    mask:
+      node: 91
+      robot: 0
+      type: 0
+    parent: OR_1_0_002
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_095:
+    children:
+    - AND_2_0_173
+    mask:
+      node: 95
+      robot: 0
+      type: 0
+    parent: THEN_0_0_027
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_097:
+    children:
+    - AND_2_0_098
+    - OR_1_0_113
+    - THEN_0_0_187
+    mask:
+      node: 97
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_099:
+    children:
+    - NONE
+    mask:
+      node: 99
+      robot: 0
+      type: 0
+    parent: AND_2_0_083
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_100:
+    children:
+    - NONE
+    mask:
+      node: 100
+      robot: 0
+      type: 0
+    parent: OR_1_0_069
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_102:
+    children:
+    - THEN_0_0_118
+    - MOVE_3_0_904
+    mask:
+      node: 102
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_107:
+    children:
+    - NONE
+    mask:
+      node: 107
+      robot: 0
+      type: 0
+    parent: THEN_0_0_090
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_118:
+    children:
+    - NONE
+    mask:
+      node: 118
+      robot: 0
+      type: 0
+    parent: THEN_0_0_102
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_119:
+    children:
+    - AND_2_0_202
+    - OR_1_0_472
+    - THEN_0_0_792
+    mask:
+      node: 119
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_123:
+    children:
+    - OR_1_0_561
+    mask:
+      node: 123
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_125:
+    children:
+    - THEN_0_0_188
+    - OR_1_0_413
+    - THEN_0_0_460
+    mask:
+      node: 125
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_130:
+    children:
+    - OR_1_0_239
+    mask:
+      node: 130
+      robot: 0
+      type: 0
+    parent: OR_1_0_124
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_134:
+    children:
+    - NONE
+    mask:
+      node: 134
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_137:
+    children:
+    - AND_2_0_288
+    mask:
+      node: 137
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_139:
+    children:
+    - AND_2_0_312
+    mask:
+      node: 139
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_142:
+    children:
+    - NONE
+    mask:
+      node: 142
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_149:
+    children:
+    - NONE
+    mask:
+      node: 149
+      robot: 0
+      type: 0
+    parent: THEN_0_0_038
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_150:
+    children:
+    - OR_1_0_623
+    mask:
+      node: 150
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_151:
+    children:
+    - NONE
+    mask:
+      node: 151
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_152:
+    children:
+    - THEN_0_0_154
+    - AND_2_0_291
+    - OR_1_0_354
+    - AND_2_0_499
+    mask:
+      node: 152
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_153:
+    children:
+    - NONE
+    mask:
+      node: 153
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_154:
+    children:
+    - MOVE_3_0_214
+    mask:
+      node: 154
+      robot: 0
+      type: 0
+    parent: THEN_0_0_152
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_164:
+    children:
+    - NONE
+    mask:
+      node: 164
+      robot: 0
+      type: 0
+    parent: THEN_0_0_086
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_169:
+    children:
+    - AND_2_0_264
+    - OR_1_0_336
+    - MOVE_3_0_536
+    mask:
+      node: 169
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_175:
+    children:
+    - NONE
+    mask:
+      node: 175
+      robot: 0
+      type: 0
+    parent: AND_2_0_028
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_181:
+    children:
+    - MOVE_3_0_193
+    - AND_2_0_237
+    - AND_2_0_466
+    mask:
+      node: 181
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_186:
+    children:
+    - OR_1_0_679
+    mask:
+      node: 186
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_187:
+    children:
+    - NONE
+    mask:
+      node: 187
+      robot: 0
+      type: 0
+    parent: THEN_0_0_097
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_188:
+    children:
+    - NONE
+    mask:
+      node: 188
+      robot: 0
+      type: 0
+    parent: THEN_0_0_125
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_189:
+    children:
+    - NONE
+    mask:
+      node: 189
+      robot: 0
+      type: 0
+    parent: OR_1_0_111
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_190:
+    children:
+    - THEN_0_0_279
+    - OR_1_0_387
+    - OR_1_0_920
+    mask:
+      node: 190
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_205:
+    children:
+    - THEN_0_0_216
+    - MOVE_3_0_781
+    mask:
+      node: 205
+      robot: 0
+      type: 0
+    parent: OR_1_0_170
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_208:
+    children:
+    - NONE
+    mask:
+      node: 208
+      robot: 0
+      type: 0
+    parent: OR_1_0_018
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_212:
+    children:
+    - NONE
+    mask:
+      node: 212
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_213:
+    children:
+    - AND_2_0_384
+    - THEN_0_0_451
+    - OR_1_0_798
+    mask:
+      node: 213
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_216:
+    children:
+    - NONE
+    mask:
+      node: 216
+      robot: 0
+      type: 0
+    parent: THEN_0_0_205
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_218:
+    children:
+    - OR_1_0_617
+    mask:
+      node: 218
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_226:
+    children:
+    - NONE
+    mask:
+      node: 226
+      robot: 0
+      type: 0
+    parent: OR_1_0_210
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_228:
+    children:
+    - MOVE_3_0_446
+    mask:
+      node: 228
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_231:
+    children:
+    - NONE
+    mask:
+      node: 231
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_232:
+    children:
+    - NONE
+    mask:
+      node: 232
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_240:
+    children:
+    - OR_1_0_701
+    mask:
+      node: 240
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_241:
+    children:
+    - THEN_0_0_282
+    mask:
+      node: 241
+      robot: 0
+      type: 0
+    parent: AND_2_0_028
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_243:
+    children:
+    - THEN_0_0_715
+    mask:
+      node: 243
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_245:
+    children:
+    - THEN_0_0_310
+    mask:
+      node: 245
+      robot: 0
+      type: 0
+    parent: AND_2_0_136
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_248:
+    children:
+    - NONE
+    mask:
+      node: 248
+      robot: 0
+      type: 0
+    parent: OR_1_0_131
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_253:
+    children:
+    - NONE
+    mask:
+      node: 253
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_254:
+    children:
+    - NONE
+    mask:
+      node: 254
+      robot: 0
+      type: 0
+    parent: OR_1_0_209
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_255:
+    children:
+    - NONE
+    mask:
+      node: 255
+      robot: 0
+      type: 0
+    parent: AND_2_0_026
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_266:
+    children:
+    - NONE
+    mask:
+      node: 266
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_267:
+    children:
+    - THEN_0_0_309
+    mask:
+      node: 267
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_268:
+    children:
+    - NONE
+    mask:
+      node: 268
+      robot: 0
+      type: 0
+    parent: AND_2_0_106
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_271:
+    children:
+    - OR_1_0_289
+    mask:
+      node: 271
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_273:
+    children:
+    - NONE
+    mask:
+      node: 273
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_279:
+    children:
+    - NONE
+    mask:
+      node: 279
+      robot: 0
+      type: 0
+    parent: THEN_0_0_190
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_281:
+    children:
+    - MOVE_3_0_290
+    - AND_2_0_477
+    mask:
+      node: 281
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_282:
+    children:
+    - NONE
+    mask:
+      node: 282
+      robot: 0
+      type: 0
+    parent: THEN_0_0_241
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_284:
+    children:
+    - OR_1_0_431
+    mask:
+      node: 284
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_295:
+    children:
+    - NONE
+    mask:
+      node: 295
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_299:
+    children:
+    - NONE
+    mask:
+      node: 299
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_300:
+    children:
+    - NONE
+    mask:
+      node: 300
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_303:
+    children:
+    - NONE
+    mask:
+      node: 303
+      robot: 0
+      type: 0
+    parent: AND_2_0_280
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_309:
+    children:
+    - AND_2_0_592
+    mask:
+      node: 309
+      robot: 0
+      type: 0
+    parent: THEN_0_0_267
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_310:
+    children:
+    - NONE
+    mask:
+      node: 310
+      robot: 0
+      type: 0
+    parent: THEN_0_0_245
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_314:
+    children:
+    - MOVE_3_0_649
+    mask:
+      node: 314
+      robot: 0
+      type: 0
+    parent: OR_1_0_131
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_317:
+    children:
+    - OR_1_0_809
+    mask:
+      node: 317
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_322:
+    children:
+    - AND_2_0_356
+    mask:
+      node: 322
+      robot: 0
+      type: 0
+    parent: AND_2_0_293
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_323:
+    children:
+    - THEN_0_0_586
+    mask:
+      node: 323
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_326:
+    children:
+    - NONE
+    mask:
+      node: 326
+      robot: 0
+      type: 0
+    parent: AND_2_0_122
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_329:
+    children:
+    - THEN_0_0_891
+    mask:
+      node: 329
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_333:
+    children:
+    - OR_1_0_505
+    mask:
+      node: 333
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_337:
+    children:
+    - OR_1_0_406
+    mask:
+      node: 337
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_338:
+    children:
+    - NONE
+    mask:
+      node: 338
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_342:
+    children:
+    - AND_2_0_436
+    mask:
+      node: 342
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_348:
+    children:
+    - NONE
+    mask:
+      node: 348
+      robot: 0
+      type: 0
+    parent: AND_2_0_089
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_358:
+    children:
+    - OR_1_0_464
+    mask:
+      node: 358
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_368:
+    children:
+    - MOVE_3_0_624
+    - THEN_0_0_796
+    mask:
+      node: 368
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_372:
+    children:
+    - NONE
+    mask:
+      node: 372
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_390:
+    children:
+    - NONE
+    mask:
+      node: 390
+      robot: 0
+      type: 0
+    parent: AND_2_0_171
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_391:
+    children:
+    - NONE
+    mask:
+      node: 391
+      robot: 0
+      type: 0
+    parent: AND_2_0_059
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_394:
+    children:
+    - NONE
+    mask:
+      node: 394
+      robot: 0
+      type: 0
+    parent: OR_1_0_113
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_398:
+    children:
+    - NONE
+    mask:
+      node: 398
+      robot: 0
+      type: 0
+    parent: OR_1_0_325
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_399:
+    children:
+    - NONE
+    mask:
+      node: 399
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_400:
+    children:
+    - NONE
+    mask:
+      node: 400
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_404:
+    children:
+    - THEN_0_0_542
+    mask:
+      node: 404
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_407:
+    children:
+    - MOVE_3_0_449
+    mask:
+      node: 407
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_410:
+    children:
+    - NONE
+    mask:
+      node: 410
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_414:
+    children:
+    - OR_1_0_432
+    - OR_1_0_805
+    mask:
+      node: 414
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_418:
+    children:
+    - NONE
+    mask:
+      node: 418
+      robot: 0
+      type: 0
+    parent: OR_1_0_387
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_420:
+    children:
+    - NONE
+    mask:
+      node: 420
+      robot: 0
+      type: 0
+    parent: AND_2_0_287
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_424:
+    children:
+    - AND_2_0_601
+    - THEN_0_0_751
+    mask:
+      node: 424
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_434:
+    children:
+    - NONE
+    mask:
+      node: 434
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_442:
+    children:
+    - NONE
+    mask:
+      node: 442
+      robot: 0
+      type: 0
+    parent: OR_1_0_298
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_444:
+    children:
+    - OR_1_0_846
+    mask:
+      node: 444
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_451:
+    children:
+    - NONE
+    mask:
+      node: 451
+      robot: 0
+      type: 0
+    parent: THEN_0_0_213
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_456:
+    children:
+    - NONE
+    mask:
+      node: 456
+      robot: 0
+      type: 0
+    parent: OR_1_0_256
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_457:
+    children:
+    - AND_2_0_825
+    mask:
+      node: 457
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_460:
+    children:
+    - NONE
+    mask:
+      node: 460
+      robot: 0
+      type: 0
+    parent: THEN_0_0_125
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_467:
+    children:
+    - MOVE_3_0_900
+    - OR_1_0_913
+    mask:
+      node: 467
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_471:
+    children:
+    - THEN_0_0_848
+    mask:
+      node: 471
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_474:
+    children:
+    - NONE
+    mask:
+      node: 474
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_479:
+    children:
+    - NONE
+    mask:
+      node: 479
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_484:
+    children:
+    - NONE
+    mask:
+      node: 484
+      robot: 0
+      type: 0
+    parent: OR_1_0_046
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_485:
+    children:
+    - MOVE_3_0_629
+    - AND_2_0_674
+    mask:
+      node: 485
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_493:
+    children:
+    - THEN_0_0_643
+    mask:
+      node: 493
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_515:
+    children:
+    - AND_2_0_553
+    mask:
+      node: 515
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_518:
+    children:
+    - NONE
+    mask:
+      node: 518
+      robot: 0
+      type: 0
+    parent: OR_1_0_217
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_520:
+    children:
+    - AND_2_0_826
+    mask:
+      node: 520
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_523:
+    children:
+    - NONE
+    mask:
+      node: 523
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_529:
+    children:
+    - NONE
+    mask:
+      node: 529
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_530:
+    children:
+    - NONE
+    mask:
+      node: 530
+      robot: 0
+      type: 0
+    parent: AND_2_0_396
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_538:
+    children:
+    - OR_1_0_694
+    mask:
+      node: 538
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_541:
+    children:
+    - NONE
+    mask:
+      node: 541
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_542:
+    children:
+    - NONE
+    mask:
+      node: 542
+      robot: 0
+      type: 0
+    parent: THEN_0_0_404
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_550:
+    children:
+    - NONE
+    mask:
+      node: 550
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_556:
+    children:
+    - NONE
+    mask:
+      node: 556
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_562:
+    children:
+    - NONE
+    mask:
+      node: 562
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_565:
+    children:
+    - NONE
+    mask:
+      node: 565
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_567:
+    children:
+    - NONE
+    mask:
+      node: 567
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_573:
+    children:
+    - THEN_0_0_893
+    mask:
+      node: 573
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_580:
+    children:
+    - NONE
+    mask:
+      node: 580
+      robot: 0
+      type: 0
+    parent: AND_2_0_246
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_586:
+    children:
+    - OR_1_0_917
+    mask:
+      node: 586
+      robot: 0
+      type: 0
+    parent: THEN_0_0_323
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_588:
+    children:
+    - OR_1_0_926
+    mask:
+      node: 588
+      robot: 0
+      type: 0
+    parent: OR_1_0_570
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_589:
+    children:
+    - NONE
+    mask:
+      node: 589
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_591:
+    children:
+    - OR_1_0_661
+    mask:
+      node: 591
+      robot: 0
+      type: 0
+    parent: AND_2_0_259
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_593:
+    children:
+    - MOVE_3_0_777
+    mask:
+      node: 593
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_594:
+    children:
+    - NONE
+    mask:
+      node: 594
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_599:
+    children:
+    - NONE
+    mask:
+      node: 599
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_606:
+    children:
+    - MOVE_3_0_655
+    mask:
+      node: 606
+      robot: 0
+      type: 0
+    parent: OR_1_0_570
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_610:
+    children:
+    - NONE
+    mask:
+      node: 610
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_613:
+    children:
+    - NONE
+    mask:
+      node: 613
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_622:
+    children:
+    - NONE
+    mask:
+      node: 622
+      robot: 0
+      type: 0
+    parent: OR_1_0_366
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_633:
+    children:
+    - NONE
+    mask:
+      node: 633
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_636:
+    children:
+    - NONE
+    mask:
+      node: 636
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_643:
+    children:
+    - NONE
+    mask:
+      node: 643
+      robot: 0
+      type: 0
+    parent: THEN_0_0_493
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_645:
+    children:
+    - NONE
+    mask:
+      node: 645
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_656:
+    children:
+    - NONE
+    mask:
+      node: 656
+      robot: 0
+      type: 0
+    parent: OR_1_0_002
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_657:
+    children:
+    - NONE
+    mask:
+      node: 657
+      robot: 0
+      type: 0
+    parent: OR_1_0_560
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_659:
+    children:
+    - NONE
+    mask:
+      node: 659
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_669:
+    children:
+    - NONE
+    mask:
+      node: 669
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_675:
+    children:
+    - NONE
+    mask:
+      node: 675
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_677:
+    children:
+    - NONE
+    mask:
+      node: 677
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_680:
+    children:
+    - NONE
+    mask:
+      node: 680
+      robot: 0
+      type: 0
+    parent: OR_1_0_406
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_685:
+    children:
+    - NONE
+    mask:
+      node: 685
+      robot: 0
+      type: 0
+    parent: AND_2_0_383
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_687:
+    children:
+    - NONE
+    mask:
+      node: 687
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_689:
+    children:
+    - THEN_0_0_931
+    mask:
+      node: 689
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_698:
+    children:
+    - NONE
+    mask:
+      node: 698
+      robot: 0
+      type: 0
+    parent: AND_2_0_224
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_707:
+    children:
+    - NONE
+    mask:
+      node: 707
+      robot: 0
+      type: 0
+    parent: AND_2_0_020
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_710:
+    children:
+    - NONE
+    mask:
+      node: 710
+      robot: 0
+      type: 0
+    parent: OR_1_0_057
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_711:
+    children:
+    - NONE
+    mask:
+      node: 711
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_714:
+    children:
+    - MOVE_3_0_907
+    mask:
+      node: 714
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_715:
+    children:
+    - OR_1_0_880
+    mask:
+      node: 715
+      robot: 0
+      type: 0
+    parent: THEN_0_0_243
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_716:
+    children:
+    - MOVE_3_0_909
+    mask:
+      node: 716
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_717:
+    children:
+    - MOVE_3_0_745
+    mask:
+      node: 717
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_719:
+    children:
+    - NONE
+    mask:
+      node: 719
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_724:
+    children:
+    - THEN_0_0_808
+    mask:
+      node: 724
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_725:
+    children:
+    - NONE
+    mask:
+      node: 725
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_726:
+    children:
+    - NONE
+    mask:
+      node: 726
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_733:
+    children:
+    - NONE
+    mask:
+      node: 733
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_734:
+    children:
+    - NONE
+    mask:
+      node: 734
+      robot: 0
+      type: 0
+    parent: OR_1_0_313
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_739:
+    children:
+    - NONE
+    mask:
+      node: 739
+      robot: 0
+      type: 0
+    parent: OR_1_0_227
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_741:
+    children:
+    - NONE
+    mask:
+      node: 741
+      robot: 0
+      type: 0
+    parent: AND_2_0_026
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_742:
+    children:
+    - NONE
+    mask:
+      node: 742
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_747:
+    children:
+    - NONE
+    mask:
+      node: 747
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_751:
+    children:
+    - NONE
+    mask:
+      node: 751
+      robot: 0
+      type: 0
+    parent: THEN_0_0_424
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_754:
+    children:
+    - NONE
+    mask:
+      node: 754
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_755:
+    children:
+    - OR_1_0_949
+    mask:
+      node: 755
+      robot: 0
+      type: 0
+    parent: AND_2_0_122
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_756:
+    children:
+    - NONE
+    mask:
+      node: 756
+      robot: 0
+      type: 0
+    parent: AND_2_0_534
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_761:
+    children:
+    - THEN_0_0_910
+    mask:
+      node: 761
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_765:
+    children:
+    - NONE
+    mask:
+      node: 765
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_767:
+    children:
+    - THEN_0_0_797
+    mask:
+      node: 767
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_768:
+    children:
+    - NONE
+    mask:
+      node: 768
+      robot: 0
+      type: 0
+    parent: OR_1_0_002
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_770:
+    children:
+    - NONE
+    mask:
+      node: 770
+      robot: 0
+      type: 0
+    parent: AND_2_0_056
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_774:
+    children:
+    - NONE
+    mask:
+      node: 774
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_775:
+    children:
+    - NONE
+    mask:
+      node: 775
+      robot: 0
+      type: 0
+    parent: AND_2_0_723
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_780:
+    children:
+    - NONE
+    mask:
+      node: 780
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_783:
+    children:
+    - NONE
+    mask:
+      node: 783
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_786:
+    children:
+    - NONE
+    mask:
+      node: 786
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_788:
+    children:
+    - NONE
+    mask:
+      node: 788
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_792:
+    children:
+    - NONE
+    mask:
+      node: 792
+      robot: 0
+      type: 0
+    parent: THEN_0_0_119
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_796:
+    children:
+    - NONE
+    mask:
+      node: 796
+      robot: 0
+      type: 0
+    parent: THEN_0_0_368
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_797:
+    children:
+    - NONE
+    mask:
+      node: 797
+      robot: 0
+      type: 0
+    parent: THEN_0_0_767
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_808:
+    children:
+    - NONE
+    mask:
+      node: 808
+      robot: 0
+      type: 0
+    parent: THEN_0_0_724
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_817:
+    children:
+    - NONE
+    mask:
+      node: 817
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_821:
+    children:
+    - NONE
+    mask:
+      node: 821
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_834:
+    children:
+    - NONE
+    mask:
+      node: 834
+      robot: 0
+      type: 0
+    parent: AND_2_0_237
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_835:
+    children:
+    - NONE
+    mask:
+      node: 835
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_841:
+    children:
+    - NONE
+    mask:
+      node: 841
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_848:
+    children:
+    - NONE
+    mask:
+      node: 848
+      robot: 0
+      type: 0
+    parent: THEN_0_0_471
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_853:
+    children:
+    - NONE
+    mask:
+      node: 853
+      robot: 0
+      type: 0
+    parent: AND_2_0_832
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_860:
+    children:
+    - NONE
+    mask:
+      node: 860
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_868:
+    children:
+    - NONE
+    mask:
+      node: 868
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_869:
+    children:
+    - NONE
+    mask:
+      node: 869
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_872:
+    children:
+    - NONE
+    mask:
+      node: 872
+      robot: 0
+      type: 0
+    parent: AND_2_0_455
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_877:
+    children:
+    - NONE
+    mask:
+      node: 877
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_881:
+    children:
+    - OR_1_0_892
+    mask:
+      node: 881
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_882:
+    children:
+    - NONE
+    mask:
+      node: 882
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_888:
+    children:
+    - NONE
+    mask:
+      node: 888
+      robot: 0
+      type: 0
+    parent: AND_2_0_403
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_891:
+    children:
+    - NONE
+    mask:
+      node: 891
+      robot: 0
+      type: 0
+    parent: THEN_0_0_329
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_893:
+    children:
+    - NONE
+    mask:
+      node: 893
+      robot: 0
+      type: 0
+    parent: THEN_0_0_573
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_894:
+    children:
+    - NONE
+    mask:
+      node: 894
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_896:
+    children:
+    - NONE
+    mask:
+      node: 896
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_897:
+    children:
+    - NONE
+    mask:
+      node: 897
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_901:
+    children:
+    - NONE
+    mask:
+      node: 901
+      robot: 0
+      type: 0
+    parent: OR_1_0_370
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_902:
+    children:
+    - NONE
+    mask:
+      node: 902
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_905:
+    children:
+    - NONE
+    mask:
+      node: 905
+      robot: 0
+      type: 0
+    parent: OR_1_0_617
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_910:
+    children:
+    - NONE
+    mask:
+      node: 910
+      robot: 0
+      type: 0
+    parent: THEN_0_0_761
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_914:
+    children:
+    - NONE
+    mask:
+      node: 914
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_919:
+    children:
+    - NONE
+    mask:
+      node: 919
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_922:
+    children:
+    - NONE
+    mask:
+      node: 922
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_928:
+    children:
+    - NONE
+    mask:
+      node: 928
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_931:
+    children:
+    - NONE
+    mask:
+      node: 931
+      robot: 0
+      type: 0
+    parent: THEN_0_0_689
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_936:
+    children:
+    - NONE
+    mask:
+      node: 936
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_940:
+    children:
+    - NONE
+    mask:
+      node: 940
+      robot: 0
+      type: 0
+    parent: OR_1_0_316
+    peers:
+    - NONE
+    x: 0
+    y: 0
+  THEN_0_0_946:
+    children:
+    - NONE
+    mask:
+      node: 946
+      robot: 0
+      type: 0
+    parent: THEN_0_0_001
+    peers:
+    - NONE
+    x: 0
+    y: 0
