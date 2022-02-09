@@ -23,7 +23,25 @@ class Node:
 
 		self.parent = nParent
 		self.children = []
-		self.depth = 0
+
+	# Quick way to define if two nodes are equal. Essentially just check all of their attributes against each other
+	# This is a local definition of equivalence two nodes at different points in their trees due to different grandparents
+	# will return a false positive here so that should be handled in the tree class
+	def equals(self, comp_node):
+		
+		# If their children lists aren't the same size they aren't equal
+		if not (len(self.children) == len(comp_node.children)):
+		    return False
+		
+		# For this node it is ok to make the equivalence non recursive as the tree with handle the recursion
+		# Therefore simply check the names of all the children against each other
+		children = True
+		for i in range(len(self.children)):
+			children = (children and (self.children[i].name == comp_node.children[i].name))
+
+		# Make sure to return children first so that it short circuits and otherwise just check the attributes
+		# all of these need to be true for the nodes to be equivalent
+		return children and (self.x == comp_node.x) and (self.y == comp_node.y) and (self.parent == comp_node.parent) and (self.name == comp_node.name)
 		
 	def addChild(self, nNode):
 		self.children.append(nNode)
@@ -67,6 +85,30 @@ class Tree:
 		self.root_node = self.node_dict["ROOT_4_0_000"] 
 		self.undo_stack = Stack("UNDO")
 		self.redo_stack = Stack("REDO")
+
+	#recursive function for below
+	def rec_equals(self, cur_ptr, cur_comp_ptr):
+		# always check the two passed in first
+		if (not cur_ptr.equals(cur_comp_ptr)):
+			return False
+
+		ret = True
+
+		# This works great when they are equal but terribly when they are not
+		for i in range(len(cur_ptr.children)):
+			ret = ret and (self.rec_equals(cur_ptr.children[i], cur_comp_ptr.children[i]))
+			
+			# We can short-circuit if we ever get false to save some time
+			if not ret:
+				print("RET EQUALLED FALSE")
+				break
+
+		return ret
+
+	def equals (self, comp_tree):
+		# this should utilize recursion, so i'll go inorder and just check all the nodes and then return the
+		# answering returns all and'd together
+		return self.rec_equals(self.root_node, comp_tree.root_node)
 
 	# desc.: a helper function for toYamlDict to make sure the parents come before the children in NodeList
 	def populateNodeList(self, list, cur_ptr):
