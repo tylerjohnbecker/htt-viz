@@ -58,7 +58,7 @@ class Stack:
         self.num_items = 0
 
     # Basic print method for debugging
-    def print(self):
+    def printy(self):
         current = self.head
 
         print(self.id + ":")
