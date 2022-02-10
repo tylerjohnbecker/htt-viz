@@ -112,8 +112,9 @@ def random_place_both    ( tree1 , tree2):
     name = name + '_' + str(num) + '_' + str(robot) + '_' + preceeding_0s + str(node_num)
 
     nNode = Node(name, 0, 0, cur_ptr)
+    nNode2 = Node(name, 0, 0, tree2.node_dict[cur_ptr.name])
     tree1.AddNode([cur_ptr.name, nNode, False])
-    tree2.AddNode([cur_ptr.name, nNode, False])
+    tree2.AddNode([cur_ptr.name, nNode2, False])
 
 
         
@@ -135,12 +136,12 @@ if __name__ == "__main__":
 
         random_place_both(t, t2)
 
-        if (1 == r.randrange(100)):
+        if (1 == r.randrange(300)):
             print("\tPLACING NEFARIOUS EXTRA NODE")
             random_place(t)
 
         after = t.equals(t2)
-        
+
         if after:
             print("\tafter place both trees are equal!\n")
         else:
@@ -148,7 +149,6 @@ if __name__ == "__main__":
 
             print("\tSaving both trees to tree1.yaml, and tree2.yaml before exiting...")
 
-            
             with open("trees/failTree1.yaml", "w") as outfile:
                 yaml.dump(t.toYamlDict(), outfile)
 

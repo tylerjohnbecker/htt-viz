@@ -23,6 +23,7 @@ class Node:
 
 		self.parent = nParent
 		self.children = []
+		self.depth = 0
 
 	# Quick way to define if two nodes are equal. Essentially just check all of their attributes against each other
 	# This is a local definition of equivalence two nodes at different points in their trees due to different grandparents
@@ -100,7 +101,6 @@ class Tree:
 			
 			# We can short-circuit if we ever get false to save some time
 			if not ret:
-				print("RET EQUALLED FALSE")
 				break
 
 		return ret
