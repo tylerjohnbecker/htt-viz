@@ -109,6 +109,25 @@ class Tree:
 		# this should utilize recursion, so i'll go inorder and just check all the nodes and then return the
 		# answering returns all and'd together
 		return self.rec_equals(self.root_node, comp_tree.root_node)
+	
+	def rec_copy(self, tree, cur_ptr):
+
+		if not cur_ptr is self.root_node:
+			cp = Node(cur_ptr.name, cur_ptr.x, cur_ptr.y, cur_ptr.parent)
+
+			#[parent object false]
+			tree.AddNode([cp.parent, cp, False])
+
+		for i in cur_ptr.children:
+			self.rec_copy(tree, i)
+
+	# Creates a deep copy of the tree basically like a copy constructor would
+	def copy (self):
+		ret = Tree()
+		
+		self.rec_copy(ret, self.root_node)
+
+		return ret
 
 	# desc.: a helper function for toYamlDict to make sure the parents come before the children in NodeList
 	def populateNodeList(self, list, cur_ptr):

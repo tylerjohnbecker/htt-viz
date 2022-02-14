@@ -135,14 +135,16 @@ if __name__ == "__main__":
         print("\tBefore place both trees are equal: " + str(before))
 
         random_place_both(t, t2)
+        node_placed = False
 
         if (1 == r.randrange(300)):
             print("\tPLACING NEFARIOUS EXTRA NODE")
+            node_placed = True
             random_place(t)
 
         after = t.equals(t2)
 
-        if after:
+        if after and not node_placed:
             print("\tafter place both trees are equal!\n")
         else:
             print("\tTest " + str(i) + " failed...")
