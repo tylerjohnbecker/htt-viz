@@ -20,11 +20,11 @@ def random_place    ( tree ):
                 cur_ptr = cur_ptr.children[r.randrange(len(cur_ptr.children))]
                 #if its an action we can't add a child to it
                 if cur_ptr.type == '3':
-                    cur_ptr = tree.node_dict[cur_ptr.parent]
+                    cur_ptr = cur_ptr.parent
                     i = i - 1
         else:
             if cur_ptr.type == '3':
-                cur_ptr = tree.node_dict[cur_ptr.parent]
+                cur_ptr = cur_ptr.parent
                 i = i - 1
             else:
                 break
@@ -35,7 +35,7 @@ def random_place    ( tree ):
         num = r.randrange(3)
 
     robot = 0
-    node_num = len(tree.node_dict)
+    node_num = tree.num_nodes
 
     preceeding_0s = ''
 
@@ -57,7 +57,7 @@ def random_place    ( tree ):
     name = name + '_' + str(num) + '_' + str(robot) + '_' + preceeding_0s + str(node_num)
 
     nNode = Node(name, 0, 0, cur_ptr)
-    tree.AddNode([cur_ptr.name, nNode, False])
+    tree.AddNode([cur_ptr, nNode, False])
 
 
 # Note this function won't make any sense outside of when both trees are already equivalent
@@ -75,11 +75,11 @@ def random_place_both    ( tree1 , tree2):
                 cur_ptr = cur_ptr.children[r.randrange(len(cur_ptr.children))]
                 #if its an action we can't add a child to it
                 if cur_ptr.type == '3':
-                    cur_ptr = tree1.node_dict[cur_ptr.parent]
+                    cur_ptr = cur_ptr.parent
                     i = i - 1
         else:
             if cur_ptr.type == '3':
-                cur_ptr = tree1.node_dict[cur_ptr.parent]
+                cur_ptr = cur_ptr.parent
                 i = i - 1
             else:
                 break
@@ -90,7 +90,7 @@ def random_place_both    ( tree1 , tree2):
         num = r.randrange(3)
 
     robot = 0
-    node_num = len(tree1.node_dict)
+    node_num = tree1.num_nodes
 
     preceeding_0s = ''
 
@@ -111,10 +111,12 @@ def random_place_both    ( tree1 , tree2):
 
     name = name + '_' + str(num) + '_' + str(robot) + '_' + preceeding_0s + str(node_num)
 
+    comp_ptr = tree2.findNodeByName(cur_ptr.name)
+
     nNode = Node(name, 0, 0, cur_ptr)
-    nNode2 = Node(name, 0, 0, tree2.node_dict[cur_ptr.name])
-    tree1.AddNode([cur_ptr.name, nNode, False])
-    tree2.AddNode([cur_ptr.name, nNode2, False])
+    nNode2 = Node(name, 0, 0, comp_ptr)
+    tree1.AddNode([cur_ptr, nNode, False])
+    tree2.AddNode([comp_ptr, nNode2, False])
 
 
         
@@ -137,7 +139,7 @@ if __name__ == "__main__":
         random_place_both(t, t2)
         node_placed = False
 
-        if (1 == r.randrange(300)):
+        if (1 == r.randrange(100)):
             print("\tPLACING NEFARIOUS EXTRA NODE")
             node_placed = True
             random_place(t)
@@ -147,15 +149,17 @@ if __name__ == "__main__":
         if after and not node_placed:
             print("\tafter place both trees are equal!\n")
         else:
-            print("\tTest " + str(i) + " failed...")
+            print("\tTrees are not equal for iteration: " + str(i))
 
-            print("\tSaving both trees to tree1.yaml, and tree2.yaml before exiting...")
+            if not node_placed:
+                print("Test Failed!")
+                print("\tSaving both trees to tree1.yaml, and tree2.yaml before exiting...")
 
-            with open("trees/failTree1.yaml", "w") as outfile:
-                yaml.dump(t.toYamlDict(), outfile)
+                with open("trees/failTree1.yaml", "w") as outfile:
+                    yaml.dump(t.toYamlDict(), outfile)
 
-            with open("trees/failTree2.yaml", "w") as outfile:
-                yaml.dump(t2.toYamlDict(), outfile)
+                with open("trees/failTree2.yaml", "w") as outfile:
+                    yaml.dump(t2.toYamlDict(), outfile)
 
             print("\tExiting!!!")
 

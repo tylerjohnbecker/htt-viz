@@ -29,12 +29,25 @@ class Node:
 		# For this node it is ok to make the equivalence non recursive as the tree with handle the recursion
 		# Therefore simply check the names of all the children against each other
 		children = True
-		for i in range(len(self.children)):
-			children = (children and (self.children[i].name == comp_node.children[i].name))
-
+		for i in self.children:
+			exists = False
+			for j in comp_node.children:
+				if i.name == j.name:
+					exists = True
+					break
+			children = (children and exists)
+		
+		parent_same = True
+		if self.parent is not None:
+			parent_same = (self.parent.name == comp_node.parent.name)
+		
 		# Make sure to return children first so that it short circuits and otherwise just check the attributes
 		# all of these need to be true for the nodes to be equivalent
-		return children and (self.x == comp_node.x) and (self.y == comp_node.y) and (self.parent == comp_node.parent) and (self.name == comp_node.name)
+		return children \
+			and (self.x == comp_node.x) \
+			and (self.y == comp_node.y) \
+			and (self.name == comp_node.name) \
+			and parent_same 
 		
 	def addChild(self, nNode):
 		self.children.append(nNode)
@@ -74,10 +87,10 @@ class Tree:
 
 	# No params, simply initialize a Root Node for the initial tree viewing, and as well
 	def __init__(self):
-		self.node_dict = {"ROOT_4_0_000" : Node("ROOT_4_0_000", 50, 10)}
-		self.root_node = self.node_dict["ROOT_4_0_000"] 
+		self.root_node = Node("ROOT_4_0_000", 50, 10) 
 		self.undo_stack = Stack("UNDO")
 		self.redo_stack = Stack("REDO")
+		self.num_nodes = 1
 
 	#recursive function for below
 	def rec_equals(self, cur_ptr, cur_comp_ptr):
@@ -88,8 +101,14 @@ class Tree:
 		ret = True
 
 		# This works great when they are equal but terribly when they are not
-		for i in range(len(cur_ptr.children)):
-			ret = ret and (self.rec_equals(cur_ptr.children[i], cur_comp_ptr.children[i]))
+		for i in cur_ptr.children:
+			exists = False
+			for j in cur_comp_ptr.children:
+				if self.rec_equals(i, j):
+					exists = True
+					break
+
+			ret = ret and exists
 			
 			# We can short-circuit if we ever get false to save some time
 			if not ret:
@@ -105,10 +124,12 @@ class Tree:
 	def rec_copy(self, tree, cur_ptr):
 
 		if not cur_ptr is self.root_node:
-			cp = Node(cur_ptr.name, cur_ptr.x, cur_ptr.y, cur_ptr.parent)
+			cp = Node(cur_ptr.name, cur_ptr.x, cur_ptr.y, None)
+
+			parent = tree.findNodeByName(cur_ptr.parent.name)
 
 			#[parent object false]
-			tree.AddNode([cp.parent, cp, False])
+			tree.AddNode([parent, cp, False])
 
 		for i in cur_ptr.children:
 			self.rec_copy(tree, i)
@@ -205,9 +226,6 @@ class Tree:
 	#	args[2]:	boolean representing whether or not this call needs to be added to the undo_stack
 	def AddNode(self, args):
 
-		# start by adding the new node to the dictionary
-		self.node_dict[args[1].name] = args[1]
-
 		# set the parent of the new node to the passed parent (its a reference so it will change all instances)
 		args[1].parent = args[0]
 
@@ -226,10 +244,12 @@ class Tree:
 		# Case for the tree being empty
 		if self.root_node == None:
 			self.root_node = args[1]
+
+		self.num_nodes = self.num_nodes + 1
 		
 		# For the initial call push to undo_stack otherwise we are using it from undo/redo
 		if args[2]:
-			undo = FunctionCall(self.RemoveNode, [args[1].name, False, [], 0])
+			undo = FunctionCall(self.RemoveNode, [args[1].name, False])
 			redo = FunctionCall(self.AddNode, [args[0], args[1], False])
 
 			action = ActionNode(True, [ undo ], [ redo ])
@@ -239,81 +259,52 @@ class Tree:
 
 	
 	# desc.: recursively print the nodes in the subtree starting at node_name
-	def PrintNodes(self, node_name):
+	def PrintNodes(self, cur_ptr):
 		
 		dashes = ''
 
-		for i in range(self.node_dict[node_name].depth):
+		for i in range(cur_ptr.depth):
 			dashes = dashes + '- '
 
-		print(dashes + node_name)
+		print(dashes + cur_ptr.name)
 
-		for child in self.node_dict[node_name].children:
-			self.PrintNodes(child.name)
+		for child in cur_ptr.children:
+			self.PrintNodes(child)
 
 	# desc.: print the nodes starting from the root
 	def PrintTree(self):
-		self.PrintNodes(self.root_node.name)
+		self.PrintNodes(self.root_node)
 
 	# desc.: essentially just a call to remove node the root thereby completely destroying the tree
 	def DestroyTree(self):
-		self.RemoveNode([ self.root_node.name, False, [], 0 ] )
+		self.RemoveNode([ self.root_node.name, False] )
 		self.root_node = None
-
-	# NOTE: do not call from outside the class (Things will break)
-	# Params:
-	#	node_name:	name of the node currently being removed
-	#	list:		list to which we are appending all of the undo functions for each node removed
-	#	index:		argument used to preserve the child's place in its parent's list of children for undo
-	def RemoveNodeRec(self, node_name, list, index):
-		
-		# get the num of children early
-		num_children = len(self.node_dict[node_name].children)
-
-		# get the params for the list insert now (to push onto the undo stack)
-		parent = self.node_dict[node_name].parent
-		node = self.node_dict[node_name]
-
-		# if its not a leaf we need to delete the children first
-		# children are deleted back to front so that their ordering does not mess up the loop
-		# delete 0 go to 1 (there is now an element at 0 which we have skipped)
-		for i in range(num_children - 1, -1, -1):
-			# make sure to put the name to delete in a list
-			self.RemoveNode([ self.node_dict[node_name].children[i].name, False, list , i])
-
-		# make extra sure the children are gone
-		self.node_dict[node_name].children = []
-		
-		# now pop the node_name from the dictionary as it should be fully gone
-		self.node_dict.pop(node_name)
-
-		# insert this action into the list for undo
-		list.insert(index, FunctionCall(self.AddNode, [parent, node, False]))
 
 	# Params:
 	#	args[0]:	name of the node being removed
-	#	args[1]:	boolean representing whether we need to make a new entry to the undo_stack(starts as true and should always be false after)
-	#	args[2]:	list of all nodes removed as undo functions (redo is only 1 function call)
-	#	args[3]:	index to pass to children so that they remain in the same order
+	#	args[1]:	boolean representing whether we need to make a new entry 
+	#				to the undo_stack(starts as true and should always be false after)
 	def RemoveNode(self, args):
-		
-		# first delete ourselves in the parent's list of children
-		if not self.node_dict[args[0]].parent == None and not self.node_dict[args[0]].parent == "NONE":
-			for child in self.node_dict[self.node_dict[args[0]].parent].children:
-				if child.name == args[0]:
-					self.node_dict[self.node_dict[args[0]].parent].children.remove(child)
-					break
-		
-		# Recursive function to delete all children
-		self.RemoveNodeRec(args[0], args[2], args[3])
+		to_remove = self.findNodeByName(args[0])
+		parent = to_remove.parent
 
+		for child in parent.children:
+			if child.name == to_remove.name:
+				parent.children.remove(child)
+
+		to_remove.parent = None
+		
+		self.num_nodes = self.num_nodes - 1
+		
 		# if this is the initial call to remove a node
 		if args[1]:
 			# The redo is easy because we just have a single node to remove
-			redo = FunctionCall(self.RemoveNode, [ args[0], False , [], 0 ])
+			redo = FunctionCall(self.RemoveNode, [ args[0], False ])
+			# The undo is just about adding the entire subtree we just removed to the parent
+			undo = FunctionCall(self.AddNode, [ parent, to_remove, False ])
 
 			# The undo is already done for us because we passed a list through the recursive calls
-			action = ActionNode(True, args[2], [ redo ])
+			action = ActionNode(True, [ undo ], [ redo ])
 
 			# Push it to the undo_stack now
 			self.undo_stack.push(action)
@@ -324,16 +315,29 @@ class Tree:
 	#	args[0]: name of the node being moved
 	#	args[1]: x value to move to
 	#	args[2]: y value to move to
+	#	args[3]: boolean representing whether it should be added to the undo_stack
 	def MoveNode(self, args):
-		self.node_dict[args[0]].x = args[1]
-		self.node_dict[args[0]].y = args[2]
+		prev_x = args[0].x
+		prev_y = args[0].y
+
+		args[0].x = args[1]
+		args[0].y = args[2]
+
+		if args[3]:
+			undo = FunctionCall(self.MoveNode, [args[0], prev_x, prev_y, False])
+			redo = FunctionCall(self.MoveNode, [args[0], args[1], args[2], False])
+
+			action = ActionNode(True, [undo], [redo])
+
+			self.undo_stack.push(action)
+			self.redo_stack.clear()
 
 	#function to draw the whole tree (wraps the recursive function)
 	def draw(self, dc):
-		self.drawTreeRec(dc, self.root_node.name)
+		self.drawTreeRec(dc, self.root_node)
 
 	#recursive function to draw the tree
-	def drawTreeRec(self, dc, node_name):
-		self.node_dict[node_name].draw(dc)
-		for child in self.node_dict[node_name].children:
-			self.drawTreeRec(dc, child.name)
+	def drawTreeRec(self, dc, cur_ptr):
+		cur_ptr.draw(dc)
+		for child in cur_ptr.children:
+			self.drawTreeRec(dc, child)

@@ -40,7 +40,6 @@ class ActionNode:
         if self.switch:
             for function in self.undo_list:
                 function.run()
-                print(str(self))
         else:
             for function in self.redo_list:
                 function.run()
