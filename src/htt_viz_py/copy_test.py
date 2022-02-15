@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-from NodeView import Tree, Node
+from Tree import Tree, Node
 import random as r
 
 def random_place    ( tree ):

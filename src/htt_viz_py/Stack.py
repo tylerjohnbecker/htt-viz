@@ -3,7 +3,7 @@
 # This is a file for basic Stack Stuff so that we don't have to clutter up the other files
 # This stack is meant for the undo/redo functionality
 
-STACK_MAX = 30
+STACK_MAX = 1000
 
 class FunctionCall:
     def __init__(self, func, args):
@@ -40,6 +40,7 @@ class ActionNode:
         if self.switch:
             for function in self.undo_list:
                 function.run()
+                print(str(self))
         else:
             for function in self.redo_list:
                 function.run()

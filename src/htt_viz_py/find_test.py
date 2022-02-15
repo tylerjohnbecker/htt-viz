@@ -1,10 +1,9 @@
 #!/usr/bin/python
 
-# This is a file meant to test the save functionality of htt_viz
-# This is not meant to be shipped with htt_viz and is not meant to be run through ros
 from Tree import Tree, Node
-import yaml
 import random as r
+
+names = []
 
 def random_place    ( tree ):
     #so Here I want a random seed based on the time
@@ -56,20 +55,38 @@ def random_place    ( tree ):
 
     name = name + '_' + str(num) + '_' + str(robot) + '_' + preceeding_0s + str(node_num)
 
+    names.append(name)
+
     nNode = Node(name, 0, 0, cur_ptr)
     tree.AddNode([cur_ptr.name, nNode, False])
 
-        
-
 if __name__ == "__main__":
-    #Ok so the game plan here is to make a very large tree
-    #I feel like I should make a random place algo. and then abuse it for testing
+    
+    print("Creating a random tree of size 900")
+    
     t = Tree()
 
-    for i in range(950):
+    for i in range(900):
         random_place(t)
+    succeeded = True
 
-    #t.PrintTree()
-    #print("length of t's children: " + str(len(t.root_node.children)))
-    with open("trees/saveTreeTest.yaml", "w") as outfile:
-        yaml.dump(t.toYamlDict(), outfile)
+    print("Now successively searching for each node out of " + str(len(names)) + " added to the tree...")
+    cp = None
+    for i in names:
+        
+        a = r.randrange(300)
+        nefarious = False
+        if a < 50:
+            cp = t.findNodeByName(i + "I am not a real name")
+            nefarious = True
+        else:
+            cp = t.findNodeByName(i)
+
+        if cp is None and not nefarious:
+            print("\tTest Failed because node " + i + " could not be found!")
+            t.PrintTree()
+            succeeded = False
+            break
+
+    if succeeded:
+        print("\tTest passed")

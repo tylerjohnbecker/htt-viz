@@ -2,7 +2,7 @@
 
 # This is a file meant to test the save functionality of htt_viz
 # This is not meant to be shipped with htt_viz and is not meant to be run through ros
-from NodeView import Tree, Node
+from Tree import Tree, Node
 import yaml
 import random as r
 

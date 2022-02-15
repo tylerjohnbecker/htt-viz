@@ -231,7 +231,7 @@ class frameMain ( wx.Frame ):
 		    obj.switch = True
 		    obj.next = None 
 		    self.right.treeEditor.tree.undo_stack.push(obj)
-		    self.right.treeEditor.tree.redo_stack.clear()
+		    #self.right.treeEditor.tree.redo_stack.clear()
 
 		self.right.treeEditor.Refresh(False)
 
