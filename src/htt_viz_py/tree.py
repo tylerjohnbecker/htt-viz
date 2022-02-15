@@ -127,6 +127,48 @@ class Tree:
 		for child in cur_ptr.children:
 			self.populateNodeList(list, child)
 
+	def recAddToList (self, dict, cur_ptr):
+		
+		# initialize the entry for the child
+		dict["Nodes"][cur_ptr.name] = {}
+
+		# now the mask
+		dict["Nodes"][cur_ptr.name]["mask"] = {}
+
+		# each mask is saved in the Name of the child like so (Name_type_robot_node)
+		type = int(cur_ptr.name[-7:-6])
+		robot = int(cur_ptr.name[-5:-4])
+		node  = int(cur_ptr.name[-3:])
+
+		dict["Nodes"][cur_ptr.name]["mask"]["type"] = type
+		dict["Nodes"][cur_ptr.name]["mask"]["robot"] = robot
+		dict["Nodes"][cur_ptr.name]["mask"]["node"] = node
+
+		# Now save the parent (if its none we make sure its all caps in the file)
+		if cur_ptr.parent is not None:
+			dict["Nodes"][cur_ptr.name]["parent"] = cur_ptr.parent.name
+		else:
+			dict["Nodes"][cur_ptr.name]["parent"] = 'NONE'
+
+		# initialize the list of children and save them as is
+		dict["Nodes"][cur_ptr.name]["children"] = []
+		for c_child in cur_ptr.children:
+			dict["Nodes"][cur_ptr.name]["children"].append(str(c_child.name))
+
+		# if we have no children make sure to do all caps NONE again
+		if len(dict["Nodes"][cur_ptr.name]["children"]) == 0:
+			dict["Nodes"][cur_ptr.name]["children"].append("NONE")
+
+		# Not a base function of HTT's so I'll leave this blank for now until we have a more dynamic way of doing this
+		dict["Nodes"][cur_ptr.name]["peers"] = ['NONE']
+
+		# Make sure to save their coords as decided by the user so that when we load the tree it always looks the same
+		dict["Nodes"][cur_ptr.name]["x"] = cur_ptr.x
+		dict["Nodes"][cur_ptr.name]["y"] = cur_ptr.y
+
+		for i in cur_ptr.children:
+			self.recAddToList(dict, i)
+
 	# desc.: create a dictionary which is ready to be saved to a yaml file for use with the trees
 	def toYamlDict(self):
 
@@ -139,46 +181,7 @@ class Tree:
 		self.populateNodeList(tree_dict["NodeList"], self.root_node)
 
 		# iterate through each child now (could be any order, right now in alphabetical)
-		for child in self.node_dict:
-
-			# initialize the entry for the child
-			tree_dict["Nodes"][str(child)] = {}
-
-			# now the mask
-			tree_dict["Nodes"][str(child)]["mask"] = {}
-
-			# each mask is saved in the Name of the child like so (Name_type_robot_node)
-			type = int(child[-7:-6])
-			robot = int(child[-5:-4])
-			node  = int(child[-3:])
-
-			tree_dict["Nodes"][str(child)]["mask"]["type"] = type
-			tree_dict["Nodes"][str(child)]["mask"]["robot"] = robot
-			tree_dict["Nodes"][str(child)]["mask"]["node"] = node
-
-			# Now save the parent (if its none we make sure its all caps in the file)
-			if not self.node_dict[str(child)].parent is None:
-				tree_dict["Nodes"][str(child)]["parent"] = str(self.node_dict[child].parent)
-			else:
-				tree_dict["Nodes"][str(child)]["parent"] = 'NONE'
-
-			# initialize the list of children and save them as is
-			tree_dict["Nodes"][str(child)]["children"] = []
-			for c_child in self.node_dict[str(child)].children:
-				tree_dict["Nodes"][str(child)]["children"].append(str(c_child.name))
-
-			# if we have no children make sure to do all caps NONE again
-			if len(tree_dict["Nodes"][str(child)]["children"]) == 0:
-				tree_dict["Nodes"][str(child)]["children"].append("NONE")
-
-			# Not a base function of HTT's so I'll leave this blank for now until we have a more dynamic way of doing this
-			tree_dict["Nodes"][str(child)]["peers"] = ['NONE']
-
-			# Make sure to save their coords as decided by the user so that when we load the tree it always looks the same
-			tree_dict["Nodes"][str(child)]["x"] = self.node_dict[child].x
-			tree_dict["Nodes"][str(child)]["y"] = self.node_dict[child].y
-
-
+		self.recAddToList(tree_dict, self.root_node)
 
 		return tree_dict
 
@@ -208,21 +211,21 @@ class Tree:
 		# set the parent of the new node to the passed parent (its a reference so it will change all instances)
 		args[1].parent = args[0]
 
-		p = self.node_dict[args[0]]
+		p = args[0]
 		depth = 1
-		if args[0] != 'NONE':
+		if p is not None:
 			while p.parent is not None:
-				p = self.node_dict[p.parent]
+				p = p.parent
 				depth = depth + 1
 
 		args[1].depth = depth
 		# Not sure if this is necessary so I'm leaving it in (Tyler)
-		if not args[0] == "NONE":
-			self.node_dict[args[0]].addChild(args[1])
+		if args[0] is not None:
+			args[0].addChild(args[1])
 
 		# Case for the tree being empty
 		if self.root_node == None:
-			self.root_node = self.node_dict[args[1].name]
+			self.root_node = args[1]
 		
 		# For the initial call push to undo_stack otherwise we are using it from undo/redo
 		if args[2]:

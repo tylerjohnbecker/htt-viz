@@ -20,7 +20,7 @@ def random_place    ( tree ):
                 cur_ptr = cur_ptr.children[r.randrange(len(cur_ptr.children))]
                 #if its an action we can't add a child to it
                 if cur_ptr.type == '3':
-                    cur_ptr = tree.node_dict[cur_ptr.parent]
+                    cur_ptr = cur_ptr.parent
                     i = i - 1
         else:
             if cur_ptr.type == '3':
@@ -57,7 +57,7 @@ def random_place    ( tree ):
     name = name + '_' + str(num) + '_' + str(robot) + '_' + preceeding_0s + str(node_num)
 
     nNode = Node(name, 0, 0, cur_ptr)
-    tree.AddNode([cur_ptr.name, nNode, False])
+    tree.AddNode([cur_ptr, nNode, False])
 
         
 
