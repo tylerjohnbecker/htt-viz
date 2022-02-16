@@ -4,11 +4,8 @@ import yaml
 from yaml import Loader, Dumper
 from htt_viz.srv import Update
 from htt_viz.srv import UpdateResponse
-from Tree import Tree, Node
-
-NODE_WIDTH = 120
-NODE_HEIGHT = 25
-NODE_RADIUS = 10
+from htt_viz_py.Tree import Tree, Node
+from htt_viz_py.Stack import ActionNode, FunctionCall
 
 # Custom widget design based on https://wiki.wxpython.org/CreatingCustomControls
 class NodeView(wx.Panel):
@@ -104,8 +101,8 @@ class NodeView(wx.Panel):
 	def OnMouseLeftUp(self, event):
 
 		if self.draggingNode is not None:
-			undo = FunctionCall(self.tree.MoveNode, [self.draggingNode.name, self.start_x, self.start_y])
-			redo = FunctionCall(self.tree.MoveNode, [self.draggingNode.name, event.GetX(), event.GetY()])
+			undo = FunctionCall(self.tree.MoveNode, [self.draggingNode, self.start_x, self.start_y])
+			redo = FunctionCall(self.tree.MoveNode, [self.draggingNode, event.GetX(), event.GetY()])
 			self.tree.undo_stack.push( ActionNode( True, [ undo ], [ redo ] ) )
 			self.tree.redo_stack.clear()
 
@@ -114,11 +111,12 @@ class NodeView(wx.Panel):
 			self.lifted = True
 
 	def UpdateCallback(self, req):
-		self.tree.node_dict[req.owner].activation_potential = req.activation_potential
+		ptr = self.tree.findNodeByName(req.owner)
+		ptr.activation_potential = req.activation_potential
 		if req.active == True:
-			self.tree.node_dict[req.owner].color = "green"
+			ptr.color = "green"
 		else:
-			self.tree.node_dict[req.owner].color = "red"
+			ptr.color = "red"
 
 		self.Refresh(False)
 		return UpdateResponse(True)
@@ -146,10 +144,12 @@ class NodeView(wx.Panel):
 		
 		#iterate through all the nodes we need to make
 		for node in data["NodeList"]:
+			if node == "ROOT_4_0_000":
+				continue
 			#name, x=0, y=0, nParent = None
 			x = data["Nodes"][node]["x"]
 			y = data["Nodes"][node]["y"]
-			parent = data["Nodes"][node]["parent"]
+			parent = self.tree.findNodeByName(data["Nodes"][node]["parent"])
 			new_node = Node(node, x, y)
 			self.tree.AddNode([ parent, new_node, False ])
 

@@ -1,7 +1,11 @@
 #!/usr/bin/env python
 
-from Stack import Stack, ActionNode, FunctionCall
+from htt_viz_py.Stack import Stack, ActionNode, FunctionCall
+import wx
 
+NODE_WIDTH = 120
+NODE_HEIGHT = 25
+NODE_RADIUS = 10
 class Node:
 
 	def __init__(self, name, x=0, y=0, nParent = None):
@@ -16,6 +20,7 @@ class Node:
 		self.parent = nParent
 		self.children = []
 		self.depth = 0
+		self.num_children = 0
 
 	# Quick way to define if two nodes are equal. Essentially just check all of their attributes against each other
 	# This is a local definition of equivalence two nodes at different points in their trees due to different grandparents
@@ -49,6 +54,12 @@ class Node:
 			self.children.insert(index, nNode)
 		else:
 			self.children.append(nNode)
+
+		self.num_children = self.num_children + 1 + nNode.num_children
+		cur_ptr = self.parent
+		while cur_ptr is not None:
+			cur_ptr.num_children = cur_ptr.num_children + 1 + nNode.num_children
+			cur_ptr = cur_ptr.parent
 		
 	def isLeaf(self):
 		return len(self.children) < 1;
@@ -241,7 +252,7 @@ class Tree:
 		if self.root_node == None:
 			self.root_node = args[1]
 
-		self.num_nodes = self.num_nodes + 1
+		self.num_nodes = self.root_node.num_children + 1
 		
 		# For the initial call push to undo_stack otherwise we are using it from undo/redo
 		if args[2]:
@@ -273,14 +284,17 @@ class Tree:
 
 	# desc.: essentially just a call to remove node the root thereby completely destroying the tree
 	def DestroyTree(self):
-		self.RemoveNode([ self.root_node.name, False] )
-		self.root_node = None
+		if len(self.root_node.children) > 0:
+			self.RemoveNode([ self.root_node.children[0].name, False] )
 
 	# Params:
 	#	args[0]:	name of the node being removed
 	#	args[1]:	boolean representing whether we need to make a new entry 
 	#				to the undo_stack(starts as true and should always be false after)
 	def RemoveNode(self, args):
+		if (args[0] == "ROOT_4_0_000"):
+			return
+
 		to_remove = self.findNodeByName(args[0])
 		parent = to_remove.parent
 
@@ -290,9 +304,15 @@ class Tree:
 				parent.children.remove(parent.children[i])
 				break
 
+		#update the number of nodes for each ancestor of this node
+		cur_ptr = to_remove.parent
+		while cur_ptr is not None:
+			cur_ptr.num_children = cur_ptr.num_children - (to_remove.num_children + 1)
+			cur_ptr = cur_ptr.parent
+
 		to_remove.parent = None
 		
-		self.num_nodes = self.num_nodes - 1
+		self.num_nodes = self.root_node.num_children + 1
 		
 		# if this is the initial call to remove a node
 		if args[1]:
