@@ -100,6 +100,8 @@ class Tree:
 		self.undo_stack = Stack("UNDO")
 		self.redo_stack = Stack("REDO")
 		self.num_nodes = 1
+		self.free_nums = [False] * 1000
+		self.free_nums[0] = True			
 
 	#recursive function for below
 	def rec_equals(self, cur_ptr, cur_comp_ptr):
@@ -118,6 +120,13 @@ class Tree:
 				break
 
 		return ret
+
+	def getNextNum(self):
+		for i in range(1000):
+			if not self.free_nums[i]:
+				return i
+		
+		return -1
 
 	def equals (self, comp_tree):
 		# this should utilize recursion, so i'll go inorder and just check all the nodes and then return the
@@ -223,12 +232,36 @@ class Tree:
 	def findNodeByName(self, name):
 		return self.recFindNodeByName(name, self.root_node)
 
+	def rec_num_maintainer(self, cur_ptr, bool):
+		num = int(cur_ptr.name[-3:])
+
+		self.free_nums[num] = bool
+		
+		for child in cur_ptr.children:
+			self.rec_num_maintainer(child, bool)
+
 	#Params:
 	#	args[0]:	name of the parent node to add to
 	#	args[1]:	object created for the new node to add
 	#	args[2]:	boolean representing whether or not this call needs to be added to the undo_stack
 	#	args[3]:	insert index for the list of children (optional)
 	def AddNode(self, args):
+
+		#If we are just normally adding a node to the tree
+		if args[2]:
+			nNum = self.getNextNum()
+
+			preceeding_0s = ''
+
+			if ( nNum / 10 ) < 1:
+				preceeding_0s = '00'
+			elif ( nNum / 100) < 1:
+				preceeding_0s = '0'
+
+			args[1].name = args[1].name + "_" + preceeding_0s + str(nNum)
+			self.free_nums[nNum] = True
+		else:#Otherwise we might have children along with the node we are adding, and the node will already have a number
+			self.rec_num_maintainer(args[1], True)
 
 		# set the parent of the new node to the passed parent (its a reference so it will change all instances)
 		args[1].parent = args[0]
@@ -314,6 +347,8 @@ class Tree:
 		
 		self.num_nodes = self.root_node.num_children + 1
 		
+		self.rec_num_maintainer(to_remove, False)
+
 		# if this is the initial call to remove a node
 		if args[1]:
 			# The redo is easy because we just have a single node to remove

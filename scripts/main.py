@@ -292,18 +292,10 @@ class RCMenu(wx.Menu):
 				num = 0
 
 			robot = 0
-			node_num = nodeView.tree.num_nodes
-
-			preceeding_0s = ''
-
-			if ( node_num / 10 ) < 1:
-				preceeding_0s = '00'
-			elif ( node_num / 100) < 1:
-				preceeding_0s = '0'
-
+			
 			# XXX HACK XXX
 			# Node names must be unique
-			node = Node(selection + '_' + str(num) + '_' + str(robot) + '_' + preceeding_0s + str(node_num), maybeNode.x, maybeNode.y + 100)
+			node = Node(selection + '_' + str(num) + '_' + str(robot), maybeNode.x, maybeNode.y + 100)
 			nodeView.tree.AddNode([maybeNode, node, True])
 			nodeView.Refresh(False)
 			self.parent.AddStar()
