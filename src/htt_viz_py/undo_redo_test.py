@@ -23,7 +23,7 @@ def random_rem      ( tree ):
 
     
     print("Removing " + cur_ptr.name)
-    tree.RemoveNode( [ cur_ptr.name, True, [], 0 ] )
+    tree.RemoveNode( [ cur_ptr.name, True ] )
 
 def random_place    ( tree ):
     #so Here I want a random seed based on the time
@@ -167,6 +167,8 @@ if __name__ == "__main__":
     else:
         print("\tTest [[Failed]]")
         t2.PrintTree()
+        print("Checked Against: ")
+        t_copy.PrintTree()
 
     print("==Running redo until the stack is empty")
     while not r_stack.isEmpty():

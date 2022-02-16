@@ -29,13 +29,8 @@ class Node:
 		# For this node it is ok to make the equivalence non recursive as the tree with handle the recursion
 		# Therefore simply check the names of all the children against each other
 		children = True
-		for i in self.children:
-			exists = False
-			for j in comp_node.children:
-				if i.name == j.name:
-					exists = True
-					break
-			children = (children and exists)
+		for i in range(len(self.children)):
+			children = children and (self.children[i].name == comp_node.children[i].name)
 		
 		parent_same = True
 		if self.parent is not None:
@@ -49,8 +44,11 @@ class Node:
 			and (self.name == comp_node.name) \
 			and parent_same 
 		
-	def addChild(self, nNode):
-		self.children.append(nNode)
+	def addChild(self, nNode, index = -1):
+		if index > -1 and index < len(self.children):
+			self.children.insert(index, nNode)
+		else:
+			self.children.append(nNode)
 		
 	def isLeaf(self):
 		return len(self.children) < 1;
@@ -101,14 +99,8 @@ class Tree:
 		ret = True
 
 		# This works great when they are equal but terribly when they are not
-		for i in cur_ptr.children:
-			exists = False
-			for j in cur_comp_ptr.children:
-				if self.rec_equals(i, j):
-					exists = True
-					break
-
-			ret = ret and exists
+		for i in range(len(cur_ptr.children)):
+			ret = ret and self.rec_equals(cur_ptr.children[i], cur_comp_ptr.children[i])
 			
 			# We can short-circuit if we ever get false to save some time
 			if not ret:
@@ -224,6 +216,7 @@ class Tree:
 	#	args[0]:	name of the parent node to add to
 	#	args[1]:	object created for the new node to add
 	#	args[2]:	boolean representing whether or not this call needs to be added to the undo_stack
+	#	args[3]:	insert index for the list of children (optional)
 	def AddNode(self, args):
 
 		# set the parent of the new node to the passed parent (its a reference so it will change all instances)
@@ -239,7 +232,10 @@ class Tree:
 		args[1].depth = depth
 		# Not sure if this is necessary so I'm leaving it in (Tyler)
 		if args[0] is not None:
-			args[0].addChild(args[1])
+			if len(args) == 4:
+				args[0].addChild(args[1], args[3])
+			else:
+				args[0].addChild(args[1])
 
 		# Case for the tree being empty
 		if self.root_node == None:
@@ -288,9 +284,11 @@ class Tree:
 		to_remove = self.findNodeByName(args[0])
 		parent = to_remove.parent
 
-		for child in parent.children:
-			if child.name == to_remove.name:
-				parent.children.remove(child)
+		i = -1
+		for i in range(len(parent.children)):
+			if parent.children[i].name == to_remove.name:
+				parent.children.remove(parent.children[i])
+				break
 
 		to_remove.parent = None
 		
@@ -301,7 +299,7 @@ class Tree:
 			# The redo is easy because we just have a single node to remove
 			redo = FunctionCall(self.RemoveNode, [ args[0], False ])
 			# The undo is just about adding the entire subtree we just removed to the parent
-			undo = FunctionCall(self.AddNode, [ parent, to_remove, False ])
+			undo = FunctionCall(self.AddNode, [ parent, to_remove, False, i ])
 
 			# The undo is already done for us because we passed a list through the recursive calls
 			action = ActionNode(True, [ undo ], [ redo ])
