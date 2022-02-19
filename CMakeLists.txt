@@ -96,11 +96,13 @@ catkin_install_python(PROGRAMS ${python_scripts_DIR}
 # install(PROGRAMS scripts/htt_viz_rqt
 #   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 # )
-# install(DIRECTORY
-#   resource
-#   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
-# )
-# install(FILES
-#   plugin.xml
-#   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
-# )
+
+# Copy RQT resources
+install(DIRECTORY
+   resource
+   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+)
+install(FILES
+   plugin.xml
+   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+)
