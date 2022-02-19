@@ -2,6 +2,10 @@
 
 import sys
 
+# XXX HACK XXX
+# Why does this fix package imports? 
+import htt_viz_py
+
 from htt_viz_rqt.my_module import MyPlugin
 from rqt_gui.main import Main
 
