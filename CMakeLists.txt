@@ -1,8 +1,6 @@
 cmake_minimum_required(VERSION 3.0.2)
 project(htt_viz)
 
-
-
 set(CMAKE_CXX_STANDARD 11)
 #set(yaml-cpp_DIR "C:/opt/yaml-cpp-yaml-cpp-0.6.0/build")
 
