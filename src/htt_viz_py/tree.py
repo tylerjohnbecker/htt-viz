@@ -376,7 +376,7 @@ class Tree:
 		args[0].x = args[1]
 		args[0].y = args[2]
 
-		if args[3]:
+		if len(args) >= 4 and args[3]:
 			undo = FunctionCall(self.MoveNode, [args[0], prev_x, prev_y, False])
 			redo = FunctionCall(self.MoveNode, [args[0], args[1], args[2], False])
 
