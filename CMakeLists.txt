@@ -83,6 +83,7 @@ add_dependencies(load ${catkin_EXPORTED_TARGETS})
 #python executables
 file (GLOB python_scripts_DIR
 	"scripts/main.py"
+  "scripts/htt_viz_rqt.py"
 )
 
 catkin_install_python(PROGRAMS ${python_scripts_DIR}
