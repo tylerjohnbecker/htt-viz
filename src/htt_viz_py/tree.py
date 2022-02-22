@@ -367,7 +367,7 @@ class Tree:
 	# Params:
 	#	args[0]: name of the node being moved
 	#	args[1]: x value to move to
-	#	args[2]: y value to move to
+	#	args[2]: y value to move to  
 	#	args[3]: boolean representing whether it should be added to the undo_stack
 	def MoveNode(self, args):
 		prev_x = args[0].x
