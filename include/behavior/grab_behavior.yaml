@@ -1,0 +1,7 @@
+# YAML description file for GrabBehavior
+
+node:
+  source: "grab_behavior.h"
+  params:
+    param_names: ["object_width"]
+    object_width: "float"
