@@ -175,9 +175,9 @@ int main(int argc, char** argv)
 					std::string place;
 					int behavior_type;
 
-					nh_.getParam((param_prefix + nodes[i] + "/obj_dest"), place);
-					nh_.getParam((param_prefix + nodes[i] + "/b_type"), behavior_type);
-					if (behavior_type == 0)
+					//nh_.getParam((param_prefix + nodes[i] + "/obj_dest"), place);
+					//nh_.getParam((param_prefix + nodes[i] + "/b_type"), behavior_type);
+					//if (behavior_type == 0)
 					{
 						int s_int = 0;
 

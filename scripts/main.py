@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python
 
 import wx
 import wx.stc
@@ -7,8 +7,7 @@ import rospy
 import threading
 import random
 from htt_viz_py.NodeView import NodeView
-from htt_viz_py.NodeView import Tree
-from htt_viz_py.NodeView import Node
+from htt_viz_py.Tree import Node
 from rosgraph_msgs.msg import Log
 	
 class frameMain ( wx.Frame ):
@@ -231,7 +230,6 @@ class frameMain ( wx.Frame ):
 		    obj.switch = True
 		    obj.next = None 
 		    self.right.treeEditor.tree.undo_stack.push(obj)
-		    self.right.treeEditor.tree.redo_stack.clear()
 
 		self.right.treeEditor.Refresh(False)
 
@@ -294,19 +292,11 @@ class RCMenu(wx.Menu):
 				num = 0
 
 			robot = 0
-			node_num = len(nodeView.tree.node_dict)
-
-			preceeding_0s = ''
-
-			if ( node_num / 10 ) < 1:
-				preceeding_0s = '00'
-			elif ( node_num / 100) < 1:
-				preceeding_0s = '0'
-
+			
 			# XXX HACK XXX
 			# Node names must be unique
-			node = Node(selection + '_' + str(num) + '_' + str(robot) + '_' + preceeding_0s + str(node_num), maybeNode.x, maybeNode.y + 100)
-			nodeView.tree.AddNode([maybeNode.name, node, True])
+			node = Node(selection + '_' + str(num) + '_' + str(robot), maybeNode.x, maybeNode.y + 100)
+			nodeView.tree.AddNode([maybeNode, node, True])
 			nodeView.Refresh(False)
 			self.parent.AddStar()
 		
@@ -326,7 +316,7 @@ class RCMenu(wx.Menu):
 		
 		if maybeNode is not None:
 			# TODO: Make a function to do all these steps on nodeview
-			nodeView.tree.RemoveNode( [ maybeNode.name, True, [], 0 ] )
+			nodeView.tree.RemoveNode( [ maybeNode.name, True ] )
 			nodeView.Refresh(False)
 			self.parent.AddStar()
 
@@ -435,21 +425,8 @@ class MainApp(wx.App):
         mainFrame.Show(True)
         return True
 
-class AsyncSpinner(threading.Thread):
-    def __init__(self):
-        threading.Thread.__init__(self)
-	#overriden behavior of the thread
-    def run(self):
-		#we are only using this thread to collect the messages 
-		##that are sent to this program asynchronously
-        rospy.spin()
-
 if __name__ == '__main__':
     rospy.init_node('htt_viz')
-    #spinner = AsyncSpinner()
-    #spinner.start()
     app = MainApp()
     app.MainLoop()
     rospy.spin()
-    #rospy.signal_shutdown("")
-    #spinner.join()
