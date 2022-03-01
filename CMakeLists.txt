@@ -77,7 +77,7 @@ set(ActionNodes "src/behavior/dummy_behavior.cc" "src/behavior/move_behavior.cc"
 
 add_executable(load src/htt_viz/loadTree.cpp ${TaskNodes} ${ActionNodes})
 target_link_libraries(load ${catkin_LIBRARIES} ${Boost_LIBRARIES})
-add_dependencies(load ${catkin_EXPORTED_TARGETS})
+add_dependencies(load ${catkin_EXPORTED_TARGETS} htt_viz_generate_messages_cpp)
 
 
 #python executables
