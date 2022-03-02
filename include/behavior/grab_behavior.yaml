@@ -2,6 +2,7 @@
 
 node:
   source: "grab_behavior.h"
+  name: "Grab"
   params:
     param_names: ["object_width"]
     object_width: "float"

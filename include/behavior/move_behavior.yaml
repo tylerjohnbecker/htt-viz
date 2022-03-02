@@ -2,6 +2,7 @@
 
 node:
   source: "move_behavior.h"
+  name: "Move To"
   params:
     param_names: ["dest_x", "dest_y", "loc_topic"]
     dest_x: "float"

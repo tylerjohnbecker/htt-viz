@@ -10,9 +10,17 @@ class Param(object):
         self.type = "none"
         self.value = None
 
+    def copy(self, copy_param):
+        self.name = copy_param.name
+        self.type = copy_param.type
+        self.value = copy_param.value
+
     def equals(self, comp_param):
         return self.name == comp_param.name \
             and self.type == comp_param.type
+
+    def to_string(self):
+        return "Param "+ self.name + ": " + self.type + ", " + str(self.value)
 
 class ParamFloat (Param):
 

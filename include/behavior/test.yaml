@@ -1,7 +1,0 @@
-node:
-  params:
-    dest_x: float
-    dest_y: float
-    loc_topic: string
-    param_names: [dest_x, dest_y, loc_topic]
-  source: move_behavior.h
