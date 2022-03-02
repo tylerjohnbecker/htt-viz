@@ -7,20 +7,17 @@ from yaml import Loader, Dumper
 
 class NodeType(object): 
 
-	def __init__(self):
-		self.params = []
-		self.name = ""
-		self.source = ""
-
-		self.file = ""
-
 	def __init__(self, file_name):
 		self.params = []
 		self.name = ""
 		self.source = ""
 
 		self.file = ""
-		self.read_params_from_file(file_name)
+		self.canHaveParents = True
+		self.canHaveChildren = False
+		
+		if not file_name == "":
+			self.read_params_from_file(file_name)
 
 	def to_string(self):
 		to_print = "NodeType " + self.name + ": " + self.source + ", " + self.file + "\n"
