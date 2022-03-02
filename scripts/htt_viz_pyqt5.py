@@ -114,10 +114,11 @@ class MainWindow(QMainWindow):
         helpMenu.addAction(aboutAction)
         
         # Splitter
-        self.subWindow1 = SubWindow("left")
-        self.subWindow2 = SubWindow("right")
+        self.subWindow1 = SubWindow()
+        self.subWindow2 = SubWindow()
         
         self.subsplitter = QSplitter(Qt.Horizontal)
+        self.subsplitter.setStyleSheet('background-color: rgb(50,50,50)') 
         self.subsplitter.addWidget(self.subWindow1)
         self.subsplitter.addWidget(self.subWindow2)
         
@@ -126,19 +127,32 @@ class MainWindow(QMainWindow):
         
 
     def openCall(self):
-        print('Open')
+        options = QFileDialog.Options()
+        options |= QFileDialog.DontUseNativeDialog
+        fileName, _ = QFileDialog.getOpenFileName(self,"QFileDialog.getOpenFileName()", "","YAML Files (*.yaml)", options=options)
+        if fileName:
+            print(fileName)
 
     def newCall(self):
-        print('New')
-        
+        print('new')
+    
+    # https://pythonspot.com/pyqt5-file-dialog/    
     def saveCall(self):
-        print('Save')
+        options = QFileDialog.Options()
+        options |= QFileDialog.DontUseNativeDialog
+        fileName, _ = QFileDialog.getSaveFileName(self,"QFileDialog.getSaveFileName()","","YAML Files (*.yaml)", options=options)
+        if fileName:
+            print(fileName)
         
     def saveAsCall(self):
-        print('Save')
+        options = QFileDialog.Options()
+        options |= QFileDialog.DontUseNativeDialog
+        fileName, _ = QFileDialog.getSaveFileName(self,"QFileDialog.getSaveFileName()","","YAML Files (*.yaml)", options=options)
+        if fileName:
+            print(fileName)
 
     def exitCall(self):
-        print('Exit app')
+        self.close()
         
     def undoCall(self):
         print('undo')
@@ -159,19 +173,19 @@ class MainWindow(QMainWindow):
         print('debug')
 
     def aboutCall(self):
-        print('about')
+        msg = QMessageBox()
+        msg.setIcon(QMessageBox.Information)
+        msg.setText("HTT-Viz About...")
+        msg.setWindowTitle("HTT-Viz About")
+        
+        msg.exec()
         
         
 class SubWindow(QWidget):
-    def __init__(self, label):
+    def __init__(self):
         super(SubWindow, self).__init__()
-        
-        self.label = QLabel(label)
-        self.label.setAlignment(Qt.AlignCenter)
-        self.label.setStyleSheet("QLabel {font-size:40px;}")
 
         self.main_layout = QVBoxLayout()
-        self.main_layout.addWidget(self.label)
         self.setLayout(self.main_layout)
 
 
