@@ -18,16 +18,16 @@ class ProgramAuthor(object):
 		Root.name = "Root"
 
 		Then.canHaveChildren = True
-		Then.name = "Then"
+		Then.name = "THEN"
 		And.canHaveChildren = True
-		And.name = "And"
+		And.name = "AND"
 		Or.canHaveChildren = True
-		Or.name = "Or"
+		Or.name = "OR"
 
 		self.node_master_list.append(Root)
 		self.node_master_list.append(Then)
-		self.node_master_list.append(And)
 		self.node_master_list.append(Or)
+		self.node_master_list.append(And)
 
 		#returns the path of this file which is stored in the global __file__ by default
 		my_path = os.path.dirname(os.path.abspath(__file__))
@@ -39,6 +39,12 @@ class ProgramAuthor(object):
 
 		for x in behavior_types:
 			self.node_master_list.append(x)
+
+		self.maintain_indices()
+
+	def maintain_indices(self):
+		for i in range(len(self.node_master_list)):
+			self.node_master_list[i].index = i
 
 	def read_nodes_from_folder(self, folder_name):
 		return_types = []
@@ -55,17 +61,20 @@ class ProgramAuthor(object):
 		n_node = NodeType(file_name)
 
 		self.node_master_list.append(n_node)
+		self.maintain_indices()
 
 	def add_nodes_from_folder(self, folder_name):
 		n_nodes = self.read_nodes_from_folder(folder_name)
 
 		for x in n_nodes:
 			self.node_master_list.append(n_nodes)
+		self.maintain_indices()
 
 	def remove_node_by_name(self, name):
 		for i in range(len(self.node_master_list)):
 			if name == self.node_master_list[i].name:
 				del node_master_list[i]
+				self.maintain_indices()
 				return True
 
 		return False
@@ -77,9 +86,14 @@ class ProgramAuthor(object):
 
 		return None
 
+	def get_node_type_by_index(self, index):
+		return self.node_master_list[index]
+
+	#I don't know how this is going to work so I'm going to leave this blank for now
 	def load_master_list(self, tree_list):
 		pass
 
+	#This is the last thing that I'll do for the project before we start working with the robot
 	def update_load_tree(self):
 		pass
 

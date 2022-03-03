@@ -11,13 +11,35 @@ class NodeType(object):
 		self.params = []
 		self.name = ""
 		self.source = ""
+		self.index = 0
 
 		self.file = ""
 		self.canHaveParents = True
 		self.canHaveChildren = False
-		
+
 		if not file_name == "":
 			self.read_params_from_file(file_name)
+
+
+	def copy_params_list(self):
+		n_list = []
+
+		for i in self.params:
+			n_param = None
+			if i.type == "float":
+				n_param = ParamFloat()
+			elif i.type == "string":
+				n_param = ParamString()
+			elif i.type == "int":
+				n_param = ParamInt()
+			elif i.type == "bool":
+				n_param = ParamBool()
+			else:
+				n_param = Param()
+
+			n_list.append(n_param)
+
+		return n_list
 
 	def to_string(self):
 		to_print = "NodeType " + self.name + ": " + self.source + ", " + self.file + "\n"

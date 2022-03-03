@@ -16,8 +16,9 @@ class Param(object):
         self.value = copy_param.value
 
     def equals(self, comp_param):
-        return self.name == comp_param.name \
-            and self.type == comp_param.type
+        return  self.name == comp_param.name \
+            and self.type == comp_param.type \
+            and self.value == comp_param.value
 
     def to_string(self):
         return "Param "+ self.name + ": " + self.type + ", " + str(self.value)
