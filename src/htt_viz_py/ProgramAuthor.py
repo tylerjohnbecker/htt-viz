@@ -51,6 +51,38 @@ class ProgramAuthor(object):
 
 		return return_types 
 
+	def add_node_from_file(self, file_name):
+		n_node = NodeType(file_name)
+
+		self.node_master_list.append(n_node)
+
+	def add_nodes_from_folder(self, folder_name):
+		n_nodes = self.read_nodes_from_folder(folder_name)
+
+		for x in n_nodes:
+			self.node_master_list.append(n_nodes)
+
+	def remove_node_by_name(self, name):
+		for i in range(len(self.node_master_list)):
+			if name == self.node_master_list[i].name:
+				del node_master_list[i]
+				return True
+
+		return False
+
+	def get_node_type_by_name(self, name):
+		for x in self.node_master_list:
+			if x.name == name:
+				return x
+
+		return None
+
+	def load_master_list(self, tree_list):
+		pass
+
+	def update_load_tree(self):
+		pass
+
 	def to_string(self):
 		to_print = "Author " + "\n"
 
