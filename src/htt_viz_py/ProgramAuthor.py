@@ -34,6 +34,7 @@ class ProgramAuthor(object):
 
 		#essentially this removes /src/htt_viz_py and replaces it with /include/behavior
 		include_path = my_path[0:(len(my_path) - 15)] + "/include/behavior"
+		self.node_folder_list = [include_path]
 
 		behavior_types = self.read_nodes_from_folder(include_path)
 
@@ -46,9 +47,9 @@ class ProgramAuthor(object):
 		for i in range(len(self.node_master_list)):
 			self.node_master_list[i].index = i
 
-	def read_nodes_from_folder(self, folder_name):
+	def read_nodes_from_folder(self, folder_path):
 		return_types = []
-		os.chdir(folder_name)
+		os.chdir(folder_path)
 
 		for file in glob.glob("*.yaml"):
 			n_type = NodeType(file)
@@ -63,8 +64,13 @@ class ProgramAuthor(object):
 		self.node_master_list.append(n_node)
 		self.maintain_indices()
 
-	def add_nodes_from_folder(self, folder_name):
-		n_nodes = self.read_nodes_from_folder(folder_name)
+	def add_nodes_from_folder(self, folder_path):
+		if folder_path in self.node_folder_list:
+			return
+
+		n_nodes = self.read_nodes_from_folder(folder_path)
+
+		self.node_folder_list.append(folder_path)
 
 		for x in n_nodes:
 			self.node_master_list.append(n_nodes)

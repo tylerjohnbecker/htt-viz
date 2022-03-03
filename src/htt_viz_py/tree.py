@@ -234,6 +234,10 @@ class Tree:
 		tree_dict = {}
 		tree_dict["Nodes"] = {}
 		tree_dict["NodeList"] = []
+		tree_dict["NodeIncludePaths"] =[]
+
+		for i in self.author.node_folder_list:
+			tree_dict["NodeIncludePaths"].append(i)
 
 		# make sure that the nodelist is in the correct order (parents before children)
 		self.populateNodeList(tree_dict["NodeList"], self.root_node)

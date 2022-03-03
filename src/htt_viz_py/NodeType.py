@@ -37,6 +37,7 @@ class NodeType(object):
 			else:
 				n_param = Param()
 
+			n_param.copy(i)
 			n_list.append(n_param)
 
 		return n_list
