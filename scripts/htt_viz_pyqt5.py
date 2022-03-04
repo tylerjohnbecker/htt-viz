@@ -208,6 +208,7 @@ class HTTDisplayWidget(QGraphicsView):
         self.scene.addItem(self.taskTree.rootNode.qGraphics)
         
         self.setScene(self.scene)
+        self.setDragMode(QGraphicsView.DragMode.ScrollHandDrag)
         self.show()
         
 class TaskTree:
