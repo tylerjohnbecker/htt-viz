@@ -152,7 +152,7 @@ class MainWindow(QMainWindow):
     def openCall(self):
         options = QFileDialog.Options()
         options |= QFileDialog.DontUseNativeDialog
-        fileName, _ = QFileDialog.getOpenFileName(self,"QFileDialog.getOpenFileName()", "","YAML Files (*.yaml)", options=options)
+        fileName, _ = QFileDialog.getOpenFileName(self, "Open", "","YAML Files (*.yaml)", options=options)
         if fileName:
             print(fileName)
 
@@ -171,7 +171,6 @@ class MainWindow(QMainWindow):
                 return
             self.filePath = filePath
             
-        print(filePath)
         data = serialize_tree(self.taskTree)
         with open(filePath, "w") as f:
             yaml.dump(data, f)
@@ -182,6 +181,10 @@ class MainWindow(QMainWindow):
         filePath, _ = QFileDialog.getSaveFileName(self, "Save As","","YAML Files (*.yaml)", options=options)
         if filePath:
             self.filePath = filePath
+            
+            data = serialize_tree(self.taskTree)
+            with open(filePath, "w") as f:
+                yaml.dump(data, f)
 
     def exitCall(self):
         self.close()
@@ -483,7 +486,7 @@ def serialize_tree(tree):
     def populateNodeList(node, list):
         list.append(node.name)
         for child in node.children:
-            populateNodeList(node, list)
+            populateNodeList(child, list)
         
     populateNodeList(tree.rootNode, tree_dict["NodeList"])
 
@@ -529,7 +532,7 @@ def serialize_tree(tree):
         tree_dict["Nodes"][nodeName]["x"] = treeNode.getX()
         tree_dict["Nodes"][nodeName]["y"] = treeNode.getY()
         
-        return tree_dict
+    return tree_dict
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
