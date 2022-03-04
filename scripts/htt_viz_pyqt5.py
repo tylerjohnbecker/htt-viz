@@ -231,6 +231,28 @@ class HTTDisplayWidget(QGraphicsView):
                 self.scene.addItem(child.qGraphics.lines[-1].line)
                 
                 self.numCreatedNodes += 1
+                
+    def removeChildNode(self, name):
+        node = self.taskTree.getNodeByName(name)
+        if node is not None:
+            if self.taskTree.removeNode(node):
+                def cleanNode(scene, node, depth=0):
+                    scene.removeItem(node.qGraphics)
+                    for line in node.qGraphics.lines:
+                        if line.child:
+                            scene.removeItem(line.line)
+                        elif line.parent:
+                            if depth == 0:
+                                maybeLine = next(filter(lambda parentLine: parentLine.child.name == line.parent.name, iter(line.parent.qGraphics.lines)), None)
+                                if maybeLine is not None:
+                                    line.parent.qGraphics.lines.remove(maybeLine)
+                                    scene.removeItem(maybeLine.line)
+                        else:
+                            print('Neither child not parent opposing node')
+                    for child in node.children:
+                        cleanNode(scene, child, depth+1)
+                        
+                cleanNode(self.scene, node)
         
     def contextMenuEvent(self, event):
         eventPos = event.pos()
@@ -255,7 +277,7 @@ class HTTDisplayWidget(QGraphicsView):
                 print('Edit Node')
         elif action == removeNode:
             if maybeNode is not None:
-                print('Remove Node')
+                self.removeChildNode(maybeNode.name)
         elif action == close:
             app.quit()
         else:
@@ -287,6 +309,17 @@ class TaskTree:
             
         return node
         
+    def removeNode(self, node):
+        if node == self.rootNode:
+            return False
+        
+        self.nodes.remove(node)
+        
+        for child in node.children:
+            self.removeNode(child)
+            
+        return True
+        
 class TaskTreeNode:
     def __init__(self, name, x=0, y=0, scene=None):
         self.name = name
@@ -297,8 +330,6 @@ class TaskTreeNode:
         self.qGraphics = QGraphicsTaskTreeNode(self.name)
         self.qGraphics.setX(x)
         self.qGraphics.setY(y)
-        
-        self.qGraphicsLines = []
         
     # Returns `true` if this is a root. 
     # Roots are nodes that lack a parent. There should only be one.
