@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import sys
 from PyQt5 import QtCore, QtWidgets, QtGui
 from PyQt5.QtWidgets import QMainWindow, QWidget, QPushButton, QAction, QFrame
