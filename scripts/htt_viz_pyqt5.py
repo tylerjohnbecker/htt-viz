@@ -126,12 +126,25 @@ class MainWindow(QMainWindow):
         
         # Setup Task Tree Display
         self.taskTree = TaskTree()
-        taskTreeDisplayWidget = HTTDisplayWidget(self.taskTree)
-        self.subWindow2.layout().addWidget(taskTreeDisplayWidget)
+        self.taskTreeDisplayWidget = HTTDisplayWidget(self.taskTree, "THEN")
+        self.subWindow2.layout().addWidget(self.taskTreeDisplayWidget)
+        
+        self.nodeList = QListWidget()
+        self.subWindow1.layout().addWidget(self.nodeList)
+        self.nodeList.addItem("THEN")
+        self.nodeList.addItem("AND")
+        self.nodeList.addItem("OR")
+        self.nodeList.addItem("MOVE")
+        self.nodeList.addItem("GRAB")
+        self.nodeList.itemSelectionChanged.connect(self.handleNodeSelectionChange)
+        self.nodeList.item(0).setSelected(True)
+        self.subWindow1.setMaximumWidth(100)
         
         self.setCentralWidget(self.subsplitter)
         
-        
+    def handleNodeSelectionChange(self):
+        selectedItem = self.nodeList.selectedItems()[0]
+        self.taskTreeDisplayWidget.selectedNode = selectedItem.text()
 
     def openCall(self):
         options = QFileDialog.Options()
@@ -197,7 +210,7 @@ class SubWindow(QWidget):
 
 
 class HTTDisplayWidget(QGraphicsView):
-    def __init__(self, taskTree):
+    def __init__(self, taskTree, selectedNode):
         super().__init__()
         
         self.taskTree = taskTree
@@ -216,6 +229,8 @@ class HTTDisplayWidget(QGraphicsView):
         self.setDragMode(QGraphicsView.DragMode.ScrollHandDrag)
         
         self.show()
+        
+        self.selectedNode = selectedNode
         
         self.numCreatedNodes = 0
         
@@ -271,7 +286,7 @@ class HTTDisplayWidget(QGraphicsView):
         
         if action == addChildNode:
             if maybeNode is not None:
-                self.addChildNode(maybeNode.name, f'TEST_4_0_00{self.numCreatedNodes}')
+                self.addChildNode(maybeNode.name, f'{self.selectedNode}_4_0_00{self.numCreatedNodes}')
         elif action == editNode:
             if maybeNode is not None:
                 print('Edit Node')
