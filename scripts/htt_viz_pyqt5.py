@@ -9,6 +9,7 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5 import uic
+import yaml
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -142,6 +143,8 @@ class MainWindow(QMainWindow):
         
         self.setCentralWidget(self.subsplitter)
         
+        self.filePath = None
+        
     def handleNodeSelectionChange(self):
         selectedItem = self.nodeList.selectedItems()[0]
         self.taskTreeDisplayWidget.selectedNode = selectedItem.text()
@@ -154,22 +157,31 @@ class MainWindow(QMainWindow):
             print(fileName)
 
     def newCall(self):
-        print('new')
+        self.taskTreeDisplayWidget.clearTaskTree()
     
     # https://pythonspot.com/pyqt5-file-dialog/    
     def saveCall(self):
-        options = QFileDialog.Options()
-        options |= QFileDialog.DontUseNativeDialog
-        fileName, _ = QFileDialog.getSaveFileName(self,"QFileDialog.getSaveFileName()","","YAML Files (*.yaml)", options=options)
-        if fileName:
-            print(fileName)
+        filePath = self.filePath
+        
+        if not filePath:
+            options = QFileDialog.Options()
+            options |= QFileDialog.DontUseNativeDialog
+            filePath, _ = QFileDialog.getSaveFileName(self,"Save","","YAML Files (*.yaml)", options=options)
+            if not filePath:
+                return
+            self.filePath = filePath
+            
+        print(filePath)
+        data = serialize_tree(self.taskTree)
+        with open(filePath, "w") as f:
+            yaml.dump(data, f)
         
     def saveAsCall(self):
         options = QFileDialog.Options()
         options |= QFileDialog.DontUseNativeDialog
-        fileName, _ = QFileDialog.getSaveFileName(self, "QFileDialog.getSaveFileName()","","YAML Files (*.yaml)", options=options)
-        if fileName:
-            print(fileName)
+        filePath, _ = QFileDialog.getSaveFileName(self, "Save As","","YAML Files (*.yaml)", options=options)
+        if filePath:
+            self.filePath = filePath
 
     def exitCall(self):
         self.close()
@@ -268,6 +280,10 @@ class HTTDisplayWidget(QGraphicsView):
                         cleanNode(scene, child, depth+1)
                         
                 cleanNode(self.scene, node)
+                
+    def clearTaskTree(self):
+        for child in self.taskTree.rootNode.children:
+            self.removeChildNode(child.name)
         
     def contextMenuEvent(self, event):
         eventPos = event.pos()
@@ -311,6 +327,13 @@ class TaskTree:
         for node in self.nodes:
             if node.name == name:
                 return node
+        return None
+        
+    def getParentOfNode(self, node):
+        for node in self.nodes:
+            for child in node.children:
+                if child.name == node.name:
+                    return node
         return None
         
     # Add a child from a given node
@@ -449,6 +472,64 @@ class QGraphicsTaskTreeNodeLine:
         self.parent = parent
         self.child = child
         self.line = line
+        
+def serialize_tree(tree):
+    # initialize overarching vars
+    tree_dict = {}
+    tree_dict["Nodes"] = {}
+    tree_dict["NodeList"] = []
+
+    # make sure that the nodelist is in the correct order (parents before children)
+    def populateNodeList(node, list):
+        list.append(node.name)
+        for child in node.children:
+            populateNodeList(node, list)
+        
+    populateNodeList(tree.rootNode, tree_dict["NodeList"])
+
+	# iterate through each child now (could be any order, right now in alphabetical)
+    for treeNode in tree.nodes:
+        nodeName = treeNode.name
+        
+        # initialize the entry for the child
+        tree_dict["Nodes"][nodeName] = {}	
+        
+        # now the mask
+        tree_dict["Nodes"][nodeName]["mask"] = {}
+
+        # each mask is saved in the Name of the child like so (Name_type_robot_node)
+        type = int(nodeName[-7:-6])
+        robot = int(nodeName[-5:-4])
+        node  = int(nodeName[-3:])
+
+        tree_dict["Nodes"][nodeName]["mask"]["type"] = type
+        tree_dict["Nodes"][nodeName]["mask"]["robot"] = robot
+        tree_dict["Nodes"][nodeName]["mask"]["node"] = node
+
+        # Now save the parent (if its none we make sure its all caps in the file)
+        maybeParent = tree.getParentOfNode(treeNode)
+        if not maybeParent is None:
+            tree_dict["Nodes"][nodeName]["parent"] = str(maybeParent)
+        else:
+            tree_dict["Nodes"][nodeName]["parent"] = 'NONE'
+
+        # initialize the list of children and save them as is
+        tree_dict["Nodes"][nodeName]["children"] = []
+        for c_child in treeNode.children:
+            tree_dict["Nodes"][nodeName]["children"].append(str(c_child.name))
+
+        # if we have no children make sure to do all caps NONE again
+        if len(tree_dict["Nodes"][nodeName]["children"]) == 0:
+            tree_dict["Nodes"][nodeName]["children"].append("NONE")
+
+		# Not a base function of HTT's so I'll leave this blank for now until we have a more dynamic way of doing this
+        tree_dict["Nodes"][nodeName]["peers"] = ['NONE']
+
+		# Make sure to save their coords as decided by the user so that when we load the tree it always looks the same
+        tree_dict["Nodes"][nodeName]["x"] = treeNode.getX()
+        tree_dict["Nodes"][nodeName]["y"] = treeNode.getY()
+        
+        return tree_dict
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
