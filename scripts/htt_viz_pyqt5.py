@@ -207,9 +207,35 @@ class HTTDisplayWidget(QGraphicsView):
         
         self.scene.addItem(self.taskTree.rootNode.qGraphics)
         
+        self.scene.setBackgroundBrush(QColor(0x3D,0x3D,0x3D))
+        
         self.setScene(self.scene)
+        
+        # TODO: Scrolling makes a constant cursor, and feels really janky to use
+        # Maybe we should implment our own?
         self.setDragMode(QGraphicsView.DragMode.ScrollHandDrag)
+        
         self.show()
+        
+    def contextMenuEvent(self, event):
+        # https://stackoverflow.com/questions/67591464/create-event-clicking-on-context-menu-with-python-pyqt5
+        menu = QMenu(self)
+        # TODO: Only show items if a node was selected, else early exit or show different menu
+        add_child_node = menu.addAction("Add Child Node")
+        edit_node = menu.addAction("Edit Node")
+        remove_node = menu.addAction("Remove Node")
+        close = menu.addAction("Close")
+        action = menu.exec_(self.mapToGlobal(event.pos()))
+        
+        if action == add_child_node:
+            print('Add Child Node')
+        elif action == edit_node:
+            print('Edit Node')
+        elif action == remove_node:
+            print('Remove Node')
+        elif action == close:
+            app.quit()
+        
         
 class TaskTree:
     def __init__(self):
@@ -256,6 +282,7 @@ class QGraphicsTaskTreeNode(QGraphicsItem):
         self.textWidth = font_metrics.width(self.name)
         self.textHeight = font_metrics.height()
         
+        # TODO: These aren't centering vertically correctly and I don't know why.
         self.width = self.textWidth + (2.0 * self.paddingX)
         self.height = self.textHeight + (2.0 * self.paddingY)
         
