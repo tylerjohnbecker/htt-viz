@@ -124,6 +124,11 @@ class MainWindow(QMainWindow):
         self.subsplitter.addWidget(self.subWindow1)
         self.subsplitter.addWidget(self.subWindow2)
         
+        # Setup Task Tree Display
+        self.taskTree = TaskTree()
+        taskTreeDisplayWidget = HTTDisplayWidget(self.taskTree)
+        self.subWindow2.layout().addWidget(taskTreeDisplayWidget)
+        
         self.setCentralWidget(self.subsplitter)
         
         
@@ -191,6 +196,86 @@ class SubWindow(QWidget):
         self.setLayout(self.main_layout)
 
 
+class HTTDisplayWidget(QGraphicsView):
+    def __init__(self, taskTree):
+        super().__init__()
+        
+        self.taskTree = taskTree
+        
+        self.scene = QGraphicsScene()
+        self.scene.addText("Hello, world!")
+        
+        self.scene.addItem(self.taskTree.rootNode.qGraphics)
+        
+        self.setScene(self.scene)
+        self.show()
+        
+class TaskTree:
+    def __init__(self):
+        ROOT_NAME = "ROOT_4_0_000"
+        
+        self.rootNode = TaskTreeNode(ROOT_NAME)
+        self.nodes = [self.rootNode]
+        
+class TaskTreeNode:
+    def __init__(self, name, x=0, y=0, parent=None, scene=None):
+        self.name = name
+        
+        self.parent = parent
+        self.children = None
+        
+        # Display State
+        self.qGraphics = QGraphicsTaskTreeNode(self.name)
+        self.qGraphics.setX(x)
+        self.qGraphics.setY(y)
+        
+    # Returns `true` if this is a root. 
+    # Roots are nodes that lack a parent. There should only be one.
+    def isRoot(self):
+        return self.parent is not None
+        
+class QGraphicsTaskTreeNode(QGraphicsItem):
+    def __init__(self, name):
+        super().__init__()
+        
+        self.name = name
+        
+        self.xRadius = 10.0
+        self.yRadius = 10.0
+        
+        self.paddingX = 20.0
+        self.paddingY = 20.0
+        
+        self.normalColor = Qt.red
+        
+        fontSize = 12
+        self.font = QFont("Times", fontSize)
+        
+        font_metrics = QFontMetrics(self.font)
+        self.textWidth = font_metrics.width(self.name)
+        self.textHeight = font_metrics.height()
+        
+        self.width = self.textWidth + (2.0 * self.paddingX)
+        self.height = self.textHeight + (2.0 * self.paddingY)
+        
+        # https://stackoverflow.com/questions/10950820/qt-qgraphicsitem-drag-and-drop
+        self.setFlag(QGraphicsItem.ItemIsSelectable, True)
+        self.setFlag(QGraphicsItem.ItemIsMovable, True)
+        self.setFlag(QGraphicsItem.ItemSendsGeometryChanges, True)
+    
+    def boundingRect(self):
+        return QRectF(0, 0, self.width, self.height)
+        
+    def paint(self, painter, option, widget):
+        textX = (self.width / 2.0) - (self.textWidth / 2.0)
+        textY = (self.height / 2.0) - (self.textHeight / 2.0)
+        
+        path = QPainterPath()
+        path.addRoundedRect(QRectF(0, 0, self.width, self.height), self.xRadius, self.yRadius)
+        painter.fillPath(path, self.normalColor)
+        
+        painter.setFont(self.font)
+        painter.drawText(QPointF(textX, textY), self.name)
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
