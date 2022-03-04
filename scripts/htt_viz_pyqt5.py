@@ -1,8 +1,8 @@
 import sys
 from PyQt5 import QtCore, QtWidgets, QtGui
-from PyQt5.QtWidgets import QMainWindow, QWidget, QPushButton, QAction, QFrame
+from PyQt5.QtWidgets import QMainWindow, QWidget, QPushButton, QAction, QFrame, QApplication, QLabel
 from PyQt5.QtCore import QSize, Qt    
-from PyQt5.QtGui import QIcon
+from PyQt5.QtGui import QIcon, QPixmap
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
@@ -17,6 +17,13 @@ class MainWindow(QMainWindow):
         self.setMinimumSize(QSize(350, 275)) 
         self.resize(700, 550)   
         self.setWindowTitle("HTT-Viz")
+	
+	label = QLabel(self)
+	pixmap = QPixmap('image.jpeg')
+	label.setPixmap(pixmap)
+	self.resize(pixmap.width(),pixmap.height())
+	
+	self.show()
 
         # New Action
         newAction = QAction(QIcon('new.png'), '&New', self)        
