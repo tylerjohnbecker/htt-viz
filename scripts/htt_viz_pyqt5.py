@@ -152,12 +152,25 @@ class MainWindow(QMainWindow):
     def openCall(self):
         options = QFileDialog.Options()
         options |= QFileDialog.DontUseNativeDialog
-        fileName, _ = QFileDialog.getOpenFileName(self, "Open", "","YAML Files (*.yaml)", options=options)
-        if fileName:
-            print(fileName)
+        filePath, _ = QFileDialog.getOpenFileName(self, "Open", "","YAML Files (*.yaml)", options=options)
+        if filePath:
+            self.filePath = filePath
+            
+            with open(filePath, "r") as f:
+                data = yaml.load(f, Loader=yaml.Loader)
+                
+                self.taskTreeDisplayWidget.clearTaskTree()
+                
+                for node in data["NodeList"]:
+                    #name, x=0, y=0, nParent = None
+                    x = data["Nodes"][node]["x"]
+                    y = data["Nodes"][node]["y"]
+                    parent = data["Nodes"][node]["parent"]                    
+                    self.taskTreeDisplayWidget.addChildNode(parent, node, x, y)
 
     def newCall(self):
         self.taskTreeDisplayWidget.clearTaskTree()
+        self.filePath = None
     
     # https://pythonspot.com/pyqt5-file-dialog/    
     def saveCall(self):
@@ -249,13 +262,13 @@ class HTTDisplayWidget(QGraphicsView):
         
         self.numCreatedNodes = 0
         
-    def addChildNode(self, parentName, name):
+    def addChildNode(self, parentName, name, x=None, y=None):
         parentNode = self.taskTree.getNodeByName(parentName)
         if parentNode is not None:
             child = self.taskTree.addChild(parentNode, TaskTreeNode(name))
             if child is not None:
-                child.setX(parentNode.getX())
-                child.setY(parentNode.getY() + parentNode.height() + 20.0)
+                child.setX(x or parentNode.getX())
+                child.setY(y or (parentNode.getY() + parentNode.height() + 20.0))
                 
                 self.scene.addItem(child.qGraphics)
                 self.scene.addItem(child.qGraphics.lines[-1].line)
@@ -332,10 +345,10 @@ class TaskTree:
                 return node
         return None
         
-    def getParentOfNode(self, node):
+    def getParentOfNode(self, inputNode):
         for node in self.nodes:
             for child in node.children:
-                if child.name == node.name:
+                if child.name == inputNode.name:
                     return node
         return None
         
@@ -511,8 +524,8 @@ def serialize_tree(tree):
 
         # Now save the parent (if its none we make sure its all caps in the file)
         maybeParent = tree.getParentOfNode(treeNode)
-        if not maybeParent is None:
-            tree_dict["Nodes"][nodeName]["parent"] = str(maybeParent)
+        if maybeParent is not None:
+            tree_dict["Nodes"][nodeName]["parent"] = maybeParent.name
         else:
             tree_dict["Nodes"][nodeName]["parent"] = 'NONE'
 
