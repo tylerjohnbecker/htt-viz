@@ -154,7 +154,7 @@ class MainWindow(QMainWindow):
     def saveAsCall(self):
         options = QFileDialog.Options()
         options |= QFileDialog.DontUseNativeDialog
-        fileName, _ = QFileDialog.getSaveFileName(self,"QFileDialog.getSaveFileName()","","YAML Files (*.yaml)", options=options)
+        fileName, _ = QFileDialog.getSaveFileName(self, "QFileDialog.getSaveFileName()","","YAML Files (*.yaml)", options=options)
         if fileName:
             print(fileName)
 
@@ -203,11 +203,11 @@ class HTTDisplayWidget(QGraphicsView):
         self.taskTree = taskTree
         
         self.scene = QGraphicsScene()
-        self.scene.addText("Hello, world!")
+        self.scene.addText("Welcome to HTT-Viz!")
         
         self.scene.addItem(self.taskTree.rootNode.qGraphics)
         
-        self.scene.setBackgroundBrush(QColor(0x3D,0x3D,0x3D))
+        self.scene.setBackgroundBrush(QColor(0x3D, 0x3D, 0x3D))
         
         self.setScene(self.scene)
         
@@ -217,24 +217,50 @@ class HTTDisplayWidget(QGraphicsView):
         
         self.show()
         
+        self.numCreatedNodes = 0
+        
+    def addChildNode(self, parentName, name):
+        parentNode = self.taskTree.getNodeByName(parentName)
+        if parentNode is not None:
+            child = self.taskTree.addChild(parentNode, TaskTreeNode(name))
+            if child is not None:
+                child.setX(parentNode.getX())
+                child.setY(parentNode.getY() + parentNode.height() + 20.0)
+                
+                self.scene.addItem(child.qGraphics)
+                self.scene.addItem(child.qGraphics.lines[-1].line)
+                
+                self.numCreatedNodes += 1
+        
     def contextMenuEvent(self, event):
+        eventPos = event.pos()
+        maybeNode = self.itemAt(eventPos)
+        if not isinstance(maybeNode, QGraphicsTaskTreeNode):
+            maybeNode = None
+    
         # https://stackoverflow.com/questions/67591464/create-event-clicking-on-context-menu-with-python-pyqt5
         menu = QMenu(self)
         # TODO: Only show items if a node was selected, else early exit or show different menu
-        add_child_node = menu.addAction("Add Child Node")
-        edit_node = menu.addAction("Edit Node")
-        remove_node = menu.addAction("Remove Node")
+        addChildNode = menu.addAction("Add Child Node")
+        editNode = menu.addAction("Edit Node")
+        removeNode = menu.addAction("Remove Node")
         close = menu.addAction("Close")
-        action = menu.exec_(self.mapToGlobal(event.pos()))
+        action = menu.exec_(self.mapToGlobal(eventPos))
         
-        if action == add_child_node:
-            print('Add Child Node')
-        elif action == edit_node:
-            print('Edit Node')
-        elif action == remove_node:
-            print('Remove Node')
+        if action == addChildNode:
+            if maybeNode is not None:
+                self.addChildNode(maybeNode.name, f'TEST_4_0_00{self.numCreatedNodes}')
+        elif action == editNode:
+            if maybeNode is not None:
+                print('Edit Node')
+        elif action == removeNode:
+            if maybeNode is not None:
+                print('Remove Node')
         elif action == close:
             app.quit()
+        else:
+            print('Unknown Action:')
+            print(action)
         
         
 class TaskTree:
@@ -244,22 +270,72 @@ class TaskTree:
         self.rootNode = TaskTreeNode(ROOT_NAME)
         self.nodes = [self.rootNode]
         
+    def getNodeByName(self, name):
+        for node in self.nodes:
+            if node.name == name:
+                return node
+        return None
+        
+    # Add a child from a given node
+    # Returns the added node if successful
+    def addChild(self, parent, node):    
+        if self.getNodeByName(node.name) is not None:
+            return None
+            
+        self.nodes.append(node)
+        parent.addChild(node)
+            
+        return node
+        
 class TaskTreeNode:
-    def __init__(self, name, x=0, y=0, parent=None, scene=None):
+    def __init__(self, name, x=0, y=0, scene=None):
         self.name = name
         
-        self.parent = parent
-        self.children = None
+        self.children = []
         
         # Display State
         self.qGraphics = QGraphicsTaskTreeNode(self.name)
         self.qGraphics.setX(x)
         self.qGraphics.setY(y)
         
+        self.qGraphicsLines = []
+        
     # Returns `true` if this is a root. 
     # Roots are nodes that lack a parent. There should only be one.
     def isRoot(self):
         return self.parent is not None
+        
+    # Get the width of this node
+    def width(self):
+        return self.qGraphics.width
+        
+    # Get the height of this node
+    def height(self):
+        return self.qGraphics.height
+        
+    # Get the X value of this node
+    def getX(self):
+        return self.qGraphics.x()
+        
+     # Get the Y value of this node
+    def getY(self):
+        return self.qGraphics.y()
+        
+    # Set the X value of this node
+    def setX(self, x):
+        return self.qGraphics.setX(x)
+        
+    # Set the Y value of this node
+    def setY(self, y):
+        return self.qGraphics.setY(y)
+        
+    # Add a child node relationship
+    def addChild(self, node):
+        self.children.append(node)
+        
+        line = QGraphicsLineItem(self.getX() + (self.width() / 2.0), self.getY() + self.height(), node.getX() + (node.width() / 2.0), node.getY())
+        node.qGraphics.lines.append(QGraphicsTaskTreeNodeLine(line=line, parent=self))
+        self.qGraphics.lines.append(QGraphicsTaskTreeNodeLine(line=line, child=self))
         
 class QGraphicsTaskTreeNode(QGraphicsItem):
     def __init__(self, name):
@@ -290,6 +366,8 @@ class QGraphicsTaskTreeNode(QGraphicsItem):
         self.setFlag(QGraphicsItem.ItemIsSelectable, True)
         self.setFlag(QGraphicsItem.ItemIsMovable, True)
         self.setFlag(QGraphicsItem.ItemSendsGeometryChanges, True)
+        
+        self.lines = []
     
     def boundingRect(self):
         return QRectF(0, 0, self.width, self.height)
@@ -304,6 +382,27 @@ class QGraphicsTaskTreeNode(QGraphicsItem):
         
         painter.setFont(self.font)
         painter.drawText(QPointF(textX, textY), self.name)
+        
+    def itemChange(self, change, value):
+        ret = super().itemChange(change, value)
+        
+        if change == QGraphicsItem.GraphicsItemChange.ItemPositionChange:
+            for line in self.lines:
+                innerLine = line.line.line()
+                if line.parent:
+                    innerLine.setP2(QPointF(value.x() + (self.width / 2.0), value.y()))
+                elif line.child:
+                    innerLine.setP1(QPointF(value.x() + (self.width / 2.0), value.y() + self.height))
+                line.line.setLine(innerLine)
+                        
+        
+        return ret
+        
+class QGraphicsTaskTreeNodeLine:
+    def __init__(self, line=None, parent=None, child=None):
+        self.parent = parent
+        self.child = child
+        self.line = line
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
