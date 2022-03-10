@@ -4,6 +4,7 @@ from htt_viz_py.Stack import Stack, ActionNode, FunctionCall
 import wx
 from ProgramAuthor import ProgramAuthor
 from NodeType import NodeType
+import weakref
 
 NODE_WIDTH = 120
 NODE_HEIGHT = 25
@@ -15,13 +16,17 @@ class Node:
 		self.x = x
 		self.y = y
 		self.activation_potential = 0.0
-		self.color = "red"
+		self.color = "blue"
 
 		self.m_type = n_type
 
 		self.params = self.m_type.copy_params_list()
 
-		self.parent = nParent
+		if nParent is not None:
+			self.parent = weakref.ref(nParent)
+		else:
+			self.parent = None
+	
 		self.children = []
 		self.depth = 0
 		self.num_children = 0
