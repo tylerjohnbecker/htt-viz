@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-from Tree import Tree, Node
+from tree import Tree, Node
 import random as r
 
 def random_move     ( tree ):
@@ -38,45 +38,22 @@ def random_place    ( tree ):
             else:
                 cur_ptr = cur_ptr.children[r.randrange(len(cur_ptr.children))]
                 #if its an action we can't add a child to it
-                if cur_ptr.type == '3':
+                if cur_ptr.m_type.index > 3:
                     cur_ptr = cur_ptr.parent
                     i = i - 1
         else:
-            if cur_ptr.type == '3':
+            if cur_ptr.m_type.index > 3:
                 cur_ptr = cur_ptr.parent
                 i = i - 1
             else:
                 break
 
-    num = r.randrange(4)
+    num = r.randrange(3) + 1
 
     if cur_ptr is tree.root_node and num == 3:
-        num = r.randrange(3)
+        num = r.randrange(2) + 1
 
-    robot = 0
-    node_num = tree.num_nodes
-
-    preceeding_0s = ''
-
-    if ( node_num / 10 ) < 1:
-        preceeding_0s = '00'
-    elif ( node_num / 100) < 1:
-        preceeding_0s = '0'
-        '_' + str(num) + '_' + str(robot) + '_' + preceeding_0s + str(node_num)
-    name = ''
-    if num == 3:
-        name = name + 'MOVE'
-    elif num == 2:
-        name = name + 'AND'
-    elif num == 1:
-        name = name + 'OR'
-    else:
-        name = name + 'THEN'
-
-    name = name + '_' + str(num) + '_' + str(robot) + '_' + preceeding_0s + str(node_num)
-
-    nNode = Node(name, 0, 0, cur_ptr)
-    tree.AddNode([cur_ptr, nNode, True])
+    tree.AddNode([cur_ptr, num, True])
 
 if __name__ == "__main__":
     
@@ -183,6 +160,8 @@ if __name__ == "__main__":
         print("\tTest [[Failed]]")
 
     print("\n\n")
+
+    # NOT CURRENTLY FUNCTIONAL AS RANDOM MOVE HAS NO IMPLEMENTATION
 
     print("Test 3: moving undo/redo")
 

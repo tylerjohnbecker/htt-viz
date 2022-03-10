@@ -2,25 +2,45 @@
 
 from htt_viz_py.Stack import Stack, ActionNode, FunctionCall
 import wx
+from ProgramAuthor import ProgramAuthor
+from NodeType import NodeType
+import weakref
 
 NODE_WIDTH = 120
 NODE_HEIGHT = 25
 NODE_RADIUS = 10
+
 class Node:
 
-	def __init__(self, name, x=0, y=0, nParent = None):
-		self.name = name
+	def __init__(self, n_type, node_num, x=0, y=0, nParent = None):
 		self.x = x
 		self.y = y
 		self.activation_potential = 0.0
-		self.color = "red"
+		self.color = "blue"
 
-		self.type = self.name[-7:-6]
+		self.m_type = n_type
 
-		self.parent = nParent
+		self.params = self.m_type.copy_params_list()
+
+		if nParent is not None:
+			self.parent = weakref.ref(nParent)
+		else:
+			self.parent = None
+	
 		self.children = []
 		self.depth = 0
 		self.num_children = 0
+		self.name = self.generate_name(node_num)
+
+	def generate_name(self, node_num):
+		preceeding_0s = ''
+
+		if ( node_num / 10 ) < 1:
+			preceeding_0s = '00'
+		elif ( node_num / 100) < 1:
+			preceeding_0s = '0'
+
+		return "" + self.m_type.name + "_" + str(self.m_type.index) + "_" + "0_" + preceeding_0s + str(node_num)
 
 	# Quick way to define if two nodes are equal. Essentially just check all of their attributes against each other
 	# This is a local definition of equivalence two nodes at different points in their trees due to different grandparents
@@ -33,21 +53,27 @@ class Node:
 		
 		# For this node it is ok to make the equivalence non recursive as the tree with handle the recursion
 		# Therefore simply check the names of all the children against each other
-		children = True
+		children_same = True
 		for i in range(len(self.children)):
-			children = children and (self.children[i].name == comp_node.children[i].name)
+			children_same = children_same and (self.children[i].name == comp_node.children[i].name)
 		
 		parent_same = True
 		if self.parent is not None:
 			parent_same = (self.parent.name == comp_node.parent.name)
+
+		params_same = True
+		for i in range(len(self.params)):
+			params_same = params_same and (self.params[i].equals(comp_node.params[i]))
 		
 		# Make sure to return children first so that it short circuits and otherwise just check the attributes
 		# all of these need to be true for the nodes to be equivalent
-		return children \
+		return True \
 			and (self.x == comp_node.x) \
 			and (self.y == comp_node.y) \
 			and (self.name == comp_node.name) \
-			and parent_same 
+			and children_same \
+			and parent_same  \
+			and params_same
 		
 	def addChild(self, nNode, index = -1):
 		if index > -1 and index < len(self.children):
@@ -96,22 +122,32 @@ class Tree:
 
 	# No params, simply initialize a Root Node for the initial tree viewing, and as well
 	def __init__(self):
-		self.root_node = Node("ROOT_4_0_000", 50, 10) 
 		self.undo_stack = Stack("UNDO")
 		self.redo_stack = Stack("REDO")
 		self.num_nodes = 1
 		self.free_nums = [False] * 1000
-		self.free_nums[0] = True			
+		self.free_nums[0] = True
+		self.author = ProgramAuthor()	
+		self.root_node = self.create_new_node(3, 50, 10)
+
+	def getNextNum(self):
+		for i in range(1000):
+			if not self.free_nums[i]:
+				return i
+		
+		return -1
 
 	#recursive function for below
 	def rec_equals(self, cur_ptr, cur_comp_ptr):
 		# always check the two passed in first
 		if (not cur_ptr.equals(cur_comp_ptr)):
+			#print(cur_ptr.name + " " + str(cur_ptr.x) + " " + str(cur_ptr.y) + " " + cur_ptr.parent.name)
+			#print("DOES NOT EQUAL")
+			#print(cur_comp_ptr.name + " " + str(cur_comp_ptr.x) + " " + str(cur_comp_ptr.y) + " " + cur_comp_ptr.parent.name)
 			return False
 
 		ret = True
 
-		# This works great when they are equal but terribly when they are not
 		for i in range(len(cur_ptr.children)):
 			ret = ret and self.rec_equals(cur_ptr.children[i], cur_comp_ptr.children[i])
 			
@@ -121,13 +157,6 @@ class Tree:
 
 		return ret
 
-	def getNextNum(self):
-		for i in range(1000):
-			if not self.free_nums[i]:
-				return i
-		
-		return -1
-
 	def equals (self, comp_tree):
 		# this should utilize recursion, so i'll go inorder and just check all the nodes and then return the
 		# answering returns all and'd together
@@ -136,7 +165,8 @@ class Tree:
 	def rec_copy(self, tree, cur_ptr):
 
 		if not cur_ptr is self.root_node:
-			cp = Node(cur_ptr.name, cur_ptr.x, cur_ptr.y, None)
+			cp = Node(cur_ptr.m_type, -1, cur_ptr.x, cur_ptr.y, None)
+			cp.name = cur_ptr.name
 
 			parent = tree.findNodeByName(cur_ptr.parent.name)
 
@@ -209,6 +239,10 @@ class Tree:
 		tree_dict = {}
 		tree_dict["Nodes"] = {}
 		tree_dict["NodeList"] = []
+		tree_dict["NodeIncludePaths"] =[]
+
+		for i in self.author.node_folder_list:
+			tree_dict["NodeIncludePaths"].append(i)
 
 		# make sure that the nodelist is in the correct order (parents before children)
 		self.populateNodeList(tree_dict["NodeList"], self.root_node)
@@ -240,31 +274,31 @@ class Tree:
 		for child in cur_ptr.children:
 			self.rec_num_maintainer(child, bool)
 
+	# description: a function to initialize the node to the correct name and parameters based on the type of node to create
+	def create_new_node(self, node_type, x = 0, y = 0):
+		nNum = self.getNextNum()
+		self.free_nums[nNum] = True
+
+		return Node(self.author.get_node_type_by_index(node_type), nNum, x, y)
+
 	#Params:
-	#	args[0]:	name of the parent node to add to
-	#	args[1]:	object created for the new node to add
+	#	args[0]:	ptr to parent node to add to
+	#	args[1]:	index of nodeType to add or if(args[2] is False): Node object to add back to the tree
 	#	args[2]:	boolean representing whether or not this call needs to be added to the undo_stack
 	#	args[3]:	insert index for the list of children (optional)
 	def AddNode(self, args):
 
+		nNode = None
+
 		#If we are just normally adding a node to the tree
 		if args[2]:
-			nNum = self.getNextNum()
-
-			preceeding_0s = ''
-
-			if ( nNum / 10 ) < 1:
-				preceeding_0s = '00'
-			elif ( nNum / 100) < 1:
-				preceeding_0s = '0'
-
-			args[1].name = args[1].name + "_" + preceeding_0s + str(nNum)
-			self.free_nums[nNum] = True
+			nNode = self.create_new_node(args[1])
 		else:#Otherwise we might have children along with the node we are adding, and the node will already have a number
 			self.rec_num_maintainer(args[1], True)
+			nNode = args[1]
 
 		# set the parent of the new node to the passed parent (its a reference so it will change all instances)
-		args[1].parent = args[0]
+		nNode.parent = args[0]
 
 		p = args[0]
 		depth = 1
@@ -273,24 +307,24 @@ class Tree:
 				p = p.parent
 				depth = depth + 1
 
-		args[1].depth = depth
+		nNode.depth = depth
 		# Not sure if this is necessary so I'm leaving it in (Tyler)
 		if args[0] is not None:
 			if len(args) == 4:
-				args[0].addChild(args[1], args[3])
+				args[0].addChild(nNode, args[3])
 			else:
-				args[0].addChild(args[1])
+				args[0].addChild(nNode)
 
 		# Case for the tree being empty
 		if self.root_node == None:
-			self.root_node = args[1]
+			self.root_node = nNode
 
 		self.num_nodes = self.root_node.num_children + 1
 		
 		# For the initial call push to undo_stack otherwise we are using it from undo/redo
 		if args[2]:
-			undo = FunctionCall(self.RemoveNode, [args[1].name, False])
-			redo = FunctionCall(self.AddNode, [args[0], args[1], False])
+			undo = FunctionCall(self.RemoveNode, [nNode.name, False])
+			redo = FunctionCall(self.AddNode, [args[0], nNode, False])
 
 			action = ActionNode(True, [ undo ], [ redo ])
 
@@ -367,7 +401,7 @@ class Tree:
 	# Params:
 	#	args[0]: name of the node being moved
 	#	args[1]: x value to move to
-	#	args[2]: y value to move to  
+	#	args[2]: y value to move to  	
 	#	args[3]: boolean representing whether it should be added to the undo_stack
 	def MoveNode(self, args):
 		prev_x = args[0].x
