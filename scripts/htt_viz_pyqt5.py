@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
 import sys
+#import rospy as rp
+#from htt_viz.srv import Update
 from PyQt5 import QtCore, QtWidgets, QtGui
 from PyQt5.QtWidgets import QMainWindow, QWidget, QPushButton, QAction, QFrame
 from PyQt5.QtCore import QSize, Qt    
@@ -14,7 +16,13 @@ import yaml
 class MainWindow(QMainWindow):
     def __init__(self):
         QMainWindow.__init__(self)
-        self.initUI()
+        self.initUI()		
+        
+        #This is a placeholder for now as the actual tree isn't used however once it is it should be good
+        #to go just by uncommenting it and the ros functionality will go back to normal
+        #if make_service == True :
+			#self.server = rp.Service('update_htt', Update, self.taskTree.UpdateCallback)
+
 
     def initUI(self):
         self.setMinimumSize(QSize(350, 275)) 

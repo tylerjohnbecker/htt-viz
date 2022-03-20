@@ -1,9 +1,17 @@
 #!/usr/bin/env python
 
+#Import the ros msg files for the Update Callback
+#from htt_viz.srv import Update
+#from htt_viz.srv import UpdateResponse
+
+#Import the libraries for the backend of the Undo and Redo Buttons
 from htt_viz_py.Stack import Stack, ActionNode, FunctionCall
-import wx
+
+#Import the libraries for nodes
 from ProgramAuthor import ProgramAuthor
 from NodeType import NodeType
+
+#Import weakref to help with memory management
 import weakref
 
 NODE_WIDTH = 120
@@ -16,6 +24,7 @@ class Node:
 		self.x = x
 		self.y = y
 		self.activation_potential = 0.0
+		self.activation_level = 0.0
 		self.color = "blue"
 
 		self.m_type = n_type
@@ -49,7 +58,7 @@ class Node:
 		
 		# If their children lists aren't the same size they aren't equal
 		if not (len(self.children) == len(comp_node.children)):
-		    return False
+			return False
 		
 		# For this node it is ok to make the equivalence non recursive as the tree with handle the recursion
 		# Therefore simply check the names of all the children against each other
@@ -104,19 +113,6 @@ class Node:
 		
 		return None
 	
-	def draw(self, dc):
-		nodeWidth = NODE_WIDTH
-		nodeHeight = NODE_HEIGHT
-		
-		dc.SetBrush(wx.Brush(self.color))
-		dc.DrawRoundedRectangle(self.x, self.y, nodeWidth, nodeHeight, NODE_RADIUS)
-		textWidth, textHeight = dc.GetTextExtent(self.name)
-		dc.DrawText(self.name, (nodeWidth / 2) - (textWidth / 2) + self.x, (nodeHeight / 2) - (textHeight / 2) + self.y)
-		
-		for child in self.children:
-			child.draw(dc)
-			dc.DrawLine(self.x + (nodeWidth / 2), self.y + nodeHeight, child.x + (nodeWidth / 2), child.y)
-
 class Tree:
 	
 
@@ -419,12 +415,14 @@ class Tree:
 			self.undo_stack.push(action)
 			self.redo_stack.clear()
 
-	#function to draw the whole tree (wraps the recursive function)
-	def draw(self, dc):
-		self.drawTreeRec(dc, self.root_node)
+	def UpdateCallback(self, req):
+		ptr = self.findNodeByName(req.owner)
+		ptr.activation_potential = req.activation_potential
+		ptr.activation_level  = req.activation_level
+		if req.active == True:
+			ptr.color = "green"
+		else:
+			ptr.color = "red"
 
-	#recursive function to draw the tree
-	def drawTreeRec(self, dc, cur_ptr):
-		cur_ptr.draw(dc)
-		for child in cur_ptr.children:
-			self.drawTreeRec(dc, child)
+		#I need to ask about a redraw function
+		#return UpdateResponse(True)
