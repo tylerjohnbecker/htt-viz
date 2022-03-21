@@ -252,7 +252,7 @@ class HTTDisplayWidget(QGraphicsView):
         self.taskTree = taskTree
         
         self.scene = QGraphicsScene()
-        self.scene.addText("Welcome to HTT-Viz!")
+        #self.scene.addText("Welcome to HTT-Viz!")
         
         self.scene.addItem(self.taskTree.rootNode.qGraphics)
         
@@ -329,7 +329,9 @@ class HTTDisplayWidget(QGraphicsView):
                 self.addChildNode(maybeNode.name, f'{self.selectedNode}_4_0_00{self.numCreatedNodes}')
         elif action == editNode:
             if maybeNode is not None:
-                print('Edit Node')
+                #print('Edit Node')
+                self.w = EditWindow(maybeNode)
+                self.w.show()
         elif action == removeNode:
             if maybeNode is not None:
                 self.removeChildNode(maybeNode.name)
@@ -338,6 +340,83 @@ class HTTDisplayWidget(QGraphicsView):
         else:
             print('Unknown Action:')
             print(action)
+            
+class EditWindow(QWidget):
+    def __init__(self, node):
+        super().__init__()
+        self.node = node
+        
+        textBoxList = QFormLayout()
+        
+        p = self.palette()
+        p.setColor(self.backgroundRole(), QColor(0x3D, 0x3D, 0x3D))
+        self.setPalette(p)
+        
+        self.setWindowTitle("Edit Node")
+        self.setMinimumSize(QSize(350, 275)) 
+        self.resize(350, 275)
+        
+        self.titleBox = QLineEdit()
+        self.titleBox.resize(200,40)
+        self.titleBox.setText(node.name) #CHANGE TO NODE TITLE
+        textBoxList.addRow("Title", self.titleBox)
+        
+        self.paramBox = QPlainTextEdit()
+        self.paramBox.resize(200,120)
+        self.paramBox.setPlainText("Node Params") #NEEDS BACKEND
+        textBoxList.addRow("Parameters", self.paramBox)
+        
+        #CHANGE TO FOREACH FOR PARAMETER ARRAY BASED ON TYPE
+        
+        #self.paramList = []
+        #for x in node.params:
+        #    param = None
+        #    
+        #    match x.type:
+        #        case "bool":
+        #            param = QCheckBox()
+        #        case "float":
+        #            param = QLineEdit()
+        #        case "int":
+        #            param = QLineEdit()
+        #        case "string":
+        #            param = QLineEdit()
+        #            
+        #    paramList.append(param)
+        #    textBoxList.addRow(x.name, param)
+        
+        saveButton = QPushButton('Save', self)
+        saveButton.clicked.connect(self.saveClick)
+        
+        closeButton = QPushButton('Close', self)
+        closeButton.clicked.connect(self.closeClick)
+        
+        textBoxList.addRow(saveButton, closeButton)
+        
+        self.setLayout(textBoxList)
+        
+        self.titleBox.textChanged.connect(self.onChange)
+        self.paramBox.textChanged.connect(self.onChange)
+
+    def onChange(self):
+        self.setWindowTitle("*Edit Node")
+        
+    def saveClick(self):
+    	#save parameter values
+    	self.node.name = self.titleBox.text() #CHANGE TO NODE TITLE
+    	self.setWindowTitle("Edit Node")
+        
+    def closeClick(self):
+        winTitle = "Edit Node"
+        if self.windowTitle() != winTitle:
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Information)
+            msg.setText("Unsaved Changes")
+            msg.setWindowTitle("Exit Error")
+            msg.exec()
+        else:	
+            self.close()
+        
         
         
 class TaskTree:
@@ -442,7 +521,8 @@ class QGraphicsTaskTreeNode(QGraphicsItem):
         self.paddingX = 20.0
         self.paddingY = 20.0
         
-        self.normalColor = Qt.red
+        self.normalColor = QColor(121, 218, 255)
+        self.borderColor = QColor(4, 180, 245)
         
         fontSize = 12
         self.font = QFont("Times", fontSize)
@@ -469,9 +549,16 @@ class QGraphicsTaskTreeNode(QGraphicsItem):
         textX = (self.width / 2.0) - (self.textWidth / 2.0)
         textY = (self.height / 2.0) - (self.textHeight / 2.0)
         
+        path2 = QPainterPath()
+        path2.addRoundedRect(QRectF(0, 0, self.width, self.height), self.xRadius, self.yRadius)
+        painter.fillPath(path2, self.borderColor)
+        
         path = QPainterPath()
-        path.addRoundedRect(QRectF(0, 0, self.width, self.height), self.xRadius, self.yRadius)
+        path.addRoundedRect(QRectF(5, 5, self.width-10, self.height-10), self.xRadius-10, self.yRadius-10)
         painter.fillPath(path, self.normalColor)
+        
+        
+        
         
         painter.setFont(self.font)
         painter.drawText(QPointF(textX, textY), self.name)
