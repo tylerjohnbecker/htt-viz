@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import sys
+import weakref
 from PyQt5 import QtCore, QtWidgets, QtGui
 from PyQt5.QtWidgets import QMainWindow, QWidget, QPushButton, QAction, QFrame
 from PyQt5.QtCore import QSize, Qt    
@@ -144,6 +145,12 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(self.subsplitter)
         
         self.filePath = None
+        
+        #Setup Auto-Organize Button
+        self.orgButton = QPushButton(self.subWindow2)
+        self.orgButton.setText("Organize Tree")
+        self.orgButton.move(9,9)
+        self.orgButton.clicked.connect(lambda : organizeTree(self.taskTree.rootNode))
         
     def handleNodeSelectionChange(self):
         selectedItem = self.nodeList.selectedItems()[0]
@@ -300,6 +307,8 @@ class HTTDisplayWidget(QGraphicsView):
     def clearTaskTree(self):
         for child in self.taskTree.rootNode.children:
             self.removeChildNode(child.name)
+            
+        self.rootNode = TaskTreeNode("ROOT_4_0_000")
         
     def contextMenuEvent(self, event):
         eventPos = event.pos()
@@ -360,6 +369,8 @@ class TaskTree:
             
         self.nodes.append(node)
         parent.addChild(node)
+        node.parent = parent
+        
             
         return node
         
@@ -379,6 +390,7 @@ class TaskTreeNode:
         self.name = name
         
         self.children = []
+        self.parent = None
         
         # Display State
         self.qGraphics = QGraphicsTaskTreeNode(self.name)
@@ -388,7 +400,7 @@ class TaskTreeNode:
     # Returns `true` if this is a root. 
     # Roots are nodes that lack a parent. There should only be one.
     def isRoot(self):
-        return self.parent is not None
+        return "ROOT" in self.name
         
     # Get the width of this node
     def width(self):
@@ -485,7 +497,9 @@ class QGraphicsTaskTreeNode(QGraphicsItem):
         
 class QGraphicsTaskTreeNodeLine:
     def __init__(self, line=None, parent=None, child=None):
+        
         self.parent = parent
+        
         self.child = child
         self.line = line
         
@@ -547,6 +561,100 @@ def serialize_tree(tree):
         
     return tree_dict
 
+
+#Calls functions responsible for organzing the tree
+def organizeTree(node):
+	preliminarySort(node)
+	finalSort(node)
+
+#Makes the first sort over the tree
+#Sorts nodes in reference to siblings and parent
+#Does not account for overlapping with cousins
+def preliminarySort(node):
+	
+	if node.isRoot():
+		node.setX(0)
+		node.setY(0)
+		
+	offset = 0
+	length = len(node.children)
+	iterator = 0
+	
+	if length % 2 == 0:
+		offset = 100
+	
+	for child in node.children:
+	
+		child.setX(node.getX() + ((iterator - int(length/2)) * 200) + offset)
+		if node.isRoot():
+			pass
+		child.setY(node.getY() + 80)
+		preliminarySort(child)
+		iterator+=1
+
+
+#Calls function to fix each level of the tree
+#For all levels excluding the first two
+#Since these two levels will be in perfect condition
+#Following the preliminary sort	
+def finalSort(node):
+	sorted = False
+	height = treeHeight(node)
+
+	if height > 2:
+		for depth in range(height, 2, -1):
+			sorted = False
+			while sorted is False:
+				sorted = repositionNodesByLevel(node, depth)
+
+#Finds the height of the tree
+def treeHeight(node):
+	height = 0
+	for child in node.children:
+		height = max(height, treeHeight(child))
+		
+	return height + 1
+	
+#Checks each level of the tree and spaces
+#Overlapping nodes as well as their parents
+def repositionNodesByLevel(node, depth):
+	nodeList = []
+	appendNodeByLevel(node, depth - 1, nodeList)
+	
+	print("Nodes at depth " + str(depth) + " are:", end=" ")
+	for x in range(len(nodeList)):
+		print(nodeList[x].name, end=" ")
+		
+	print("")
+		
+	if len(nodeList) > 1:
+		for x in range(1, len(nodeList)):
+			difference = nodeList[x].getX() - nodeList[x -1].getX()
+			if difference < 200:
+				print("Intrusion was found between " + nodeList[x-1].name + " and " + nodeList[x].name)
+				print("Parent: " + str(nodeList[x - 1].parent))
+				moveSubTree(nodeList[x - 1].parent, 200 - difference)
+				
+	nodeList.clear()
+	return True
+
+#Appends all nodes at a given depth to the given node list
+def appendNodeByLevel(node, depth, nodeList):
+	if depth == 0:
+		nodeList.append(node)
+	else:
+		if depth > 0:
+			for child in node.children:
+				appendNodeByLevel(child, depth - 1, nodeList)
+		
+	return depth + 1
+	
+def moveSubTree(node, difference):
+	node.setX(node.getX() - difference)
+	for child in node.children:
+		moveSubTree(child, difference)
+		
+		
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     mainWin = MainWindow()
