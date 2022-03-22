@@ -88,21 +88,3 @@ file (GLOB python_scripts_DIR
 catkin_install_python(PROGRAMS ${python_scripts_DIR}
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
-
-# TODO: Get this to work
-#
-# See `http://wiki.ros.org/rqt/Tutorials/Create%20your%20new%20rqt%20plugin` for help
-#
-# install(PROGRAMS scripts/htt_viz_rqt
-#   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-# )
-
-# Copy RQT resources
-install(DIRECTORY
-   resource
-   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
-)
-install(FILES
-   plugin.xml
-   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
-)
