@@ -73,7 +73,4 @@
 	actionlib_msgs
 	roslib
 	robotics_task_tree_msgs
-  <export>
-    <rqt_gui plugin="${prefix}/plugin.xml"/>
-  </export>
 </package>
