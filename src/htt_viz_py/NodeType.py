@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
-from Param import Param, ParamInt, ParamBool, ParamFloat, ParamString
+from htt_viz_py.Param import Param, ParamInt, ParamBool, ParamFloat, ParamString
+
 import glob, os
 import yaml
 from yaml import Loader, Dumper

@@ -8,15 +8,11 @@
 from htt_viz_py.Stack import Stack, ActionNode, FunctionCall
 
 # Import the libraries for nodes
-from ProgramAuthor import ProgramAuthor
-from NodeType import NodeType
+from htt_viz_py.ProgramAuthor import ProgramAuthor
+from htt_viz_py.NodeType import NodeType
 
 # Import weakref to help with memory management
 import weakref
-
-NODE_WIDTH = 120
-NODE_HEIGHT = 25
-NODE_RADIUS = 10
 
 class Node:
 	def __init__(self, n_type, node_num, x=0, y=0, nParent = None):
@@ -97,20 +93,6 @@ class Node:
 		
 	def isLeaf(self):
 		return len(self.children) < 1;
-
-	def getHitNode(self, x, y):
-		nodeWidth = NODE_WIDTH
-		nodeHeight = NODE_HEIGHT
-
-		if x > self.x and x < self.x + nodeWidth and y > self.y and y < self.y + nodeHeight:
-			return self
-
-		for child in self.children:
-			maybeNode = child.getHitNode(x, y)
-			if maybeNode is not None:
-				return maybeNode
-		
-		return None
 	
 class Tree:
 	

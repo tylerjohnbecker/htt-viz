@@ -1,8 +1,9 @@
-#!usr/bin/python
+#!/usr/bin/env python3
 
-from NodeType import NodeType
 import os
 import glob
+
+from htt_viz_py.NodeType import NodeType
 
 class ProgramAuthor(object):
 	def __init__(self):

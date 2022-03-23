@@ -1,9 +1,14 @@
 #!/usr/bin/env python3
 
 import sys
+import yaml
+
 #import rospy as rp
 #from htt_viz.srv import Update
+
 from htt_viz_py.QGraphicsTaskTreeNode import QGraphicsTaskTreeNode
+from htt_viz_py.tree import Tree
+
 from PyQt5 import QtCore, QtWidgets, QtGui
 from PyQt5.QtWidgets import QMainWindow, QWidget, QPushButton, QAction, QFrame
 from PyQt5.QtCore import QSize, Qt    
@@ -12,8 +17,6 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5 import uic
-import yaml
-
 
 class MainWindow(QMainWindow):
     def __init__(self):
