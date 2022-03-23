@@ -7,11 +7,11 @@
 #Import the libraries for the backend of the Undo and Redo Buttons
 from htt_viz_py.Stack import Stack, ActionNode, FunctionCall
 
-#Import the libraries for nodes
+# Import the libraries for nodes
 from ProgramAuthor import ProgramAuthor
 from NodeType import NodeType
 
-#Import weakref to help with memory management
+# Import weakref to help with memory management
 import weakref
 
 NODE_WIDTH = 120
@@ -19,7 +19,6 @@ NODE_HEIGHT = 25
 NODE_RADIUS = 10
 
 class Node:
-
 	def __init__(self, n_type, node_num, x=0, y=0, nParent = None):
 		self.x = x
 		self.y = y
