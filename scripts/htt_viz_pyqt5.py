@@ -135,7 +135,7 @@ class MainWindow(QMainWindow):
         
         # Setup Task Tree Display
         self.taskTree = TaskTree()
-        self.taskTreeDisplayWidget = HTTDisplayWidget(self.taskTree, "THEN")
+        self.taskTreeDisplayWidget = HTTDisplayWidget(self.taskTree, "THEN", self)
         self.subWindow2.layout().addWidget(self.taskTreeDisplayWidget)
         
         self.nodeList = QListWidget()
@@ -195,6 +195,10 @@ class MainWindow(QMainWindow):
         data = serialize_tree(self.taskTree)
         with open(filePath, "w") as f:
             yaml.dump(data, f)
+
+        self.setWindowTitle("HTT-Viz")
+
+        
         
     def saveAsCall(self):
         options = QFileDialog.Options()
@@ -207,8 +211,21 @@ class MainWindow(QMainWindow):
             with open(filePath, "w") as f:
                 yaml.dump(data, f)
 
+            self.setWindowTitle("HTT-Viz")
+
     def exitCall(self):
-        self.close()
+        winTitle = "HTT-Viz"
+        if self.windowTitle() != winTitle:
+            self.w = UnsavedContentWindow(self)
+            self.w.show()
+
+            #msg = QMessageBox()
+            #msg.setIcon(QMessageBox.Information)
+            #msg.setText("Unsaved Changes")
+            #msg.setWindowTitle("Exit Error")
+            #msg.exec()
+        else:   
+            self.close()
         
     def undoCall(self):
         print('undo')
@@ -235,6 +252,15 @@ class MainWindow(QMainWindow):
         msg.setWindowTitle("HTT-Viz About")
         
         msg.exec()
+
+    def closeEvent(self, event):
+        if self.windowTitle() == "HTT-Viz":
+            event.accept()
+        else:
+            event.ignore()
+            self.w = UnsavedContentWindow(self)
+            self.w.show()
+
         
         
 class SubWindow(QWidget):
@@ -246,9 +272,10 @@ class SubWindow(QWidget):
 
 
 class HTTDisplayWidget(QGraphicsView):
-    def __init__(self, taskTree, selectedNode):
+    def __init__(self, taskTree, selectedNode, mainWin):
         super().__init__()
-        
+        self.mainWin = mainWin
+
         self.taskTree = taskTree
         
         self.scene = QGraphicsScene()
@@ -282,6 +309,8 @@ class HTTDisplayWidget(QGraphicsView):
                 self.scene.addItem(child.qGraphics.lines[-1].line)
                 
                 self.numCreatedNodes += 1
+
+                self.mainWin.setWindowTitle("*HTT-Viz")
                 
     def removeChildNode(self, name):
         node = self.taskTree.getNodeByName(name)
@@ -304,6 +333,8 @@ class HTTDisplayWidget(QGraphicsView):
                         cleanNode(scene, child, depth+1)
                         
                 cleanNode(self.scene, node)
+
+                self.mainWin.setWindowTitle("*HTT-Viz")
                 
     def clearTaskTree(self):
         for child in self.taskTree.rootNode.children:
@@ -330,21 +361,27 @@ class HTTDisplayWidget(QGraphicsView):
         elif action == editNode:
             if maybeNode is not None:
                 #print('Edit Node')
-                self.w = EditWindow(maybeNode)
+                self.w = EditWindow(maybeNode, self.mainWin)
                 self.w.show()
         elif action == removeNode:
             if maybeNode is not None:
                 self.removeChildNode(maybeNode.name)
         elif action == close:
-            app.quit()
+            if self.windowTitle() != "HTT-Viz":
+                self.w = UnsavedContentWindow(self)
+                self.w.show()
+            else:   
+                app.quit()
+            #app.quit()
         else:
             print('Unknown Action:')
             print(action)
             
 class EditWindow(QWidget):
-    def __init__(self, node):
+    def __init__(self, node, mainWin):
         super().__init__()
         self.node = node
+        self.mainWin = mainWin
         
         textBoxList = QFormLayout()
         
@@ -402,20 +439,73 @@ class EditWindow(QWidget):
         self.setWindowTitle("*Edit Node")
         
     def saveClick(self):
-    	#save parameter values
-    	self.node.name = self.titleBox.text() #CHANGE TO NODE TITLE
-    	self.setWindowTitle("Edit Node")
+        #save parameter values
+        self.node.name = self.titleBox.text() #CHANGE TO NODE TITLE
+        self.mainWin.setWindowTitle("*HTT-Viz")
+        self.setWindowTitle("Edit Node")
         
     def closeClick(self):
         winTitle = "Edit Node"
         if self.windowTitle() != winTitle:
-            msg = QMessageBox()
-            msg.setIcon(QMessageBox.Information)
-            msg.setText("Unsaved Changes")
-            msg.setWindowTitle("Exit Error")
-            msg.exec()
+            self.w = UnsavedContentWindow(self)
+            self.w.show()
+
+            #msg = QMessageBox()
+            #msg.setIcon(QMessageBox.Information)
+            #msg.setText("Unsaved Changes")
+            #msg.setWindowTitle("Exit Error")
+            #msg.exec()
         else:	
+            app.quit()
+
+
+class UnsavedContentWindow(QWidget):
+    def __init__(self, window):
+        super().__init__()
+        self.window = window
+
+        p = self.palette()
+        p.setColor(self.backgroundRole(), QColor(0x3D, 0x3D, 0x3D))
+        self.setPalette(p)
+        
+        self.setWindowTitle("ERROR")
+        self.setMinimumSize(QSize(225, 130))
+        self.setMaximumSize(QSize(225, 130)) 
+        self.resize(225, 130)
+
+        uC = QLabel()
+        uC.setText("Unsaved Content")
+        uC.setAlignment(Qt.AlignCenter)
+
+        vbox = QVBoxLayout()
+        vbox.addWidget(uC)
+
+        saveButton = QPushButton('Save Content', self)
+        #saveButton.move(5, 80)
+        saveButton.clicked.connect(self.saveContentClick)
+        vbox.addWidget(saveButton)
+        
+        closeButton = QPushButton('Close Anyway', self)
+        #closeButton.move(120, 80)
+        closeButton.clicked.connect(self.closeAnywayClick)
+        vbox.addWidget(closeButton)
+
+        
+        
+        self.setLayout(vbox)
+
+    def saveContentClick(self):
+        #save parameter values
+        if self.window.windowTitle() == "*HTT-Viz":
+            self.window.saveCall()
             self.close()
+        elif self.window.windowTitle() == "*Edit Node":
+            self.window.saveClick()
+            self.close()
+        
+    def closeAnywayClick(self):
+            #self.window.close()
+            app.quit()
         
         
         
