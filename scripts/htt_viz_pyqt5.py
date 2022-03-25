@@ -475,6 +475,7 @@ class UnsavedContentWindow(QWidget):
 
         uC = QLabel()
         uC.setText("Unsaved Content")
+        uC.setStyleSheet("color: white")
         uC.setAlignment(Qt.AlignCenter)
 
         vbox = QVBoxLayout()
