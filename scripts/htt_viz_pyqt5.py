@@ -505,7 +505,11 @@ class UnsavedContentWindow(QWidget):
         
     def closeAnywayClick(self):
             #self.window.close()
+        if self.window.windowTitle() == "*HTT-Viz":
             app.quit()
+        elif self.window.windowTitle() == "*Edit Node":
+            self.window.close()
+            self.close()
         
         
         
