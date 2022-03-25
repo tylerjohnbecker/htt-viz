@@ -368,7 +368,7 @@ class HTTDisplayWidget(QGraphicsView):
                 self.removeChildNode(maybeNode.name)
         elif action == close:
             if self.windowTitle() != "HTT-Viz":
-                self.w = UnsavedContentWindow(self)
+                self.w = UnsavedContentWindow(self.mainWin)
                 self.w.show()
             else:   
                 app.quit()
