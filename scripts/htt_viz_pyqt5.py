@@ -416,7 +416,7 @@ class EditWindow(QWidget):
 			#msg.setWindowTitle("Exit Error")
 			#msg.exec()
 		else:	
-			app.quit()
+			self.close()
 
 class UnsavedContentWindow(QWidget):
 	def __init__(self, window):
