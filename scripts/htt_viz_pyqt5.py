@@ -140,7 +140,7 @@ class MainWindow(QMainWindow):
 		
 		# Setup Task Tree Display
 		self.taskTree = Tree()
-		self.taskTreeDisplayWidget = HTTDisplayWidget(self.taskTree, "THEN")
+		self.taskTreeDisplayWidget = HTTDisplayWidget(self.taskTree, self)
 		self.subWindow2.layout().addWidget(self.taskTreeDisplayWidget)
 		
 		self.nodeList = QListWidget()
@@ -205,6 +205,8 @@ class MainWindow(QMainWindow):
 		data = self.taskTree.toYamlDict()
 		with open(filePath, "w") as f:
 			yaml.dump(data, f)
+			
+		self.setWindowTitle("HTT-Viz")
 		
 	def saveAsCall(self):
 		options = QFileDialog.Options()
@@ -216,6 +218,8 @@ class MainWindow(QMainWindow):
 			data = self.taskTree.toYamlDict()
 			with open(filePath, "w") as f:
 				yaml.dump(data, f)
+				
+		self.setWindowTitle("HTT-Viz")
 
 	def exitCall(self):
 		self.close()
@@ -237,7 +241,7 @@ class MainWindow(QMainWindow):
 		
 	def debugCall(self):
 		print('debug')
-
+		
 	def aboutCall(self):
 		msg = QMessageBox()
 		msg.setIcon(QMessageBox.Information)
@@ -245,8 +249,15 @@ class MainWindow(QMainWindow):
 		msg.setWindowTitle("HTT-Viz About")
 		
 		msg.exec()
-		
-		
+
+	def closeEvent(self, event):
+		if self.windowTitle() == "HTT-Viz":
+			event.accept()
+		else:
+			event.ignore()
+			self.w = UnsavedContentWindow(self)
+			self.w.show()
+
 class SubWindow(QWidget):
 	def __init__(self):
 		super(SubWindow, self).__init__()
@@ -256,8 +267,9 @@ class SubWindow(QWidget):
 
 
 class HTTDisplayWidget(QGraphicsView):
-	def __init__(self, taskTree, selectedNodeIndex):
+	def __init__(self, taskTree, mainWin):
 		super().__init__()
+		self.mainWin = mainWin
 		
 		self.taskTree = taskTree
 		self.scene = QGraphicsScene()
@@ -265,41 +277,25 @@ class HTTDisplayWidget(QGraphicsView):
 		self.setScene(self.scene)
 		self.taskTree.registerScene(self.scene)
 		
-		#self.scene.addText("Welcome to HTT-Viz!")
-		
 		# TODO: Scrolling makes a constant cursor, and feels really janky to use
 		# Maybe we should implment our own?
 		self.setDragMode(QGraphicsView.DragMode.ScrollHandDrag)
 		
 		self.show()
 		
-		self.selectedNodeIndex = selectedNodeIndex
+		self.selectedNodeIndex = 0
 		
 	def addChildNode(self, parentName, selectedNodeIndex, x=None, y=None):
 		parentNode = self.taskTree.findNodeByName(parentName)
 		if parentNode is not None:
 			self.taskTree.AddNode([parentNode, selectedNodeIndex, True])
+			
+		self.mainWin.setWindowTitle("*HTT-Viz")
 				
 	def removeChildNode(self, name):
 		self.taskTree.RemoveNode([name, True])
-			
-			#	def cleanNode(scene, node, depth=0):
-			#		scene.removeItem(node.qGraphics)
-			#		for line in node.qGraphics.lines:
-			#			if line.child:
-			#				scene.removeItem(line.line)
-			#			elif line.parent:
-			#				if depth == 0:
-			#					maybeLine = next(filter(lambda parentLine: parentLine.child.name == line.parent.name, iter(line.parent.qGraphics.lines)), None)
-			#					if maybeLine is not None:
-			#						line.parent.qGraphics.lines.remove(maybeLine)
-			#						scene.removeItem(maybeLine.line)
-			#			else:
-			#				print('Neither child not parent opposing node')
-			#		for child in node.children:
-			#			cleanNode(scene, child, depth+1)
-			#			
-			#	cleanNode(self.scene, node)
+		
+		self.mainWin.setWindowTitle("*HTT-Viz")
 				
 	def clearTaskTree(self):
 		for child in self.taskTree.root_node.children:
@@ -326,21 +322,26 @@ class HTTDisplayWidget(QGraphicsView):
 		elif action == editNode:
 			if maybeNode is not None:
 				#print('Edit Node')
-				self.w = EditWindow(maybeNode)
+				self.w = EditWindow(maybeNode, self.mainWin)
 				self.w.show()
 		elif action == removeNode:
 			if maybeNode is not None:
 				self.removeChildNode(maybeNode.name)
 		elif action == close:
-			app.quit()
+			if self.windowTitle() != "HTT-Viz":
+				self.w = UnsavedContentWindow(self.mainWin)
+				self.w.show()
+			else:   
+				app.quit()
 		else:
 			print('Unknown Action:')
 			print(action)
 			
 class EditWindow(QWidget):
-	def __init__(self, node):
+	def __init__(self, node, mainWin):
 		super().__init__()
 		self.node = node
+		self.mainWin = mainWin
 		
 		textBoxList = QFormLayout()
 		
@@ -400,33 +401,75 @@ class EditWindow(QWidget):
 	def saveClick(self):
 		#save parameter values
 		self.node.name = self.titleBox.text() #CHANGE TO NODE TITLE
+		self.mainWin.setWindowTitle("*HTT-Viz")
 		self.setWindowTitle("Edit Node")
 		
 	def closeClick(self):
 		winTitle = "Edit Node"
 		if self.windowTitle() != winTitle:
-			msg = QMessageBox()
-			msg.setIcon(QMessageBox.Information)
-			msg.setText("Unsaved Changes")
-			msg.setWindowTitle("Exit Error")
-			msg.exec()
+			self.w = UnsavedContentWindow(self)
+			self.w.show()
+
+			#msg = QMessageBox()
+			#msg.setIcon(QMessageBox.Information)
+			#msg.setText("Unsaved Changes")
+			#msg.setWindowTitle("Exit Error")
+			#msg.exec()
 		else:	
+			app.quit()
+
+class UnsavedContentWindow(QWidget):
+	def __init__(self, window):
+		super().__init__()
+		self.window = window
+
+		p = self.palette()
+		p.setColor(self.backgroundRole(), QColor(0x3D, 0x3D, 0x3D))
+		self.setPalette(p)
+		
+		self.setWindowTitle("ERROR")
+		self.setMinimumSize(QSize(225, 130))
+		self.setMaximumSize(QSize(225, 130)) 
+		self.resize(225, 130)
+
+		uC = QLabel()
+		uC.setText("Unsaved Content")
+		uC.setStyleSheet("color: white")
+		uC.setAlignment(Qt.AlignCenter)
+
+		vbox = QVBoxLayout()
+		vbox.addWidget(uC)
+
+		saveButton = QPushButton('Save Content', self)
+		#saveButton.move(5, 80)
+		saveButton.clicked.connect(self.saveContentClick)
+		vbox.addWidget(saveButton)
+		
+		closeButton = QPushButton('Close Anyway', self)
+		#closeButton.move(120, 80)
+		closeButton.clicked.connect(self.closeAnywayClick)
+		vbox.addWidget(closeButton)
+
+		
+		
+		self.setLayout(vbox)
+
+	def saveContentClick(self):
+		#save parameter values
+		if self.window.windowTitle() == "*HTT-Viz":
+			self.window.saveCall()
 			self.close()
-			 		
-class TaskTreeNode:
-	# Add a child node relationship
-	def addChild(self, node):
-		self.children.append(node)
+		elif self.window.windowTitle() == "*Edit Node":
+			self.window.saveClick()
+			self.close()
 		
-		line = QGraphicsLineItem(self.getX() + (self.width() / 2.0), self.getY() + self.height(), node.getX() + (node.width() / 2.0), node.getY())
-		node.qGraphics.lines.append(QGraphicsTaskTreeNodeLine(line=line, parent=self))
-		self.qGraphics.lines.append(QGraphicsTaskTreeNodeLine(line=line, child=self))
-		
-class QGraphicsTaskTreeNodeLine:
-	def __init__(self, line=None, parent=None, child=None):
-		self.parent = parent
-		self.child = child
-		self.line = line
+	def closeAnywayClick(self):
+			#self.window.close()
+		if self.window.windowTitle() == "*HTT-Viz":
+			app.quit()
+		elif self.window.windowTitle() == "*Edit Node":
+			self.window.close()
+			self.close()
 
 if __name__ == "__main__":
 	app = QtWidgets.QApplication(sys.argv)
