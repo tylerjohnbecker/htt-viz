@@ -11,16 +11,18 @@ from htt_viz_py.Stack import Stack, ActionNode, FunctionCall
 from htt_viz_py.ProgramAuthor import ProgramAuthor
 from htt_viz_py.NodeType import NodeType
 
+from htt_viz_py.QGraphicsTaskTreeNode import QGraphicsTaskTreeNode
+
+from PyQt5.QtWidgets import *
+from PyQt5.QtCore import *
+
 # Import weakref to help with memory management
 import weakref
 
 class Node:
-	def __init__(self, n_type, node_num, x=0, y=0, nParent = None):
-		self.x = x
-		self.y = y
+	def __init__(self, n_type, node_num, x=0, y=0, nParent = None, scene = None):
 		self.activation_potential = 0.0
 		self.activation_level = 0.0
-		self.color = "blue"
 
 		self.m_type = n_type
 
@@ -35,16 +37,93 @@ class Node:
 		self.depth = 0
 		self.num_children = 0
 		self.name = self.generate_name(node_num)
-
+		
+		# Display State
+		self.scene = None
+		self.qGraphics = None
+		self.qGraphicsLine = None
+		
+		# Cache requested x and y until user registers scene
+		self.initialX = x
+		self.initialY = y
+		
+		if scene is not None:
+			self.registerScene(scene, x, y)
+			
+	# Register a new QT scene with this node.
+	#
+	# This sets it up for drawing.
+	def registerScene(self, scene, x=None, y=None):
+		if self.scene is not None:
+			# TODO: Raise restriction in future (nathaniel)
+			raise RuntimeError("scene is not None")
+			
+		self.scene = weakref.ref(scene)
+			
+		self.qGraphics = QGraphicsTaskTreeNode(self.name)
+			
+		# Pass requested data to qGraphics
+		self.qGraphics.setX(x or self.initialX)
+		self.qGraphics.setY(y or self.initialY)
+		
+		if self.parent is not None:
+			# Setup line to parent
+			startX = self.parent.getX() + (self.parent.getWidth() / 2.0)
+			startY = self.parent.getY() + self.parent.getHeight()
+			endX = self.getX() + (self.getWidth() / 2.0)
+			endY = self.getY()
+			
+			self.qGraphicsLine = QGraphicsLineItem(startX, startY, endX, endY)
+			
+			# Add line to scene
+			self.scene().addItem(self.qGraphicsLine)
+		
+		# Register after qGraphicsLine is valid
+		self.qGraphics.addPositionChangeHandler(lambda x, y: self.onPositionChange(x, y))
+		
+		# Ensure we add needed elements to scene
+		self.scene().addItem(self.qGraphics)
+		
+		for childNode in self.children:
+			childNode.registerScene(scene)
+			
+	# Unregister a QT Scene
+	def unregisterScene(self, scene):
+		if self.scene is None:
+			# TODO: Raise restriction in future (nathaniel)
+			raise RuntimeError("scene is None")
+			
+		# Remove node element
+		self.scene().removeItem(self.qGraphics)
+		
+		if self.qGraphicsLine is not None:
+			self.scene().removeItem(self.qGraphicsLine)
+			
+		# Pull saved position data to initialX and initialY
+		self.initialX = self.getX()
+		self.initialY = self.getY()
+			
+		self.scene = None
+		self.qGraphics = None
+		
+		for childNode in self.children:
+			childNode.unregisterScene(scene)
+			
+	# Handle position change events
+	def onPositionChange(self, x, y):
+		if self.scene is not None:
+			if not self.isRoot():
+				line = self.qGraphicsLine.line()
+				line.setP2(QPointF(x + (self.getWidth() / 2.0), y))
+				self.qGraphicsLine.setLine(line)
+				
+			for child in self.children:
+				line = child.qGraphicsLine.line()
+				line.setP1(QPointF(x + (self.getWidth() / 2.0), y + self.getHeight()))
+				child.qGraphicsLine.setLine(line)
+			
 	def generate_name(self, node_num):
-		preceeding_0s = ''
-
-		if ( node_num / 10 ) < 1:
-			preceeding_0s = '00'
-		elif ( node_num / 100) < 1:
-			preceeding_0s = '0'
-
-		return "" + self.m_type.name + "_" + str(self.m_type.index) + "_" + "0_" + preceeding_0s + str(node_num)
+		return f'{self.m_type.name}_{self.m_type.index}_0_{node_num:03}'
 
 	# Quick way to define if two nodes are equal. Essentially just check all of their attributes against each other
 	# This is a local definition of equivalence two nodes at different points in their trees due to different grandparents
@@ -72,8 +151,8 @@ class Node:
 		# Make sure to return children first so that it short circuits and otherwise just check the attributes
 		# all of these need to be true for the nodes to be equivalent
 		return True \
-			and (self.x == comp_node.x) \
-			and (self.y == comp_node.y) \
+			and (self.getX() == comp_node.getX()) \
+			and (self.getY() == comp_node.getY()) \
 			and (self.name == comp_node.name) \
 			and children_same \
 			and parent_same  \
@@ -90,23 +169,101 @@ class Node:
 		while cur_ptr is not None:
 			cur_ptr.num_children = cur_ptr.num_children + 1 + nNode.num_children
 			cur_ptr = cur_ptr.parent
+	
+	# Remove a child by name
+	# def removeChild(self, name):
 		
+	# Returns true if this is a root node.
+	def isRoot(self):
+		return self.parent is None
+	
+	# Returns true if this is a Leaf, as in it has no children.
 	def isLeaf(self):
 		return len(self.children) < 1;
+       
+	# Get the node's x coordinate
+	def getX(self):
+		return self.qGraphics.x() if self.isGraphicsSetup() else self.initialX
+		
+	# Get the node's y coordinate
+	def getY(self):
+		return self.qGraphics.y() if self.isGraphicsSetup() else self.initialY
+		
+	# Get the node width
+	def getWidth(self):
+		return self.qGraphics.width
+	
+	# Get the node height
+	def getHeight(self):
+		return self.qGraphics.height
+		
+	# Set the x value
+	def setX(self, x):
+		if self.isGraphicsSetup():
+			self.qGraphics.setX(x)
+		else:
+			self.initialX = x
+		
+	# Set the y value
+	def setY(self, y):
+		if self.isGraphicsSetup():
+			self.qGraphics.setY(y)
+		else:
+			self.initialY = y
+		
+	# Get an iterator over all children of this tree
+	def iterAllChildren(self):
+		return IterAllChildren(self)
+	
+	# Returns true if graphics are setup
+	def isGraphicsSetup(self):
+		return self.scene is not None
+
+# An iterator over all nodes in a tree.	
+class IterAllChildren:
+	def __init__(self, node):
+		self.stack = [node]
+		
+	def __iter__(self):
+		return self
+		
+	def __next__(self):
+		if len(self.stack) == 0:
+			raise StopIteration
+			
+		node = self.stack[-1]
+		self.stack.pop()
+		
+		stack.extend(node.children)
+		
+		return node
 	
 class Tree:
-	
-
 	# No params, simply initialize a Root Node for the initial tree viewing, and as well
 	def __init__(self):
 		self.undo_stack = Stack("UNDO")
 		self.redo_stack = Stack("REDO")
 		self.num_nodes = 1
 		self.free_nums = [False] * 1000
-		self.free_nums[0] = True
 		self.author = ProgramAuthor()	
-		self.root_node = self.create_new_node(3, 50, 10)
-
+		self.root_node = self.create_new_node(0, 50, 10)
+		
+		self.scene = None
+			
+	# Register a new QT scene with this tree
+	def registerScene(self, scene):
+		if self.scene is not None:
+			# TODO: Raise restriction in future (nathaniel)
+			raise RuntimeError("scene is not None")
+			
+		self.scene = weakref.ref(scene)
+		
+		self.root_node.registerScene(scene)
+		
+	# Generate a new node number.
+	#
+	# Returns
+	# Returns -1 if there is not a free node number.
 	def getNextNum(self):
 		for i in range(1000):
 			if not self.free_nums[i]:
@@ -142,7 +299,7 @@ class Tree:
 	def rec_copy(self, tree, cur_ptr):
 
 		if not cur_ptr is self.root_node:
-			cp = Node(cur_ptr.m_type, -1, cur_ptr.x, cur_ptr.y, None)
+			cp = Node(cur_ptr.m_type, -1, cur_ptr.getX(), cur_ptr.getY(), None)
 			cp.name = cur_ptr.name
 
 			parent = tree.findNodeByName(cur_ptr.parent.name)
@@ -203,8 +360,8 @@ class Tree:
 		dict["Nodes"][cur_ptr.name]["peers"] = ['NONE']
 
 		# Make sure to save their coords as decided by the user so that when we load the tree it always looks the same
-		dict["Nodes"][cur_ptr.name]["x"] = cur_ptr.x
-		dict["Nodes"][cur_ptr.name]["y"] = cur_ptr.y
+		dict["Nodes"][cur_ptr.name]["x"] = cur_ptr.getX()
+		dict["Nodes"][cur_ptr.name]["y"] = cur_ptr.getY()
 
 		for i in cur_ptr.children:
 			self.recAddToList(dict, i)
@@ -240,6 +397,7 @@ class Tree:
 
 		return None
 
+	# Get a node by a given name
 	def findNodeByName(self, name):
 		return self.recFindNodeByName(name, self.root_node)
 
@@ -258,7 +416,7 @@ class Tree:
 
 		return Node(self.author.get_node_type_by_index(node_type), nNum, x, y)
 
-	#Params:
+	# Params:
 	#	args[0]:	ptr to parent node to add to
 	#	args[1]:	index of nodeType to add or if(args[2] is False): Node object to add back to the tree
 	#	args[2]:	boolean representing whether or not this call needs to be added to the undo_stack
@@ -267,15 +425,17 @@ class Tree:
 
 		nNode = None
 
-		#If we are just normally adding a node to the tree
+		# If we are just normally adding a node to the tree
 		if args[2]:
 			nNode = self.create_new_node(args[1])
-		else:#Otherwise we might have children along with the node we are adding, and the node will already have a number
+		else: # Otherwise we might have children along with the node we are adding, and the node will already have a number
 			self.rec_num_maintainer(args[1], True)
 			nNode = args[1]
 
 		# set the parent of the new node to the passed parent (its a reference so it will change all instances)
 		nNode.parent = args[0]
+		nNode.setX(args[0].getX())
+		nNode.setY(args[0].getY() + args[0].getHeight() + 20.0)
 
 		p = args[0]
 		depth = 1
@@ -307,7 +467,9 @@ class Tree:
 
 			self.undo_stack.push(action)
 			self.redo_stack.clear()
-
+			
+		if self.scene is not None:
+			nNode.registerScene(self.scene())
 	
 	# desc.: recursively print the nodes in the subtree starting at node_name
 	def PrintNodes(self, cur_ptr):
@@ -374,6 +536,9 @@ class Tree:
 			self.undo_stack.push(action)
 			# Clear the redo stack because we did a new action
 			self.redo_stack.clear()
+			
+		if self.scene is not None:
+			to_remove.unregisterScene(self.scene())
 
 	# Params:
 	#	args[0]: name of the node being moved
@@ -381,11 +546,11 @@ class Tree:
 	#	args[2]: y value to move to  	
 	#	args[3]: boolean representing whether it should be added to the undo_stack
 	def MoveNode(self, args):
-		prev_x = args[0].x
-		prev_y = args[0].y
+		prev_x = args[0].getX()
+		prev_y = args[0].getY()
 
-		args[0].x = args[1]
-		args[0].y = args[2]
+		args[0].setX(args[1])
+		args[0].setY(args[2])
 
 		if len(args) >= 4 and args[3]:
 			undo = FunctionCall(self.MoveNode, [args[0], prev_x, prev_y, False])
@@ -400,10 +565,13 @@ class Tree:
 		ptr = self.findNodeByName(req.owner)
 		ptr.activation_potential = req.activation_potential
 		ptr.activation_level  = req.activation_level
-		if req.active == True:
-			ptr.color = "green"
-		else:
-			ptr.color = "red"
+        
+        # TODO: Color isn't controlled directly here anymore. 
+        # Update to call relavent functions on graphics object.
+		# if req.active == True:
+		# 	ptr.color = "green"
+		# else:
+		# 	ptr.color = "red"
 
 		#I need to ask about a redraw function
 		#return UpdateResponse(True)

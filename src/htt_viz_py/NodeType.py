@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 
 from htt_viz_py.Param import Param, ParamInt, ParamBool, ParamFloat, ParamString
 
