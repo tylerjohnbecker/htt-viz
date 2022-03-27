@@ -281,6 +281,7 @@ class HTTDisplayWidget(QGraphicsView):
                 self.scene.addItem(child.qGraphics.lines[-1].line)
                 
                 self.numCreatedNodes += 1
+                preliminarySort(parentNode)
                 
     def removeChildNode(self, name):
         node = self.taskTree.getNodeByName(name)
@@ -592,7 +593,6 @@ def preliminarySort(node):
 		preliminarySort(child)
 		iterator+=1
 
-
 #Calls function to fix each level of the tree
 #For all levels excluding the first two
 #Since these two levels will be in perfect condition
@@ -618,34 +618,30 @@ def treeHeight(node):
 #Checks each level of the tree and spaces
 #Overlapping nodes as well as their parents
 def repositionNodesByLevel(node, depth):
+	complete = True
 	nodeList = []
-	appendNodeByLevel(node, depth - 1, nodeList)
-	
-	print("Nodes at depth " + str(depth) + " are:", end=" ")
-	for x in range(len(nodeList)):
-		print(nodeList[x].name, end=" ")
-		
-	print("")
+	appendNodesByLevel(node, depth - 1, nodeList)
 		
 	if len(nodeList) > 1:
 		for x in range(1, len(nodeList)):
 			difference = nodeList[x].getX() - nodeList[x -1].getX()
 			if difference < 200:
-				print("Intrusion was found between " + nodeList[x-1].name + " and " + nodeList[x].name)
-				print("Parent: " + str(nodeList[x - 1].parent))
+				complete = False
 				moveSubTree(nodeList[x - 1].parent, 200 - difference)
+				if x > 1: 
+					pass # BROKE -> moveAdjacentSubTrees(nodeList, x - 2, difference)
 				
 	nodeList.clear()
-	return True
+	return complete
 
 #Appends all nodes at a given depth to the given node list
-def appendNodeByLevel(node, depth, nodeList):
+def appendNodesByLevel(node, depth, nodeList):
 	if depth == 0:
 		nodeList.append(node)
 	else:
 		if depth > 0:
 			for child in node.children:
-				appendNodeByLevel(child, depth - 1, nodeList)
+				appendNodesByLevel(child, depth - 1, nodeList)
 		
 	return depth + 1
 	
@@ -653,7 +649,11 @@ def moveSubTree(node, difference):
 	node.setX(node.getX() - difference)
 	for child in node.children:
 		moveSubTree(child, difference)
-		
+
+def moveAdjacentSubTrees(nodeList, last, difference):
+	print("Attempting to move adjacent trees a distance of " + str(difference))
+	for x in range(last):
+		moveSubTree(nodeList[x].parent, difference)
 		
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
