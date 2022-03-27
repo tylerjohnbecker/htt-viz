@@ -3,8 +3,8 @@
 import sys
 import yaml
 
-#import rospy as rp
-#from htt_viz.srv import Update
+import rospy
+from htt_viz.srv import Update
 
 from htt_viz_py.QGraphicsTaskTreeNode import QGraphicsTaskTreeNode
 from htt_viz_py.tree import Tree
@@ -25,8 +25,7 @@ class MainWindow(QMainWindow):
 		
 		#This is a placeholder for now as the actual tree isn't used however once it is it should be good
 		#to go just by uncommenting it and the ros functionality will go back to normal
-		#if make_service == True :
-			#self.server = rp.Service('update_htt', Update, self.taskTree.UpdateCallback)
+		self.server = rospy.Service('update_htt', Update, self.taskTree.UpdateCallback)
 
 
 	def initUI(self):
@@ -472,7 +471,9 @@ class UnsavedContentWindow(QWidget):
 			self.close()
 
 if __name__ == "__main__":
+	rospy.init_node('htt_viz')
 	app = QtWidgets.QApplication(sys.argv)
 	mainWin = MainWindow()
 	mainWin.show()
 	sys.exit( app.exec_() )
+	rospy.spin()

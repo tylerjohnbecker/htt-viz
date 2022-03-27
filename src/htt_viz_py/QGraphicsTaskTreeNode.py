@@ -64,3 +64,11 @@ class QGraphicsTaskTreeNode(QGraphicsItem):
 				handler(value.x(), value.y())
 				
 		return ret
+
+	def showActiveColor(self):
+		self.borderColor = QColor(0, 0, 0)
+		self.normalColor = QColor(255, 255, 255)
+
+	def showInactiveColor(self):
+		self.normalColor = QColor(121, 218, 255)
+		self.borderColor = QColor(4, 180, 245)

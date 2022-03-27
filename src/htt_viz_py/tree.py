@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 
 #Import the ros msg files for the Update Callback
-#from htt_viz.srv import Update
-#from htt_viz.srv import UpdateResponse
+from htt_viz.srv import Update
+from htt_viz.srv import UpdateResponse
 
 #Import the libraries for the backend of the Undo and Redo Buttons
 from htt_viz_py.Stack import Stack, ActionNode, FunctionCall
@@ -568,10 +568,10 @@ class Tree:
         
         # TODO: Color isn't controlled directly here anymore. 
         # Update to call relavent functions on graphics object.
-		# if req.active == True:
-		# 	ptr.color = "green"
-		# else:
-		# 	ptr.color = "red"
+		if req.active == True:
+			ptr.qGraphics.showActiveColor()
+		else:
+			ptr.qGraphics.showInactiveColor()
 
 		#I need to ask about a redraw function
-		#return UpdateResponse(True)
+		return UpdateResponse(True, ptr.activation_level)
