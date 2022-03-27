@@ -339,7 +339,7 @@ class HTTDisplayWidget(QGraphicsView):
 		elif action == editNode:
 			if maybeNode is not None:
 				#print('Edit Node')
-				self.w = EditWindow(maybeNode, self.mainWin)
+				self.w = EditWindow(self.taskTree.findNodeByName(maybeNode.name), self.mainWin)
 				self.w.show()
 		elif action == removeNode:
 			if maybeNode is not None:
@@ -375,29 +375,33 @@ class EditWindow(QWidget):
 		self.titleBox.setText(node.name) #CHANGE TO NODE TITLE
 		textBoxList.addRow("Title", self.titleBox)
 		
-		self.paramBox = QPlainTextEdit()
-		self.paramBox.resize(200,120)
-		self.paramBox.setPlainText("Node Params") #NEEDS BACKEND
-		textBoxList.addRow("Parameters", self.paramBox)
+		#self.paramBox = QPlainTextEdit()
+		#self.paramBox.resize(200,120)
+		#self.paramBox.setPlainText("Node Params") #NEEDS BACKEND
+		#textBoxList.addRow("Parameters", self.paramBox)
 		
 		#CHANGE TO FOREACH FOR PARAMETER ARRAY BASED ON TYPE
 		
-		#self.paramList = []
-		#for x in node.params:
-		#	param = None
-		#	
-		#	match x.type:
-		#		case "bool":
-		#			param = QCheckBox()
-		#		case "float":
-		#			param = QLineEdit()
-		#		case "int":
-		#			param = QLineEdit()
-		#		case "string":
-		#			param = QLineEdit()
-		#			
-		#	paramList.append(param)
-		#	textBoxList.addRow(x.name, param)
+		self.paramList = []
+		for x in node.params:
+			param = None
+			
+			if x.type == "bool":
+				param = QCheckBox()
+			elif x.type == "float":
+				param = QLineEdit()
+			elif x.type == "int":
+				param = QLineEdit()
+			elif x.type == "string":
+				param = QLineEdit()
+			else:
+				#QGoFuKuRsElF
+				#app.quit()
+				print('No does work right')
+					
+			self.paramList.append(param)
+			textBoxList.addRow(x.name, param)
+			param.textChanged.connect(self.onChange)
 		
 		saveButton = QPushButton('Save', self)
 		saveButton.clicked.connect(self.saveClick)
@@ -410,7 +414,7 @@ class EditWindow(QWidget):
 		self.setLayout(textBoxList)
 		
 		self.titleBox.textChanged.connect(self.onChange)
-		self.paramBox.textChanged.connect(self.onChange)
+		#self.paramBox.textChanged.connect(self.onChange)
 
 	def onChange(self):
 		self.setWindowTitle("*Edit Node")
@@ -426,12 +430,6 @@ class EditWindow(QWidget):
 		if self.windowTitle() != winTitle:
 			self.w = UnsavedContentWindow(self)
 			self.w.show()
-
-			#msg = QMessageBox()
-			#msg.setIcon(QMessageBox.Information)
-			#msg.setText("Unsaved Changes")
-			#msg.setWindowTitle("Exit Error")
-			#msg.exec()
 		else:	
 			self.close()
 
@@ -444,7 +442,7 @@ class UnsavedContentWindow(QWidget):
 		p.setColor(self.backgroundRole(), QColor(0x3D, 0x3D, 0x3D))
 		self.setPalette(p)
 		
-		self.setWindowTitle("ERROR")
+		self.setWindowTitle("Warning!")
 		self.setMinimumSize(QSize(225, 130))
 		self.setMaximumSize(QSize(225, 130)) 
 		self.resize(225, 130)

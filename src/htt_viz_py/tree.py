@@ -498,10 +498,11 @@ class Tree:
 	#	args[1]:	boolean representing whether we need to make a new entry 
 	#				to the undo_stack(starts as true and should always be false after)
 	def RemoveNode(self, args):
-		if (args[0] == "ROOT_4_0_000"):
-			return
-
 		to_remove = self.findNodeByName(args[0])
+
+		if to_remove.isRoot():
+			return False
+
 		parent = to_remove.parent
 
 		i = -1
