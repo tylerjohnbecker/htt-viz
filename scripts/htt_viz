@@ -224,10 +224,28 @@ class MainWindow(QMainWindow):
 		self.close()
 		
 	def undoCall(self):
-		print('undo')
+		#print('undo')
+		obj = self.taskTree.undo_stack.pop()
+
+		if not obj is None:
+			obj.run()
+			obj.switch = False
+			obj.next = None
+			self.taskTree.redo_stack.push(obj)
+
+		#self.taskTree.Refresh(False)
 
 	def redoCall(self):
-		print('redo')
+		#print('redo')
+		obj = self.taskTree.redo_stack.pop()
+
+		if not obj is None:
+			obj.run()
+			obj.switch = True
+			obj.next = None 
+			self.taskTree.undo_stack.push(obj)
+
+		#self.taskTree.Refresh(False)
 		
 	def cutCall(self):
 		print('cut')
