@@ -19,10 +19,10 @@ class NodeType(object):
 		self.canHaveChildren = False
 
 		if not file_name == "":
-			self.read_params_from_file(file_name)
+			self.readParamsFromFile(file_name)
 
 
-	def copy_params_list(self):
+	def copyParamsList(self):
 		n_list = []
 
 		for i in self.params:
@@ -43,7 +43,7 @@ class NodeType(object):
 
 		return n_list
 
-	def to_string(self):
+	def toString(self):
 		to_print = "NodeType " + self.name + ": " + self.source + ", " + self.file + "\n"
 
 		for x in self.params:
@@ -51,7 +51,7 @@ class NodeType(object):
 
 		return to_print
 
-	def read_params_from_file (self, file_name):
+	def readParamsFromFile (self, file_name):
 
 		self.params = []
 		self.file = file_name
@@ -93,7 +93,7 @@ class NodeType(object):
 					new_par.name = par_name
 					self.params.append(new_par)
 
-	def write_params_to_file (self, file_name):
+	def writeParamsToFile (self, file_name):
 		yamlDict = {}
 
 		yamlDict["node"] = {}

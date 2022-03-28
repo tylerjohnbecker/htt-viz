@@ -26,7 +26,7 @@ class Node:
 
 		self.m_type = n_type
 
-		self.params = self.m_type.copy_params_list()
+		self.params = self.m_type.copyParamsList()
 
 		if nParent is not None:
 			self.parent = weakref.ref(nParent)
@@ -36,7 +36,7 @@ class Node:
 		self.children = []
 		self.depth = 0
 		self.num_children = 0
-		self.name = self.generate_name(node_num)
+		self.name = self.generateName(node_num)
 		
 		# Display State
 		self.scene = None
@@ -122,7 +122,7 @@ class Node:
 				line.setP1(QPointF(x + (self.getWidth() / 2.0), y + self.getHeight()))
 				child.qGraphicsLine.setLine(line)
 			
-	def generate_name(self, node_num):
+	def generateName(self, node_num):
 		return f'{self.m_type.name}_{self.m_type.index}_0_{node_num:03}'
 
 	# Quick way to define if two nodes are equal. Essentially just check all of their attributes against each other
@@ -246,7 +246,7 @@ class Tree:
 		self.num_nodes = 1
 		self.free_nums = [False] * 1000
 		self.author = ProgramAuthor()	
-		self.root_node = self.create_new_node(0, 50, 10)
+		self.root_node = self.createNewNode(0, 50, 10)
 		
 		self.scene = None
 			
@@ -272,7 +272,7 @@ class Tree:
 		return -1
 
 	#recursive function for below
-	def rec_equals(self, cur_ptr, cur_comp_ptr):
+	def recEquals(self, cur_ptr, cur_comp_ptr):
 		# always check the two passed in first
 		if (not cur_ptr.equals(cur_comp_ptr)):
 			#print(cur_ptr.name + " " + str(cur_ptr.x) + " " + str(cur_ptr.y) + " " + cur_ptr.parent.name)
@@ -294,9 +294,9 @@ class Tree:
 	def equals (self, comp_tree):
 		# this should utilize recursion, so i'll go inorder and just check all the nodes and then return the
 		# answering returns all and'd together
-		return self.rec_equals(self.root_node, comp_tree.root_node)
+		return self.recEquals(self.root_node, comp_tree.root_node)
 	
-	def rec_copy(self, tree, cur_ptr):
+	def recCopy(self, tree, cur_ptr):
 
 		if not cur_ptr is self.root_node:
 			cp = Node(cur_ptr.m_type, -1, cur_ptr.getX(), cur_ptr.getY(), None)
@@ -308,13 +308,13 @@ class Tree:
 			tree.AddNode([parent, cp, False])
 
 		for i in cur_ptr.children:
-			self.rec_copy(tree, i)
+			self.recCopy(tree, i)
 
 	# Creates a deep copy of the tree basically like a copy constructor would
 	def copy (self):
 		ret = Tree()
 		
-		self.rec_copy(ret, self.root_node)
+		self.recCopy(ret, self.root_node)
 
 		return ret
 
@@ -401,35 +401,35 @@ class Tree:
 	def findNodeByName(self, name):
 		return self.recFindNodeByName(name, self.root_node)
 
-	def rec_num_maintainer(self, cur_ptr, bool):
+	def recNumMaintainer(self, cur_ptr, bool):
 		num = int(cur_ptr.name[-3:])
 
 		self.free_nums[num] = bool
 		
 		for child in cur_ptr.children:
-			self.rec_num_maintainer(child, bool)
+			self.recNumMaintainer(child, bool)
 
 	# description: a function to initialize the node to the correct name and parameters based on the type of node to create
-	def create_new_node(self, node_type, x = 0, y = 0):
+	def createNewNode(self, node_type, x = 0, y = 0):
 		nNum = self.getNextNum()
 		self.free_nums[nNum] = True
 
-		return Node(self.author.get_node_type_by_index(node_type), nNum, x, y)
+		return Node(self.author.getNodeTypeByIndex(node_type), nNum, x, y)
 
 	# Params:
 	#	args[0]:	ptr to parent node to add to
 	#	args[1]:	index of nodeType to add or if(args[2] is False): Node object to add back to the tree
 	#	args[2]:	boolean representing whether or not this call needs to be added to the undo_stack
 	#	args[3]:	insert index for the list of children (optional)
-	def AddNode(self, args):
+	def addNode(self, args):
 
 		nNode = None
 
 		# If we are just normally adding a node to the tree
 		if args[2]:
-			nNode = self.create_new_node(args[1])
+			nNode = self.createNewNode(args[1])
 		else: # Otherwise we might have children along with the node we are adding, and the node will already have a number
-			self.rec_num_maintainer(args[1], True)
+			self.recNumMaintainer(args[1], True)
 			nNode = args[1]
 
 		# set the parent of the new node to the passed parent (its a reference so it will change all instances)
@@ -460,8 +460,8 @@ class Tree:
 		
 		# For the initial call push to undo_stack otherwise we are using it from undo/redo
 		if args[2]:
-			undo = FunctionCall(self.RemoveNode, [nNode.name, False])
-			redo = FunctionCall(self.AddNode, [args[0], nNode, False])
+			undo = FunctionCall(self.removeNode, [nNode.name, False])
+			redo = FunctionCall(self.addNode, [args[0], nNode, False])
 
 			action = ActionNode(True, [ undo ], [ redo ])
 
@@ -472,7 +472,7 @@ class Tree:
 			nNode.registerScene(self.scene())
 	
 	# desc.: recursively print the nodes in the subtree starting at node_name
-	def PrintNodes(self, cur_ptr):
+	def printNodes(self, cur_ptr):
 		
 		dashes = ''
 
@@ -482,22 +482,22 @@ class Tree:
 		print(dashes + cur_ptr.name)
 
 		for child in cur_ptr.children:
-			self.PrintNodes(child)
+			self.printNodes(child)
 
 	# desc.: print the nodes starting from the root
-	def PrintTree(self):
-		self.PrintNodes(self.root_node)
+	def printTree(self):
+		self.printNodes(self.root_node)
 
 	# desc.: essentially just a call to remove node the root thereby completely destroying the tree
-	def DestroyTree(self):
+	def destroyTree(self):
 		if len(self.root_node.children) > 0:
-			self.RemoveNode([ self.root_node.children[0].name, False] )
+			self.removeNode([ self.root_node.children[0].name, False] )
 
 	# Params:
 	#	args[0]:	name of the node being removed
 	#	args[1]:	boolean representing whether we need to make a new entry 
 	#				to the undo_stack(starts as true and should always be false after)
-	def RemoveNode(self, args):
+	def removeNode(self, args):
 		to_remove = self.findNodeByName(args[0])
 
 		if to_remove.isRoot():
@@ -521,14 +521,14 @@ class Tree:
 		
 		self.num_nodes = self.root_node.num_children + 1
 		
-		self.rec_num_maintainer(to_remove, False)
+		self.recNumMaintainer(to_remove, False)
 
 		# if this is the initial call to remove a node
 		if args[1]:
 			# The redo is easy because we just have a single node to remove
-			redo = FunctionCall(self.RemoveNode, [ args[0], False ])
+			redo = FunctionCall(self.removeNode, [ args[0], False ])
 			# The undo is just about adding the entire subtree we just removed to the parent
-			undo = FunctionCall(self.AddNode, [ parent, to_remove, False, i ])
+			undo = FunctionCall(self.addNode, [ parent, to_remove, False, i ])
 
 			# The undo is already done for us because we passed a list through the recursive calls
 			action = ActionNode(True, [ undo ], [ redo ])
@@ -546,7 +546,7 @@ class Tree:
 	#	args[1]: x value to move to
 	#	args[2]: y value to move to  	
 	#	args[3]: boolean representing whether it should be added to the undo_stack
-	def MoveNode(self, args):
+	def moveNode(self, args):
 		prev_x = args[0].getX()
 		prev_y = args[0].getY()
 
@@ -554,15 +554,15 @@ class Tree:
 		args[0].setY(args[2])
 
 		if len(args) >= 4 and args[3]:
-			undo = FunctionCall(self.MoveNode, [args[0], prev_x, prev_y, False])
-			redo = FunctionCall(self.MoveNode, [args[0], args[1], args[2], False])
+			undo = FunctionCall(self.moveNode, [args[0], prev_x, prev_y, False])
+			redo = FunctionCall(self.moveNode, [args[0], args[1], args[2], False])
 
 			action = ActionNode(True, [undo], [redo])
 
 			self.undo_stack.push(action)
 			self.redo_stack.clear()
 
-	def UpdateCallback(self, req):
+	def updateCallback(self, req):
 		ptr = self.findNodeByName(req.owner)
 		ptr.activation_potential = req.activation_potential
 		ptr.activation_level  = req.activation_level

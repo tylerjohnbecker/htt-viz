@@ -37,18 +37,18 @@ class ProgramAuthor(object):
 		include_path = my_path[0:(len(my_path) - 15)] + "/include/behavior"
 		self.node_folder_list = [include_path]
 
-		behavior_types = self.read_nodes_from_folder(include_path)
+		behavior_types = self.readNodesFromFolder(include_path)
 
 		for x in behavior_types:
 			self.node_master_list.append(x)
 
-		self.maintain_indices()
+		self.maintainIndices()
 
-	def maintain_indices(self):
+	def maintainIndices(self):
 		for i in range(len(self.node_master_list)):
 			self.node_master_list[i].index = i
 
-	def read_nodes_from_folder(self, folder_path):
+	def readNodesFromFolder(self, folder_path):
 		return_types = []
 		os.chdir(folder_path)
 
@@ -59,52 +59,52 @@ class ProgramAuthor(object):
 
 		return return_types 
 
-	def add_node_from_file(self, file_name):
+	def addNodeFromFile(self, file_name):
 		n_node = NodeType(file_name)
 
 		self.node_master_list.append(n_node)
-		self.maintain_indices()
+		self.maintainIndices()
 
-	def add_nodes_from_folder(self, folder_path):
+	def addNodesFromFolder(self, folder_path):
 		if folder_path in self.node_folder_list:
 			return
 
-		n_nodes = self.read_nodes_from_folder(folder_path)
+		n_nodes = self.readNodesFromFolder(folder_path)
 
 		self.node_folder_list.append(folder_path)
 
 		for x in n_nodes:
 			self.node_master_list.append(n_nodes)
-		self.maintain_indices()
+		self.maintainIndices()
 
-	def remove_node_by_name(self, name):
+	def removeNodeByName(self, name):
 		for i in range(len(self.node_master_list)):
 			if name == self.node_master_list[i].name:
-				del node_master_list[i]
-				self.maintain_indices()
+				del self.node_master_list[i]
+				self.maintainIndices()
 				return True
 
 		return False
 
-	def get_node_type_by_name(self, name):
+	def getNodeTypeByName(self, name):
 		for x in self.node_master_list:
 			if x.name == name:
 				return x
 
 		return None
 
-	def get_node_type_by_index(self, index):
+	def getNodeTypeByIndex(self, index):
 		return self.node_master_list[index]
 
 	#I don't know how this is going to work so I'm going to leave this blank for now
-	def load_master_list(self, tree_list):
+	def loadMasterList(self, tree_list):
 		pass
 
 	#This is the last thing that I'll do for the project before we start working with the robot
-	def update_load_tree(self):
+	def updateLoadTree(self):
 		pass
 
-	def to_string(self):
+	def toString(self):
 		to_print = "Author " + "\n"
 
 		for x in self.node_master_list:

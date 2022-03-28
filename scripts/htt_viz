@@ -25,7 +25,7 @@ class MainWindow(QMainWindow):
 		
 		#This is a placeholder for now as the actual tree isn't used however once it is it should be good
 		#to go just by uncommenting it and the ros functionality will go back to normal
-		self.server = rospy.Service('update_htt', Update, self.taskTree.UpdateCallback)
+		self.server = rospy.Service('update_htt', Update, self.taskTree.updateCallback)
 
 
 	def initUI(self):
@@ -311,12 +311,12 @@ class HTTDisplayWidget(QGraphicsView):
 	def addChildNode(self, parentName, selectedNodeIndex, x=None, y=None):
 		parentNode = self.taskTree.findNodeByName(parentName)
 		if parentNode is not None:
-			self.taskTree.AddNode([parentNode, selectedNodeIndex, True])
+			self.taskTree.addNode([parentNode, selectedNodeIndex, True])
 			
 		self.mainWin.setWindowTitle("*HTT-Viz")
 				
 	def removeChildNode(self, name):
-		self.taskTree.RemoveNode([name, True])
+		self.taskTree.removeNode([name, True])
 		
 		self.mainWin.setWindowTitle("*HTT-Viz")
 				

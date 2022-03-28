@@ -20,7 +20,7 @@ class Param(object):
             and self.type == comp_param.type \
             and self.value == comp_param.value
 
-    def to_string(self):
+    def toString(self):
         return "Param "+ self.name + ": " + self.type + ", " + str(self.value)
 
 class ParamFloat (Param):
