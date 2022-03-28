@@ -13,8 +13,9 @@ class NodeType(object):
 		self.name = ""
 		self.source = ""
 		self.index = 0
+		self.path = ""
 
-		self.file = ""
+		self.file = file_name
 		self.canHaveParents = True
 		self.canHaveChildren = False
 
@@ -47,7 +48,7 @@ class NodeType(object):
 		to_print = "NodeType " + self.name + ": " + self.source + ", " + self.file + "\n"
 
 		for x in self.params:
-			to_print = to_print + "\t" + x.to_string() + "\n"
+			to_print = to_print + "\t" + x.toString() + "\n"
 
 		return to_print
 
@@ -55,6 +56,7 @@ class NodeType(object):
 
 		self.params = []
 		self.file = file_name
+		self.path = os.getcwd()
 
 		with open(file_name, "r") as file: 
 			data = yaml.load(file, Loader=Loader)

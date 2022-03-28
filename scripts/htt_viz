@@ -180,6 +180,16 @@ class MainWindow(QMainWindow):
 				data = yaml.load(f, Loader=yaml.Loader)
 				
 				self.taskTreeDisplayWidget.clearTaskTree()
+
+				#clear all the currently loaded behaviors
+				self.taskTree.author.clearTypes()
+
+				#load all the behavior types that are needed for the file we are opening
+				for file_name in data["NodeFileIncludes"]:
+					self.taskTree.author.addNodeFromFile(file_name)
+
+				# I'm leaving this in just because it is helpful for debugging
+				# print(self.taskTree.author.toString())
 				
 				for node in data["NodeList"]:
 					#name, x=0, y=0, nParent = None
@@ -190,6 +200,11 @@ class MainWindow(QMainWindow):
 					node_type = data["Nodes"][node]["mask"]["type"]
 					
 					self.taskTreeDisplayWidget.addChildNode(parent, node_type, x, y)
+
+					#now that the node has been added to the tree I have to fill in its parameters
+					node_ptr = self.taskTree.findNodeByName(node)
+					for param in node_ptr.params:
+						param.value = data["Nodes"][node][param.name]
 
 	def newCall(self):
 		self.taskTreeDisplayWidget.clearTaskTree()
@@ -394,12 +409,16 @@ class EditWindow(QWidget):
 			
 			if x.type == "bool":
 				param = QCheckBox()
+				param.setChecked(x.value)
 			elif x.type == "float":
 				param = QLineEdit()
+				param.setText(str(x.value))
 			elif x.type == "int":
 				param = QLineEdit()
+				param.setText(str(x.value))
 			elif x.type == "string":
 				param = QLineEdit()
+				param.setText(str(x.value))
 			else:
 				#QGoFuKuRsElF
 				#app.quit()
@@ -428,6 +447,14 @@ class EditWindow(QWidget):
 	def saveClick(self):
 		#save parameter values
 		self.node.name = self.titleBox.text() #CHANGE TO NODE TITLE
+
+		#save the actual values of the parameter as well here
+		for i in range(len(self.paramList)):
+			if self.node.params[i].type == "bool":
+				self.node.params[i].setValue(self.paramList[i].isChecked())
+			else:
+				self.node.params[i].setValue(self.paramList[i].text())
+				
 		self.mainWin.setWindowTitle("*HTT-Viz")
 		self.setWindowTitle("Edit Node")
 		

@@ -245,7 +245,10 @@ class Tree:
 		self.redo_stack = Stack("REDO")
 		self.num_nodes = 1
 		self.free_nums = [False] * 1000
-		self.author = ProgramAuthor()	
+		self.author = ProgramAuthor()
+
+		#loads the default behaviors included in htt_viz 
+		self.author.loadDefault()
 		self.root_node = self.createNewNode(0, 50, 10)
 		
 		self.scene = None
@@ -363,6 +366,10 @@ class Tree:
 		dict["Nodes"][cur_ptr.name]["x"] = cur_ptr.getX()
 		dict["Nodes"][cur_ptr.name]["y"] = cur_ptr.getY()
 
+		# Also make sure to save whatever the params are
+		for param in cur_ptr.params:
+			dict["Nodes"][cur_ptr.name][param.name] = param.value
+
 		for i in cur_ptr.children:
 			self.recAddToList(dict, i)
 
@@ -373,10 +380,10 @@ class Tree:
 		tree_dict = {}
 		tree_dict["Nodes"] = {}
 		tree_dict["NodeList"] = []
-		tree_dict["NodeIncludePaths"] =[]
+		tree_dict["NodeFileIncludes"] =[]
 
-		for i in self.author.node_folder_list:
-			tree_dict["NodeIncludePaths"].append(i)
+		for i in self.author.getPathsToSave():
+			tree_dict["NodeFileIncludes"].append(i)
 
 		# make sure that the nodelist is in the correct order (parents before children)
 		self.populateNodeList(tree_dict["NodeList"], self.root_node)

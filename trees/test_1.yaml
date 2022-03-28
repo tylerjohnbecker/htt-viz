@@ -1,0 +1,62 @@
+NodeFileIncludes:
+- C:\opt\workspace\catkin_ws\src\htt_viz\include\behavior/grab_behavior.yaml
+- C:\opt\workspace\catkin_ws\src\htt_viz\include\behavior/move_behavior.yaml
+NodeList:
+- Root_0_0_000
+- THEN_1_0_001
+- Move_To_5_0_002
+- Grab_4_0_003
+Nodes:
+  Grab_4_0_003:
+    children:
+    - NONE
+    mask:
+      node: 3
+      robot: 0
+      type: 4
+    object_width: 0.05
+    parent: THEN_1_0_001
+    peers:
+    - NONE
+    x: 179.0
+    y: 195.0
+  Move_To_5_0_002:
+    children:
+    - NONE
+    dest_x: 10.0
+    dest_y: 10.0
+    loc_topic: odom
+    mask:
+      node: 2
+      robot: 0
+      type: 5
+    parent: THEN_1_0_001
+    peers:
+    - NONE
+    x: -149.0
+    y: 192.0
+  Root_0_0_000:
+    children:
+    - THEN_1_0_001
+    mask:
+      node: 0
+      robot: 0
+      type: 0
+    parent: NONE
+    peers:
+    - NONE
+    x: 50.0
+    y: 10.0
+  THEN_1_0_001:
+    children:
+    - Move_To_5_0_002
+    - Grab_4_0_003
+    mask:
+      node: 1
+      robot: 0
+      type: 1
+    parent: Root_0_0_000
+    peers:
+    - NONE
+    x: 50.0
+    y: 97.0

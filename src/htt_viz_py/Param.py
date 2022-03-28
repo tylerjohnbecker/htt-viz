@@ -20,6 +20,9 @@ class Param(object):
             and self.type == comp_param.type \
             and self.value == comp_param.value
 
+    def setValue(self, n_value):
+        self.value = n_value
+
     def toString(self):
         return "Param "+ self.name + ": " + self.type + ", " + str(self.value)
 
@@ -30,6 +33,10 @@ class ParamFloat (Param):
 
         self.type = "float"
         self.value = 0.0
+
+    # All of these assume a string as input and save it in a different way
+    def setValue(self, n_value):
+        self.value = float(n_value)
 
 
 class ParamString (Param):
@@ -48,6 +55,9 @@ class ParamInt (Param):
 
         self.type = "int"
         self.value = 0
+    
+    def setValue(self, n_value):
+        self.value = int(n_value)
 
 class ParamBool (Param):
     

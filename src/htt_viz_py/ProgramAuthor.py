@@ -30,6 +30,25 @@ class ProgramAuthor(object):
 		self.node_master_list.append(Or)
 		self.node_master_list.append(And)
 
+	def maintainIndices(self):
+		for i in range(len(self.node_master_list)):
+			self.node_master_list[i].index = i
+
+	#clears everything but the task nodes. Useful when loading from a file
+	def clearTypes(self):
+		n_master_list = []
+
+		for i in range(4):
+			n_master_list.append(self.node_master_list[i])
+
+		temp = self.node_master_list
+
+		self.node_master_list = n_master_list
+
+		del temp
+
+	#loads by default the behaviors included in htt_viz
+	def loadDefault(self):
 		#returns the path of this file which is stored in the global __file__ by default
 		my_path = os.path.dirname(os.path.abspath(__file__))
 
@@ -43,10 +62,6 @@ class ProgramAuthor(object):
 			self.node_master_list.append(x)
 
 		self.maintainIndices()
-
-	def maintainIndices(self):
-		for i in range(len(self.node_master_list)):
-			self.node_master_list[i].index = i
 
 	def readNodesFromFolder(self, folder_path):
 		return_types = []
@@ -64,6 +79,14 @@ class ProgramAuthor(object):
 
 		self.node_master_list.append(n_node)
 		self.maintainIndices()
+
+	def getPathsToSave (self):
+		list_to_save = []
+
+		for i in range (4, len(self.node_master_list)):
+			list_to_save.append(self.node_master_list[i].path + "/" + self.node_master_list[i].file)
+
+		return list_to_save
 
 	def addNodesFromFolder(self, folder_path):
 		if folder_path in self.node_folder_list:
@@ -108,7 +131,7 @@ class ProgramAuthor(object):
 		to_print = "Author " + "\n"
 
 		for x in self.node_master_list:
-			to_print = to_print + "\t" + x.to_string() + "\n"
+			to_print = to_print + "\t" + x.toString() + "\n"
 
 		return to_print
 
