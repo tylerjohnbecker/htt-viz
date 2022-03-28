@@ -329,6 +329,7 @@ class HTTDisplayWidget(QGraphicsView):
 			self.taskTree.addNode([parentNode, selectedNodeIndex, True])
 			
 		self.mainWin.setWindowTitle("*HTT-Viz")
+		preliminarySort(parentNode)
 				
 	def removeChildNode(self, name):
 		self.taskTree.removeNode([name, True])
@@ -576,16 +577,20 @@ def treeHeight(node):
 def repositionNodesByLevel(node, depth):
 	complete = True
 	nodeList = []
+	parentList = []
 	appendNodesByLevel(node, depth - 1, nodeList)
 		
 	if len(nodeList) > 1:
 		for x in range(1, len(nodeList)):
 			difference = nodeList[x].getX() - nodeList[x -1].getX()
 			if difference < 200:
+				print("We are moving " + nodeList[x - 1].parent.name + " from ", end = " ")
+				print(str(nodeList[x-1].parent.getX()) + " to " + str(difference + nodeList[x-1].parent.getX()))
 				complete = False
-				moveSubTree(nodeList[x - 1].parent, 200 - difference)
-				if x > 1: 
-					pass # BROKE -> moveAdjacentSubTrees(nodeList, x - 2, difference)
+				distantRelative = getFurthestNonRootParent(nodeList[x - 1])
+				moveSubTree(distantRelative, 200 - difference)
+				appendNodesByLevel(distantRelative.parent, 1, parentList)
+				moveAdjacentSubTrees(parentList, distantRelative, difference)
 				
 	nodeList.clear()
 	return complete
@@ -606,10 +611,25 @@ def moveSubTree(node, difference):
 	for child in node.children:
 		moveSubTree(child, difference)
 
-def moveAdjacentSubTrees(nodeList, last, difference):
-	print("Attempting to move adjacent trees a distance of " + str(difference))
-	for x in range(last):
-		moveSubTree(nodeList[x].parent, difference)
+def moveAdjacentSubTrees(nodeList, lastNode, difference):
+	last = 0
+	while nodeList[last] != lastNode:
+		last+=1
+	
+	print("The nodes to the left of " + nodeList[last].name + "are:", end = " ")
+	if last >= 0:
+		for x in range(last):
+			print(nodeList[x].name, end = " ")
+			moveSubTree(nodeList[x].parent, difference)
+		
+	print("")
+	
+def getFurthestNonRootParent(node):
+	node = node.parent
+	while not node.parent.isRoot():
+		node = node.parent
+		
+	return node
 
 if __name__ == "__main__":
 	rospy.init_node('htt_viz')
