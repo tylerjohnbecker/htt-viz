@@ -82,7 +82,7 @@ add_dependencies(load ${catkin_EXPORTED_TARGETS} htt_viz_generate_messages_cpp)
 
 # Python executables
 file (GLOB python_scripts_DIR
-	"scripts/main.py"
+	"scripts/htt_viz"
 )
 
 catkin_install_python(PROGRAMS ${python_scripts_DIR}

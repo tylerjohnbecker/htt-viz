@@ -155,6 +155,12 @@ class MainWindow(QMainWindow):
 		self.setCentralWidget(self.subsplitter)
 		
 		self.filePath = None
+
+		#Setup Auto-Organize Button
+		self.orgButton = QPushButton(self.subWindow2)
+		self.orgButton.setText("Organize Tree")
+		self.orgButton.move(9,9)
+		self.orgButton.clicked.connect(lambda : organizeTree(self.taskTree.root_node))
 		
 	def handleNodeSelectionChange(self):
 		selectedItem = self.nodeList.selectedItems()[0]
@@ -485,6 +491,98 @@ class UnsavedContentWindow(QWidget):
 		elif self.window.windowTitle() == "*Edit Node":
 			self.window.close()
 			self.close()
+
+#Calls functions responsible for organzing the tree
+def organizeTree(node):
+	preliminarySort(node)
+	finalSort(node)
+
+#Makes the first sort over the tree
+#Sorts nodes in reference to siblings and parent
+#Does not account for overlapping with cousins
+def preliminarySort(node):
+	
+	if node.isRoot():
+		node.setX(0)
+		node.setY(0)
+		
+	offset = 0
+	length = len(node.children)
+	iterator = 0
+	
+	if length % 2 == 0:
+		offset = 100
+	
+	for child in node.children:
+	
+		child.setX(node.getX() + ((iterator - int(length/2)) * 200) + offset)
+		if node.isRoot():
+			pass
+		child.setY(node.getY() + 80)
+		preliminarySort(child)
+		iterator+=1
+
+#Calls function to fix each level of the tree
+#For all levels excluding the first two
+#Since these two levels will be in perfect condition
+#Following the preliminary sort	
+def finalSort(node):
+	sorted = False
+	height = treeHeight(node)
+
+	if height > 2:
+		for depth in range(height, 2, -1):
+			sorted = False
+			while sorted is False:
+				sorted = repositionNodesByLevel(node, depth)
+
+#Finds the height of the tree
+def treeHeight(node):
+	height = 0
+	for child in node.children:
+		height = max(height, treeHeight(child))
+		
+	return height + 1
+	
+#Checks each level of the tree and spaces
+#Overlapping nodes as well as their parents
+def repositionNodesByLevel(node, depth):
+	complete = True
+	nodeList = []
+	appendNodesByLevel(node, depth - 1, nodeList)
+		
+	if len(nodeList) > 1:
+		for x in range(1, len(nodeList)):
+			difference = nodeList[x].getX() - nodeList[x -1].getX()
+			if difference < 200:
+				complete = False
+				moveSubTree(nodeList[x - 1].parent, 200 - difference)
+				if x > 1: 
+					pass # BROKE -> moveAdjacentSubTrees(nodeList, x - 2, difference)
+				
+	nodeList.clear()
+	return complete
+
+#Appends all nodes at a given depth to the given node list
+def appendNodesByLevel(node, depth, nodeList):
+	if depth == 0:
+		nodeList.append(node)
+	else:
+		if depth > 0:
+			for child in node.children:
+				appendNodesByLevel(child, depth - 1, nodeList)
+		
+	return depth + 1
+	
+def moveSubTree(node, difference):
+	node.setX(node.getX() - difference)
+	for child in node.children:
+		moveSubTree(child, difference)
+
+def moveAdjacentSubTrees(nodeList, last, difference):
+	print("Attempting to move adjacent trees a distance of " + str(difference))
+	for x in range(last):
+		moveSubTree(nodeList[x].parent, difference)
 
 if __name__ == "__main__":
 	rospy.init_node('htt_viz')
