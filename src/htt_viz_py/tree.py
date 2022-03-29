@@ -191,11 +191,11 @@ class Node:
 		
 	# Get the node width
 	def getWidth(self):
-		return self.qGraphics.width
+		return self.qGraphics.getWidth()
 	
 	# Get the node height
 	def getHeight(self):
-		return self.qGraphics.height
+		return self.qGraphics.getHeight()
 		
 	# Set the x value
 	def setX(self, x):

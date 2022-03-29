@@ -72,3 +72,11 @@ class QGraphicsTaskTreeNode(QGraphicsItem):
 	def showInactiveColor(self):
 		self.normalColor = QColor(121, 218, 255)
 		self.borderColor = QColor(4, 180, 245)
+		
+	# Get the graphics width
+	def getWidth(self):
+		return self.width
+		
+	# Get the graphics height
+	def getHeight(self):
+		return self.height
