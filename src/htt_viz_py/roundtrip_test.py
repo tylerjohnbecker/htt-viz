@@ -14,7 +14,12 @@ def random_sub    ( tree ):
             cur_ptr = cur_ptr.children[0]
         elif r.randrange(1, 10) < 5:
           break
+        elif len(cur_ptr.childern) == 0:
+          break
+        else:
+          cur_ptr = cur_ptr.childern[r.randrange(len(cur_ptr.childern))]
           
+          tree.RemoveNode( [ cur_ptr.name, True ] )
 
 def random_place    ( tree ):
     #so Here I want a random seed based on the time
@@ -48,69 +53,34 @@ def random_place    ( tree ):
 
     tree.AddNode([cur_ptr, num, True])
 
-
-# Note this function won't make any sense outside of when both trees are already equivalent
-def random_place_both    ( tree1 , tree2):
-    #so Here I want a random seed based on the time
-    r.seed()
-    cur_ptr = tree1.root_node;
-    for i in range(r.randrange(1, 15)):
-        if not cur_ptr.isLeaf():
-            if cur_ptr is tree1.root_node:
-                cur_ptr = cur_ptr.children[0]
-            elif r.randrange(1, 10) < 5:
-                break
-            else:
-                cur_ptr = cur_ptr.children[r.randrange(len(cur_ptr.children))]
-                #if its an action we can't add a child to it
-                if cur_ptr.m_type.index > 3:
-                    cur_ptr = cur_ptr.parent
-                    i = i - 1
-        else:
-            if cur_ptr.m_type.index > 3:
-                cur_ptr = cur_ptr.parent
-                i = i - 1
-            else:
-                break
-
-    num = r.randrange(3) + 1
-
-    if cur_ptr is tree1.root_node and num == 3:
-        num = r.randrange(2) + 1
-
-    comp_ptr = tree2.findNodeByName(cur_ptr.name)
-
-    tree1.AddNode([cur_ptr, num, True])
-    tree2.AddNode([comp_ptr, num, True])
-
-
         
 
 if __name__ == "__main__":
+  
     t = Tree()
 
-    for i in range(350)
+    print("Adding nodes to tree")
+    for i in range(150):
         random_place(t)
-
-    #t.PrintTree()
-    #print("length of t's children: " + str(len(t.root_node.children)))
-    with open("../../trees/saveTreeTest.yaml", "w") as outfile:
+        
+     with open("../../trees/saveTreeTest.yaml", "w") as outfile:
         yaml.dump(t.toYamlDict(), outfile)
         
+   print("saving node tree")
+    data = self.taskTree.toYamlDict()
+		  with open(filePath, "w") as f:
+			  yaml.dump(data, f)
         
-    
-    t = Tree()
-    t2 = Tree()
+        with open(filePath, "r") as f:
+				data = yaml.load(f, Loader=yaml.Loader)
+				
+				self.taskTreeDisplayWidget.clearTaskTree()
 
-    for i in range(950):
+				self.taskTree.author.clearTypes()
+
+				for file_name in data["NodeFileIncludes"]:
+					self.taskTree.author.addNodeFromFile(file_name)
         
-        #hardcore ish test for equivalence
-        print("RUNNING TEST " + str(i) + "...")
-        
-        before = t.equals(t2)
-
-        print("\tBefore place both trees are equal: " + str(before))
-
         random_place_both(t, t2)
         node_placed = False
 
@@ -119,7 +89,6 @@ if __name__ == "__main__":
             node_placed = True
             random_place(t)
 
-        after = t.equals(t2)
 
         if after and not node_placed:
             print("\tafter place both trees are equal!\n")
