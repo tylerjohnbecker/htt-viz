@@ -37,6 +37,7 @@ class Node:
 		self.depth = 0
 		self.num_children = 0
 		self.name = self.generateName(node_num)
+		self.title = self.name
 		
 		# Display State
 		self.scene = None
@@ -60,7 +61,7 @@ class Node:
 			
 		self.scene = weakref.ref(scene)
 			
-		self.qGraphics = QGraphicsTaskTreeNode(self.name)
+		self.qGraphics = QGraphicsTaskTreeNode(self.name, self.title)
 			
 		# Pass requested data to qGraphics
 		self.qGraphics.setX(x or self.initialX)
@@ -219,6 +220,12 @@ class Node:
 	def isGraphicsSetup(self):
 		return self.scene is not None
 
+	def setTitle(self, newTitle):
+		self.title = newTitle
+		self.qGraphics.title = newTitle
+		self.qGraphics.update()
+
+
 # An iterator over all nodes in a tree.	
 class IterAllChildren:
 	def __init__(self, node):
@@ -369,6 +376,8 @@ class Tree:
 		# Also make sure to save whatever the params are
 		for param in cur_ptr.params:
 			dict["Nodes"][cur_ptr.name][param.name] = param.value
+
+		dict["Nodes"][cur_ptr.name]["Title"] = cur_ptr.title
 
 		for i in cur_ptr.children:
 			self.recAddToList(dict, i)

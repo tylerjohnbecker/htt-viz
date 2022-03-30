@@ -3,10 +3,13 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 
 class QGraphicsTaskTreeNode(QGraphicsItem):
-	def __init__(self, name):
+	def __init__(self, name, title):
 		super().__init__()
 		
 		self.name = name
+
+		# Visual display title
+		self.title = title
 		
 		self.xRadius = 10.0
 		self.yRadius = 10.0
@@ -21,7 +24,7 @@ class QGraphicsTaskTreeNode(QGraphicsItem):
 		self.font = QFont("Times", fontSize)
 		
 		font_metrics = QFontMetrics(self.font)
-		self.textWidth = font_metrics.width(self.name)
+		self.textWidth = font_metrics.width(self.title)
 		self.textHeight = font_metrics.height()
 		
 		# TODO: These aren't centering vertically correctly and I don't know why.
@@ -39,6 +42,12 @@ class QGraphicsTaskTreeNode(QGraphicsItem):
 		return QRectF(0, 0, self.width, self.height)
 		
 	def paint(self, painter, option, widget):
+		font_metrics = QFontMetrics(self.font)
+		self.textWidth = font_metrics.width(self.title)
+		self.textHeight = font_metrics.height()
+		self.width = self.textWidth + (2.0 * self.paddingX)
+		self.height = self.textHeight + (2.0 * self.paddingY)
+
 		textX = (self.width / 2.0) - (self.textWidth / 2.0)
 		textY = (self.height / 2.0) - (self.textHeight / 2.0)
 		
@@ -51,7 +60,7 @@ class QGraphicsTaskTreeNode(QGraphicsItem):
 		painter.fillPath(path, self.normalColor)
 		
 		painter.setFont(self.font)
-		painter.drawText(QPointF(textX, textY), self.name)
+		painter.drawText(QPointF(textX, textY), self.title)
 		
 	def addPositionChangeHandler(self, handler):
 		self.positionChangeHandlers.append(handler)

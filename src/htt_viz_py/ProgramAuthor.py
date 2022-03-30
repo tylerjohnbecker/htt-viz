@@ -84,7 +84,7 @@ class ProgramAuthor(object):
 		list_to_save = []
 
 		for i in range (4, len(self.node_master_list)):
-			list_to_save.append(self.node_master_list[i].path + "/" + self.node_master_list[i].file)
+			list_to_save.append(self.node_master_list[i].file) #self.node_master_list[i].path + "/" + 
 
 		return list_to_save
 
