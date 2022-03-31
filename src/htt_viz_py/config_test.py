@@ -7,13 +7,13 @@ from pytestqt.qt_compat import qt_api
 pytest_plugins = "pytester"
 
 
-def stop_watch():
+def run_time():
     """
     This test is a fixture that makes it easier for tests to ensure signals 
     emitted and timeouts are being respected in the proper areas.
     """
 
-    class StopWatch:
+    class RunTime:
         def __init__(self):
             self._start_time = None
             self.elapsed = None
@@ -35,19 +35,17 @@ def stop_watch():
             max_wait_ms = max(delays + (timeout,))
             assert self.elapsed < max_wait_ms
 
-    return StopWatch()
+    return RunTime()
 
 
-@pytest.fixture
 def timer():
     """
-    Returns a Timer-like object which can be used to trigger signals and callbacks
-    after some time.
-    It is recommended to use this instead of ``QTimer.singleShot`` uses a static timer which may
-    trigger after a test finishes, possibly causing havoc.
-    """
+    This Test returns a kinda timer like object which can be used 
+    to trigger signals and callbacks after some time.
+  """
 
     class Timer(qt_api.QtCore.QObject):
+        
         def __init__(self):
             qt_api.QtCore.QObject.__init__(self)
             self.timers_and_slots = []
