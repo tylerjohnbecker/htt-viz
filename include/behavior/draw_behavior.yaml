@@ -1,0 +1,8 @@
+# YAML description file for GrabBehavior
+
+node:
+  source: "draw_behavior.h"
+  name: "Draw"
+  params:
+    param_names: ["DrawCharacter"]
+    DrawCharacter: "string"

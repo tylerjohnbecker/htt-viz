@@ -1216,10 +1216,10 @@ void Node::NodeInit(boost::posix_time::millisec mtime) {
 
   // Initialize recording Thread
   std::string filename = "/home/bashira/catkin_ws/src/Distributed_Collaborative_Task_Tree/Data/" + name_->topic + "_Data_.csv";
-  ROS_INFO("Creating Data File: %s", filename.c_str());
-  record_file.open(filename.c_str());
-  record_file.precision(15);
-  record_thread = new boost::thread(&RecordThread, this);
+  //ROS_INFO("Creating Data File: %s", filename.c_str());
+  //record_file.open(filename.c_str());
+  //record_file.precision(15);
+  //record_thread = new boost::thread(&RecordThread, this);
 }
 
 void Node::ActivationFalloff() {

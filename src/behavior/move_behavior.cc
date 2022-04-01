@@ -1,7 +1,7 @@
 #include "behavior/move_behavior.h"
 
 namespace task_net {
-	void MoveBehavior::Move(float x, float y)
+	void MoveBehavior::Work()
 	{
 		ROS_WARN("Work started for: [%s]", this->name_->topic.c_str());
 		

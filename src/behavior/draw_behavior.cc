@@ -1,7 +1,7 @@
-#include "behavior/grab_behavior.h"
+#include "behavior/draw_behavior.h"
 
 namespace task_net {
-	void GrabBehavior::Work()
+	void DrawBehavior::Work()
 	{
 		ROS_WARN("Work started for: [%s]", this->name_->topic.c_str());
 

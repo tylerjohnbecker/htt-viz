@@ -32,6 +32,7 @@ class QGraphicsTaskTreeNode(QGraphicsItem):
 		self.setFlag(QGraphicsItem.ItemIsSelectable, True)
 		self.setFlag(QGraphicsItem.ItemIsMovable, True)
 		self.setFlag(QGraphicsItem.ItemSendsGeometryChanges, True)
+		self.setFlag(QGraphicsItem.ItemSendsScenePositionChanges, True)
 		
 		self.positionChangeHandlers = []
 	
@@ -59,7 +60,8 @@ class QGraphicsTaskTreeNode(QGraphicsItem):
 	def itemChange(self, change, value):
 		ret = super().itemChange(change, value)
 		
-		if change == QGraphicsItem.GraphicsItemChange.ItemPositionChange:
+		#suffice it to say that QGraphicsItem.GraphicsItemChange.ItemPosition = 0
+		if change == 0:#Hardcoded the value oof the Cpp enum to hopefully fix an error#QGraphicsItem.GraphicsItemChange.ItemPositionChange
 			for handler in self.positionChangeHandlers:
 				handler(value.x(), value.y())
 				

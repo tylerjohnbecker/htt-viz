@@ -9,4 +9,4 @@ namespace task_net {
 
 		ROS_WARN("Work Finished for: [%s]", this->name_->topic.c_str());
 	}
-}
+} 

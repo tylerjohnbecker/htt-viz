@@ -1,0 +1,95 @@
+#each int in a stroke corresponds to its place on my numpad
+#like so:
+# 7 8 9
+# 4 5 6
+# 1 2 3
+# and these are just considered points in a corresponding grid
+A:
+  strokes: 2
+  _1: [1, 4, 8, 6, 3]
+  _2: [4, 6]
+B:
+  strokes: 1
+  _1: [1, 7, 5, 4, 2, 1]
+C:
+  strokes: 1
+  _1: [9, 7, 1, 3]
+D:
+  strokes: 1
+  _1: [1, 7, 8, 6, 2, 1]
+E:
+  strokes: 2
+  _1: [9, 7, 1, 3]
+  _2: [4, 5]
+F:
+  strokes: 2
+  _1: [9, 7, 1]
+  _2: [4, 5]
+G:
+  strokes: 1
+  _1: [9, 7, 1, 3, 6, 5]
+H:
+  strokes: 3
+  _1: [7, 1]
+  _2: [9, 3]
+  _3: [4, 6]
+I:
+  strokes: 1
+  _1: [8, 2]
+J:
+  strokes: 2
+  _1: [8, 2, 1]
+  _2: [7, 9]
+K:
+  strokes: 2
+  _1: [7, 1]
+  _2: [8, 4, 2]
+L:
+  strokes: 1
+  _1: [7, 1, 3]
+M:
+  strokes: 1
+  _1: [1, 7, 5, 9, 3]
+N:
+  strokes: 1
+  _1: [1, 7, 3, 9]
+O:
+  strokes: 1
+  _1: [1, 7, 9, 3, 1]
+P:
+  strokes: 1
+  _1: [1, 7, 8, 5, 4]
+Q:
+  strokes: 2
+  _1: [1, 7, 9, 6, 2, 1]
+  _2: [5, 3]
+R:
+  strokes: 1
+  _1: [1, 7, 8, 5, 4, 2]
+S:
+  strokes: 1
+  _1: [8, 7, 4, 5, 2, 1]
+T:
+  strokes: 2
+  _1: [7, 9]
+  _2: [8, 2]
+U:
+  strokes: 1
+  _1: [7, 1, 3, 9]
+V:
+  strokes: 1
+  _1: [7, 2, 9]
+W:
+  strokes: 1
+  _1: [7, 1, 5, 3, 9]
+X:
+  strokes: 2
+  _1: [7, 3]
+  _2: [1, 9]
+Y:
+  strokes: 2
+  _1: [7, 5, 2]
+  _2: [9, 5]
+Z:
+  strokes: 1
+  _1: [7, 9, 1, 3]

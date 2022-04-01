@@ -26,7 +26,7 @@ namespace task_net {
 				use_local_callback_queue,
 				mtime) {};
 
-		virtual void Move(float x, float y);
+		virtual void Work();
 	protected:
 
 	private:

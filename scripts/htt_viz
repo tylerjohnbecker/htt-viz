@@ -317,7 +317,8 @@ class HTTDisplayWidget(QGraphicsView):
 		
 		# TODO: Scrolling makes a constant cursor, and feels really janky to use
 		# Maybe we should implment our own?
-		self.setDragMode(QGraphicsView.DragMode.ScrollHandDrag)
+		# QGraphicsView.DragMode.ScrollHandDrag = 1
+		self.setDragMode(1)
 		
 		self.show()
 		

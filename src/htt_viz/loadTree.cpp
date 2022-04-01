@@ -14,7 +14,7 @@
 
 #include "task_tree/node.h"
 #include "task_tree/behavior.h"
-#include "behavior/dummy_behavior.h"
+#include "behaviors.h"
 #include <boost/thread/thread.hpp>
 #include <boost/date_time.hpp>
 #include <boost/algorithm/string/split.hpp>
