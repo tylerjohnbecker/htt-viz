@@ -232,8 +232,21 @@ void Node::GenerateNodeBitmaskMap() {
           .owner=nptr->mask, 
           .active=false, 
           .done=false, 
+          .check_peer = false,
+          .peer_okay = false,
           .activation_level=0.0f,
           .activation_potential=0.0f,
+          .peer_active = false,
+          .peer_done = false,
+          .highest = GetBitmask(*it),
+          .highest_potential = 0.0f,
+          .parent_type = nptr->mask.type,
+          .suitability = 0.0f,
+          .collision = false,
+          .robotPlacing = false,
+          .humanPlacing = false,
+          .peerUndone = false,
+          .simstate_obj_name = "",
       };
       node_dict_[nptr->mask] = nptr;
       // printf("Adding [%s] to Dictionary.\n", nptr->topic.c_str());
