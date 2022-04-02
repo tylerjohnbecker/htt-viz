@@ -169,8 +169,24 @@ int main(int argc, char** argv)
 							"blank");
 					}
 					break;
-				case task_net::ROOT:
+				case 6://should be draw_behavior
+					{
+						std::string letter = "";
+
+						nh_.getParam((param_prefix + nodes[i] + "/DrawCharacter").c_str(), letter);
+
+						network[i] = new task_net::DrawBehavior(
+							name_param,
+							peers_param,
+							children_param,
+							parent_param,
+							state,
+							"blank",
+							letter
+							);
+					}
 					break;
+				case task_net::ROOT:
 				default:
 					network[i] = NULL;
 					// printf("\ttask_net::ROOT %d\n",task_net::ROOT);
