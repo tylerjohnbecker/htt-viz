@@ -29,6 +29,8 @@ class MainWindow(QMainWindow):
 
 
 	def initUI(self):
+		#self.waiting = True
+
 		self.setMinimumSize(QSize(350, 275)) 
 		self.resize(700, 550)   
 		self.setWindowTitle("HTT-Viz")
@@ -186,7 +188,16 @@ class MainWindow(QMainWindow):
 
 				#load all the behavior types that are needed for the file we are opening
 				for file_name in data["NodeFileIncludes"]:
-					self.taskTree.author.addNodeFromFile(file_name)
+					try: # TODO Catch FileNotFoundError to notify user
+						self.taskTree.author.addNodeFromFile(file_name)
+					except FileNotFoundError:
+						sys.exit("Hey Nathaniel, I give up. Also line 194 - Brady <3")
+						#self.w = FileNotFoundWindow(self)
+						#self.w.show()
+						#self.waiting = True
+						#while self.waiting:
+							#pass
+
 
 				# I'm leaving this in just because it is helpful for debugging
 				# print(self.taskTree.author.toString())
@@ -206,21 +217,37 @@ class MainWindow(QMainWindow):
 					for param in node_ptr.params:
 						param.value = data["Nodes"][node][param.name]
 
+					node_ptr.setTitle(data["Nodes"][node]["Title"]) # Unhappy Path :)
+
+		self.setWindowTitle("HTT-Viz")
+
 	def newCall(self):
 		self.taskTreeDisplayWidget.clearTaskTree()
 		self.filePath = None
 	
 	# https://pythonspot.com/pyqt5-file-dialog/	
 	def saveCall(self):
+
+		if not self.filePath:
+			dialog = QFileDialog()
+			dialog.setFilter(dialog.filter() | QtCore.QDir.Hidden)
+			dialog.setDefaultSuffix('yaml')
+			dialog.setAcceptMode(QFileDialog.AcceptSave)
+			dialog.setNameFilters(['YAML (*.yaml)'])
+			if dialog.exec_() != QDialog.Accepted:
+				return
+
+			self.filePath = dialog.selectedFiles()[0]
+			
 		filePath = self.filePath
 		
-		if not filePath:
-			options = QFileDialog.Options()
-			options |= QFileDialog.DontUseNativeDialog
-			filePath, _ = QFileDialog.getSaveFileName(self,"Save","","YAML Files (*.yaml)", options=options)
-			if not filePath:
-				return
-			self.filePath = filePath
+		#if not filePath:
+		#	options = QFileDialog.Options()
+		#	options |= QFileDialog.DontUseNativeDialog
+		#	filePath, _ = QFileDialog.getSaveFileName(self,"Save","","YAML Files (*.yaml)", options=options)
+		#	if not filePath:
+		#		return
+		#	self.filePath = filePath
 			
 		data = self.taskTree.toYamlDict()
 		with open(filePath, "w") as f:
@@ -228,16 +255,24 @@ class MainWindow(QMainWindow):
 			
 		self.setWindowTitle("HTT-Viz")
 		
-	def saveAsCall(self):
-		options = QFileDialog.Options()
-		options |= QFileDialog.DontUseNativeDialog
-		filePath, _ = QFileDialog.getSaveFileName(self, "Save As","","YAML Files (*.yaml)", options=options)
-		if filePath:
-			self.filePath = filePath
+	def saveAsCall(self): # Catching NULL pointers in java, a sign of deeper problems.
+		dialog = QFileDialog()
+		dialog.setFilter(dialog.filter() | QtCore.QDir.Hidden)
+		dialog.setDefaultSuffix('yaml')
+		dialog.setAcceptMode(QFileDialog.AcceptSave)
+		dialog.setNameFilters(['YAML (*.yaml)'])
+		if dialog.exec_() != QDialog.Accepted:
+			return
+
+		#options = QFileDialog.Options()
+		#options |= QFileDialog.DontUseNativeDialog
+		#filePath, _ = QFileDialog.getSaveFileName(self, "Save As","","YAML Files (*.yaml)", options=options)
+		
+		self.filePath = dialog.selectedFiles()[0]
 			
-			data = self.taskTree.toYamlDict()
-			with open(filePath, "w") as f:
-				yaml.dump(data, f)
+		data = self.taskTree.toYamlDict()
+		with open(self.filePath, "w") as f:
+			yaml.dump(data, f)
 				
 		self.setWindowTitle("HTT-Viz")
 
@@ -339,6 +374,17 @@ class HTTDisplayWidget(QGraphicsView):
 	def clearTaskTree(self):
 		for child in self.taskTree.root_node.children:
 			self.removeChildNode(child.name)
+
+	def mouseDoubleClickEvent(self, event):
+		eventPos = event.pos()
+		maybeNode = self.itemAt(eventPos)
+		if not isinstance(maybeNode, QGraphicsTaskTreeNode):
+			maybeNode = None
+
+		if maybeNode is not None:
+			#print('Edit Node')
+			self.w = EditWindow(self.taskTree.findNodeByName(maybeNode.name), self.mainWin)
+			self.w.show()
 		
 	def contextMenuEvent(self, event):
 		eventPos = event.pos()
@@ -376,9 +422,12 @@ class HTTDisplayWidget(QGraphicsView):
 			print('Unknown Action:')
 			print(action)
 			
-class EditWindow(QWidget):
+class EditWindow(QDialog):
 	def __init__(self, node, mainWin):
 		super().__init__()
+
+		self.setWindowModality(Qt.ApplicationModal)
+
 		self.node = node
 		self.mainWin = mainWin
 		
@@ -388,13 +437,14 @@ class EditWindow(QWidget):
 		p.setColor(self.backgroundRole(), QColor(0x3D, 0x3D, 0x3D))
 		self.setPalette(p)
 		
-		self.setWindowTitle("Edit Node")
+		self.setWindowTitle(node.name)
 		self.setMinimumSize(QSize(350, 275)) 
 		self.resize(350, 275)
 		
 		self.titleBox = QLineEdit()
 		self.titleBox.resize(200,40)
-		self.titleBox.setText(node.name) #CHANGE TO NODE TITLE
+		self.titleBox.setText(node.title)
+		#print(node.title)
 		textBoxList.addRow("Title", self.titleBox)
 		
 		#self.paramBox = QPlainTextEdit()
@@ -421,9 +471,8 @@ class EditWindow(QWidget):
 				param = QLineEdit()
 				param.setText(str(x.value))
 			else:
-				#QGoFuKuRsElF
-				#app.quit()
-				print('No does work right')
+				#sys.exit()
+				print('Unsupported Parameter')
 					
 			self.paramList.append(param)
 			textBoxList.addRow(x.name, param)
@@ -443,11 +492,11 @@ class EditWindow(QWidget):
 		#self.paramBox.textChanged.connect(self.onChange)
 
 	def onChange(self):
-		self.setWindowTitle("*Edit Node")
+		self.setWindowTitle("*"+self.node.name)
 		
 	def saveClick(self):
 		#save parameter values
-		self.node.name = self.titleBox.text() #CHANGE TO NODE TITLE
+		self.node.setTitle(self.titleBox.text())
 
 		#save the actual values of the parameter as well here
 		for i in range(len(self.paramList)):
@@ -457,19 +506,22 @@ class EditWindow(QWidget):
 				self.node.params[i].setValue(self.paramList[i].text())
 				
 		self.mainWin.setWindowTitle("*HTT-Viz")
-		self.setWindowTitle("Edit Node")
+		self.setWindowTitle(self.node.name)
 		
 	def closeClick(self):
-		winTitle = "Edit Node"
-		if self.windowTitle() != winTitle:
+		if self.windowTitle() != self.node.name:
 			self.w = UnsavedContentWindow(self)
 			self.w.show()
+			#self.setUpdatesEnabled(False)
 		else:	
 			self.close()
 
-class UnsavedContentWindow(QWidget):
+class UnsavedContentWindow(QDialog): # Try to change to QMessageBox or QErrorBox
 	def __init__(self, window):
 		super().__init__()
+
+		self.setWindowModality(Qt.ApplicationModal)
+
 		self.window = window
 
 		p = self.palette()
@@ -508,7 +560,7 @@ class UnsavedContentWindow(QWidget):
 		if self.window.windowTitle() == "*HTT-Viz":
 			self.window.saveCall()
 			self.close()
-		elif self.window.windowTitle() == "*Edit Node":
+		elif self.window.windowTitle() == ("*"+self.window.node.name):
 			self.window.saveClick()
 			self.close()
 		
@@ -516,9 +568,32 @@ class UnsavedContentWindow(QWidget):
 			#self.window.close()
 		if self.window.windowTitle() == "*HTT-Viz":
 			app.quit()
-		elif self.window.windowTitle() == "*Edit Node":
+		elif self.window.windowTitle() == ("*"+self.window.node.name):
 			self.window.close()
 			self.close()
+
+	#def closeEvent(self, event):
+		#self.window.setUpdatesEnabled(True)
+
+class FileNotFoundWindow(QDialog):
+	def __init__(self, window):
+		super().__init__()
+
+		self.setWindowModality(Qt.ApplicationModal)
+
+		self.window = window
+
+		p = self.palette()
+		p.setColor(self.backgroundRole(), QColor(0x3D, 0x3D, 0x3D))
+		self.setPalette(p)
+		
+		self.setWindowTitle("File Not Found!!")
+		self.setMinimumSize(QSize(225, 130))
+		self.setMaximumSize(QSize(225, 130)) 
+		self.resize(225, 130)
+
+	#def closeEvent(self, event):
+		#self.window.waiting = False
 
 #Calls functions responsible for organzing the tree
 def organizeTree(node):
