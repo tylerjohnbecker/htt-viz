@@ -15,6 +15,11 @@ find_package(catkin REQUIRED COMPONENTS
   geometry_msgs
   rosgraph_msgs
   roslib
+  moveit_core
+  moveit_ros_planning
+  moveit_ros_planning_interface
+  moveit_msgs
+  tf2_geometry_msgs
 )
 
 find_package(Boost REQUIRED COMPONENTS 

@@ -10,6 +10,28 @@
 #define GRAB_BEHAVIOR_H_
 
 #include "task_tree/behavior.h"
+#include "gazebo_msgs/ModelStates.h"
+#include "geometry_msgs/Pose.h"
+#include <moveit/move_group_interface/move_group_interface.h>
+#include <moveit/planning_scene_interface/planning_scene_interface.h>
+#include "moveit_msgs/PickupAction.h"
+#include "moveit_msgs/Grasp.h"
+#include <tf2_geometry_msgs/tf2_geometry_msgs.h>
+#include <moveit/planning_interface/planning_interface.h>
+#include <moveit_msgs/PlanningScene.h>
+#include <moveit/planning_scene/planning_scene.h>
+#include <moveit/robot_model_loader/robot_model_loader.h>
+#include <moveit_msgs/ApplyPlanningScene.h>
+#include <moveit/kinematic_constraints/utils.h>
+#include "moveit_msgs/MoveGroupAction.h"
+#include "moveit_msgs/OrientationConstraint.h"
+#include <tf2_geometry_msgs/tf2_geometry_msgs.h>
+#include <pluginlib/class_loader.h>
+#include "pr2_common_action_msgs/TuckArmsAction.h"
+#include "pr2_controllers_msgs/Pr2GripperCommandAction.h"
+#include "actionlib/client/simple_action_client.h"
+#include "moveit_msgs/OrientationConstraint.h"
+
 
 namespace task_net {
 
