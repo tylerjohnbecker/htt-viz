@@ -1,7 +1,7 @@
 NodeFileIncludes:
-- /home/tylerbecker/sp_ws/src/htt-viz/include/behavior//home/tylerbecker/sp_ws/src/htt-viz/include/behavior/move_behavior.yaml
-- /home/tylerbecker/sp_ws/src/htt-viz/include/behavior//home/tylerbecker/sp_ws/src/htt-viz/include/behavior/grab_behavior.yaml
-- /home/tylerbecker/sp_ws/src/htt-viz/include/behavior//home/tylerbecker/sp_ws/src/htt-viz/include/behavior/draw_behavior.yaml
+- /home/tylerbecker/sp_ws/src/htt-viz/include/behavior/grab_behavior.yaml
+- /home/tylerbecker/sp_ws/src/htt-viz/include/behavior/move_behavior.yaml
+- /home/tylerbecker/sp_ws/src/htt-viz/include/behavior/draw_behavior.yaml
 NodeList:
 - Root_0_0_000
 - THEN_1_0_001

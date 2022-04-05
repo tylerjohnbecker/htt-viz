@@ -486,6 +486,51 @@ class Tree:
 			
 		if self.scene is not None:
 			nNode.registerScene(self.scene())
+
+	def addChildNodeFromDict(self, dict):
+
+		#case for adding a new root node
+		if dict["parent"] == "NONE" and self.root_node is None:
+			nNode = Node(self.author.getNodeTypeByIndex(dict["mask"]["type"]), dict["mask"]["node"])
+			nNode.depth = 0
+
+			nNode.setX(dict["x"])
+			nNode.setY(dict["y"] + 20.0)
+			
+			self.root_node = nNode
+
+			self.free_nums[dict["mask"]["node"]] = True
+			if self.scene is not None:
+				nNode.registerScene(self.scene())
+
+			return
+
+		#case for adding a node normally
+		parent_ptr = self.findNodeByName(dict["parent"])
+
+		p = parent_ptr
+		depth = 1
+		if p is not None:
+			while p.parent is not None:
+				p = p.parent
+				depth = depth + 1
+
+		nNode = Node(self.author.getNodeTypeByIndex(dict["mask"]["type"]), dict["mask"]["node"])
+		nNode.parent = parent_ptr
+		nNode.depth = depth
+
+		nNode.setX(dict["x"])
+		nNode.setY(dict["y"] + 20.0)
+
+		parent_ptr.addChild(nNode)
+
+		self.free_nums[dict["mask"]["node"]] = True
+
+		self.num_nodes = self.root_node.num_children + 1
+
+		if self.scene is not None:
+			nNode.registerScene(self.scene())
+
 	
 	# desc.: recursively print the nodes in the subtree starting at node_name
 	def printNodes(self, cur_ptr):
@@ -508,6 +553,10 @@ class Tree:
 	def destroyTree(self):
 		if len(self.root_node.children) > 0:
 			self.removeNode([ self.root_node.children[0].name, False] )
+
+		self.root_node.unregisterScene(self.scene())
+
+		self.root_node = None
 
 	# Params:
 	#	args[0]:	name of the node being removed
@@ -579,6 +628,8 @@ class Tree:
 			self.redo_stack.clear()
 
 	def updateCallback(self, req):
+		print("Searching for: " + req.owner)
+
 		ptr = self.findNodeByName(req.owner)
 		ptr.activation_potential = req.activation_potential
 		ptr.activation_level  = req.activation_level

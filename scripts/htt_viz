@@ -210,14 +210,16 @@ class MainWindow(QMainWindow):
 
 					node_type = data["Nodes"][node]["mask"]["type"]
 					
-					self.taskTreeDisplayWidget.addChildNode(parent, node_type, x, y)
+					self.taskTreeDisplayWidget.addChildNodeFromDict(data["Nodes"][node])
 
+					print("Just created node: " + node + ": now searching for it")
 					#now that the node has been added to the tree I have to fill in its parameters
 					node_ptr = self.taskTree.findNodeByName(node)
 					for param in node_ptr.params:
 						param.value = data["Nodes"][node][param.name]
 
-					node_ptr.setTitle(data["Nodes"][node]["Title"]) # Unhappy Path :)
+					if "Title" in data["Nodes"][node]:
+						node_ptr.setTitle(data["Nodes"][node]["Title"]) # Unhappy Path :)
 
 		self.setWindowTitle("HTT-Viz")
 
@@ -365,6 +367,9 @@ class HTTDisplayWidget(QGraphicsView):
 			self.taskTree.addNode([parentNode, selectedNodeIndex, True])
 			
 		self.mainWin.setWindowTitle("*HTT-Viz")
+
+	def addChildNodeFromDict(self, dict):
+		self.taskTree.addChildNodeFromDict(dict)
 				
 	def removeChildNode(self, name):
 		self.taskTree.removeNode([name, True])
@@ -372,8 +377,9 @@ class HTTDisplayWidget(QGraphicsView):
 		self.mainWin.setWindowTitle("*HTT-Viz")
 				
 	def clearTaskTree(self):
-		for child in self.taskTree.root_node.children:
-			self.removeChildNode(child.name)
+		#for child in self.taskTree.root_node.children:
+		#	self.removeChildNode(child.name)
+		self.taskTree.destroyTree()
 
 	def mouseDoubleClickEvent(self, event):
 		eventPos = event.pos()
