@@ -29,12 +29,21 @@ def qapp(qapp_args, pytestconfig):
   
   _qapp_instance = None
   
-  def qtbot(qapp, request):
+def qtbot(qapp, request):
     
     result = QtBot(request)
     return result
   
-  def qtmodeltester(request)
+  
+def qtlog(request):
+  if hasattr(request._pyfuncitem, "qt_log_capture"):
+    return request._pyfuncitem.qt_log_capture
+  else:
+    return _QtMessageCapture([]) 
+  
+  
+  
+def qtmodeltester(request)
   
   from pytestqt.modeltest import ModelTester
    tester = ModelTester(request.config)
@@ -45,15 +54,26 @@ def pytest_addoption(parser):
     parser.addini (
   
       
-def pytest_rutest_setup(item)
+def pytest_rutest_setup(item):
       capture_enabled = _is_exception_capture_enable(item)
+      if capture_enabled:
+        item.qt_exception_capture_manager = _QtExceptionCaptureManager()
+        item.qt_exception_capture_manager.start()
+      yield
+      _process_events()
+      if capture_enabled:
+        item.qt_exception_capture_manager.fail_if_exceptions_occurred("Setup")
       
-def pytest_runtest_call(item)
+      
+def pytest_runtest_call(item):
       yield 
       _process_events()
       capture_enabled = _is_exception_capture_enabled(item)
+      if capture_enabled:
+        item.qt_exception_capture_manager.fail_if_exceptions_occured("Call")
       
-def pytest_runtest_teardown(item)
+      
+def pytest_runtest_teardown(item):
       
       """ 
       This allows any pending events for the test tear down as well as
@@ -68,6 +88,8 @@ def pytest_runtest_teardown(item)
       _process_events()
       capture_enabled = _is_exception_capture_enabled(item)
       if capture_enabled:
+        item.qt_exception_capture_manager.fail_if_exceptions_occurred("Teardown")
+        item.qt_exception_capture_manager.finish()
       
 def _process_events():
       app = qt_api.QWidgets.QApplication.instance()
