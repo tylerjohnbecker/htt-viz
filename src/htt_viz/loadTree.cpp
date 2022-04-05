@@ -154,7 +154,21 @@ int main(int argc, char** argv)
 					// printf("\ttask_net::AND %d\n",task_net::AND);
 					break;
 				//Only using dummy behavior for now to simplify the amount of work that has to compile
-				case 4://Move_to for now
+				case 4:
+					{
+						int s_int = 0;
+
+						//temp filler to check for compilation errors
+						network[i] = new task_net::DummyBehavior(
+							name_param,
+							peers_param,
+							children_param,
+							parent_param,
+							state,
+							"blank");
+					
+					}
+					break;
 				case 5://Grab
 					{//Both start a dummy behavior for now
 						int s_int = 0;

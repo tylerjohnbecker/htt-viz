@@ -53,7 +53,7 @@ class ProgramAuthor(object):
 		my_path = os.path.dirname(os.path.abspath(__file__))
 
 		#essentially this removes /src/htt_viz_py and replaces it with /include/behavior
-		include_path = my_path[0:(len(my_path) - 15)] + "/include/behavior"
+		include_path = my_path[0:(len(my_path) - 15)] + "/include/behavior/"
 		self.node_folder_list = [include_path]
 
 		behavior_types = self.readNodesFromFolder(include_path)
@@ -65,9 +65,8 @@ class ProgramAuthor(object):
 
 	def readNodesFromFolder(self, folder_path):
 		return_types = []
-		os.chdir(folder_path)
 
-		for file in glob.glob("*.yaml"):
+		for file in glob.glob(folder_path + "*.yaml"):
 			n_type = NodeType(file)
 
 			return_types.append(n_type)
