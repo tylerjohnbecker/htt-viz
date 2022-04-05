@@ -218,7 +218,7 @@ class MainWindow(QMainWindow):
 						param.value = data["Nodes"][node][param.name]
 
 					if "Title" in data["Nodes"][node]:
-						node_ptr.setTitle(data["Nodes"][node]["Title"]) # Unhappy Path :)
+						node_ptr.setTitle(data["Nodes"][node]["Title"]) # Unhappy Path :()
 
 		self.setWindowTitle("HTT-Viz")
 
