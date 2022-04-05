@@ -628,7 +628,6 @@ class Tree:
 			self.redo_stack.clear()
 
 	def updateCallback(self, req):
-		print("Searching for: " + req.owner)
 
 		ptr = self.findNodeByName(req.owner)
 		ptr.activation_potential = req.activation_potential

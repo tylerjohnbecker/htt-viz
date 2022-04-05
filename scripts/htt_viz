@@ -212,7 +212,6 @@ class MainWindow(QMainWindow):
 					
 					self.taskTreeDisplayWidget.addChildNodeFromDict(data["Nodes"][node])
 
-					print("Just created node: " + node + ": now searching for it")
 					#now that the node has been added to the tree I have to fill in its parameters
 					node_ptr = self.taskTree.findNodeByName(node)
 					for param in node_ptr.params:
