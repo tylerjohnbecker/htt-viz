@@ -61,7 +61,7 @@ class Node:
 			
 		self.scene = weakref.ref(scene)
 			
-		self.qGraphics = QGraphicsTaskTreeNode(self.name, self.title)
+		self.qGraphics = QGraphicsTaskTreeNode(self.name, self.title, self.activation_potential)
 			
 		# Pass requested data to qGraphics
 		self.qGraphics.setX(x or self.initialX)
