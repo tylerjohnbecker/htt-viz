@@ -618,11 +618,11 @@ def preliminarySort(node):
 	iterator = 0
 	
 	if length % 2 == 0:
-		offset = 100
+		offset = ((node.getWidth())+50)/2
 	
 	for child in node.children:
 	
-		child.setX(node.getX() + ((iterator - int(length/2)) * 200) + offset)
+		child.setX(node.getX() + ((iterator - int(length/2)) * ((node.getWidth())+50)) + offset)
 		if node.isRoot():
 			pass
 		child.setY(node.getY() + 80)
@@ -668,7 +668,7 @@ def repositionNodesByLevel(node, depth):
 	if len(nodeList) > 1:
 		for x in range(1, len(nodeList)):
 			difference = nodeList[x].getX() - nodeList[x -1].getX()
-			if difference < 200:
+			if difference < ((node.getWidth())+50):
 				relative = getFurthestNonRootParent(nodeList[x-1])
 				relative2 = getFurthestNonRootParent(nodeList[x])
 				if relative2 != relative:
