@@ -444,14 +444,14 @@ class Tree:
 		# If we are just normally adding a node to the tree
 		if args[2]:
 			nNode = self.createNewNode(args[1])
+			nNode.setX(args[0].getX())
+			nNode.setY(args[0].getY() + args[0].getHeight() + 20.0)
 		else: # Otherwise we might have children along with the node we are adding, and the node will already have a number
 			self.recNumMaintainer(args[1], True)
 			nNode = args[1]
 
 		# set the parent of the new node to the passed parent (its a reference so it will change all instances)
 		nNode.parent = args[0]
-		nNode.setX(args[0].getX())
-		nNode.setY(args[0].getY() + args[0].getHeight() + 20.0)
 
 		p = args[0]
 		depth = 1
@@ -486,6 +486,7 @@ class Tree:
 			
 		if self.scene is not None:
 			nNode.registerScene(self.scene())
+
 
 	def addChildNodeFromDict(self, dict):
 
