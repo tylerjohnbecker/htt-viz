@@ -10,6 +10,7 @@ class QGraphicsTaskTreeNode(QGraphicsItem):
 
 		# Visual display title
 		self.title = title
+		self.isActive = False
 		
 		self.xRadius = 10.0
 		self.yRadius = 10.0
@@ -79,10 +80,12 @@ class QGraphicsTaskTreeNode(QGraphicsItem):
 	def showActiveColor(self):
 		self.borderColor = QColor(0, 0, 0)
 		self.normalColor = QColor(255, 255, 255)
+		self.isActive = True
 
 	def showInactiveColor(self):
 		self.normalColor = QColor(121, 218, 255)
 		self.borderColor = QColor(4, 180, 245)
+		self.isActive = False
 		
 	# Get the graphics width
 	def getWidth(self):

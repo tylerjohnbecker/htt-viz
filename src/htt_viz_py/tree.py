@@ -50,6 +50,11 @@ class Node:
 		
 		if scene is not None:
 			self.registerScene(scene, x, y)
+
+	#Quick and dirty function to redraw the node scene
+	def update(self):
+		if self.scene is not None:
+			self.qGraphics.update()
 			
 	# Register a new QT scene with this node.
 	#
@@ -632,14 +637,17 @@ class Tree:
 
 		ptr = self.findNodeByName(req.owner)
 		ptr.activation_potential = req.activation_potential
-		ptr.activation_level  = req.activation_level
+		#ptr.activation_level  = req.activation_level
         
         # TODO: Color isn't controlled directly here anymore. 
         # Update to call relavent functions on graphics object.
-		if req.active == True:
+		if req.active == True and not ptr.qGraphics.isActive:
 			ptr.qGraphics.showActiveColor()
-		else:
+			ptr.update()
+		elif req.active == False and ptr.qGraphics.isActive:
 			ptr.qGraphics.showInactiveColor()
+			ptr.update()
+
 
 		#I need to ask about a redraw function
-		return UpdateResponse(True, ptr.activation_level)
+		return UpdateResponse(True, 1.0)#ptr.activation_level)

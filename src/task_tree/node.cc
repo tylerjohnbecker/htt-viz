@@ -85,6 +85,8 @@ Node::Node(NodeId_t name, NodeList peers, NodeList children, NodeId_t parent,
     }
   }
 
+  this->throttle_num = 0;
+
   parent_ = node_dict_[GetBitmask(parent.topic)];
   // Setup bitmasks
   InitializeBitmask(name_);
@@ -318,6 +320,8 @@ void Node::Activate()
           // Send activation to peers to avoid race condition
           // this will publish the updated state to say I am now active
           PublishStateToPeers();
+          this->throttle_num = throttle_max + 1;
+          this->CheckUpdated();
         }
         
 
@@ -1708,11 +1712,17 @@ void Node::CheckUpdated()
 {
     if (!this->notify_tree)
         return;
+
+    if (!(this->throttle_num > this->throttle_max) && !this->state_.done)
+    {
+      this->throttle_num++;
+      return;
+    }
     //
-    if (state_.activation_level != state_copy_.activation_level ||
-        abs(state_.activation_potential - state_copy_.activation_potential) < .001 ||
+    if (abs(state_.activation_potential - state_copy_.activation_potential) < .001 ||
         state_.active != state_copy_.active)
     {
+        this->CopyStatus();
         htt_viz::Update u;
         u.request.owner = this->name_->topic;
 
@@ -1723,8 +1733,8 @@ void Node::CheckUpdated()
 
         u.request.active = this->state_.active;
         u.request.activation_potential = this->state_.activation_potential;
+        u.request.activation_level = this->state_.activation_level;
 
-        this->CopyStatus();
         this->update_pub_.call(u);
         
         if (this->state_.done)
@@ -1740,12 +1750,8 @@ void Node::CheckUpdated()
             this->notify_tree = false;
             ROS_WARN_ONCE("htt_viz client not up!");
         }
-        else
-        {
-            this->state_.activation_level = u.response.activation_level;
-        }
+        this->throttle_num = 0;
     }
-    return;
 }
 void Node::CopyStatus()
 {

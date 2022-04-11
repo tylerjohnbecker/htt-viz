@@ -188,6 +188,9 @@ class Node {
   NodeListPtr children_;
   NodeId_t *parent_;
 
+  int throttle_num;
+  int throttle_max = 99;
+
   State state_copy_;
 
   std::string object_;

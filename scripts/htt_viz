@@ -5,6 +5,7 @@ import yaml
 
 import rospy
 from htt_viz.srv import Update
+from htt_viz.srv import UpdateResponse
 
 from htt_viz_py.QGraphicsTaskTreeNode import QGraphicsTaskTreeNode
 from htt_viz_py.tree import Tree

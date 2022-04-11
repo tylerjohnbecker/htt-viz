@@ -159,7 +159,7 @@ int main(int argc, char** argv)
 						int s_int = 0;
 
 						//temp filler to check for compilation errors
-						network[i] = new task_net::DummyBehavior(
+						network[i] = new task_net::MoveBehavior(
 							name_param,
 							peers_param,
 							children_param,
