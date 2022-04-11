@@ -636,6 +636,11 @@ class Tree:
 	def updateCallback(self, req):
 
 		ptr = self.findNodeByName(req.owner)
+
+		#can throw an error message here instead but for now I'll just tell the tree to stop sending messages
+		if ptr is None:
+			return UpdateResponse(False, 1.0);
+
 		ptr.activation_potential = req.activation_potential
 		#ptr.activation_level  = req.activation_level
         
