@@ -451,6 +451,7 @@ class EditWindow(QDialog):
 		self.resize(350, 275)
 		
 		self.titleBox = QLineEdit()
+		self.titleBox.setMaxLength(16)
 		self.titleBox.resize(200,40)
 		self.titleBox.setText(node.title)
 		#print(node.title)
@@ -472,12 +473,15 @@ class EditWindow(QDialog):
 				param.setChecked(x.value)
 			elif x.type == "float":
 				param = QLineEdit()
+				param.setValidator(QDoubleValidator(0.99,99.99,2))
 				param.setText(str(x.value))
 			elif x.type == "int":
 				param = QLineEdit()
+				param.setValidator(QIntValidator())
 				param.setText(str(x.value))
 			elif x.type == "string":
 				param = QLineEdit()
+				#param.setValidator(QStrValidator())
 				param.setText(str(x.value))
 			else:
 				#sys.exit()
