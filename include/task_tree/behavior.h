@@ -38,6 +38,7 @@ class Behavior: public Node {
     NodeId_t parent,
     State_t state,
     std::string object,
+    WorkMutex* wm,
     bool use_local_callback_queue = false,
     boost::posix_time::millisec mtime = boost::posix_time::millisec(BEHAVIOR_SLEEP_TIME));
   virtual ~Behavior();
@@ -54,6 +55,7 @@ class ThenBehavior: public Behavior {
     NodeId_t parent,
     State_t state,
     std::string object,
+    WorkMutex* wm,
     bool use_local_callback_queue = false,
     boost::posix_time::millisec mtime = boost::posix_time::millisec(BEHAVIOR_SLEEP_TIME));
   virtual ~ThenBehavior();
@@ -72,6 +74,7 @@ class AndBehavior: public Behavior {
     NodeId_t parent,
     State_t state,
     std::string object,
+    WorkMutex* wm,
     bool use_local_callback_queue = false,
     boost::posix_time::millisec mtime = boost::posix_time::millisec(BEHAVIOR_SLEEP_TIME));
   virtual ~AndBehavior();
@@ -88,6 +91,7 @@ class OrBehavior: public Behavior {
     NodeId_t parent,
     State_t state,
     std::string object,
+    WorkMutex* wm,
     bool use_local_callback_queue = false,
     boost::posix_time::millisec mtime = boost::posix_time::millisec(BEHAVIOR_SLEEP_TIME));
   virtual ~OrBehavior();

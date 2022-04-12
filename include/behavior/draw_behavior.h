@@ -2,7 +2,8 @@
 #define DRAW_BEHAVIOR_H_
 
 #include "task_tree/behavior.h"
-#include "geometry_msgs/PoseStamped.h"
+#include <random>
+#include "geometry_msgs/PoseStamped.h" 
 #include "geometry_msgs/Quaternion.h"
 #include <tf2_geometry_msgs/tf2_geometry_msgs.h>
 #include "gazebo_msgs/ModelStates.h"
@@ -35,6 +36,7 @@ namespace task_net
 		DrawBehavior(NodeId_t name, NodeList peers, NodeList children, NodeId_t parent,
 				State_t state,
 				std::string object,
+				WorkMutex* wm,
 				std::string to_draw,
 				bool use_local_callback_queue = false,
 				boost::posix_time::millisec mtime = boost::posix_time::millisec(50)) :
@@ -42,14 +44,17 @@ namespace task_net
 				Behavior(name, peers, children, parent,
 					state,
 					object,
+					wm,
 					use_local_callback_queue,
 					mtime) {};
 
 			virtual void Work();
-
 	protected:
 
 	private:
+		
+		virtual void UpdateActivationPotential();
+
 
 		std::string draw_char;
 

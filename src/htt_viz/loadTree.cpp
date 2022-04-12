@@ -14,6 +14,7 @@
 
 #include "task_tree/node.h"
 #include "task_tree/behavior.h"
+#include "task_tree/work_mutex.h"
 #include "behaviors.h"
 #include <boost/thread/thread.hpp>
 #include <boost/date_time.hpp>
@@ -48,6 +49,8 @@ int main(int argc, char** argv)
 	task_net::NodeId_t parent_param;
 	NodeParam nodes;
 	std::string obj_name;
+
+	task_net::WorkMutex* wm = new task_net::WorkMutex();
 
 
 	if (nh_.getParam("NodeList", nodes)) {
@@ -130,6 +133,7 @@ int main(int argc, char** argv)
 						parent_param,
 						state,
 						"N/A",
+						wm, 
 						false);
 					// printf("\ttask_net::THEN %d\n",task_net::THEN);
 					break;
@@ -140,6 +144,7 @@ int main(int argc, char** argv)
 						parent_param,
 						state,
 						"N/A",
+						wm, 
 						false);
 					// printf("\ttask_net::OR %d\n",task_net::OR);
 					break;
@@ -150,6 +155,7 @@ int main(int argc, char** argv)
 						parent_param,
 						state,
 						"N/A",
+						wm, 
 						false);
 					// printf("\ttask_net::AND %d\n",task_net::AND);
 					break;
@@ -165,7 +171,8 @@ int main(int argc, char** argv)
 							children_param,
 							parent_param,
 							state,
-							"blank");
+							"blank",
+							wm);
 					
 					}
 					break;
@@ -180,7 +187,8 @@ int main(int argc, char** argv)
 							children_param,
 							parent_param,
 							state,
-							"blank");
+							"blank",
+							wm);
 					}
 					break;
 				case 6://should be draw_behavior
@@ -196,8 +204,8 @@ int main(int argc, char** argv)
 							parent_param,
 							state,
 							"blank",
-							letter
-							);
+							wm, 
+							letter);
 					}
 					break;
 				case task_net::ROOT:
@@ -215,6 +223,9 @@ int main(int argc, char** argv)
 
 	ros::MultiThreadedSpinner spinner(4);
 	spinner.spin();
+
+	delete wm;
+	wm = nullptr;
 
 	return 0;
 }

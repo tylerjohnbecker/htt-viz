@@ -162,4 +162,9 @@ namespace task_net {
 
 		ROS_WARN("Work Finished for: [%s]", this->name_->topic.c_str());
 	}
+
+	void DrawBehavior::UpdateActivationPotential()
+	{
+		this->state_.activation_potential = this->state_.activation_potential + 1;
+	}
 }
