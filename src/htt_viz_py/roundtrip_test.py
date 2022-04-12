@@ -1,7 +1,19 @@
 # This is a file meant to test if loading file will remain the same as the file saved      
-from tree import Tree, Node
+import pytest
+
+from htt_viz_py.tree import Tree, Node
 import yaml
+import htt_viz
 import random as r
+
+
+
+@pytest.fixture
+def test_filedialog(qtbot, window):
+	def handle_dialog():
+		while window.
+	QTimer.singleShot(500, handle_dialog)
+	qt.mouseClick(tree.browseButton, QtCore.Qt.LeftButton, delay=1)
 
 def random_sub    ( tree ):
   r.seed()
