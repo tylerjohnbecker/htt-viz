@@ -572,21 +572,17 @@ def organizeTree(node):
 #Sorts nodes in reference to siblings and parent
 #Does not account for overlapping with cousins
 def preliminarySort(node):
-	
-	if node.isRoot():
-		node.setX(0)
-		node.setY(0)
 		
 	offset = 0
 	length = len(node.children)
 	iterator = 0
 	
 	if length % 2 == 0:
-		offset = 100
+		offset = ((node.getWidth())*1.5)/2
 	
 	for child in node.children:
 	
-		child.setX(node.getX() + ((iterator - int(length/2)) * 200) + offset)
+		child.setX(node.getX() + ((iterator - int(length/2)) * (node.getWidth()*1.5)) + offset)
 		if node.isRoot():
 			pass
 		child.setY(node.getY() + 80)
@@ -603,9 +599,7 @@ def finalSort(node):
 
 	if height > 2:
 		for depth in range(height, 2, -1):
-			sorted = False
-			while sorted is False:
-				sorted = repositionNodesByLevel(node, depth)
+			repositionNodesByLevel(node, depth)
 
 #Finds the height of the tree
 def treeHeight(node):
@@ -618,21 +612,35 @@ def treeHeight(node):
 #Checks each level of the tree and spaces
 #Overlapping nodes as well as their parents
 def repositionNodesByLevel(node, depth):
-	complete = True
 	nodeList = []
 	appendNodesByLevel(node, depth - 1, nodeList)
+	parentList = []
+	appendNodesByLevel(node, depth - 2, parentList)
+	superParentList = []
+	
+	if node.isRoot():
+		root = node
+	else:
+		root = getRoot(node)
+		
+	appendNodesByLevel(root, 1, superParentList)
 		
 	if len(nodeList) > 1:
 		for x in range(1, len(nodeList)):
 			difference = nodeList[x].getX() - nodeList[x -1].getX()
-			if difference < 200:
-				complete = False
-				moveSubTree(nodeList[x - 1].parent, 200 - difference)
-				if x > 1: 
-					pass # BROKE -> moveAdjacentSubTrees(nodeList, x - 2, difference)
+			if difference < (node.getWidth()*1.5):
+				relative = getFurthestNonRootParent(nodeList[x-1])
+				relative2 = getFurthestNonRootParent(nodeList[x])
+				if relative2 != relative:
+					moveSubTree(relative, node.getWidth()*1.5 - difference)
+					moveAdjacentSubTrees(superParentList, relative, node.getWidth()*1.5 - difference)
+				else:
+					moveSubTree(nodeList[x-1].parent, node.getWidth()*1.5 - difference)
+					moveAdjacentSubTrees(parentList, nodeList[x-1].parent, node.getWidth()*1.5 - difference)
 				
 	nodeList.clear()
-	return complete
+	parentList.clear()
+	superParentList.clear()
 
 #Appends all nodes at a given depth to the given node list
 def appendNodesByLevel(node, depth, nodeList):
@@ -650,10 +658,24 @@ def moveSubTree(node, difference):
 	for child in node.children:
 		moveSubTree(child, difference)
 
-def moveAdjacentSubTrees(nodeList, last, difference):
-	print("Attempting to move adjacent trees a distance of " + str(difference))
-	for x in range(last):
-		moveSubTree(nodeList[x].parent, difference)
+def moveAdjacentSubTrees(nodeList, lastNode, difference):
+	last = 0
+	while nodeList[last] != lastNode:
+		last+=1
+	
+	if last >= 0:
+		for x in range(last):
+			moveSubTree(nodeList[x], difference)
+		
+	
+def getFurthestNonRootParent(node):
+	while not node.parent.isRoot():
+		node = node.parent
+		
+	return node
+	
+def getRoot(node):
+	return getFurthestNonRootParent(node).parent
 		
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
