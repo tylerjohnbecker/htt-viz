@@ -14,7 +14,8 @@
 
 #include "task_tree/node.h"
 #include "task_tree/behavior.h"
-#include "behavior/dummy_behavior.h"
+#include "task_tree/work_mutex.h"
+#include "behaviors.h"
 #include <boost/thread/thread.hpp>
 #include <boost/date_time.hpp>
 #include <boost/algorithm/string/split.hpp>
@@ -48,6 +49,8 @@ int main(int argc, char** argv)
 	task_net::NodeId_t parent_param;
 	NodeParam nodes;
 	std::string obj_name;
+
+	task_net::WorkMutex* wm = new task_net::WorkMutex();
 
 
 	if (nh_.getParam("NodeList", nodes)) {
@@ -130,6 +133,7 @@ int main(int argc, char** argv)
 						parent_param,
 						state,
 						"N/A",
+						wm, 
 						false);
 					// printf("\ttask_net::THEN %d\n",task_net::THEN);
 					break;
@@ -140,6 +144,7 @@ int main(int argc, char** argv)
 						parent_param,
 						state,
 						"N/A",
+						wm, 
 						false);
 					// printf("\ttask_net::OR %d\n",task_net::OR);
 					break;
@@ -150,27 +155,60 @@ int main(int argc, char** argv)
 						parent_param,
 						state,
 						"N/A",
+						wm, 
 						false);
 					// printf("\ttask_net::AND %d\n",task_net::AND);
 					break;
 				//Only using dummy behavior for now to simplify the amount of work that has to compile
-				case 4://Move_to for now
-				case 5://Grab
-					{//Both start a dummy behavior for now
+				case 4:
+					{
 						int s_int = 0;
 
 						//temp filler to check for compilation errors
-						network[i] = new task_net::DummyBehavior(
+						network[i] = new task_net::MoveBehavior(
 							name_param,
 							peers_param,
 							children_param,
 							parent_param,
 							state,
-							"blank");
+							"blank",
+							wm);
+					
+					}
+					break;
+				case 5://Grab
+					{//Both start a dummy behavior for now
+						int s_int = 0;
+
+						//temp filler to check for compilation errors
+						network[i] = new task_net::GrabBehavior(
+							name_param,
+							peers_param,
+							children_param,
+							parent_param,
+							state,
+							"blank",
+							wm);
+					}
+					break;
+				case 6://should be draw_behavior
+					{
+						std::string letter = "";
+
+						nh_.getParam((param_prefix + nodes[i] + "/DrawCharacter").c_str(), letter);
+
+						network[i] = new task_net::DrawBehavior(
+							name_param,
+							peers_param,
+							children_param,
+							parent_param,
+							state,
+							"blank",
+							wm, 
+							letter);
 					}
 					break;
 				case task_net::ROOT:
-					break;
 				default:
 					network[i] = NULL;
 					// printf("\ttask_net::ROOT %d\n",task_net::ROOT);
@@ -185,6 +223,9 @@ int main(int argc, char** argv)
 
 	ros::MultiThreadedSpinner spinner(4);
 	spinner.spin();
+
+	delete wm;
+	wm = nullptr;
 
 	return 0;
 }

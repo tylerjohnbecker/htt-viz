@@ -18,7 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "task_tree/node.h"
 #include <boost/thread/thread.hpp>
 #include <boost/date_time.hpp>
-#include <boost/algorithm/string/split.hpp>
+#include <boost/algorithm/string/split.hpp> 
 #include <boost/algorithm/string/classification.hpp>
 #include <boost/bind.hpp>
 #include <boost/shared_ptr.hpp>
@@ -64,6 +64,7 @@ Node::Node() {
 Node::Node(NodeId_t name, NodeList peers, NodeList children, NodeId_t parent,
   State_t state,
   std::string object,
+  WorkMutex* wm,
   bool use_local_callback_queue, boost::posix_time::millisec mtime):
   local_("~") 
 {
@@ -117,6 +118,7 @@ Node::Node(NodeId_t name, NodeList peers, NodeList children, NodeId_t parent,
   hold_status_.object_name = "N/A";
   hold_status_.issue = "N/A";
 
+  work_check_ptr = wm;
 
   object_ = object;
   
@@ -232,8 +234,21 @@ void Node::GenerateNodeBitmaskMap() {
           .owner=nptr->mask, 
           .active=false, 
           .done=false, 
+          .check_peer = false,
+          .peer_okay = false,
           .activation_level=0.0f,
           .activation_potential=0.0f,
+          .peer_active = false,
+          .peer_done = false,
+          .highest = GetBitmask(*it),
+          .highest_potential = 0.0f,
+          .parent_type = nptr->mask.type,
+          .suitability = 0.0f,
+          .collision = false,
+          .robotPlacing = false,
+          .humanPlacing = false,
+          .peerUndone = false,
+          .simstate_obj_name = "",
       };
       node_dict_[nptr->mask] = nptr;
       // printf("Adding [%s] to Dictionary.\n", nptr->topic.c_str());
@@ -244,13 +259,6 @@ void Node::GenerateNodeBitmaskMap() {
 void Node::Activate()
 { 
   ROS_DEBUG("[%s]: Node::Activate was called!!!!", name_->topic.c_str());
-
-  // TODO JB: have this only spin a new thread if the thread doesn't already exist
-  // create peer_check thread if it isn't already running
-  if(name_->topic.compare("PLACE_3_0_003_state")==0)
-  {
-    ROS_INFO("NODE::Activate: peer has made it !!! %d %d %d %d %d %d %d",state_.robotPlacing,state_.humanPlacing,state_.active,state_.done,state_.peer_active,state_.peer_done,state_.peer_okay);
-  }
 
   if(!peer_check_thread) 
   {
@@ -305,6 +313,7 @@ void Node::Activate()
           // Send activation to peers to avoid race condition
           // this will publish the updated state to say I am now active
           PublishStateToPeers();
+          this->CheckUpdated();
         }
         
 
@@ -970,10 +979,37 @@ void WorkThread(Node *node) {
 
   ROS_FATAL("work thread Initialized");
 
+  //speaking of Hackity hack hack this code is identical to the above while loop but written with my code
+  //I think the above loop relies on an outside package called remote mutex which is not included with HTT_Viz
+  //so I can't therefore rely on it.
+
+  //first set this value to true
+  node->mutex_waiting = true;
+
+  ROS_FATAL("Trying to acquire work lock");
+
+  //can't continue until we are handed the mutex
+  while (node->mutex_waiting)
+  {
+    ROS_FATAL("Sending bid...");
+    //first wait until you can successfully send a bid
+    while (!node->work_check_ptr->bid(node));
+
+    ROS_FATAL("Waiting for response...");
+    node->auction_waiting = true;
+    //now wait for the auction to finish
+    while (node->auction_waiting);
+
+    //if we have the mutex we should exit this loop
+    ROS_FATAL("[%s]Response was [%d]", node->name_->topic.c_str(), node->mutex_waiting);
+  }
 
   // Process Data
   node->working = true;
   node->Work();
+
+  //finally release the mutex so the others can go
+  node->work_check_ptr->release(node->name_->topic);
 
   if ( !FAILED_PICK ) // if did not fail pick i.e. if failed_pick == false
   {
@@ -1010,6 +1046,7 @@ void WorkThread(Node *node) {
   }
   node->PublishDoneParent();
   node->PublishStateToPeers();
+  node->CheckUpdated();
 
   // int sleepTime = 200 + (75*node->mask_.robot);
   // boost::this_thread::sleep(boost::posix_time::millisec(sleepTime));
@@ -1203,10 +1240,10 @@ void Node::NodeInit(boost::posix_time::millisec mtime) {
 
   // Initialize recording Thread
   std::string filename = "/home/bashira/catkin_ws/src/Distributed_Collaborative_Task_Tree/Data/" + name_->topic + "_Data_.csv";
-  ROS_INFO("Creating Data File: %s", filename.c_str());
-  record_file.open(filename.c_str());
-  record_file.precision(15);
-  record_thread = new boost::thread(&RecordThread, this);
+  //ROS_INFO("Creating Data File: %s", filename.c_str());
+  //record_file.open(filename.c_str());
+  //record_file.precision(15);
+  //record_thread = new boost::thread(&RecordThread, this);
 }
 
 void Node::ActivationFalloff() {
@@ -1695,11 +1732,12 @@ void Node::CheckUpdated()
 {
     if (!this->notify_tree)
         return;
+
     //
-    if (state_.activation_level != state_copy_.activation_level ||
-        abs(state_.activation_potential - state_copy_.activation_potential) < .001 ||
+    if (abs(state_.activation_potential - state_copy_.activation_potential) < .001 ||
         state_.active != state_copy_.active)
     {
+        this->CopyStatus();
         htt_viz::Update u;
         u.request.owner = this->name_->topic;
 
@@ -1710,8 +1748,8 @@ void Node::CheckUpdated()
 
         u.request.active = this->state_.active;
         u.request.activation_potential = this->state_.activation_potential;
+        u.request.activation_level = this->state_.activation_level;
 
-        this->CopyStatus();
         this->update_pub_.call(u);
         
         if (this->state_.done)
@@ -1727,12 +1765,7 @@ void Node::CheckUpdated()
             this->notify_tree = false;
             ROS_WARN_ONCE("htt_viz client not up!");
         }
-        else
-        {
-            this->state_.activation_level = u.response.activation_level;
-        }
     }
-    return;
 }
 void Node::CopyStatus()
 {
@@ -1740,4 +1773,11 @@ void Node::CopyStatus()
     this->state_copy_.activation_potential = this->state_.activation_potential;//Epsilon = .001
     this->state_copy_.active = this->state_.active;
 }
+
+void Node::mutexNotifier(bool has_mutex)
+{
+  this->auction_waiting = false;
+  this->mutex_waiting = !has_mutex;
+}
+
 }  // namespace task_net

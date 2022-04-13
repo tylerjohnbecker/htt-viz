@@ -1,0 +1,8 @@
+<launch>
+  
+  <!--<include file="$(find pr2_navigation_global)/move_base.xml"/>-->
+
+  <include file="$(find pr2_moveit_config)/launch/move_group.launch">
+    <arg name="fake_execution" value="false"/>
+  </include>
+</launch> 

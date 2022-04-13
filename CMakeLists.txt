@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.0.2)
 project(htt_viz)
 
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 14)
 #set(yaml-cpp_DIR "C:/opt/yaml-cpp-yaml-cpp-0.6.0/build")
 
 find_package(catkin REQUIRED COMPONENTS
@@ -15,6 +15,11 @@ find_package(catkin REQUIRED COMPONENTS
   geometry_msgs
   rosgraph_msgs
   roslib
+  moveit_core
+  moveit_ros_planning
+  moveit_ros_planning_interface
+  moveit_msgs
+  tf2_geometry_msgs
 )
 
 find_package(Boost REQUIRED COMPONENTS 
@@ -72,8 +77,8 @@ include_directories(
 )
 
 ##CPP executables
-set(TaskNodes "src/task_tree/behavior.cc" "src/task_tree/node.cc")
-set(ActionNodes "src/behavior/dummy_behavior.cc" "src/behavior/move_behavior.cc" "src/behavior/grab_behavior.cc")
+set(TaskNodes "src/task_tree/behavior.cc" "src/task_tree/node.cc" src/task_tree/work_mutex.cc)
+set(ActionNodes "src/behavior/dummy_behavior.cc" "src/behavior/move_behavior.cc" "src/behavior/grab_behavior.cc" "src/behavior/draw_behavior.cc")
 
 add_executable(load src/htt_viz/loadTree.cpp ${TaskNodes} ${ActionNodes})
 target_link_libraries(load ${catkin_LIBRARIES} ${Boost_LIBRARIES})

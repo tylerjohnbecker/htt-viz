@@ -1,0 +1,433 @@
+NodeFileIncludes:
+- /home/tylerbecker/sp_ws/src/htt-viz/include/behavior/move_behavior.yaml
+- /home/tylerbecker/sp_ws/src/htt-viz/include/behavior/grab_behavior.yaml
+- /home/tylerbecker/sp_ws/src/htt-viz/include/behavior/draw_behavior.yaml
+NodeList:
+- Root_0_0_000
+- THEN_1_0_001
+- Draw_6_0_002
+- Draw_6_0_003
+- Draw_6_0_004
+- Draw_6_0_005
+- Draw_6_0_006
+- Draw_6_0_007
+- Draw_6_0_008
+- Draw_6_0_009
+- Draw_6_0_010
+- Draw_6_0_011
+- Draw_6_0_012
+- Draw_6_0_013
+- Draw_6_0_014
+- Draw_6_0_015
+- Draw_6_0_016
+- Draw_6_0_017
+- Draw_6_0_018
+- Draw_6_0_019
+- Draw_6_0_020
+- Draw_6_0_021
+- Draw_6_0_022
+- Draw_6_0_023
+- Draw_6_0_024
+- Draw_6_0_026
+- Draw_6_0_027
+Nodes:
+  Draw_6_0_002:
+    DrawCharacter: A
+    Title: Draw_6_0_002
+    children:
+    - NONE
+    mask:
+      node: 2
+      robot: 0
+      type: 6
+    parent: THEN_1_0_001
+    peers:
+    - NONE
+    x: -2500.0
+    y: 180.0
+  Draw_6_0_003:
+    DrawCharacter: B
+    Title: Draw_6_0_003
+    children:
+    - NONE
+    mask:
+      node: 3
+      robot: 0
+      type: 6
+    parent: THEN_1_0_001
+    peers:
+    - NONE
+    x: -2300.0
+    y: 180.0
+  Draw_6_0_004:
+    DrawCharacter: C
+    Title: Draw_6_0_004
+    children:
+    - NONE
+    mask:
+      node: 4
+      robot: 0
+      type: 6
+    parent: THEN_1_0_001
+    peers:
+    - NONE
+    x: -2100.0
+    y: 180.0
+  Draw_6_0_005:
+    DrawCharacter: D
+    Title: Draw_6_0_005
+    children:
+    - NONE
+    mask:
+      node: 5
+      robot: 0
+      type: 6
+    parent: THEN_1_0_001
+    peers:
+    - NONE
+    x: -1900.0
+    y: 180.0
+  Draw_6_0_006:
+    DrawCharacter: E
+    Title: Draw_6_0_006
+    children:
+    - NONE
+    mask:
+      node: 6
+      robot: 0
+      type: 6
+    parent: THEN_1_0_001
+    peers:
+    - NONE
+    x: -1700.0
+    y: 180.0
+  Draw_6_0_007:
+    DrawCharacter: F
+    Title: Draw_6_0_007
+    children:
+    - NONE
+    mask:
+      node: 7
+      robot: 0
+      type: 6
+    parent: THEN_1_0_001
+    peers:
+    - NONE
+    x: -1500.0
+    y: 180.0
+  Draw_6_0_008:
+    DrawCharacter: G
+    Title: Draw_6_0_008
+    children:
+    - NONE
+    mask:
+      node: 8
+      robot: 0
+      type: 6
+    parent: THEN_1_0_001
+    peers:
+    - NONE
+    x: -1300.0
+    y: 180.0
+  Draw_6_0_009:
+    DrawCharacter: H
+    Title: Draw_6_0_009
+    children:
+    - NONE
+    mask:
+      node: 9
+      robot: 0
+      type: 6
+    parent: THEN_1_0_001
+    peers:
+    - NONE
+    x: -1100.0
+    y: 180.0
+  Draw_6_0_010:
+    DrawCharacter: I
+    Title: Draw_6_0_010
+    children:
+    - NONE
+    mask:
+      node: 10
+      robot: 0
+      type: 6
+    parent: THEN_1_0_001
+    peers:
+    - NONE
+    x: -900.0
+    y: 180.0
+  Draw_6_0_011:
+    DrawCharacter: J
+    Title: Draw_6_0_011
+    children:
+    - NONE
+    mask:
+      node: 11
+      robot: 0
+      type: 6
+    parent: THEN_1_0_001
+    peers:
+    - NONE
+    x: -700.0
+    y: 180.0
+  Draw_6_0_012:
+    DrawCharacter: K
+    Title: Draw_6_0_012
+    children:
+    - NONE
+    mask:
+      node: 12
+      robot: 0
+      type: 6
+    parent: THEN_1_0_001
+    peers:
+    - NONE
+    x: -500.0
+    y: 180.0
+  Draw_6_0_013:
+    DrawCharacter: M
+    Title: Draw_6_0_013
+    children:
+    - NONE
+    mask:
+      node: 13
+      robot: 0
+      type: 6
+    parent: THEN_1_0_001
+    peers:
+    - NONE
+    x: -300.0
+    y: 180.0
+  Draw_6_0_014:
+    DrawCharacter: N
+    Title: Draw_6_0_014
+    children:
+    - NONE
+    mask:
+      node: 14
+      robot: 0
+      type: 6
+    parent: THEN_1_0_001
+    peers:
+    - NONE
+    x: -100.0
+    y: 180.0
+  Draw_6_0_015:
+    DrawCharacter: O
+    Title: Draw_6_0_015
+    children:
+    - NONE
+    mask:
+      node: 15
+      robot: 0
+      type: 6
+    parent: THEN_1_0_001
+    peers:
+    - NONE
+    x: 100.0
+    y: 180.0
+  Draw_6_0_016:
+    DrawCharacter: P
+    Title: Draw_6_0_016
+    children:
+    - NONE
+    mask:
+      node: 16
+      robot: 0
+      type: 6
+    parent: THEN_1_0_001
+    peers:
+    - NONE
+    x: 300.0
+    y: 180.0
+  Draw_6_0_017:
+    DrawCharacter: Q
+    Title: Draw_6_0_017
+    children:
+    - NONE
+    mask:
+      node: 17
+      robot: 0
+      type: 6
+    parent: THEN_1_0_001
+    peers:
+    - NONE
+    x: 500.0
+    y: 180.0
+  Draw_6_0_018:
+    DrawCharacter: R
+    Title: Draw_6_0_018
+    children:
+    - NONE
+    mask:
+      node: 18
+      robot: 0
+      type: 6
+    parent: THEN_1_0_001
+    peers:
+    - NONE
+    x: 700.0
+    y: 180.0
+  Draw_6_0_019:
+    DrawCharacter: S
+    Title: Draw_6_0_019
+    children:
+    - NONE
+    mask:
+      node: 19
+      robot: 0
+      type: 6
+    parent: THEN_1_0_001
+    peers:
+    - NONE
+    x: 900.0
+    y: 180.0
+  Draw_6_0_020:
+    DrawCharacter: T
+    Title: Draw_6_0_020
+    children:
+    - NONE
+    mask:
+      node: 20
+      robot: 0
+      type: 6
+    parent: THEN_1_0_001
+    peers:
+    - NONE
+    x: 1100.0
+    y: 180.0
+  Draw_6_0_021:
+    DrawCharacter: U
+    Title: Draw_6_0_021
+    children:
+    - NONE
+    mask:
+      node: 21
+      robot: 0
+      type: 6
+    parent: THEN_1_0_001
+    peers:
+    - NONE
+    x: 1300.0
+    y: 180.0
+  Draw_6_0_022:
+    DrawCharacter: V
+    Title: Draw_6_0_022
+    children:
+    - NONE
+    mask:
+      node: 22
+      robot: 0
+      type: 6
+    parent: THEN_1_0_001
+    peers:
+    - NONE
+    x: 1500.0
+    y: 180.0
+  Draw_6_0_023:
+    DrawCharacter: W
+    Title: Draw_6_0_023
+    children:
+    - NONE
+    mask:
+      node: 23
+      robot: 0
+      type: 6
+    parent: THEN_1_0_001
+    peers:
+    - NONE
+    x: 1700.0
+    y: 180.0
+  Draw_6_0_024:
+    DrawCharacter: X
+    Title: Draw_6_0_024
+    children:
+    - NONE
+    mask:
+      node: 24
+      robot: 0
+      type: 6
+    parent: THEN_1_0_001
+    peers:
+    - NONE
+    x: 1900.0
+    y: 180.0
+  Draw_6_0_026:
+    DrawCharacter: Y
+    Title: Draw_6_0_026
+    children:
+    - NONE
+    mask:
+      node: 26
+      robot: 0
+      type: 6
+    parent: THEN_1_0_001
+    peers:
+    - NONE
+    x: 2061.0
+    y: 179.0
+  Draw_6_0_027:
+    DrawCharacter: Z
+    Title: Draw_6_0_027
+    children:
+    - NONE
+    mask:
+      node: 27
+      robot: 0
+      type: 6
+    parent: THEN_1_0_001
+    peers:
+    - NONE
+    x: 2239.0
+    y: 178.0
+  Root_0_0_000:
+    Title: Root_0_0_000
+    children:
+    - THEN_1_0_001
+    mask:
+      node: 0
+      robot: 0
+      type: 0
+    parent: NONE
+    peers:
+    - NONE
+    x: 0.0
+    y: 20.0
+  THEN_1_0_001:
+    Title: THEN_1_0_001
+    children:
+    - Draw_6_0_002
+    - Draw_6_0_003
+    - Draw_6_0_004
+    - Draw_6_0_005
+    - Draw_6_0_006
+    - Draw_6_0_007
+    - Draw_6_0_008
+    - Draw_6_0_009
+    - Draw_6_0_010
+    - Draw_6_0_011
+    - Draw_6_0_012
+    - Draw_6_0_013
+    - Draw_6_0_014
+    - Draw_6_0_015
+    - Draw_6_0_016
+    - Draw_6_0_017
+    - Draw_6_0_018
+    - Draw_6_0_019
+    - Draw_6_0_020
+    - Draw_6_0_021
+    - Draw_6_0_022
+    - Draw_6_0_023
+    - Draw_6_0_024
+    - Draw_6_0_026
+    - Draw_6_0_027
+    mask:
+      node: 1
+      robot: 0
+      type: 1
+    parent: Root_0_0_000
+    peers:
+    - NONE
+    x: 0.0
+    y: 100.0

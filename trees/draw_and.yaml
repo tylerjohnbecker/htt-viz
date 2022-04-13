@@ -1,0 +1,65 @@
+NodeFileIncludes:
+- /home/tylerbecker/sp_ws/src/htt-viz/include/behavior/move_behavior.yaml
+- /home/tylerbecker/sp_ws/src/htt-viz/include/behavior/grab_behavior.yaml
+- /home/tylerbecker/sp_ws/src/htt-viz/include/behavior/draw_behavior.yaml
+NodeList:
+- Root_0_0_000
+- AND_3_0_001
+- Draw_6_0_002
+- Draw_6_0_003
+Nodes:
+  AND_3_0_001:
+    Title: AND_3_0_001
+    children:
+    - Draw_6_0_002
+    - Draw_6_0_003
+    mask:
+      node: 1
+      robot: 0
+      type: 3
+    parent: Root_0_0_000
+    peers:
+    - NONE
+    x: 42.0
+    y: -27.0
+  Draw_6_0_002:
+    DrawCharacter: P
+    Title: Draw_6_0_002
+    children:
+    - NONE
+    mask:
+      node: 2
+      robot: 0
+      type: 6
+    parent: AND_3_0_001
+    peers:
+    - NONE
+    x: -52.5
+    y: 53.0
+  Draw_6_0_003:
+    DrawCharacter: W
+    Title: Draw_6_0_003
+    children:
+    - NONE
+    mask:
+      node: 3
+      robot: 0
+      type: 6
+    parent: AND_3_0_001
+    peers:
+    - NONE
+    x: 136.5
+    y: 53.0
+  Root_0_0_000:
+    Title: Root_0_0_000
+    children:
+    - AND_3_0_001
+    mask:
+      node: 0
+      robot: 0
+      type: 0
+    parent: NONE
+    peers:
+    - NONE
+    x: 42.0
+    y: -107.0

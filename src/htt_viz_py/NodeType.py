@@ -15,7 +15,7 @@ class NodeType(object):
 		self.index = 0
 		self.path = ""
 
-		self.file = file_name
+		self.file = ""
 		self.canHaveParents = True
 		self.canHaveChildren = False
 

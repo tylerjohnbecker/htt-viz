@@ -37,6 +37,7 @@ class Node:
 		self.depth = 0
 		self.num_children = 0
 		self.name = self.generateName(node_num)
+		self.title = self.name
 		
 		# Display State
 		self.scene = None
@@ -49,6 +50,12 @@ class Node:
 		
 		if scene is not None:
 			self.registerScene(scene, x, y)
+
+	#Quick and dirty function to redraw the node scene
+	def update(self):
+		if self.scene is not None:
+			self.qGraphics.potential = self.activation_potential
+			self.qGraphics.update()
 			
 	# Register a new QT scene with this node.
 	#
@@ -60,7 +67,7 @@ class Node:
 			
 		self.scene = weakref.ref(scene)
 			
-		self.qGraphics = QGraphicsTaskTreeNode(self.name)
+		self.qGraphics = QGraphicsTaskTreeNode(self.name, self.title, self.activation_potential)
 			
 		# Pass requested data to qGraphics
 		self.qGraphics.setX(x or self.initialX)
@@ -191,11 +198,11 @@ class Node:
 		
 	# Get the node width
 	def getWidth(self):
-		return self.qGraphics.width
+		return self.qGraphics.getWidth()
 	
 	# Get the node height
 	def getHeight(self):
-		return self.qGraphics.height
+		return self.qGraphics.getHeight()
 		
 	# Set the x value
 	def setX(self, x):
@@ -218,6 +225,12 @@ class Node:
 	# Returns true if graphics are setup
 	def isGraphicsSetup(self):
 		return self.scene is not None
+
+	def setTitle(self, newTitle):
+		self.title = newTitle
+		self.qGraphics.title = newTitle
+		self.qGraphics.update()
+
 
 # An iterator over all nodes in a tree.	
 class IterAllChildren:
@@ -370,6 +383,8 @@ class Tree:
 		for param in cur_ptr.params:
 			dict["Nodes"][cur_ptr.name][param.name] = param.value
 
+		dict["Nodes"][cur_ptr.name]["Title"] = cur_ptr.title
+
 		for i in cur_ptr.children:
 			self.recAddToList(dict, i)
 
@@ -435,14 +450,14 @@ class Tree:
 		# If we are just normally adding a node to the tree
 		if args[2]:
 			nNode = self.createNewNode(args[1])
+			nNode.setX(args[0].getX())
+			nNode.setY(args[0].getY() + args[0].getHeight() + 20.0)
 		else: # Otherwise we might have children along with the node we are adding, and the node will already have a number
 			self.recNumMaintainer(args[1], True)
 			nNode = args[1]
 
 		# set the parent of the new node to the passed parent (its a reference so it will change all instances)
 		nNode.parent = args[0]
-		nNode.setX(args[0].getX())
-		nNode.setY(args[0].getY() + args[0].getHeight() + 20.0)
 
 		p = args[0]
 		depth = 1
@@ -477,6 +492,52 @@ class Tree:
 			
 		if self.scene is not None:
 			nNode.registerScene(self.scene())
+
+
+	def addChildNodeFromDict(self, dict):
+
+		#case for adding a new root node
+		if dict["parent"] == "NONE" and self.root_node is None:
+			nNode = Node(self.author.getNodeTypeByIndex(dict["mask"]["type"]), dict["mask"]["node"])
+			nNode.depth = 0
+
+			nNode.setX(dict["x"])
+			nNode.setY(dict["y"] + 20.0)
+			
+			self.root_node = nNode
+
+			self.free_nums[dict["mask"]["node"]] = True
+			if self.scene is not None:
+				nNode.registerScene(self.scene())
+
+			return
+
+		#case for adding a node normally
+		parent_ptr = self.findNodeByName(dict["parent"])
+
+		p = parent_ptr
+		depth = 1
+		if p is not None:
+			while p.parent is not None:
+				p = p.parent
+				depth = depth + 1
+
+		nNode = Node(self.author.getNodeTypeByIndex(dict["mask"]["type"]), dict["mask"]["node"])
+		nNode.parent = parent_ptr
+		nNode.depth = depth
+
+		nNode.setX(dict["x"])
+		nNode.setY(dict["y"] + 20.0)
+
+		parent_ptr.addChild(nNode)
+
+		self.free_nums[dict["mask"]["node"]] = True
+
+		self.num_nodes = self.root_node.num_children + 1
+
+		if self.scene is not None:
+			nNode.registerScene(self.scene())
+
 	
 	# desc.: recursively print the nodes in the subtree starting at node_name
 	def printNodes(self, cur_ptr):
@@ -499,6 +560,10 @@ class Tree:
 	def destroyTree(self):
 		if len(self.root_node.children) > 0:
 			self.removeNode([ self.root_node.children[0].name, False] )
+
+		self.root_node.unregisterScene(self.scene())
+
+		self.root_node = None
 
 	# Params:
 	#	args[0]:	name of the node being removed
@@ -570,16 +635,31 @@ class Tree:
 			self.redo_stack.clear()
 
 	def updateCallback(self, req):
+
 		ptr = self.findNodeByName(req.owner)
-		ptr.activation_potential = req.activation_potential
-		ptr.activation_level  = req.activation_level
+
+		#can throw an error message here instead but for now I'll just tell the tree to stop sending messages
+		if ptr is None:
+			return UpdateResponse(False, 1.0);
+
+		#ptr.activation_level  = req.activation_level
+		updateNeeded = False
         
         # TODO: Color isn't controlled directly here anymore. 
         # Update to call relavent functions on graphics object.
-		if req.active == True:
+		if req.active == True and not ptr.qGraphics.isActive:
 			ptr.qGraphics.showActiveColor()
-		else:
+			updateNeeded = True
+		elif req.active == False and ptr.qGraphics.isActive:
 			ptr.qGraphics.showInactiveColor()
+			updateNeeded = True
+
+		if abs(ptr.activation_potential - req.activation_potential) > .01:
+			ptr.activation_potential = req.activation_potential
+			updateNeeded = True
+
+		if updateNeeded == True:
+			ptr.update()
 
 		#I need to ask about a redraw function
-		return UpdateResponse(True, ptr.activation_level)
+		return UpdateResponse(True, 1.0)#ptr.activation_level)

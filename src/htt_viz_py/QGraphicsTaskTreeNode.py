@@ -3,10 +3,16 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 
 class QGraphicsTaskTreeNode(QGraphicsItem):
-	def __init__(self, name):
+	def __init__(self, name, title, potential):
 		super().__init__()
 		
 		self.name = name
+
+		# Visual display title
+		self.title = title
+		
+		self.isActive = False
+		self.potential = potential
 		
 		self.xRadius = 10.0
 		self.yRadius = 10.0
@@ -21,17 +27,20 @@ class QGraphicsTaskTreeNode(QGraphicsItem):
 		self.font = QFont("Times", fontSize)
 		
 		font_metrics = QFontMetrics(self.font)
-		self.textWidth = font_metrics.width(self.name)
+		self.mainWidth = max(font_metrics.width(self.title), font_metrics.width(("AP: "+str(self.potential))))
+		self.textWidth = font_metrics.width(self.title)
 		self.textHeight = font_metrics.height()
+		self.potentialWidth = font_metrics.width(("AP: "+str(self.potential)))
 		
 		# TODO: These aren't centering vertically correctly and I don't know why.
-		self.width = self.textWidth + (2.0 * self.paddingX)
+		self.width = self.mainWidth + (2.0 * self.paddingX)
 		self.height = self.textHeight + (2.0 * self.paddingY)
 		
 		# https://stackoverflow.com/questions/10950820/qt-qgraphicsitem-drag-and-drop
 		self.setFlag(QGraphicsItem.ItemIsSelectable, True)
 		self.setFlag(QGraphicsItem.ItemIsMovable, True)
 		self.setFlag(QGraphicsItem.ItemSendsGeometryChanges, True)
+		self.setFlag(QGraphicsItem.ItemSendsScenePositionChanges, True)
 		
 		self.positionChangeHandlers = []
 	
@@ -39,8 +48,20 @@ class QGraphicsTaskTreeNode(QGraphicsItem):
 		return QRectF(0, 0, self.width, self.height)
 		
 	def paint(self, painter, option, widget):
+		font_metrics = QFontMetrics(self.font)
+		self.mainWidth = max(font_metrics.width(self.title), font_metrics.width(("AP: "+str(self.potential))))
+		self.textWidth = font_metrics.width(self.title)
+		self.textHeight = font_metrics.height()
+		self.potentialWidth = font_metrics.width(("AP: "+str(self.potential)))
+
+		self.width = self.mainWidth + (2.0 * self.paddingX)
+		self.height = self.textHeight + (2.0 * self.paddingY)
+
 		textX = (self.width / 2.0) - (self.textWidth / 2.0)
-		textY = (self.height / 2.0) - (self.textHeight / 2.0)
+		textY = 7 + (self.height / 2.0) - (self.textHeight / 2.0)
+
+		potX = (self.width / 2.0) - (self.potentialWidth / 2.0)
+		potY = 7 + (self.height) - (self.textHeight)
 		
 		path2 = QPainterPath()
 		path2.addRoundedRect(QRectF(0, 0, self.width, self.height), self.xRadius, self.yRadius)
@@ -51,7 +72,8 @@ class QGraphicsTaskTreeNode(QGraphicsItem):
 		painter.fillPath(path, self.normalColor)
 		
 		painter.setFont(self.font)
-		painter.drawText(QPointF(textX, textY), self.name)
+		painter.drawText(QPointF(textX, textY), self.title)
+		painter.drawText(QPointF(potX, potY), ("AP: "+str(self.potential)))
 		
 	def addPositionChangeHandler(self, handler):
 		self.positionChangeHandlers.append(handler)
@@ -59,7 +81,8 @@ class QGraphicsTaskTreeNode(QGraphicsItem):
 	def itemChange(self, change, value):
 		ret = super().itemChange(change, value)
 		
-		if change == QGraphicsItem.GraphicsItemChange.ItemPositionChange:
+		#suffice it to say that QGraphicsItem.GraphicsItemChange.ItemPosition = 0
+		if change == 0:#Hardcoded the value oof the Cpp enum to hopefully fix an error#QGraphicsItem.GraphicsItemChange.ItemPositionChange
 			for handler in self.positionChangeHandlers:
 				handler(value.x(), value.y())
 				
@@ -68,7 +91,17 @@ class QGraphicsTaskTreeNode(QGraphicsItem):
 	def showActiveColor(self):
 		self.borderColor = QColor(0, 0, 0)
 		self.normalColor = QColor(255, 255, 255)
+		self.isActive = True
 
 	def showInactiveColor(self):
 		self.normalColor = QColor(121, 218, 255)
 		self.borderColor = QColor(4, 180, 245)
+		self.isActive = False
+		
+	# Get the graphics width
+	def getWidth(self):
+		return self.width
+		
+	# Get the graphics height
+	def getHeight(self):
+		return self.height

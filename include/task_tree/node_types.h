@@ -64,7 +64,7 @@ struct Issue {
 };
 struct Object{
 
-  std::string name;
+  std::string name; 
   int32_t type;
 
   geometry_msgs::Pose pose;

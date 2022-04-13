@@ -3,5 +3,6 @@
 
   <node name="task_tree_node" pkg="htt_viz" type="load" output="screen">
     <rosparam file="$(find htt_viz)/trees/$(arg tree_name)"/>
+    <rosparam file="$(find htt_viz)/data/chars.yaml"/>
   </node>
 </launch>

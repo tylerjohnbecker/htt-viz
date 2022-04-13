@@ -31,6 +31,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <boost/algorithm/string/split.hpp>
 #include <boost/algorithm/string/classification.hpp>
 #include "task_tree/node_types.h"
+#include "task_tree/work_mutex.h"
 #include "htt_viz/ControlMessage.h"
 #include "htt_viz/hold_status.h"
 #include "htt_viz/Issue.h"
@@ -70,6 +71,7 @@ class Node {
   Node(NodeId_t name, NodeList peers, NodeList children, NodeId_t parent,
     State_t state,
     std::string object,
+    WorkMutex* wm,
     bool use_local_callback_queue = false,
     boost::posix_time::millisec mtime = boost::posix_time::millisec(50));
   virtual ~Node();
@@ -85,7 +87,6 @@ class Node {
   virtual bool CheckWork();
   virtual void UndoWork();
   virtual void PublishStateToPeers();
-
   
 
  protected: 
@@ -171,6 +172,8 @@ class Node {
   virtual void ReleaseMutexLocs();
   virtual void releasingRobotNode();
 
+  virtual void mutexNotifier(bool has_mutex);
+
  // to call the vision manip pipeline service
  //ros::ServiceClient* visManipClient_pntr;
 
@@ -246,6 +249,13 @@ class Node {
   bool working;
   bool thread_running_;
 
+  //Tyler mutex stuff sry bad writing fast
+  bool mutex_waiting;
+  bool auction_waiting;
+  bool can_run;
+  WorkMutex* work_check_ptr;
+
+  friend class WorkMutex;
 };
 }  // namespace task_net
 #endif  // INCLUDE_NODE_H_
