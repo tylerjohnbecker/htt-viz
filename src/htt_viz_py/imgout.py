@@ -1,3 +1,5 @@
+import os
+
 from htt_viz_py.QGraphicsTaskTreeNode import QGraphicsTaskTreeNode
 from htt_viz_py.tree import Tree
 
@@ -11,20 +13,34 @@ from PyQt5.QtWidgets import *
 from PyQt5 import uic
 
 def makeImg(root):
-	pushNodeToGv(root)
-	for child in root.children:
-		pushNodeToGv(child)
-		
-	saveImg()
-		
-def pushNodeToGv(node):
-	print(node.name)
+	filename = "graphViz/graph.gv"
 	
-def saveImg():
-	dialog = QFileDialog()
-	dialog.setFilter(dialog.filter() | QtCore.QDir.Hidden)
-	dialog.setDefaultSuffix('png')
-	dialog.setAcceptMode(QFileDialog.AcceptSave)
-	dialog.setNameFilters(['PNG (*.png)'])
-	if dialog.exec_() != QDialog.Accepted:
-		return
+	createGVFile(filename)
+	pushNodeToGv(filename, root)
+	endGVFile(filename)
+	saveImg(filename)
+	
+def createGVFile(filename):
+	f = open(filename, "w")
+	f.write("digraph D {\n\n")
+	f.close()
+		
+def pushNodeToGv(filename, node):
+	shape = "shape = box"
+	arrowhead = "arrowhead = none"
+	f = open(filename, "a")
+	if not node.isRoot():
+		f.write(node.parent.name + " -> " + node.name + "[" + shape + ", " + arrowhead + "]\n")
+		
+	for child in node.children:
+		pushNodeToGv(filename, child)
+		
+	f.close()
+
+def endGVFile(filename):
+	f = open(filename, "a")
+	f.write("}")	
+	f.close()
+	
+def saveImg(filename):
+	os.system("dot -Tpng " + filename + " -o graphViz/file.png")
