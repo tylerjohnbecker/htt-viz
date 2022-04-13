@@ -9,6 +9,7 @@ from htt_viz.srv import UpdateResponse
 
 from htt_viz_py.QGraphicsTaskTreeNode import QGraphicsTaskTreeNode
 from htt_viz_py.tree import Tree
+from htt_viz_py.imgout import makeImg
 
 from PyQt5 import QtCore, QtWidgets, QtGui
 from PyQt5.QtWidgets import QMainWindow, QWidget, QPushButton, QAction, QFrame
@@ -141,6 +142,12 @@ class MainWindow(QMainWindow):
 		self.subsplitter.addWidget(self.subWindow1)
 		self.subsplitter.addWidget(self.subWindow2)
 		
+		#Setup Auto-Organize Button
+		self.orgButton = QPushButton(self.subWindow2)
+		self.orgButton.setText("Organize Tree")
+		self.subWindow2.layout().addWidget(self.orgButton, alignment=QtCore.Qt.AlignRight)
+		self.orgButton.clicked.connect(lambda : organizeTree(self.taskTree.root_node))
+		
 		# Setup Task Tree Display
 		self.taskTree = Tree()
 		self.taskTreeDisplayWidget = HTTDisplayWidget(self.taskTree, self)
@@ -158,13 +165,15 @@ class MainWindow(QMainWindow):
 		
 		self.setCentralWidget(self.subsplitter)
 		
+		#Setup Img Export Button
+		self.imgButton = QPushButton(self.subWindow2)
+		self.imgButton.setText("Export PNG")
+		self.subWindow2.layout().addWidget(self.imgButton, alignment=QtCore.Qt.AlignRight)
+		self.imgButton.clicked.connect(lambda : makeImg(self.taskTree.root_node))
+		
 		self.filePath = None
 
-		#Setup Auto-Organize Button
-		self.orgButton = QPushButton(self.subWindow2)
-		self.orgButton.setText("Organize Tree")
-		self.orgButton.move(9,9)
-		self.orgButton.clicked.connect(lambda : organizeTree(self.taskTree.root_node))
+		
 		
 	def handleNodeSelectionChange(self):
 		selectedItem = self.nodeList.selectedItems()[0]
@@ -621,13 +630,14 @@ def preliminarySort(node):
 	offset = 0
 	length = len(node.children)
 	iterator = 0
+	maxWidth = 0
 	
 	if length % 2 == 0:
-		offset = ((node.getWidth()) * 1.5)/2
+		offset = (node.getWidth() * 1.5)/2
 	
 	for child in node.children:
 	
-		child.setX(node.getX() + ((iterator - int(length/2)) * ((node.getWidth()) * 1.5)) + offset)
+		child.setX(node.getX() + ((iterator - int(length/2)) * ((child.getWidth()) * 1.5)) + offset)
 		if node.isRoot():
 			pass
 		child.setY(node.getY() + 80)
