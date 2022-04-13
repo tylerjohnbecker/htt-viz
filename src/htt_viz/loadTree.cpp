@@ -153,32 +153,10 @@ int main(int argc, char** argv)
 						false);
 					// printf("\ttask_net::AND %d\n",task_net::AND);
 					break;
-				case task_net::BEHAVIOR:
-				{
-					// ROS_INFO("Children Size: %lu", children_param.size());
-					// object = name_param.topic.c_str();
-					// get the name of the object of corresponding node:
-					nh_.getParam((param_prefix + nodes[i] + "/object").c_str(), obj_name);
-					// set up network for corresponding node:
-					// ros::param::get(("/ObjectPositions/"+obj_name).c_str(), object_pos);
-					// network[i] = new task_net::TableObject(name_param,
-					//                           peers_param,
-					//                           children_param,
-					//                           parent_param,
-					//                           state,
-					//                           "/right_arm_mutex",
-					//                           obj_name.c_str(),
-					//                           neutral_object_pos,
-					//                           object_pos,
-					//                           false);
-
-					std::string place;
-					int behavior_type;
-
-					//nh_.getParam((param_prefix + nodes[i] + "/obj_dest"), place);
-					//nh_.getParam((param_prefix + nodes[i] + "/b_type"), behavior_type);
-					//if (behavior_type == 0)
-					{
+				//Only using dummy behavior for now to simplify the amount of work that has to compile
+				case 4://Move_to for now
+				case 5://Grab
+					{//Both start a dummy behavior for now
 						int s_int = 0;
 
 						//temp filler to check for compilation errors
@@ -190,40 +168,7 @@ int main(int argc, char** argv)
 							state,
 							"blank");
 					}
-					/*else if (behavior_type == 1)//pick
-					{
-						std::string obj_name;
-						nh_.getParam((param_prefix + nodes[i] + "/obj_name"), obj_name);
-						network[i] = new task_net::PickBehavior(obj_name,
-							place[0],
-							place[1],
-							nh,
-							"robot_location",
-							name_param,
-							peers_param,
-							children_param,
-							parent_param,
-							state,
-							"blank");
-					}
-					else if (behavior_type == 2)//place
-					{
-						std::string obj_name;
-						nh_.getParam((param_prefix + nodes[i] + "/obj_name"), obj_name);
-						network[i] = new task_net::PlaceBehavior(obj_name,
-							place[0],
-							place[1],
-							nh,
-							"robot_location",
-							name_param,
-							peers_param,
-							children_param,
-							parent_param,
-							state,
-							"blank");
-					}*/
-				}
-				break;
+					break;
 				case task_net::ROOT:
 					break;
 				default:

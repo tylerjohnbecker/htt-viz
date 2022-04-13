@@ -39,16 +39,11 @@ namespace task_net {
 
 static int n; 
 
-typedef enum {  // Eight possible node types
-  THEN = 0,     // 0
-  OR,           // 1
-  AND,          // 2
-  BEHAVIOR,     // 3
-  ROOT,         // 4
-  PLACE,        // 5
-  BEHAVIOR_VM,  // 6
-  PICK,         // 7
-  ROOTBEHAVIOR, // 8
+typedef enum {  // Four possible task node types
+  ROOT = 0,     // 0
+  THEN,           // 1
+  OR,          // 2
+  AND     // 3
 } NodeTypes_t;
 
 typedef enum {  // Eight possible robots

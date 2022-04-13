@@ -1727,6 +1727,10 @@ void Node::CheckUpdated()
             this->notify_tree = false;
             ROS_WARN_ONCE("htt_viz client not up!");
         }
+        else
+        {
+            this->state_.activation_level = u.response.activation_level;
+        }
     }
     return;
 }
