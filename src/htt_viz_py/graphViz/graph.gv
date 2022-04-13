@@ -1,7 +1,6 @@
 digraph D {
 
-THEN_1_0_001 -> THEN_1_0_003[shape = box, arrowhead = none]
-THEN_1_0_001 -> THEN_1_0_004[shape = box, arrowhead = none]
-Root_0_0_000 -> THEN_1_0_001[shape = box, arrowhead = none]
-Root_0_0_000 -> THEN_1_0_002[shape = box, arrowhead = none]
+node [fontcolor=white color=dodgerblue2 shape=box style=filled fillcolor=deepskyblue]
+Root_0_0_000 -> THEN_1_0_001[arrowhead=none]
+Root_0_0_000 -> THEN_1_0_002[arrowhead=none]
 }

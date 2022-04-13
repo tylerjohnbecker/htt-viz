@@ -23,14 +23,14 @@ def makeImg(root):
 def createGVFile(filename):
 	f = open(filename, "w")
 	f.write("digraph D {\n\n")
+	f.write("node [fontcolor=white color=dodgerblue2 shape=box style=filled fillcolor=deepskyblue]\n")
 	f.close()
 		
 def pushNodeToGv(filename, node):
-	shape = "shape = box"
-	arrowhead = "arrowhead = none"
+	arrowhead = "arrowhead=none"
 	f = open(filename, "a")
 	if not node.isRoot():
-		f.write(node.parent.name + " -> " + node.name + "[" + shape + ", " + arrowhead + "]\n")
+		f.write(node.parent.name + " -> " + node.name + "[" + arrowhead + "]\n")
 		
 	for child in node.children:
 		pushNodeToGv(filename, child)
