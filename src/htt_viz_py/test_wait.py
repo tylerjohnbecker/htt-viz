@@ -1,5 +1,6 @@
 import pytest
 
+
 from pytestqt.exception import TimeoutError
 
 def test_wait(qtbot, wait_4_ticks_callback, tick_counter):
@@ -31,7 +32,9 @@ def wait_4_ticks_callback(request, tick_counter):
   
 @pytest.fixture
 def tick_counter():
-  
+   
+  #This returns an object which counts the timer every so often
+
   from pytest.qt_combat import qt_api
   
   class Counter:
