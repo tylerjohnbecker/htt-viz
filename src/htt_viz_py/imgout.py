@@ -26,7 +26,10 @@ def createGVFile(filename):
 def pushNodeToGv(filename, node):
 	arrowhead = "arrowhead=none"
 	f = open(filename, "a")
-	if not node.isRoot():
+	if node.isRoot():
+		if len(node.children) == 0:
+			f.write(node.name + "[" + arrowhead + "]\n")
+	else:
 		f.write(node.parent.name + " -> " + node.name + "[" + arrowhead + "]\n")
 		
 	for child in node.children:
