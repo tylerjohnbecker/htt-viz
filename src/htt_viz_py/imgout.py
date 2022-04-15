@@ -12,13 +12,10 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5 import uic
 
-def makeImg(root):
-	filename = "graphViz/graph.gv"
+def makeImg(root, fart):
+	filename = "graph.gv"
 	
-	createGVFile(filename)
-	pushNodeToGv(filename, root)
-	endGVFile(filename)
-	saveImg(filename)
+	saveImg(filename, root, fart)
 	
 def createGVFile(filename):
 	f = open(filename, "w")
@@ -42,5 +39,26 @@ def endGVFile(filename):
 	f.write("}")	
 	f.close()
 	
-def saveImg(filename):
-	os.system("dot -Tpng " + filename + " -o graphViz/file.png")
+def saveImg(filename, root, fart):
+	dialog = QFileDialog()
+	dialog.setFilter(dialog.filter() | QtCore.QDir.Hidden)
+	dialog.setDefaultSuffix('png')
+	dialog.setAcceptMode(QFileDialog.AcceptSave)
+	dialog.setNameFilters(['PNG (*.png)'])
+	
+	if dialog.exec_() == QDialog.Accepted:
+		filepath = dialog.selectedFiles()[0]
+		
+		path = filepath
+		for x in range(len(filepath) - 1, 0, -1):
+			if filepath[x] == '/':
+				path = filepath[0:x+1]
+				break
+				
+		path = path + filename
+		
+		createGVFile(path)
+		pushNodeToGv(path, root)
+		endGVFile(path)
+		os.system("dot -Tpng " + path + " -o " + filepath)
+		

@@ -1,6 +1,4 @@
 digraph D {
 
 node [fontcolor=white color=dodgerblue2 shape=box style=filled fillcolor=deepskyblue]
-Root_0_0_000 -> THEN_1_0_001[arrowhead=none]
-Root_0_0_000 -> THEN_1_0_002[arrowhead=none]
 }
