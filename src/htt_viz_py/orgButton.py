@@ -7,6 +7,7 @@ class organizeTreeButton():
 	def organizeTree(self, node):
 		self.preliminarySort(self, node)
 		self.finalSort(self, node)
+		self.finalTouches(self, node)
 		
 	#Makes the first sort over the tree
 	#Sorts nodes in reference to siblings and parent
@@ -33,7 +34,7 @@ class organizeTreeButton():
 	#Calls function to fix each level of the tree
 	#For all levels excluding the first two
 	#Since these two levels will be in perfect condition
-	#Following the preliminary sort	
+	#always, following the preliminary sort	
 	def finalSort(self, node):
 		sorted = False
 		height = self.treeHeight(self, node)
@@ -117,3 +118,24 @@ class organizeTreeButton():
 		
 	def getRoot(self, node):
 		return self.getFurthestNonRootParent(node).parent
+		
+	def finalTouches(self, node):
+		if len(node.children) == 1:
+			for child in node.children:
+				self.finalTouches(self, child)
+		else:
+			minX = float('inf')
+			maxX = float('-inf')
+			for child in node.children:
+				if child.getX() > maxX:
+					maxX = child.getX()
+				if child.getX() < minX:
+					minX = child.getX()
+			
+			width = maxX - minX
+			center = node.getX()
+			difference = (minX + width/2) - center
+		
+			
+			for child in node.children:
+				self.moveSubTree(self, child, difference)
