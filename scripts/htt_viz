@@ -375,6 +375,12 @@ class HTTDisplayWidget(QGraphicsView):
 	def addChildNode(self, parentName, selectedNodeIndex, x=None, y=None):
 		parentNode = self.taskTree.findNodeByName(parentName)
 		if parentNode is not None:
+			if parentNode.isRoot():
+				if len(parentNode.children) > 0:
+					self.w = TooManyRootChildrenErrorWindow(self)
+					self.w.show()
+					return
+									
 			self.taskTree.addNode([parentNode, selectedNodeIndex, True])
 			
 			organizeTreeButton.preliminarySort(organizeTreeButton, parentNode)
@@ -618,7 +624,38 @@ class FileNotFoundWindow(QDialog):
 	#def closeEvent(self, event):
 		#self.window.waiting = False
 
-	
+class TooManyRootChildrenErrorWindow(QDialog):
+	def __init__(self, window):
+		super().__init__()
+
+		self.setWindowModality(Qt.ApplicationModal)
+
+		self.window = window
+		
+		p = self.palette()
+		p.setColor(self.backgroundRole(), QColor(0x3D, 0x3D, 0x3D))
+		self.setPalette(p)
+		
+		self.setWindowTitle("Warning!")
+		self.setMinimumSize(QSize(225, 130))
+		self.setMaximumSize(QSize(225, 130)) 
+		self.resize(225, 130)
+
+		layout = QVBoxLayout()
+		
+		label = QLabel("The Root Node Is Limited To One Child", self)
+		label.setStyleSheet("color: white")
+		label.setAlignment(Qt.AlignCenter)
+		label.setWordWrap(True)
+
+		closeButton = QPushButton('Close', self)
+		closeButton.clicked.connect(lambda : self.close())
+		
+		layout.addWidget(label)
+		layout.addWidget(closeButton)
+		
+		self.setLayout(layout)
+		
 if __name__ == "__main__":
 	rospy.init_node('htt_viz')
 	app = QtWidgets.QApplication(sys.argv)
