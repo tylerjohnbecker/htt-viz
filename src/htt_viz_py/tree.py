@@ -645,18 +645,26 @@ class Tree:
 		if ptr is None:
 			return UpdateResponse(False, 1.0);
 
-		ptr.activation_potential = req.activation_potential
+		need_update = False; 
+
 		#ptr.activation_level  = req.activation_level
         
         # TODO: Color isn't controlled directly here anymore. 
         # Update to call relavent functions on graphics object.
 		if req.active == True and not ptr.qGraphics.isActive:
 			ptr.qGraphics.showActiveColor()
-			ptr.update()
+			need_update = True
 		elif req.active == False and ptr.qGraphics.isActive:
 			ptr.qGraphics.showInactiveColor()
-			ptr.update()
+			need_update = True
+		
+		if abs(ptr.activation_potential - req.activation_potential) > .001:
+			ptr.activation_potential = req.activation_potential
+			ptr.qGraphics.potential = ptr.activation_potential
+			need_update = True
 
+		if need_update:
+			ptr.update()
 
 		#I need to ask about a redraw function
 		return UpdateResponse(True, 1.0)#ptr.activation_level)
