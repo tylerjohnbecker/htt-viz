@@ -31,23 +31,26 @@
 namespace task_net
 {   
 	
-	class DrawBehavior: public Behavior
+	class DrawBehavior: public Node
 	{
 	public:
 		DrawBehavior(NodeId_t name, NodeList peers, NodeList children, NodeId_t parent,
 				State_t state,
 				std::string object,
+  				WorkMutex* wm,
 				std::string to_draw,
 				bool use_local_callback_queue = false,
 				boost::posix_time::millisec mtime = boost::posix_time::millisec(50)) :
 				draw_char(to_draw),
-				Behavior(name, peers, children, parent,
+				Node(name, peers, children, parent,
 					state,
 					object,
+					wm,
 					use_local_callback_queue,
 					mtime) {srand(time(NULL));};
 
 			virtual void Work();
+			virtual void UpdateActivationPotential();
 
 	protected:
 

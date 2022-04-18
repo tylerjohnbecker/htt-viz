@@ -6,9 +6,8 @@ NodeList:
 - Root_0_0_000
 - OR_2_0_001
 - Draw_6_0_002
-- THEN_1_0_003
+- Draw_6_0_003
 - Draw_6_0_004
-- Draw_6_0_005
 Nodes:
   Draw_6_0_002:
     DrawCharacter: T
@@ -22,41 +21,42 @@ Nodes:
     parent: OR_2_0_001
     peers:
     - NONE
-    x: -38.0
-    y: 190.0
-  Draw_6_0_004:
+    x: -119.5
+    y: 210.0
+  Draw_6_0_003:
     DrawCharacter: J
     Title: Draw J
+    children:
+    - NONE
+    mask:
+      node: 3
+      robot: 0
+      type: 6
+    parent: OR_2_0_001
+    peers:
+    - NONE
+    x: 50.0
+    y: 210.0
+  Draw_6_0_004:
+    DrawCharacter: B
+    Title: Draw B
     children:
     - NONE
     mask:
       node: 4
       robot: 0
       type: 6
-    parent: THEN_1_0_003
+    parent: OR_2_0_001
     peers:
     - NONE
-    x: 39.5
-    y: 270.0
-  Draw_6_0_005:
-    DrawCharacter: B
-    Title: Draw B
-    children:
-    - NONE
-    mask:
-      node: 5
-      robot: 0
-      type: 6
-    parent: THEN_1_0_003
-    peers:
-    - NONE
-    x: 236.5
-    y: 270.0
+    x: 209.0
+    y: 209.0
   OR_2_0_001:
     Title: OR_2_0_001
     children:
     - Draw_6_0_002
-    - THEN_1_0_003
+    - Draw_6_0_003
+    - Draw_6_0_004
     mask:
       node: 1
       robot: 0
@@ -65,7 +65,7 @@ Nodes:
     peers:
     - NONE
     x: 50.0
-    y: 110.0
+    y: 130.0
   Root_0_0_000:
     Title: Root_0_0_000
     children:
@@ -78,18 +78,4 @@ Nodes:
     peers:
     - NONE
     x: 50.0
-    y: 30.0
-  THEN_1_0_003:
-    Title: THEN_1_0_003
-    children:
-    - Draw_6_0_004
-    - Draw_6_0_005
-    mask:
-      node: 3
-      robot: 0
-      type: 1
-    parent: OR_2_0_001
-    peers:
-    - NONE
-    x: 138.0
-    y: 190.0
+    y: 50.0

@@ -64,6 +64,7 @@ Node::Node() {
 Node::Node(NodeId_t name, NodeList peers, NodeList children, NodeId_t parent,
   State_t state,
   std::string object,
+  WorkMutex* wm,
   bool use_local_callback_queue, boost::posix_time::millisec mtime):
   local_("~") 
 {
@@ -92,6 +93,8 @@ Node::Node(NodeId_t name, NodeList peers, NodeList children, NodeId_t parent,
   InitializeBitmask(name_);
   InitializeBitmasks(children_);
   InitializeBitmask(parent_);
+
+  this->work_check_ptr = wm;
 
   ROS_WARN( "BITMASKS" );
 
@@ -320,7 +323,7 @@ void Node::Activate()
           // Send activation to peers to avoid race condition
           // this will publish the updated state to say I am now active
           PublishStateToPeers();
-          this->throttle_num = throttle_max + 1;
+          this->throttle_num = throttle_num_max + 1;
           this->CheckUpdated();
         }
         
@@ -1776,5 +1779,11 @@ void Node::CopyStatus()
     this->state_copy_.activation_level = this->state_.activation_level;
     this->state_copy_.activation_potential = this->state_.activation_potential;//Epsilon = .001
     this->state_copy_.active = this->state_.active;
+}
+
+void Node::mutexNotifier(bool win)
+{
+  this->mutex_waiting = !win;
+  this->auction_waiting = false;
 }
 }  // namespace task_net

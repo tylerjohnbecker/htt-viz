@@ -19,6 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define INCLUDE_NODE_H_
 #include <ros/ros.h>
 #include <ros/callback_queue.h>
+#include <task_tree/work_mutex.h>
 #include <stdint.h>
 #include <std_msgs/String.h>
 #include <std_msgs/Bool.h>
@@ -70,6 +71,7 @@ class Node {
   Node(NodeId_t name, NodeList peers, NodeList children, NodeId_t parent,
     State_t state,
     std::string object,
+    WorkMutex* wm,
     bool use_local_callback_queue = false,
     boost::posix_time::millisec mtime = boost::posix_time::millisec(50));
   virtual ~Node();
@@ -171,6 +173,7 @@ class Node {
 
   virtual void ReleaseMutexLocs();
   virtual void releasingRobotNode();
+  void mutexNotifier(bool win);
 
  // to call the vision manip pipeline service
  //ros::ServiceClient* visManipClient_pntr;
@@ -188,9 +191,6 @@ class Node {
   NodeListPtr peers_;
   NodeListPtr children_;
   NodeId_t *parent_;
-
-  int throttle_num;
-  int throttle_max = 99;
 
   State state_copy_;
 
