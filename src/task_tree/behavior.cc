@@ -361,20 +361,24 @@ uint32_t OrBehavior::SpreadActivation() {
   msg->activation_level = 100.0f;
   msg->done = this->state_.done;
 
-  for ( int i = 0; i < children_.size(); i++)
+  //Note this fixes the problem of OR nodes with other tasks as children, b/c it essentially acts like a pipe after the first activation
+  //However this is not a general fix. I think the data structure needs to be augmented in order to fix this.
+  if (first)
   {
-    if (node_dict_[children_[i]->mask]->state.collision)
+    float highest = -1 * std::numeric_limits<float>::infinity();
+
+    for ( int i = 0; i < children_.size(); i++)
     {
-      SendToChild(children_[i]->mask, msg);
-      return 0;
+      if (children_[i]->state.activation_potential > highest)
+      {
+        chosen = children_[i]->mask;
+        highest = children_[i]->state.activation_potential;
+      }
     }
+    first = false;
   }
 
-  for( int i = 0; i < children_.size(); i++ )
-  {
-    SendToChild(children_[i]->mask, msg);  
-  }
-  
+  SendToChild(chosen, msg);
 }
 
 bool OrBehavior::IsDone() {
