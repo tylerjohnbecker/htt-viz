@@ -275,6 +275,10 @@ class Tree:
 		
 		self.root_node.registerScene(scene)
 		
+	def replaceRootNode(self, scene):
+		self.root_node = self.createNewNode(0, 50, 10)
+
+		self.root_node.registerScene(scene)
 	# Generate a new node number.
 	#
 	# Returns

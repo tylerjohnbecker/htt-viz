@@ -118,6 +118,10 @@ bool AndBehavior::Precondition() {
 
 uint32_t AndBehavior::SpreadActivation() {
     // ROS_INFO("AndBehavior::SpreadActivation was called!!!!");
+
+  if (IsDone())
+    return 0;
+
   ControlMessagePtr_t msg(new ControlMessage_t);
   msg->type = 0;
   msg->sender = mask_;
@@ -346,11 +350,24 @@ bool OrBehavior::Precondition() {
 
 uint32_t OrBehavior::SpreadActivation() {
   ROS_DEBUG("OrBehavior::SpreadActivation was called!!!!");
+
+  if (IsDone())
+    return 0;
+
   ControlMessagePtr_t msg(new ControlMessage_t);
   msg->type = 0;
   msg->sender = mask_;
   msg->activation_level = 100.0f;
-  msg->done = false;
+  msg->done = this->state_.done;
+
+  for ( int i = 0; i < children_.size(); i++)
+  {
+    if (node_dict_[children_[i]->mask]->state.collision)
+    {
+      SendToChild(children_[i]->mask, msg);
+      return 0;
+    }
+  }
 
   for( int i = 0; i < children_.size(); i++ )
   {

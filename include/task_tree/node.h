@@ -152,6 +152,7 @@ class Node {
   virtual void PublishActivationPotential();
   virtual void UpdateActivationPotential();
   virtual void PublishDoneParent();
+  virtual void PublishDoneChildren();
   virtual void InitializeSubscriber(NodeId_t *node);
   virtual void InitializePublishers(NodeListPtr nodes, PubList *pub,
     const char * topic_addition = "");
@@ -249,6 +250,16 @@ class Node {
   bool working;
   bool thread_running_;
 
+  //Tyler mutex stuff sry bad writing fast
+  bool mutex_waiting;
+  bool auction_waiting;
+  bool can_run;
+  WorkMutex* work_check_ptr;
+
+  int throttle_num = 0;
+  int throttle_num_max = 90;
+
+  friend class WorkMutex;
 };
 }  // namespace task_net
 #endif  // INCLUDE_NODE_H_

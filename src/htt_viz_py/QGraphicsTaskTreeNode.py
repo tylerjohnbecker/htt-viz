@@ -49,10 +49,10 @@ class QGraphicsTaskTreeNode(QGraphicsItem):
 		
 	def paint(self, painter, option, widget):
 		font_metrics = QFontMetrics(self.font)
-		self.mainWidth = max(font_metrics.width(self.title), font_metrics.width(("AP: "+str(self.potential))))
+		self.mainWidth = max(font_metrics.width(self.title), font_metrics.width(f"AP: {self.potential:.4f}"))
 		self.textWidth = font_metrics.width(self.title)
 		self.textHeight = font_metrics.height()
-		self.potentialWidth = font_metrics.width(("AP: "+str(self.potential)))
+		self.potentialWidth = font_metrics.width(f"AP: {self.potential:.4f}")
 
 		self.width = self.mainWidth + (2.0 * self.paddingX)
 		self.height = self.textHeight + (2.0 * self.paddingY)
@@ -73,7 +73,7 @@ class QGraphicsTaskTreeNode(QGraphicsItem):
 		
 		painter.setFont(self.font)
 		painter.drawText(QPointF(textX, textY), self.title)
-		painter.drawText(QPointF(potX, potY), ("AP: "+str(self.potential)))
+		painter.drawText(QPointF(potX, potY), (f"AP: {self.potential:.4f}"))
 		
 	def addPositionChangeHandler(self, handler):
 		self.positionChangeHandlers.append(handler)

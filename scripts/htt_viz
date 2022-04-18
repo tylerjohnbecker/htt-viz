@@ -235,9 +235,8 @@ class MainWindow(QMainWindow):
 		self.setWindowTitle("HTT-Viz")
 
 	def newCall(self):
-		self.taskTreeDisplayWidget.clearTaskTree()
 		self.filePath = None
-	
+
 	# https://pythonspot.com/pyqt5-file-dialog/	
 	def saveCall(self):
 
@@ -386,6 +385,10 @@ class HTTDisplayWidget(QGraphicsView):
 			organizeTreeButton.preliminarySort(organizeTreeButton, parentNode)
 			
 		self.mainWin.setWindowTitle("*HTT-Viz")
+
+	def replaceTree(self):
+		self.taskTreeDisplayWidget.clearTaskTree()
+		self.taskTree.replaceRootNode(self.scene)
 
 	def addChildNodeFromDict(self, dict):
 		self.taskTree.addChildNodeFromDict(dict)

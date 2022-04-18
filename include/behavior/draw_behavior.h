@@ -2,6 +2,8 @@
 #define DRAW_BEHAVIOR_H_
 
 #include "task_tree/behavior.h"
+#include <stdlib.h>
+#include <time.h>
 #include "geometry_msgs/PoseStamped.h"
 #include "geometry_msgs/Quaternion.h"
 #include <tf2_geometry_msgs/tf2_geometry_msgs.h>
@@ -43,7 +45,7 @@ namespace task_net
 					state,
 					object,
 					use_local_callback_queue,
-					mtime) {};
+					mtime) {srand(time(NULL));};
 
 			virtual void Work();
 
