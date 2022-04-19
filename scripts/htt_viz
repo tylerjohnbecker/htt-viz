@@ -143,11 +143,25 @@ class MainWindow(QMainWindow):
 		self.subsplitter.addWidget(self.subWindow1)
 		self.subsplitter.addWidget(self.subWindow2)
 		
-		#Setup Organize Tree Button
-		self.orgButton = QPushButton(self.subWindow2)
-		self.orgButton.setText("Organize Tree")
-		self.subWindow2.layout().addWidget(self.orgButton, alignment=QtCore.Qt.AlignRight)
-		self.orgButton.clicked.connect(lambda : organizeTreeButton.organizeTree(organizeTreeButton, self.taskTree.root_node))
+		#Add Place For Buttons Above Tree Display
+		self.buttonRack = ButtonRack()
+		self.subWindow2.layout().addWidget(self.buttonRack, alignment=QtCore.Qt.AlignRight)
+		
+		#Create Organize Tree Button
+		orgButton = QPushButton(self)
+		orgButton.setText("Organize Tree")
+		orgButton.setStyleSheet("background-color:lightGray")
+		orgButton.clicked.connect(lambda : organizeTreeButton.organizeTree(organizeTreeButton, self.taskTree.root_node))
+		
+		#Create Img Export Button
+		imgButton = QPushButton(self)
+		imgButton.setText("Export PNG")
+		imgButton.setStyleSheet("background-color:lightGray")
+		imgButton.clicked.connect(lambda : makeImg(self.taskTree.root_node, self))
+		
+		#Add Buttons to Button Rack
+		self.buttonRack.addButton(orgButton)
+		self.buttonRack.addButton(imgButton)
 		
 		# Setup Task Tree Display
 		self.taskTree = Tree()
@@ -165,12 +179,6 @@ class MainWindow(QMainWindow):
 		self.subWindow1.setMaximumWidth(150)
 		
 		self.setCentralWidget(self.subsplitter)
-		
-		#Setup Img Export Button
-		self.imgButton = QPushButton(self.subWindow2)
-		self.imgButton.setText("Export PNG")
-		self.subWindow2.layout().addWidget(self.imgButton, alignment=QtCore.Qt.AlignRight)
-		self.imgButton.clicked.connect(lambda : makeImg(self.taskTree.root_node, self))
 		
 		self.filePath = None
 
@@ -350,7 +358,15 @@ class SubWindow(QWidget):
 
 		self.main_layout = QVBoxLayout()
 		self.setLayout(self.main_layout)
-
+		
+class ButtonRack(QWidget):
+	def __init__(self):
+		super().__init__()
+		self.layout = QHBoxLayout()
+		self.setLayout(self.layout)
+		
+	def addButton(self, QPushButton):
+		self.layout.addWidget(QPushButton, alignment=QtCore.Qt.AlignRight)
 
 class HTTDisplayWidget(QGraphicsView):
 	def __init__(self, taskTree, mainWin):
