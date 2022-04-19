@@ -13,16 +13,18 @@
 
 namespace task_net {
 
-	class MoveBehavior : public Behavior {
+	class MoveBehavior : public Node {
 	public:
 		MoveBehavior(NodeId_t name, NodeList peers, NodeList children, NodeId_t parent,
 			State_t state,
 			std::string object,
+  			WorkMutex* wm,
 			bool use_local_callback_queue = false,
 			boost::posix_time::millisec mtime = boost::posix_time::millisec(50)) :
-			Behavior(name, peers, children, parent,
+			Node(name, peers, children, parent,
 				state,
 				object,
+				wm,
 				use_local_callback_queue,
 				mtime) {};
 

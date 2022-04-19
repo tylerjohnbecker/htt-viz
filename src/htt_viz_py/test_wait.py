@@ -1,6 +1,14 @@
 import pytest
 
 from htt_viz_py.tree import Tree, Node
+from PyQt5 import QtCore, QtWidgets, QtGui
+from PyQt5.QtWidgets import QMainWindow, QWidget, QPushButton, QAction, QFrame
+from PyQt5.QtCore import QSize, Qt	
+from PyQt5.QtGui import QIcon
+from PyQt5.QtCore import *
+from PyQt5.QtGui import *
+from PyQt5.QtWidgets import *
+from PyQt5 import uic
 import yaml
 import htt_viz.srv
 import random as r

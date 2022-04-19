@@ -37,7 +37,8 @@ Behavior::Behavior(NodeId_t name, NodeList peers, NodeList children,
       children,
       parent,
       state,
-      object) {  
+      object,
+      nullptr) {  
       // printf("Behavior::Behavior WAS CALLED\n");
   ROS_WARN("END OF BEHAVIOR CONSTRUCTOR");
 }
@@ -118,6 +119,10 @@ bool AndBehavior::Precondition() {
 
 uint32_t AndBehavior::SpreadActivation() {
     // ROS_INFO("AndBehavior::SpreadActivation was called!!!!");
+
+  if (IsDone())
+    return 0;
+
   ControlMessagePtr_t msg(new ControlMessage_t);
   msg->type = 0;
   msg->sender = mask_;
@@ -346,17 +351,34 @@ bool OrBehavior::Precondition() {
 
 uint32_t OrBehavior::SpreadActivation() {
   ROS_DEBUG("OrBehavior::SpreadActivation was called!!!!");
+
+  if (IsDone())
+    return 0;
+
   ControlMessagePtr_t msg(new ControlMessage_t);
   msg->type = 0;
   msg->sender = mask_;
   msg->activation_level = 100.0f;
-  msg->done = false;
+  msg->done = this->state_.done;
 
-  for( int i = 0; i < children_.size(); i++ )
+  //Note this fixes the problem of OR nodes with other tasks as children, b/c it essentially acts like a pipe after the first activation
+  //However this is not a general fix. I think the data structure needs to be augmented in order to fix this.
+  if (first)
   {
-    SendToChild(children_[i]->mask, msg);  
+    float highest = -1 * std::numeric_limits<float>::infinity();
+
+    for ( int i = 0; i < children_.size(); i++)
+    {
+      if (children_[i]->state.activation_potential > highest)
+      {
+        chosen = children_[i]->mask;
+        highest = children_[i]->state.activation_potential;
+      }
+    }
+    first = false;
   }
-  
+
+  SendToChild(chosen, msg);
 }
 
 bool OrBehavior::IsDone() {

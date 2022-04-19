@@ -64,6 +64,7 @@ Node::Node() {
 Node::Node(NodeId_t name, NodeList peers, NodeList children, NodeId_t parent,
   State_t state,
   std::string object,
+  WorkMutex* wm,
   bool use_local_callback_queue, boost::posix_time::millisec mtime):
   local_("~") 
 {
@@ -92,6 +93,8 @@ Node::Node(NodeId_t name, NodeList peers, NodeList children, NodeId_t parent,
   InitializeBitmask(name_);
   InitializeBitmasks(children_);
   InitializeBitmask(parent_);
+
+  this->work_check_ptr = wm;
 
   ROS_WARN( "BITMASKS" );
 
@@ -320,7 +323,7 @@ void Node::Activate()
           // Send activation to peers to avoid race condition
           // this will publish the updated state to say I am now active
           PublishStateToPeers();
-          this->throttle_num = throttle_max + 1;
+          this->throttle_num = throttle_num_max + 1;
           this->CheckUpdated();
         }
         
@@ -746,6 +749,11 @@ void Node::ReceiveFromChildren(ConstControlMessagePtr_t msg) {
   child->state.highest.type = msg->highest.type;
   child->state.highest.robot = msg->highest.robot;
   child->state.active = msg->active;
+  child->state.collision = msg->collision;
+
+  //basically a fix for the or node
+  if (child->state.done && !this->IsDone())
+    this->working = true;
 }
 
 void Node::ReceiveFromPeers(ConstControlMessagePtr_t msg) {
@@ -977,7 +985,6 @@ void WorkThread(Node *node) {
 
   ROS_WARN("[%s]: Node::WorkThread was called!!!!", (char *)(node->name_->topic.c_str()) );
 
-
   boost::unique_lock<boost::mutex> lock(node->work_mut);
   while (!node->state_.active) {
     ROS_WARN("[%s][%d]", node->name_->topic.c_str(), node->state_.active);
@@ -985,48 +992,70 @@ void WorkThread(Node *node) {
     ros::Duration(2).sleep();
   }
 
+  if (node->parent_done_)
+  {
+    ROS_FATAL("[%s] Parent already done exiting work thread.", node->name_->topic.c_str());
+    return;
+  }
+
   ROS_FATAL("work thread Initialized");
 
+  //speaking of Hackity hack hack this code is identical to the above while loop but written with my code
+  //I think the above loop relies on an outside package called remote mutex which is not included with HTT_Viz
+  //so I can't therefore rely on it.
 
-  // Process Data
-  node->working = true;
-  node->Work();
+  //first set this value to true
+  node->mutex_waiting = true;
 
-  if ( !FAILED_PICK ) // if did not fail pick i.e. if failed_pick == false
+  //ROS_FATAL("Trying to acquire work lock");
+
+  node->throttle_num = node->throttle_num_max + 1;
+  node->state_.active = false;
+  node->CheckUpdated();
+
+  //can't continue until we are handed the mutex
+  while (node->mutex_waiting)
   {
-    ROS_WARN("Work thread is ending because pick worked\n\n\n");
-    ROS_WARN("     Object was %s", node->object_.c_str());
-        ros::param::set("/human_placing",false);
-    ros::param::set("/Collision",false);
+    //ROS_FATAL("Sending bid...");
+    //first wait until you can successfully send a bid
+    while (!node->work_check_ptr->bid(node))
+      ;//ROS_WARN("Help I'm Spinning");
 
-    boost::unique_lock<boost::mutex> lck(node->mut);
-    node->state_.active = false;
-    node->state_.done = true;
-    node->working = false;
+    //ROS_FATAL("Waiting for response...");
+    node->auction_waiting = true;
+    //now wait for the auction to finish
+    while (node->auction_waiting);
+
+    //get out of the auction loop if the parent is done already
+    if (node->parent_done_)
+      break;
+
+    //if we have the mutex we should exit this loop
+    //ROS_FATAL("[%s]Response was [%d]", node->name_->topic.c_str(), node->mutex_waiting);
   }
-  else{
-    // Hakcity hack hack
-    //  even though we are releasing the mutex from a collision object, the work thread is never ended
-    //  so the next object is using the work thread from the previous object that had a collision,
-    //  which means this section of code is only entered after the robot completes the place from the next object
-    //  so for now we are hard coding the state active and done messages here to reflect this.
-    //   THIS NEEDS TO GET FIXED by INSERT_NAME!!!!!!!
-    FAILED_PICK = false;
-    node->state_.active = false;
-    node->state_.done = true;
-    node->working = false;
-    node->state_.collision = false;
-    ros::param::set("/human_placing",false);
-    ros::param::set("/Collision",false);
-      //CHANGED BY TB: node->state.owner.node is of type u_int16 not char* so the compiler threw some warnings
-    //ROS_WARN("Work thread is ending becuase issue was found %s",node->state_.owner.node);
-    ROS_WARN("Work thread is ending becuase issue was found %d",node->state_.owner.node);
 
+  //only do the work if the parent hasn't finished
+  if (!node->parent_done_)
+  {
+    node->throttle_num = node->throttle_num_max + 1;
+    node->state_.active = true;
+    node->CheckUpdated();
 
-
+    // Process Data
+    node->working = true;
+    node->Work();
   }
+
+  //finally release the mutex so the others can go
+  node->work_check_ptr->release(node->name_->topic);
+  node->state_.active = false;
+  node->state_.done = true;
+  node->working = false;
+
   node->PublishDoneParent();
   node->PublishStateToPeers();
+  node->throttle_num = node->throttle_num_max + 1;
+  node->CheckUpdated();
 
   // int sleepTime = 200 + (75*node->mask_.robot);
   // boost::this_thread::sleep(boost::posix_time::millisec(sleepTime));
@@ -1237,41 +1266,19 @@ void Node::Update() {
   //ROS_INFO("[%s]: Node::Update was called!!!!", name_->topic.c_str());
 
 
+  if( parent_done_ && work_thread != nullptr)
+  {
+    // deactivate
+    //ROS_FATAL("[%s]Killing my stuff because parent is done", this->name_->topic.c_str());
+    state_.done = true;
+  }
+
   // Check if Done // check parent done status
   if (!IsDone()  ) {
 
-    if( parent_done_ )
-    {
-      // deactivate
-
-      // set done to true
-      //state_.done = true;
-    }
-
     // Check Activation Level
     if (IsActive()) {
-      // check in object has been dropped
-      // if(hold_status_.dropped) {
-      //   // pause architecture
-      //   ROS_ERROR("Hold_status dropped is true, launching dialogue node!!!"); // why is this not getting printed out????
-      //   boost::thread *pause_thread = new boost::thread(&Node::DialogueRobot, this);
-      //   pause_thread->join();
-      // }
-      //ROS_WARN("Node was ACTIVE [%s] ", name_->topic.c_str());
-      if(state_.collision)
-      {
-        hold_status_.dropped = true;
-        hold_status_.issue = "collision";
-      }
-      if(hold_status_.dropped) 
-      {
-        // pause architecture
-        ROS_ERROR("Hold_status dropped is true, launching dialogue node for dialoguehuman!!!"); // why is this not getting printed out????
-        //hold_status_.dropped = true;
-        //hold_status_.issue = "collision";
-        boost::thread *pause_thread = new boost::thread(&Node::DialogueHuman, this);
-        pause_thread->join();
-      }
+
       // Check Preconditions
       if (Precondition()) 
       {
@@ -1282,30 +1289,23 @@ void Node::Update() {
         }
 
 
-      Activate();
+        Activate();
       }
-      else 
-      {
 
-      //   if(name_->topic.compare("PLACE_3_0_003_state")==0){
-       //   ROS_ERROR("[%s]: Preconditions Not Satisfied, Spreading Activation!",
-       //     name_->topic.c_str());
-      //  }
-      }
       ActivationFalloff();
     }
     else 
     {
-    //    if(name_->topic.compare("PLACE_3_0_003_state")==0){
-    //     ROS_ERROR("[%s]: Activation Below Threshold !",
-   //     name_->topic.c_str());
-   //   }
       ROS_DEBUG("[%s]: Not Active: %f", name_->topic.c_str(),
         state_.activation_level); 
         SpreadActivation();
     }
-    //hopefully this is not too slow with 7 or 8 things
   }
+  else
+  {
+    PublishDoneChildren();
+  }
+
   // Publish Status
   PublishStatus();
   this->CheckUpdated();
@@ -1365,6 +1365,7 @@ void Node::PublishStatus() {
   msg.simstate_obj_pose = state_.simstate_obj_pose;
   msg.simstate_robot_pose = state_.simstate_robot_pose;
   msg.simstate_robot_goal = state_.simstate_robot_goal;
+  msg.collision = this->working;
 
 
   // if(state_.collision == true){
@@ -1553,6 +1554,23 @@ void Node::PublishDoneParent() {
   // printf("Publish Status: %d\n", msg->done);
 }
 
+void Node::PublishDoneChildren() {
+  ROS_DEBUG("Node::PublishDoneChildren was called!!!!\n");
+
+  if ((int)this->children_pub_list_.size() == 0)
+    return;
+
+  ControlMessagePtr_t msg(new ControlMessage_t);
+  msg->sender = mask_;
+  msg->activation_level = state_.activation_level;
+  msg->activation_potential = state_.activation_potential;
+  msg->done = state_.done;
+  msg->active = state_.active;
+  for (auto& child: this->children_)
+    SendToChild(child->mask, msg);
+  // printf("Publish Status: %d\n", msg->done);
+}
+
 bool Node::IsDone() {
       // ROS_INFO("Node::IsDone was called!!!!\n");
 
@@ -1713,15 +1731,17 @@ void Node::CheckUpdated()
     if (!this->notify_tree)
         return;
 
-    if (!(this->throttle_num > this->throttle_max) && !this->state_.done)
+    if (throttle_num < throttle_num_max)
     {
-      this->throttle_num++;
+      throttle_num++;
       return;
     }
+
     //
-    if (abs(state_.activation_potential - state_copy_.activation_potential) < .001 ||
+    if (abs(state_.activation_potential - state_copy_.activation_potential) > .001 ||
         state_.active != state_copy_.active)
     {
+
         this->CopyStatus();
         htt_viz::Update u;
         u.request.owner = this->name_->topic;
@@ -1752,11 +1772,18 @@ void Node::CheckUpdated()
         }
         this->throttle_num = 0;
     }
+    throttle_num = 0;
 }
 void Node::CopyStatus()
 {
     this->state_copy_.activation_level = this->state_.activation_level;
     this->state_copy_.activation_potential = this->state_.activation_potential;//Epsilon = .001
     this->state_copy_.active = this->state_.active;
+}
+
+void Node::mutexNotifier(bool win)
+{
+  this->mutex_waiting = !win;
+  this->auction_waiting = false;
 }
 }  // namespace task_net

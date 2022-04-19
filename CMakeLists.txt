@@ -77,7 +77,7 @@ include_directories(
 )
 
 ##CPP executables
-set(TaskNodes "src/task_tree/behavior.cc" "src/task_tree/node.cc")
+set(TaskNodes "src/task_tree/behavior.cc" "src/task_tree/node.cc" "src/task_tree/work_mutex.cc")
 set(ActionNodes "src/behavior/dummy_behavior.cc" "src/behavior/move_behavior.cc" "src/behavior/grab_behavior.cc" "src/behavior/draw_behavior.cc")
 
 add_executable(load src/htt_viz/loadTree.cpp ${TaskNodes} ${ActionNodes})

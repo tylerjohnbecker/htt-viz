@@ -1,6 +1,14 @@
 # This is a file meant to test if loading file will remain the same as the file saved      
 import pytest
 
+from PyQt5 import QtCore, QtWidgets, QtGui
+from PyQt5.QtWidgets import QMainWindow, QWidget, QPushButton, QAction, QFrame
+from PyQt5.QtCore import QSize, Qt	
+from PyQt5.QtGui import QIcon
+from PyQt5.QtCore import *
+from PyQt5.QtGui import *
+from PyQt5.QtWidgets import *
+from PyQt5 import uic
 from htt_viz_py.tree import Tree, Node
 import yaml
 import htt_viz

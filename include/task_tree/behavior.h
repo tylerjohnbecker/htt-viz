@@ -1,5 +1,5 @@
 /*
-robotics-task-tree-eval
+robotics-task-tree-eval 
 Copyright (C) 2015  Luke Fraser
 
 This program is free software: you can redistribute it and/or modify
@@ -99,6 +99,8 @@ class OrBehavior: public Behavior {
  private:
   uint32_t seed;
   uint32_t random_child_selection;
+  NodeBitmask chosen;
+  bool first;
 };
 
 class WhileBehavior: public Behavior {};
