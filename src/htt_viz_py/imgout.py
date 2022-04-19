@@ -65,3 +65,5 @@ def saveImg(filename, root, fart):
 		endGVFile(path)
 		os.system("dot -Tpng " + path + " -o " + filepath)
 		
+		os.remove(path)
+		
