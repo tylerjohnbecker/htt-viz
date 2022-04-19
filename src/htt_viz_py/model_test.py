@@ -1,7 +1,15 @@
 import pytest
 
+from PyQt5 import QtCore, QtWidgets, QtGui
+from PyQt5.QtWidgets import QMainWindow, QWidget, QPushButton, QAction, QFrame
+from PyQt5.QtCore import QSize, Qt	
+from PyQt5.QtGui import QIcon
+from PyQt5.QtCore import *
+from PyQt5.QtGui import *
+from PyQt5.QtWidgets import *
+from PyQt5 import uic
+
 from pytestqt.qt_compat import qt_api
-from pytestqt import modeltest
 
 pytestmark = pytest.mark.usefixtures("qtbot")
 
