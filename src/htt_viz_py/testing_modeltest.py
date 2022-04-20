@@ -250,8 +250,8 @@ def test_nop(qtmodeltester):
 
 
 def test_overridden_methods(qtmodeltester):
-    """Make sure overridden methods of a model are actually run.
-    With a previous implementation of the modeltester using sip.cast, the custom
+    # We are making sure overridden methods of a model are actually running.
+    # With a previous implementation of the modeltester using sip.cast, the custom
     implementations did never actually run.
     """
 
@@ -282,7 +282,7 @@ def test_fetch_more(qtmodeltester):
     model = Model()
     item = qt_api.QtGui.QStandardItem("foo")
     model.setItem(0, 0, item)
-    qtmodeltester.check(model, force_py=True)
+    qtmodeltester.check(model, force_py = True)
 
 
 def test_invalid_parent(qtmodeltester):
@@ -304,5 +304,8 @@ def test_invalid_parent(qtmodeltester):
     with pytest.raises(AssertionError):
         qtmodeltester.check(model, force_py=True)
 
-
-    )
+@pytest.markskipif(notmodeltest.HAS_QT_TESTER, reason = "Not avilable")
+def test_qt_tester_valid(testdir):
+    testdir.makepyfile()
+    res = testdir.runpytest()
+    res.stdout.fnmatch_lines()
