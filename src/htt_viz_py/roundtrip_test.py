@@ -17,11 +17,25 @@ import random as r
 
 
 @pytest.fixture
-def test_filedialog(qtbot, window):
+def test_filedialog(qtbot, QMainWindow):
 	def handle_dialog():
 		while window.
 	QTimer.singleShot(500, handle_dialog)
 	qt.mouseClick(tree.browseButton, QtCore.Qt.LeftButton, delay=1)
+	 print("saving node tree")
+    data = self.taskTree.toYamlDict()
+		  with open(filePath, "w") as f:
+			  yaml.dump(data, f)
+        
+        with open(filePath, "r") as f:
+				data = yaml.load(f, Loader=yaml.Loader)
+				
+				self.taskTreeDisplayWidget.clearTaskTree()
+
+				self.taskTree.author.clearTypes()
+
+				for file_name in data["NodeFileIncludes"]:
+					self.taskTree.author.addNodeFromFile(file_name)
 
 def random_sub    ( tree ):
   r.seed()
@@ -85,20 +99,7 @@ if __name__ == "__main__":
         yaml.dump(t.toYamlDict(), outfile)
         
    print("saving node tree")
-    data = self.taskTree.toYamlDict()
-		  with open(filePath, "w") as f:
-			  yaml.dump(data, f)
-        
-        with open(filePath, "r") as f:
-				data = yaml.load(f, Loader=yaml.Loader)
-				
-				self.taskTreeDisplayWidget.clearTaskTree()
-
-				self.taskTree.author.clearTypes()
-
-				for file_name in data["NodeFileIncludes"]:
-					self.taskTree.author.addNodeFromFile(file_name)
-        
+    
         random_place_both(t, t2)
         node_placed = False
 
