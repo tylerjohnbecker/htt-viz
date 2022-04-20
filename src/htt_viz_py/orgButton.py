@@ -7,7 +7,8 @@ class organizeTreeButton():
 	def organizeTree(self, node):
 		self.preliminarySort(self, node)
 		self.finalSort(self, node)
-		self.makeParentsLoveTheirKidsAgain(self, node)
+		#below function spaws node positions?
+		#self.makeParentsLoveTheirKidsAgain(self, node) 
 		self.finalTouches(self, node)
 		
 	#Makes the first sort over the tree
@@ -37,7 +38,6 @@ class organizeTreeButton():
 	#Since these two levels will be in perfect condition
 	#always, following the preliminary sort	
 	def finalSort(self, node):
-		sorted = False
 		height = self.treeHeight(self, node)
 
 		if height > 2:
@@ -124,7 +124,7 @@ class organizeTreeButton():
 		return self.getFurthestNonRootParent(node).parent
 	
 	#looks at the first level that has more than 1 node, and centers all the nodes at that level
-	#this gives the tree an overall more centered and superior appearance
+	#this gives larger trees an overall more centered and aesthetic appearance
 	def finalTouches(self, node):
 		if len(node.children) == 1:
 			for child in node.children:
@@ -163,9 +163,12 @@ class organizeTreeButton():
 			childPositions = []
 			self.getMinAndMaxChildPositions(node, childPositions)
 			
+			#print("Parent: " + node.name + " Pos: " + str(parentPos) + " | CPMAX: " + str(childPositions[1]) + " CPMIN: " + str(childPositions[0]))
+			
 			if parentPos > childPositions[1] or parentPos < childPositions[0]:
 				node.setX((childPositions[0] + childPositions[1])/2)
-			
+				self.makeParentsLoveTheirKidsAgain(self, node.parent)
+
 			for child in node.children:	
-				self.makeParentsLoveTheirKidsAgain(self, child)	
+				self.makeParentsLoveTheirKidsAgain(self, child)
 				
