@@ -40,7 +40,7 @@ class organizeTreeButton():
 	def finalSort(self, node):
 		height = self.treeHeight(self, node)
 
-		if height > 2:
+		if height > 3: #only levels 4 and higher have any chance of having overlapping nodes after preliminary sort
 			for depth in range(height, 2, -1):
 				self.repositionNodesByLevel(self, node, depth)
 
@@ -113,15 +113,16 @@ class organizeTreeButton():
 				self.moveSubTree(self, nodeList[x], difference)
 			
 	#gets the furthest parent of a node that isn't the root
+	#recently changed to get the parent before that parent
 	def getFurthestNonRootParent(node):
-		while not node.parent.isRoot():
+		while not node.parent.parent.isRoot():
 			node = node.parent
 			
 		return node
 	
 	#gets the root of any node
 	def getRoot(self, node):
-		return self.getFurthestNonRootParent(node).parent
+		return self.getFurthestNonRootParent(node).parent.parent
 	
 	#looks at the first level that has more than 1 node, and centers all the nodes at that level
 	#this gives larger trees an overall more centered and aesthetic appearance
