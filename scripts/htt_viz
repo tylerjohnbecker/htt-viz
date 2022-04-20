@@ -729,10 +729,18 @@ class SettingsWindow(QDialog):
 		autoOrganizeToggleButton.setCheckable(True)
 		autoOrganizeToggleButton.clicked.connect(lambda : self.toggleButtonAppearance(autoOrganizeToggleButton))
 		
+		changeNodeColorButton = QPushButton('Change Node Color')
+		changeNodeColorButton.clicked.connect(lambda : self.changeColor("node"))
+		
+		changeBackgroundColorButton = QPushButton('Chance Background Color')
+		changeBackgroundColorButton.clicked.connect(lambda : self.changeColor("background"))		
+		
 		closeButton = QPushButton('Close', self)
 		closeButton.clicked.connect(lambda : self.close())
 		
 		layout.addWidget(autoOrganizeToggleButton)
+		layout.addWidget(changeNodeColorButton)
+		layout.addWidget(changeBackgroundColorButton)
 		layout.addWidget(closeButton)
 		
 		self.setLayout(layout)
@@ -746,6 +754,9 @@ class SettingsWindow(QDialog):
 			button.setText('Auto-Organize: On')
 			button.setStyleSheet("background-color : green")
 			self.autoOrg = True
+			
+	def changeColor(self, choice):
+		color = QColorDialog.getColor()
 		
 if __name__ == "__main__":
 	rospy.init_node('htt_viz')
