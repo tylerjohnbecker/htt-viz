@@ -99,10 +99,10 @@ class MainWindow(QMainWindow):
 		pasteAction.setStatusTip('Paste content on clipboard')
 		pasteAction.triggered.connect(self.pasteCall)
 		
-		# Debug Action
-		debugAction = QAction(QIcon('debug.png'), '&Debug', self)
-		debugAction.setStatusTip('View the debug console')
-		debugAction.triggered.connect(self.debugCall)
+		# Settings Action
+		settingsAction = QAction(QIcon('settings.png'), '&Settings', self)
+		settingsAction.setStatusTip('View the settings')
+		settingsAction.triggered.connect(self.settingsCall)
 		
 		# About Action
 		aboutAction = QAction(QIcon('about.png'), '&About', self)
@@ -129,7 +129,7 @@ class MainWindow(QMainWindow):
 		editMenu.addAction(pasteAction)
 		
 		viewMenu = menuBar.addMenu('&View')
-		viewMenu.addAction(debugAction)
+		viewMenu.addAction(settingsAction)
 		
 		helpMenu = menuBar.addMenu('&Help')
 		helpMenu.addAction(aboutAction)
@@ -332,8 +332,9 @@ class MainWindow(QMainWindow):
 	def pasteCall(self):
 		print('paste')
 		
-	def debugCall(self):
-		print('debug')
+	def settingsCall(self):
+		self.w = SettingsWindow(self)
+		self.w.show()
 		
 	def aboutCall(self):
 		msg = QMessageBox()
@@ -390,15 +391,10 @@ class HTTDisplayWidget(QGraphicsView):
 	def addChildNode(self, parentName, selectedNodeIndex, x=None, y=None):
 		parentNode = self.taskTree.findNodeByName(parentName)
 		if parentNode is not None:
-			if parentNode.isRoot():
-				if len(parentNode.children) > 0:
-					self.w = TooManyRootChildrenErrorWindow(self)
-					self.w.show()
-					return
-									
-			self.taskTree.addNode([parentNode, selectedNodeIndex, True])
-			
-			organizeTreeButton.preliminarySort(organizeTreeButton, parentNode)
+			if not self.tooManyRootChildren(parentNode):			
+				self.taskTree.addNode([parentNode, selectedNodeIndex, True])
+				self.localSort(parentNode)
+				#organizeTreeButton.organizeTree(organizeTreeButton, self.taskTree.root_node)
 			
 		self.mainWin.setWindowTitle("*HTT-Viz")
 
@@ -465,6 +461,37 @@ class HTTDisplayWidget(QGraphicsView):
 		else:
 			print('Unknown Action:')
 			print(action)
+			
+	def tooManyRootChildren(self, parentNode):
+		if parentNode.isRoot():
+			if len(parentNode.children) > 0:
+				self.w = TooManyRootChildrenErrorWindow(self)
+				self.w.show()
+				return True
+			else:
+				return False
+		else:
+			return False
+			
+	def localSort(self, parentNode):
+		if len(parentNode.children) == 1:
+			for child in parentNode.children:
+				child.setX(parentNode.getX())
+				child.setY(parentNode.getY() + 80)
+				
+		else:
+			max = float('-inf')
+			for child in parentNode.children:
+				child.setY(parentNode.getY() + 80)
+				if child.getX() > max:
+					max = child.getX()
+					
+			lastChild = len(parentNode.children) - 1
+			parentNode.children[lastChild].setX((parentNode.children[lastChild - 1].getX() + (parentNode.children[lastChild].getWidth() * 1.5)))
+			difference = (parentNode.children[lastChild].getWidth() * 1.5)/2
+			for child in parentNode.children:
+				organizeTreeButton.moveSubTree(organizeTreeButton, child, difference)
+
 			
 class EditWindow(QDialog):
 	def __init__(self, node, mainWin):
@@ -674,6 +701,51 @@ class TooManyRootChildrenErrorWindow(QDialog):
 		layout.addWidget(closeButton)
 		
 		self.setLayout(layout)
+		
+class SettingsWindow(QDialog):
+
+	autoOrg = True
+	
+	def __init__(self, window):
+		super().__init__()
+
+		self.setWindowModality(Qt.ApplicationModal)
+
+		self.window = window
+		
+		p = self.palette()
+		p.setColor(self.backgroundRole(), QColor(0x3D, 0x3D, 0x3D))
+		self.setPalette(p)
+		
+		self.setWindowTitle("Settings")
+		self.setMinimumSize(QSize(225, 130))
+		self.setMaximumSize(QSize(225, 130)) 
+		self.resize(225, 130)
+
+		layout = QVBoxLayout()
+		
+		autoOrganizeToggleButton = QPushButton('Auto-Organize: On', self)
+		autoOrganizeToggleButton.setStyleSheet("background-color : green")
+		autoOrganizeToggleButton.setCheckable(True)
+		autoOrganizeToggleButton.clicked.connect(lambda : self.toggleButtonAppearance(autoOrganizeToggleButton))
+		
+		closeButton = QPushButton('Close', self)
+		closeButton.clicked.connect(lambda : self.close())
+		
+		layout.addWidget(autoOrganizeToggleButton)
+		layout.addWidget(closeButton)
+		
+		self.setLayout(layout)
+		
+	def toggleButtonAppearance(self, button):
+		if button.isChecked():
+			button.setText('Auto-Organize: Off')
+			button.setStyleSheet("background-color : red")
+			self.autoOrg = False
+		else:
+			button.setText('Auto-Organize: On')
+			button.setStyleSheet("background-color : green")
+			self.autoOrg = True
 		
 if __name__ == "__main__":
 	rospy.init_node('htt_viz')
