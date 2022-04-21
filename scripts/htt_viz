@@ -2,8 +2,12 @@
 
 import sys
 import yaml
+import os
 
 import rospy
+
+from os.path import exists
+
 from htt_viz.srv import Update
 from htt_viz.srv import UpdateResponse
 
@@ -378,6 +382,7 @@ class HTTDisplayWidget(QGraphicsView):
 		self.scene.setBackgroundBrush(QColor(0x3D, 0x3D, 0x3D))
 		self.setScene(self.scene)
 		self.taskTree.registerScene(self.scene)
+		self.setColors(self.taskTree.root_node)
 		
 		# TODO: Scrolling makes a constant cursor, and feels really janky to use
 		# Maybe we should implment our own?
@@ -394,9 +399,11 @@ class HTTDisplayWidget(QGraphicsView):
 			if not self.tooManyRootChildren(parentNode):			
 				self.taskTree.addNode([parentNode, selectedNodeIndex, True])
 				self.localSort(parentNode)
-				#organizeTreeButton.organizeTree(organizeTreeButton, self.taskTree.root_node)
+				if self.getAutoOrgState():
+					organizeTreeButton.organizeTree(organizeTreeButton, self.taskTree.root_node)
 			
 		self.mainWin.setWindowTitle("*HTT-Viz")
+		self.setColors(self.taskTree.root_node)
 
 	def replaceTree(self):
 		self.taskTreeDisplayWidget.clearTaskTree()
@@ -491,7 +498,74 @@ class HTTDisplayWidget(QGraphicsView):
 			difference = (parentNode.children[lastChild].getWidth() * 1.5)/2
 			for child in parentNode.children:
 				organizeTreeButton.moveSubTree(organizeTreeButton, child, difference)
-
+				
+	def getAutoOrgState(self):
+		path = self.getConfigPath()
+		if not os.path.exists(path):
+			createDefaultConfig(path)
+			
+		file = open(path, 'r')
+		lines = file.readlines()	
+		file.close()
+		
+		if lines[1] == "	auto-organize: false\n":
+			return False
+		elif lines[1] == "	auto-organize: true\n":
+			return True
+			
+	def getConfigPath(self):
+		folderAndFileName = "config/config.yaml"
+		
+		directory = os.path.dirname(os.path.realpath(__file__))
+		end = len(directory) - 1
+		
+		x = 0
+		for x in range(end, 0, -1):
+			if directory[x] != '/':
+				directory = directory[:-1]
+			else:
+				break
+				
+		directory = directory + folderAndFileName
+		
+		return directory
+		
+	def setColors(self, root):
+		path = self.getConfigPath()
+		if not os.path.exists(path):
+			createDefaultConfig(path)
+			
+		file = open(path, 'r')
+		lines = file.readlines()	
+		file.close()
+		
+		redArray = []
+		greenArray = []
+		blueArray = []
+		commaPos = []
+		
+		for x in range(2,5):
+			y = 0
+			for y in range(len(lines[x])):
+				if lines[x][y] == ':':
+					colonPos = y
+				if lines[x][y] == ',':
+					commaPos.append(y - (colonPos + 2))
+			lines[x] = lines[x][colonPos+2:]
+			redArray.append(int(lines[x][:commaPos[0]]))
+			greenArray.append(int(lines[x][commaPos[0]+2:commaPos[1]]))
+			blueArray.append(int(lines[x][(commaPos[1]+2):len(lines[x]) - 1]))
+			commaPos.clear()
+			
+		self.applyNodeColors(redArray, greenArray, blueArray, root)
+		
+		mainWinRgbString = ('rgb(' + str(redArray[2]) + ',' + str(greenArray[2]) + ',' + str(blueArray[2]) + ')')
+		self.mainWin.subsplitter.setStyleSheet('background-color: ' + mainWinRgbString) 
+		
+	def applyNodeColors(self, redArray, greenArray, blueArray, root):
+		root.qGraphics.setInactiveColors(redArray,greenArray,blueArray)
+		for child in root.children:
+			self.applyNodeColors(redArray, greenArray, blueArray, child)
 			
 class EditWindow(QDialog):
 	def __init__(self, node, mainWin):
@@ -703,8 +777,6 @@ class TooManyRootChildrenErrorWindow(QDialog):
 		self.setLayout(layout)
 		
 class SettingsWindow(QDialog):
-
-	autoOrg = True
 	
 	def __init__(self, window):
 		super().__init__()
@@ -718,45 +790,144 @@ class SettingsWindow(QDialog):
 		self.setPalette(p)
 		
 		self.setWindowTitle("Settings")
-		self.setMinimumSize(QSize(225, 130))
-		self.setMaximumSize(QSize(225, 130)) 
-		self.resize(225, 130)
+		self.setMinimumSize(QSize(225, 150))
+		self.setMaximumSize(QSize(225, 150)) 
+		self.resize(225, 150)
 
 		layout = QVBoxLayout()
 		
-		autoOrganizeToggleButton = QPushButton('Auto-Organize: On', self)
-		autoOrganizeToggleButton.setStyleSheet("background-color : green")
+		autoOrganizeToggleButton = QPushButton(self)
+		if self.getAutoOrgState():
+			autoOrganizeToggleButton.setText("Auto-Organize: On")
+			autoOrganizeToggleButton.setStyleSheet("background-color : green")
+		else:
+			autoOrganizeToggleButton.setText("Auto-Organize: Off")
+			autoOrganizeToggleButton.setStyleSheet("background-color : red")
+			
 		autoOrganizeToggleButton.setCheckable(True)
-		autoOrganizeToggleButton.clicked.connect(lambda : self.toggleButtonAppearance(autoOrganizeToggleButton))
+		autoOrganizeToggleButton.clicked.connect(lambda : self.swapAutoOrgState(autoOrganizeToggleButton))
 		
-		changeNodeColorButton = QPushButton('Change Node Color')
-		changeNodeColorButton.clicked.connect(lambda : self.changeColor("node"))
+		changeNodeMainColorButton = QPushButton('Change Node Primary Color')
+		changeNodeMainColorButton.clicked.connect(lambda : self.changeColor("node-main"))
 		
-		changeBackgroundColorButton = QPushButton('Chance Background Color')
+		changeNodeBorderColorButton = QPushButton('Change Node Border Color')
+		changeNodeBorderColorButton.clicked.connect(lambda : self.changeColor("node-border"))
+		
+		changeBackgroundColorButton = QPushButton('Chance Window Color')
 		changeBackgroundColorButton.clicked.connect(lambda : self.changeColor("background"))		
 		
 		closeButton = QPushButton('Close', self)
 		closeButton.clicked.connect(lambda : self.close())
 		
 		layout.addWidget(autoOrganizeToggleButton)
-		layout.addWidget(changeNodeColorButton)
+		layout.addWidget(changeNodeMainColorButton)
+		layout.addWidget(changeNodeBorderColorButton)
 		layout.addWidget(changeBackgroundColorButton)
 		layout.addWidget(closeButton)
 		
 		self.setLayout(layout)
-		
-	def toggleButtonAppearance(self, button):
-		if button.isChecked():
-			button.setText('Auto-Organize: Off')
-			button.setStyleSheet("background-color : red")
-			self.autoOrg = False
-		else:
-			button.setText('Auto-Organize: On')
-			button.setStyleSheet("background-color : green")
-			self.autoOrg = True
+	
+	#see whether user has set auto org to on or off	
+	def getAutoOrgState(self):
+		path = self.getConfigPath()
+		if not os.path.exists(path):
+			createDefaultConfig(path)
 			
+		file = open(path, 'r')
+		lines = file.readlines()	
+		file.close()
+		
+		if lines[1] == "	auto-organize: false\n":
+			return False
+		elif lines[1] == "	auto-organize: true\n":
+			return True
+			
+	#swap button button appearance and config info for auto org preference		
+	def swapAutoOrgState(self, button):
+		path = self.getConfigPath()
+		if not os.path.exists(path):
+			createDefaultConfig(path)
+		
+		file = open(path, 'r')
+		lines = file.readlines()	
+		file.close()
+		
+		if lines[1] == "	auto-organize: false\n":
+			lines[1] = "	auto-organize: true\n"
+		elif lines[1] == "	auto-organize: true\n":
+			lines[1] = "	auto-organize: false\n"
+			
+		file = open(path, 'w')
+		file.writelines(lines)
+		file.close()
+		
+		if self.getAutoOrgState():
+			button.setText("Auto-Organize: On")
+			button.setStyleSheet("background-color : green")
+		else:
+			button.setText("Auto-Organize: Off")
+			button.setStyleSheet("background-color : red")
+		
+	#prompts user with color dialogue and calls functions responsible for
+	#storing their decision in the config file and applying their changes	
 	def changeColor(self, choice):
 		color = QColorDialog.getColor()
+		self.storeColor(color, choice)
+		self.window.taskTreeDisplayWidget.setColors(self.window.taskTree.root_node)
+	
+	#stores new color in config file
+	def storeColor(self, color, choice):
+		path = self.getConfigPath()
+		if not os.path.exists(path):
+			createDefaultConfig(path)
+		
+		colortuple = color.getRgb()
+		colortuple = colortuple[:-1]
+		colorstring = str(colortuple)
+		colorstring = colorstring[1:]
+		colorstring = colorstring[:-1]
+		
+		file = open(path, 'r')
+		lines = file.readlines()	
+		file.close()
+		
+		if choice == "node-main":
+			lines[2] = "	node-main-color: " + colorstring + "\n"
+		elif choice == "node-border":
+			lines[3] = "	node-border-color: " + colorstring + "\n"
+		elif choice == "background":
+			lines[4] = "	background-color: " + colorstring + "\n"
+				
+		file = open(path, 'w')
+		file.writelines(lines)
+		file.close()
+	
+	#creates the default config
+	def createDefaultConfig(path):
+		f = open(path,"w")
+		f.write("config:\n")
+		f.write("	auto-organize: false\n")
+		f.write("	node-main-color: 121, 218, 255\n")
+		f.write("	node-border-color: 4, 180, 245\n")
+		f.write("	background-color: 50, 50, 50\n")
+		f.close()
+		
+	def getConfigPath(self):
+		folderAndFileName = "config/config.yaml"
+		
+		directory = os.path.dirname(os.path.realpath(__file__))
+		end = len(directory) - 1
+		
+		x = 0
+		for x in range(end, 0, -1):
+			if directory[x] != '/':
+				directory = directory[:-1]
+			else:
+				break
+				
+		directory = directory + folderAndFileName
+		
+		return directory
 		
 if __name__ == "__main__":
 	rospy.init_node('htt_viz')

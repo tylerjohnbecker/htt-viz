@@ -115,7 +115,7 @@ class organizeTreeButton():
 	#gets the furthest parent of a node that isn't the root
 	#recently changed to get the parent before that parent
 	def getFurthestNonRootParent(node):
-		while not node.parent.parent.isRoot():
+		while not node.parent.isRoot():
 			node = node.parent
 			
 		return node

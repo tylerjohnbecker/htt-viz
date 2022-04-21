@@ -98,6 +98,10 @@ class QGraphicsTaskTreeNode(QGraphicsItem):
 		self.borderColor = QColor(4, 180, 245)
 		self.isActive = False
 		
+	def setInactiveColors(self, redList, greenList, blueList):
+		self.normalColor = QColor(redList[0], greenList[0], blueList[0])
+		self.borderColor = QColor(redList[1], greenList[1], blueList[1])
+		
 	# Get the graphics width
 	def getWidth(self):
 		return self.width
