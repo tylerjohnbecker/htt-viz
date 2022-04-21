@@ -15,6 +15,7 @@ from htt_viz_py.QGraphicsTaskTreeNode import QGraphicsTaskTreeNode
 from htt_viz_py.tree import Tree
 from htt_viz_py.imgout import makeImg
 from htt_viz_py.orgButton import organizeTreeButton
+from htt_viz_py.ProgramAuthor import ProgramAuthor
 
 from PyQt5 import QtCore, QtWidgets, QtGui
 from PyQt5.QtWidgets import QMainWindow, QWidget, QPushButton, QAction, QFrame
@@ -47,13 +48,13 @@ class MainWindow(QMainWindow):
 		newAction = QAction(QIcon('new.png'), '&New', self)		
 		newAction.setShortcut('Ctrl+N')
 		newAction.setStatusTip('New document')
-		newAction.triggered.connect(self.newCall)
+		newAction.triggered.connect(self.newCheck)
 
 		# Open Action
 		openAction = QAction(QIcon('open.png'), '&Open', self)		
 		openAction.setShortcut('Ctrl+O')
 		openAction.setStatusTip('Open document')
-		openAction.triggered.connect(self.openCall)
+		openAction.triggered.connect(self.openCheck)
 		
 		# Save Action
 		saveAction = QAction(QIcon('save.png'), '&Save', self)		
@@ -85,24 +86,6 @@ class MainWindow(QMainWindow):
 		redoAction.setStatusTip('Redo previously undone action')
 		redoAction.triggered.connect(self.redoCall)
 		
-		# Cut Action
-		cutAction = QAction(QIcon('cut.png'), '&Cut', self)		
-		cutAction.setShortcut('Ctrl+X')
-		cutAction.setStatusTip('Cut content to clipboard')
-		cutAction.triggered.connect(self.cutCall)
-		
-		# Copy Action
-		copyAction = QAction(QIcon('copy.png'), '&Copy', self)		
-		copyAction.setShortcut('Ctrl+C')
-		copyAction.setStatusTip('Copy content to clipboard')
-		copyAction.triggered.connect(self.copyCall)
-		
-		# Paste Action
-		pasteAction = QAction(QIcon('paste.png'), '&Paste', self)		
-		pasteAction.setShortcut('Ctrl+V')
-		pasteAction.setStatusTip('Paste content on clipboard')
-		pasteAction.triggered.connect(self.pasteCall)
-		
 		# Settings Action
 		settingsAction = QAction(QIcon('settings.png'), '&Settings', self)
 		settingsAction.setStatusTip('View the settings')
@@ -127,10 +110,6 @@ class MainWindow(QMainWindow):
 		editMenu = menuBar.addMenu('&Edit')
 		editMenu.addAction(undoAction)
 		editMenu.addAction(redoAction)
-		editMenu.addSeparator()
-		editMenu.addAction(cutAction)
-		editMenu.addAction(copyAction)
-		editMenu.addAction(pasteAction)
 		
 		viewMenu = menuBar.addMenu('&View')
 		viewMenu.addAction(settingsAction)
@@ -174,9 +153,8 @@ class MainWindow(QMainWindow):
 		
 		self.nodeList = QListWidget()
 		self.subWindow1.layout().addWidget(self.nodeList)
-		
-		for nodeType in self.taskTree.author.node_master_list[1:]:
-			self.nodeList.addItem(nodeType.name)
+
+		self.PopulateNodeList()
 		
 		self.nodeList.itemSelectionChanged.connect(self.handleNodeSelectionChange)
 		self.nodeList.item(0).setSelected(True)
@@ -187,15 +165,30 @@ class MainWindow(QMainWindow):
 		self.filePath = None
 
 		
-		
+	def PopulateNodeList(self):
+		self.nodeList.clear()
+
+		for nodeType in self.taskTree.author.node_master_list[1:]:
+			self.nodeList.addItem(nodeType.name)
+	
 	def handleNodeSelectionChange(self):
-		selectedItem = self.nodeList.selectedItems()[0]
+		
+		if len(self.nodeList.selectedItems()) > 0:
+			selectedItem = self.nodeList.selectedItems()[0]
+			self.taskTreeDisplayWidget.selectedNodeIndex = self.nodeList.row(selectedItem) + 1
 
 		# We only use 1 column. 
 		# index is incremented by 1 as root is removed from QListWidget
-		self.taskTreeDisplayWidget.selectedNodeIndex = self.nodeList.row(selectedItem) + 1
+
+	def openCheck(self):
+		if self.windowTitle() == "*HTT-Viz":
+			self.w = UnsavedDiscardCall(self, "Open")
+			self.w.show()
+		else:
+			self.openCall()
 
 	def openCall(self):
+		isImported = False
 		options = QFileDialog.Options()
 		options |= QFileDialog.DontUseNativeDialog
 		filePath, _ = QFileDialog.getOpenFileName(self, "Open", "","YAML Files (*.yaml)", options=options)
@@ -203,33 +196,63 @@ class MainWindow(QMainWindow):
 			self.filePath = filePath
 			
 			with open(filePath, "r") as f:
-				data = yaml.load(f, Loader=yaml.Loader)
-				
-				self.taskTreeDisplayWidget.clearTaskTree()
+				papa = ProgramAuthor()
+				papa.clearTypes()
 
-				#clear all the currently loaded behaviors
-				self.taskTree.author.clearTypes()
+				data = yaml.load(f, Loader=yaml.Loader)
+
+				if data.get("NodeFileIncludes") is None:
+					msg = QMessageBox()
+					msg.setIcon(QMessageBox.Information)
+					msg.setText("No node includes found. Please adjust the .yaml file appropriately: \n\nNodeFileIncludes:\n- /home/catkin_ws/src/htt-viz/include/behavior/move_behavior.yaml\n- /home/catkin_ws/src/htt-viz/include/behavior/draw_behavior.yaml\n...\nNodeList:\n...")
+					msg.setWindowTitle("KeyError: 'NodeFileIncludes'")
+		
+					msg.exec()					
+
+					return	
 
 				#load all the behavior types that are needed for the file we are opening
 				for file_name in data["NodeFileIncludes"]:
 					try: # TODO Catch FileNotFoundError to notify user
-						self.taskTree.author.addNodeFromFile(file_name)
+						papa.addNodeFromFile(file_name)
 					except FileNotFoundError:
-						sys.exit("Hey Nathaniel, I give up. Also line 194 - Brady <3")
-						#self.w = FileNotFoundWindow(self)
-						#self.w.show()
-						#self.waiting = True
-						#while self.waiting:
-							#pass
 
+						fnf = "..." + file_name[-30:]
+
+						FTFoptions = QFileDialog.Options()
+						FTFoptions |= QFileDialog.DontUseNativeDialog
+						FTFfilePath, _ = QFileDialog.getOpenFileName(self, "File Not Found: "+fnf, "","YAML Files (*.yaml)", options=FTFoptions)
+
+						if FTFfilePath == "":
+							print("File path not found - open aborted")
+							return
+
+						papa.addNodeFromFile(FTFfilePath)
+						
+
+				#clear all the currently loaded behaviors
+				self.taskTree.author = papa
+
+				self.PopulateNodeList()
+
+				self.taskTreeDisplayWidget.clearTaskTree()
 
 				# I'm leaving this in just because it is helpful for debugging
 				# print(self.taskTree.author.toString())
 				
 				for node in data["NodeList"]:
 					#name, x=0, y=0, nParent = None
-					x = data["Nodes"][node]["x"]
-					y = data["Nodes"][node]["y"]
+					x = y = 0
+
+
+					if "x" in data["Nodes"][node]:
+						x = data["Nodes"][node]["x"]
+					else: 
+						isImported = True
+					if "y" in data["Nodes"][node]:
+						y = data["Nodes"][node]["y"]
+					else: 
+						isImported = True
 					parent = data["Nodes"][node]["parent"]
 
 					node_type = data["Nodes"][node]["mask"]["type"]
@@ -243,11 +266,29 @@ class MainWindow(QMainWindow):
 
 					if "Title" in data["Nodes"][node]:
 						node_ptr.setTitle(data["Nodes"][node]["Title"]) # Unhappy Path :(
+					else: 
+						isImported = True
+
+			self.setWindowTitle("HTT-Viz")
+		if isImported:
+			organizeTreeButton.organizeTree(organizeTreeButton, self.taskTree.root_node)
+			self.setWindowTitle("*HTT-Viz")
+
+	def newCheck(self):
+		if self.windowTitle() == "*HTT-Viz":
+			self.w = UnsavedDiscardCall(self, "Reset")
+			self.w.show()
+		else:
+			self.newCall()
+
+	def newCall(self):
+		self.taskTreeDisplayWidget.clearTaskTree()
+		self.filePath = None
+		self.taskTree.root_node = self.taskTree.createNewNode(0, 50, 10)
+		self.taskTree.root_node.registerScene(self.taskTreeDisplayWidget.scene)
 
 		self.setWindowTitle("HTT-Viz")
 
-	def newCall(self):
-		self.filePath = None
 
 	# https://pythonspot.com/pyqt5-file-dialog/	
 	def saveCall(self):
@@ -264,14 +305,6 @@ class MainWindow(QMainWindow):
 			self.filePath = dialog.selectedFiles()[0]
 			
 		filePath = self.filePath
-		
-		#if not filePath:
-		#	options = QFileDialog.Options()
-		#	options |= QFileDialog.DontUseNativeDialog
-		#	filePath, _ = QFileDialog.getSaveFileName(self,"Save","","YAML Files (*.yaml)", options=options)
-		#	if not filePath:
-		#		return
-		#	self.filePath = filePath
 			
 		data = self.taskTree.toYamlDict()
 		with open(filePath, "w") as f:
@@ -287,10 +320,6 @@ class MainWindow(QMainWindow):
 		dialog.setNameFilters(['YAML (*.yaml)'])
 		if dialog.exec_() != QDialog.Accepted:
 			return
-
-		#options = QFileDialog.Options()
-		#options |= QFileDialog.DontUseNativeDialog
-		#filePath, _ = QFileDialog.getSaveFileName(self, "Save As","","YAML Files (*.yaml)", options=options)
 		
 		self.filePath = dialog.selectedFiles()[0]
 			
@@ -327,14 +356,6 @@ class MainWindow(QMainWindow):
 
 		#self.taskTree.Refresh(False)
 		
-	def cutCall(self):
-		print('cut')
-		
-	def copyCall(self):
-		print('copy')
-
-	def pasteCall(self):
-		print('paste')
 		
 	def settingsCall(self):
 		self.w = SettingsWindow(self)
@@ -465,9 +486,9 @@ class HTTDisplayWidget(QGraphicsView):
 				self.w.show()
 			else:   
 				app.quit()
-		else:
-			print('Unknown Action:')
-			print(action)
+		#else:
+			#print('Unknown Action:')
+			#print(action)
 			
 	def tooManyRootChildren(self, parentNode):
 		if parentNode.isRoot():
@@ -590,13 +611,8 @@ class EditWindow(QDialog):
 		self.titleBox.setMaxLength(16)
 		self.titleBox.resize(200,40)
 		self.titleBox.setText(node.title)
-		#print(node.title)
 		textBoxList.addRow("Title", self.titleBox)
 		
-		#self.paramBox = QPlainTextEdit()
-		#self.paramBox.resize(200,120)
-		#self.paramBox.setPlainText("Node Params") #NEEDS BACKEND
-		#textBoxList.addRow("Parameters", self.paramBox)
 		
 		#CHANGE TO FOREACH FOR PARAMETER ARRAY BASED ON TYPE
 		
@@ -694,6 +710,11 @@ class UnsavedContentWindow(QDialog): # Try to change to QMessageBox or QErrorBox
 		#saveButton.move(5, 80)
 		saveButton.clicked.connect(self.saveContentClick)
 		vbox.addWidget(saveButton)
+
+		if window.windowTitle() == "*HTT-Viz":
+			saveAsButton = QPushButton('Save Content As', self)
+			saveAsButton.clicked.connect(self.saveContentAsClick)
+			vbox.addWidget(saveAsButton)
 		
 		closeButton = QPushButton('Close Anyway', self)
 		#closeButton.move(120, 80)
@@ -713,6 +734,10 @@ class UnsavedContentWindow(QDialog): # Try to change to QMessageBox or QErrorBox
 			self.window.saveClick()
 			self.close()
 		
+	def saveContentAsClick(self):
+		self.window.saveAsCall()
+		self.close()
+
 	def closeAnywayClick(self):
 			#self.window.close()
 		if self.window.windowTitle() == "*HTT-Viz":
@@ -724,25 +749,68 @@ class UnsavedContentWindow(QDialog): # Try to change to QMessageBox or QErrorBox
 	#def closeEvent(self, event):
 		#self.window.setUpdatesEnabled(True)
 
-class FileNotFoundWindow(QDialog):
-	def __init__(self, window):
+
+class UnsavedDiscardCall(QDialog): # Try to change to QMessageBox or QErrorBox
+	def __init__(self, window, check):
 		super().__init__()
 
 		self.setWindowModality(Qt.ApplicationModal)
 
 		self.window = window
+		self.check = check
 
 		p = self.palette()
 		p.setColor(self.backgroundRole(), QColor(0x3D, 0x3D, 0x3D))
 		self.setPalette(p)
 		
-		self.setWindowTitle("File Not Found!!")
+		self.setWindowTitle("Warning!")
 		self.setMinimumSize(QSize(225, 130))
 		self.setMaximumSize(QSize(225, 130)) 
 		self.resize(225, 130)
 
-	#def closeEvent(self, event):
-		#self.window.waiting = False
+		uC = QLabel()
+		uC.setText("Unsaved Content")
+		uC.setStyleSheet("color: white")
+		uC.setAlignment(Qt.AlignCenter)
+
+		vbox = QVBoxLayout()
+		vbox.addWidget(uC)
+
+		saveButton = QPushButton('Save Content', self)
+		#saveButton.move(5, 80)
+		saveButton.clicked.connect(self.saveContentClick)
+		vbox.addWidget(saveButton)
+
+		saveAsButton = QPushButton('Save Content As', self)
+		saveAsButton.clicked.connect(self.saveContentAsClick)
+		vbox.addWidget(saveAsButton)
+		
+		discardButton = QPushButton('Discard Changes and '+self.check, self)
+		discardButton.clicked.connect(self.discardClick)
+		vbox.addWidget(discardButton)
+
+
+		
+		
+		self.setLayout(vbox)
+
+	def saveContentClick(self):
+		#save parameter values
+		self.window.saveCall()
+		self.close()
+		
+	def saveContentAsClick(self):
+		self.window.saveAsCall()
+		self.close()
+
+	def discardClick(self):
+			#self.window.close()
+		if self.check == "Reset":
+			self.window.newCall()
+			self.close()
+		elif self.check == "Open":
+			self.window.openCall()
+			self.close()
 
 class TooManyRootChildrenErrorWindow(QDialog):
 	def __init__(self, window):

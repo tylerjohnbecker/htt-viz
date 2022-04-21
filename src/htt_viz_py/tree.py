@@ -504,8 +504,10 @@ class Tree:
 			nNode = Node(self.author.getNodeTypeByIndex(dict["mask"]["type"]), dict["mask"]["node"])
 			nNode.depth = 0
 
-			nNode.setX(dict["x"])
-			nNode.setY(dict["y"] + 20.0)
+			if dict.get("x") is not None:
+				nNode.setX(dict["x"])
+			if dict.get("y") is not None:
+				nNode.setY(dict["y"] + 20.0)
 			
 			self.root_node = nNode
 
@@ -529,8 +531,10 @@ class Tree:
 		nNode.parent = parent_ptr
 		nNode.depth = depth
 
-		nNode.setX(dict["x"])
-		nNode.setY(dict["y"] + 20.0)
+		if dict.get("x") is not None:
+			nNode.setX(dict["x"])
+		if dict.get("y") is not None:
+			nNode.setY(dict["y"] + 20.0)
 
 		parent_ptr.addChild(nNode)
 
@@ -567,6 +571,7 @@ class Tree:
 		self.root_node.unregisterScene(self.scene())
 
 		self.root_node = None
+		self.free_nums[0] = False
 
 	# Params:
 	#	args[0]:	name of the node being removed
