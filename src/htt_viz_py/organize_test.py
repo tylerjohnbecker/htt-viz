@@ -7,22 +7,26 @@ from orgButton import organizeTreeButton
 from tree import Tree, Node
 import random as r
 
+@pytest.fixture
 def test(testCount, treeSize)
 	for x in range(testCount):
 		root = genRandomTree(treeSize)
 		organizeTreeButton.organizeTree(organizeTreeButton, root)
 		success = checkTree(root)
 
-def genRandomTree(treeSize)
+def genRandomTree(treeSize, qtbot)
 	r.seed()
 	cur_ptr = tree.root_node;
-	for i in range(r.randrange(1, 25)
-		       if not cur_ptr.isLeaf():
-		       if
+	for i in range(r.randrange(1, 10))
+		qtbot.treeHeight(self, node)
+		organizeTreeButton.organizeTree(organizeTreeButton, root)
+		success = checkTree(root)
+		
 def checkTree(node)
 	 r.seed()
     cur_ptr = tree.root_node;
-    for i in range(r.randrange(1, 10)):
+	organizeTreeButton.organizeTree(organizeTreeButton, root)
+    	for i in range(r.randrange(1, 10)):
         if not cur_ptr.isLeaf():
             if cur_ptr is tree.root_node:
                 cur_ptr = cur_ptr.children[0]
@@ -30,7 +34,6 @@ def checkTree(node)
                 break
             else:
                 cur_ptr = cur_ptr.children[r.randrange(len(cur_ptr.children))]
-                #if its an action we can't add a child to it
                 if cur_ptr.m_type.index > 3:
                     cur_ptr = cur_ptr.parent
                     i = i - 1
@@ -53,8 +56,16 @@ def checkTree(node)
 	
 if __name__ == "__main__":
 		 
-	t = Tree()
+	t = qt_api.Tree(self)
 
 	x = 100 #how many tests will be ran
 	n = 100 #how many nodes there will be
 	test(x,n)
+		 print ("Organization Button works!!" + str(i))
+		 if not tree_placed:
+		 print("Test has failed")
+		 
+		 print ("Exiting")
+		 break
+	print("Test complete program exiting")
+		 
