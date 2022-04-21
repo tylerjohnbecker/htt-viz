@@ -479,9 +479,9 @@ class HTTDisplayWidget(QGraphicsView):
 				self.w.show()
 			else:   
 				app.quit()
-		else:
-			print('Unknown Action:')
-			print(action)
+		#else:
+			#print('Unknown Action:')
+			#print(action)
 			
 	def tooManyRootChildren(self, parentNode):
 		if parentNode.isRoot():
