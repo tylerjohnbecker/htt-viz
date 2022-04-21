@@ -44,13 +44,13 @@ class MainWindow(QMainWindow):
 		newAction = QAction(QIcon('new.png'), '&New', self)		
 		newAction.setShortcut('Ctrl+N')
 		newAction.setStatusTip('New document')
-		newAction.triggered.connect(self.newCall)
+		newAction.triggered.connect(self.newCheck)
 
 		# Open Action
 		openAction = QAction(QIcon('open.png'), '&Open', self)		
 		openAction.setShortcut('Ctrl+O')
 		openAction.setStatusTip('Open document')
-		openAction.triggered.connect(self.openCall)
+		openAction.triggered.connect(self.openCheck)
 		
 		# Save Action
 		saveAction = QAction(QIcon('save.png'), '&Save', self)		
@@ -178,7 +178,8 @@ class MainWindow(QMainWindow):
 
 	def openCheck(self):
 		if self.windowTitle() == "*HTT-Viz":
-			self.UnsavedDiscardCall(self, "Open")
+			self.w = UnsavedDiscardCall(self, "Open")
+			self.w.show()
 		else:
 			self.openCall()
 
@@ -264,17 +265,25 @@ class MainWindow(QMainWindow):
 					else: 
 						isImported = True
 
-		self.setWindowTitle("HTT-Viz")
+			self.setWindowTitle("HTT-Viz")
 		if isImported:
 			organizeTreeButton.organizeTree(organizeTreeButton, self.taskTree.root_node)
 			self.setWindowTitle("*HTT-Viz")
 
+	def newCheck(self):
+		if self.windowTitle() == "*HTT-Viz":
+			self.w = UnsavedDiscardCall(self, "Reset")
+			self.w.show()
+		else:
+			self.newCall()
 
 	def newCall(self):
 		self.taskTreeDisplayWidget.clearTaskTree()
 		self.filePath = None
 		self.taskTree.root_node = self.taskTree.createNewNode(0, 50, 10)
 		self.taskTree.root_node.registerScene(self.taskTreeDisplayWidget.scene)
+
+		self.setWindowTitle("HTT-Viz")
 
 
 	# https://pythonspot.com/pyqt5-file-dialog/	
@@ -702,7 +711,7 @@ class UnsavedDiscardCall(QDialog): # Try to change to QMessageBox or QErrorBox
 		saveAsButton.clicked.connect(self.saveContentAsClick)
 		vbox.addWidget(saveAsButton)
 		
-		discardButton = QPushButton('Discard Changes', self)
+		discardButton = QPushButton('Discard Changes and '+self.check, self)
 		discardButton.clicked.connect(self.discardClick)
 		vbox.addWidget(discardButton)
 
@@ -722,10 +731,12 @@ class UnsavedDiscardCall(QDialog): # Try to change to QMessageBox or QErrorBox
 
 	def discardClick(self):
 			#self.window.close()
-		if self.check == "New":
+		if self.check == "Reset":
 			self.window.newCall()
+			self.close()
 		elif self.check == "Open":
 			self.window.openCall()
+			self.close()
 
 class TooManyRootChildrenErrorWindow(QDialog):
 	def __init__(self, window):
