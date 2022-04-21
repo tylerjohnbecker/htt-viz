@@ -81,24 +81,6 @@ class MainWindow(QMainWindow):
 		redoAction.setStatusTip('Redo previously undone action')
 		redoAction.triggered.connect(self.redoCall)
 		
-		# Cut Action
-		cutAction = QAction(QIcon('cut.png'), '&Cut', self)		
-		cutAction.setShortcut('Ctrl+X')
-		cutAction.setStatusTip('Cut content to clipboard')
-		cutAction.triggered.connect(self.cutCall)
-		
-		# Copy Action
-		copyAction = QAction(QIcon('copy.png'), '&Copy', self)		
-		copyAction.setShortcut('Ctrl+C')
-		copyAction.setStatusTip('Copy content to clipboard')
-		copyAction.triggered.connect(self.copyCall)
-		
-		# Paste Action
-		pasteAction = QAction(QIcon('paste.png'), '&Paste', self)		
-		pasteAction.setShortcut('Ctrl+V')
-		pasteAction.setStatusTip('Paste content on clipboard')
-		pasteAction.triggered.connect(self.pasteCall)
-		
 		# Settings Action
 		settingsAction = QAction(QIcon('settings.png'), '&Settings', self)
 		settingsAction.setStatusTip('View the settings')
@@ -123,10 +105,6 @@ class MainWindow(QMainWindow):
 		editMenu = menuBar.addMenu('&Edit')
 		editMenu.addAction(undoAction)
 		editMenu.addAction(redoAction)
-		editMenu.addSeparator()
-		editMenu.addAction(cutAction)
-		editMenu.addAction(copyAction)
-		editMenu.addAction(pasteAction)
 		
 		viewMenu = menuBar.addMenu('&View')
 		viewMenu.addAction(settingsAction)
@@ -323,14 +301,6 @@ class MainWindow(QMainWindow):
 
 		#self.taskTree.Refresh(False)
 		
-	def cutCall(self):
-		print('cut')
-		
-	def copyCall(self):
-		print('copy')
-
-	def pasteCall(self):
-		print('paste')
 		
 	def settingsCall(self):
 		self.w = SettingsWindow(self)
@@ -620,6 +590,11 @@ class UnsavedContentWindow(QDialog): # Try to change to QMessageBox or QErrorBox
 		#saveButton.move(5, 80)
 		saveButton.clicked.connect(self.saveContentClick)
 		vbox.addWidget(saveButton)
+
+		if window.windowTitle() == "*HTT-Viz":
+			saveAsButton = QPushButton('Save Content As', self)
+			saveAsButton.clicked.connect(self.saveContentAsClick)
+			vbox.addWidget(saveAsButton)
 		
 		closeButton = QPushButton('Close Anyway', self)
 		#closeButton.move(120, 80)
@@ -639,6 +614,10 @@ class UnsavedContentWindow(QDialog): # Try to change to QMessageBox or QErrorBox
 			self.window.saveClick()
 			self.close()
 		
+	def saveContentAsClick(self):
+		self.window.saveAsCall()
+		self.close()
+
 	def closeAnywayClick(self):
 			#self.window.close()
 		if self.window.windowTitle() == "*HTT-Viz":
