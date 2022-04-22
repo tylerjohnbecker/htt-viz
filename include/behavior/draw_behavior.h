@@ -52,9 +52,12 @@ namespace task_net
 			virtual void Work();
 			virtual void UpdateActivationPotential();
 
+			void DrawCharacter(std::string c);
 	protected:
 
 	private:
+
+		moveit::planning_interface::MoveGroupInterface* move_group_interface;
 
 		std::string draw_char;
 

@@ -5,6 +5,24 @@ namespace task_net {
 	{
 		ROS_WARN("Work started for: [%s]", this->name_->topic.c_str());
 
+		move_group_interface = new moveit::planning_interface::MoveGroupInterface("left_arm");
+		move_group_interface->setEndEffector("left_gripper");
+
+		for (char c: draw_char)
+		{
+			ROS_FATAL("Drawing character [%c]", c);
+			this->DrawCharacter(std::string(1, c));
+		}
+
+		delete move_group_interface;
+		move_group_interface = nullptr;
+
+		ROS_WARN("Work Finished for: [%s]", this->name_->topic.c_str());
+	}
+
+	void DrawBehavior::DrawCharacter(std::string c)
+	{
+
 		double x_offset, y_offset;
 		this->local_.getParam("x_offset", x_offset);
 		this->local_.getParam("y_offset", y_offset);
@@ -20,12 +38,7 @@ namespace task_net {
 		}
 
 		//ROS_INFO("Drawing at [x, y]: [%f, %f]", x_offset, y_offset);
-
-		moveit::planning_interface::MoveGroupInterface move_group_interface("left_arm");
-		move_group_interface.setEndEffector("left_gripper");
-
-		move_group_interface.setStartStateToCurrentState();
-
+		move_group_interface->setStartStateToCurrentState();
 
 		std::vector<geometry_msgs::PoseStamped> pose_points;
 
@@ -61,7 +74,7 @@ namespace task_net {
 
 		pen_pointed_down.header.frame_id = "base_link";
 
-	    pen_pointed_down.link_name = move_group_interface.getEndEffectorLink();
+	    pen_pointed_down.link_name = move_group_interface->getEndEffectorLink();
 	    pen_pointed_down.orientation = down_orientation;
 
 	    pen_pointed_down.absolute_x_axis_tolerance = 0.45;
@@ -70,34 +83,32 @@ namespace task_net {
 
 	    pen_pointed_down.weight = 1;
 
-
-
 		std::vector<std::vector<int>> draw_coords;
 		int num_vectors = 0;
 
-		this->local_.getParam(this->draw_char + "/strokes", num_vectors);
+		this->local_.getParam(c + "/strokes", num_vectors);
 
 		for (int i = 0; i < num_vectors; i++)
 		{
 			std::vector<int> n_coords;
-			this->local_.getParam(this->draw_char + "/_" + std::to_string(i + 1), n_coords);
+			this->local_.getParam(c + "/_" + std::to_string(i + 1), n_coords);
 			draw_coords.push_back(n_coords);
 		}
   		moveit::planning_interface::MoveGroupInterface::Plan my_plan;
 
 		for (std::vector<int> coords: draw_coords)
 		{
-			move_group_interface.setPathConstraints(constraints);
+			move_group_interface->setPathConstraints(constraints);
 			for (int i: coords)
 			{
 				ROS_INFO("setting goal target [%d], at [%f, %f]", i, pose_points[i - 1].pose.position.x, pose_points[i - 1].pose.position.y);
-				move_group_interface.setPoseTarget(pose_points[i - 1], "l_wrist_roll_link");
+				move_group_interface->setPoseTarget(pose_points[i - 1], "l_wrist_roll_link");
 
 				//make a plan to move above the block
 				for (int i = 0; i < 5; i++)
 				{
 
-					moveit::planning_interface::MoveItErrorCode ret_val = move_group_interface.plan(my_plan);
+					moveit::planning_interface::MoveItErrorCode ret_val = move_group_interface->plan(my_plan);
 
 					if (ret_val == 0 || ret_val == 1)
 					{
@@ -113,23 +124,23 @@ namespace task_net {
 					}
 				}
 			
-				move_group_interface.execute(my_plan);
+				move_group_interface->execute(my_plan);
 			}
 
-			move_group_interface.clearPathConstraints();
+			move_group_interface->clearPathConstraints();
 
 			//pick up the pen
-			geometry_msgs::PoseStamped lift_pose = move_group_interface.getCurrentPose();
+			geometry_msgs::PoseStamped lift_pose = move_group_interface->getCurrentPose();
 
 			lift_pose.pose.position.z = this->pick_up_height;
 
-			move_group_interface.setPoseTarget(lift_pose, "l_wrist_roll_link");
+			move_group_interface->setPoseTarget(lift_pose, "l_wrist_roll_link");
 
 			//make a plan to move above the block
 			for (int i = 0; i < 5; i++)
 			{
 
-				moveit::planning_interface::MoveItErrorCode ret_val = move_group_interface.plan(my_plan);
+				moveit::planning_interface::MoveItErrorCode ret_val = move_group_interface->plan(my_plan);
 
 				if (ret_val == 0 || ret_val == 1)
 				{
@@ -145,7 +156,7 @@ namespace task_net {
 				}
 			}
 
-			move_group_interface.execute(my_plan);
+			move_group_interface->execute(my_plan);
 		}
 
 
@@ -160,7 +171,6 @@ namespace task_net {
 		this->local_.setParam("x_offset", x_offset);
 		this->local_.setParam("y_offset", y_offset);
 
-		ROS_WARN("Work Finished for: [%s]", this->name_->topic.c_str());
 	}
 
 	void DrawBehavior::UpdateActivationPotential()

@@ -12,7 +12,8 @@ NodeList:
 - Draw_6_0_006
 Nodes:
   Draw_6_0_002:
-    DrawCharacter: T
+    DrawCharacter: TYLER
+    Title: Draw T
     children:
     - NONE
     mask:
@@ -22,10 +23,11 @@ Nodes:
     parent: THEN_1_0_001
     peers:
     - NONE
-    x: -146.0
-    y: 176.0
+    x: -370.0
+    y: 190.0
   Draw_6_0_003:
     DrawCharacter: Y
+    Title: Draw Y
     children:
     - NONE
     mask:
@@ -35,10 +37,11 @@ Nodes:
     parent: THEN_1_0_001
     peers:
     - NONE
-    x: -32.0
-    y: 256.0
+    x: -160.0
+    y: 190.0
   Draw_6_0_004:
     DrawCharacter: L
+    Title: Draw L
     children:
     - NONE
     mask:
@@ -48,10 +51,11 @@ Nodes:
     parent: THEN_1_0_001
     peers:
     - NONE
-    x: 130.0
-    y: 252.0
+    x: 50.0
+    y: 190.0
   Draw_6_0_005:
     DrawCharacter: E
+    Title: Draw E
     children:
     - NONE
     mask:
@@ -61,10 +65,11 @@ Nodes:
     parent: THEN_1_0_001
     peers:
     - NONE
-    x: 313.0
-    y: 249.0
+    x: 260.0
+    y: 190.0
   Draw_6_0_006:
     DrawCharacter: R
+    Title: Draw R
     children:
     - NONE
     mask:
@@ -74,9 +79,10 @@ Nodes:
     parent: THEN_1_0_001
     peers:
     - NONE
-    x: 312.0
-    y: 168.0
+    x: 470.0
+    y: 190.0
   Root_0_0_000:
+    Title: Root_0_0_000
     children:
     - THEN_1_0_001
     mask:
@@ -87,8 +93,9 @@ Nodes:
     peers:
     - NONE
     x: 50.0
-    y: 10.0
+    y: 30.0
   THEN_1_0_001:
+    Title: THEN_1_0_001
     children:
     - Draw_6_0_002
     - Draw_6_0_003
@@ -103,4 +110,4 @@ Nodes:
     peers:
     - NONE
     x: 50.0
-    y: 89.0
+    y: 110.0
