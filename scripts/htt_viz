@@ -383,7 +383,8 @@ class SubWindow(QWidget):
 
 		self.main_layout = QVBoxLayout()
 		self.setLayout(self.main_layout)
-		
+
+#Class Author: Philip Hensley		
 class ButtonRack(QWidget):
 	def __init__(self):
 		super().__init__()
@@ -812,6 +813,7 @@ class UnsavedDiscardCall(QDialog): # Try to change to QMessageBox or QErrorBox
 			self.window.openCall()
 			self.close()
 
+#Class Author: Philip Hensley
 class TooManyRootChildrenErrorWindow(QDialog):
 	def __init__(self, window):
 		super().__init__()
@@ -843,7 +845,8 @@ class TooManyRootChildrenErrorWindow(QDialog):
 		layout.addWidget(closeButton)
 		
 		self.setLayout(layout)
-		
+
+#Class Author: Philip Hensley	
 class SettingsWindow(QDialog):
 	
 	def __init__(self, window):

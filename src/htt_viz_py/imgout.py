@@ -1,3 +1,5 @@
+#File Author: Philip Hensley
+
 import os
 
 from htt_viz_py.QGraphicsTaskTreeNode import QGraphicsTaskTreeNode
