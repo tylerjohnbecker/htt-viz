@@ -1,5 +1,5 @@
 config:
 	auto-organize: true
-	node-main-color: 114, 159, 207
-	node-border-color: 52, 101, 164
+	node-main-color: 121, 218, 255
+	node-border-color: 4, 180, 245
 	background-color: 46, 52, 54
