@@ -1,5 +1,7 @@
 #!/usr/bin/python
 
+#File Author: Alex Tello & Philip Hansley
+
 import pytest 
 from pytest.qt_compat import qt_api
 
