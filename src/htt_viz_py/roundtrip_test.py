@@ -1,4 +1,7 @@
-# This is a file meant to test if loading file will remain the same as the file saved      
+#!/usr/bin/env python
+
+#File Author: Alex Tello
+     
 import pytest
 
 from PyQt5 import QtCore, QtWidgets, QtGui
@@ -15,7 +18,7 @@ import htt_viz
 import random as r
 
 
-
+#
 @pytest.fixture
 def test_filedialog(qtbot, QMainWindow):
 	def handle_dialog():
