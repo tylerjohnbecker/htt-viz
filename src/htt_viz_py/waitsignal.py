@@ -1,3 +1,7 @@
+#!/usr/bin/env python
+
+#File Author: Alex Tello
+
 import functools
 
 from PyQt5 import QtCore, QtWidgets, QtGui
