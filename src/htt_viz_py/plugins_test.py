@@ -1,3 +1,7 @@
+#!/usr/bin/env python
+
+#File Author: Alex Tello
+
 import pytest
 from pytestqt.exceptions import (
   _is_exception_capture_enable,
