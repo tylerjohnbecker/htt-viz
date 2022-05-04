@@ -1,41 +1,33 @@
-#HTT_VIZ
+# Description
+Hierarchical Task Tree Visualizer (HTT-Viz) is a visual editing software built for creating, editing, and debugging Hierarchical Task Trees (HTT's). HTT's serve as a control mechanism in robotics which enables the programmer to quickly and efficintly enforce ordering constraints on small reusable actions to create larger and more complex tasks. HTT-Viz trivializees the incorporation of HTT's into any project by adding a visual component to the creatoin and maintenance of the trees. The intended usage of HTT-Viz is to simplify the use of HTT's through the utilization of a visual interface. This interface allows for simplify editing of a tree structure, as opposed to manually writing the trees in a text document.
 
-A graphical user interface which allows the user to edit and save Hierarchical Task Trees before deploying them to the Robot.
+# Dependencies
+HTT Architecture:
+- Boost
+- MoveIt
+- PR2 libs
 
-#Dependencies
+HTT-Viz:
+- pyyaml
+- py-qt5
+- graphviz
 
-This project depends on BOOST for the cpp files.
-- https://www.boost.org/doc/libs/1_62_0/more/getting_started/windows.html#get-boost
+# Installation
+This is a rospkg made for ROS Noetic. It needs to be run along with roscore.
+Clone this repository from main into the src folder of the catkin_ws. Run catkin_make.
 
-After that is install simply build it using catkin.
+# Usage
+HTT Architecture: 
+tree.launch launches the HTT with the given file name of the chosen tree. Also launches the parameter server which is used for the draw_behavior. 
+whiteboard_world.launch launches gazebo with the world used for testing the draw_behavior.
+move_base.launch launches the moveit server which is used in the draw_behavior.
 
-# Basic instructions for adding files
+The general order of running for sim is to start the world, then the moveit server, and then the HTT.
 
-For everything that just needs to be run pop it in the main file.
+The architecture can run trees made by the user if they place them in the trees folder and call their name when launching it.
 
-If you want to work away from the main file the other files we can use need to be put in /src/htt_viz_py
-because of how ROS packages work. And then if you want to include them follow this example.
+HTT-Viz:
+After running catkin_make the software can be run with the following: 
+- rosrun htt_viz htt_viz
 
-filesystem:
--src
--->htt_viz_py
--->-->NodeView.py
--scripts
--->Main.py
-
-and in Main.py you would include NodeView like so:
-import htt_viz_py.NodeView
-or
-from htt_viz_py.NodeView import NodeView
-
-#Main running instruction for the package
-on the command line with roscore running
-rosrun htt_viz Main.py
-
-for the HTT itself it can be run with the following command for the tree.launch file:
-roslaunch htt_viz tree.launch test_num:=k
-where k is the last digit of the file with the naming convention "test_" + k + ".yaml"
-
-Note: for now we can't save the files so we can enforce this convention, however, I'll change this to an actual file_name once we have the save functionality 
-
-Do this instead of the normal python instructions so that we can test with rosnodes running when we add that functionality later.
+In order to display the visual feedback of a running tree, the tree that is running on the architecture needs to be loaded into HTT-Viz.
